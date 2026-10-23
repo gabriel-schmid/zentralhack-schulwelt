@@ -1,0 +1,628 @@
+{
+  "data": {
+    "name": "Werkstatt",
+    "gridCols": 20,
+    "gridRows": 18,
+    "tileTypes": {
+      "GRASS": 0,
+      "ROAD": 1,
+      "WATER": 2,
+      "PLAZA": 3,
+      "BRIDGE": 4,
+      "PARK": 5,
+      "FLOWERS": 6,
+      "FOREST": 7
+    },
+    "tileWalkable": [
+      true,
+      true,
+      false,
+      true,
+      true,
+      true,
+      true,
+      false
+    ],
+    "map": [
+      [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ]
+    ],
+    "buildings": [
+      {
+        "id": "werkhalle",
+        "gx": 7,
+        "gy": 2,
+        "gw": 6,
+        "gd": 5,
+        "hUnits": 2.4,
+        "label": "Werkhalle",
+        "rendererFn": "powerWorks",
+        "accent": "#F97316"
+      },
+      {
+        "id": "huehnerstall",
+        "gx": 3,
+        "gy": 9,
+        "gw": 2,
+        "gd": 2,
+        "hUnits": 1.2,
+        "h": 38,
+        "label": "Hühnerstall (im Bau)",
+        "topColor": "#e0c39a",
+        "leftColor": "#c4a276",
+        "rightColor": "#a8865c",
+        "accent": "#F97316",
+        "windowColor": "rgba(255,220,140,0.7)"
+      },
+      {
+        "id": "holzlager",
+        "gx": 15,
+        "gy": 9,
+        "gw": 2,
+        "gd": 2,
+        "hUnits": 1.2,
+        "h": 38,
+        "label": "Holzlager",
+        "topColor": "#c8a878",
+        "leftColor": "#a88858",
+        "rightColor": "#8a6c40",
+        "accent": "#9a6634",
+        "windowColor": "rgba(255,220,140,0.7)"
+      },
+      {
+        "id": "ausgang",
+        "gx": 9,
+        "gy": 15,
+        "gw": 2,
+        "gd": 1,
+        "hUnits": 1,
+        "h": 32,
+        "label": "↩ Zum Dorfplatz",
+        "topColor": "#f4efe6",
+        "leftColor": "#e9e2d6",
+        "rightColor": "#ddd4c6",
+        "accent": "#3288EF",
+        "windowColor": "rgba(255,220,140,0.7)",
+        "isTravelPoint": true,
+        "destination": "Bergdorf"
+      }
+    ],
+    "props": [
+      {
+        "type": "table",
+        "gx": 6,
+        "gy": 10
+      },
+      {
+        "type": "table",
+        "gx": 9,
+        "gy": 10
+      },
+      {
+        "type": "table",
+        "gx": 12,
+        "gy": 10
+      },
+      {
+        "type": "lamp",
+        "gx": 4,
+        "gy": 8
+      },
+      {
+        "type": "lamp",
+        "gx": 15,
+        "gy": 8
+      }
+    ],
+    "npcs": [
+      {
+        "id": "schreiner",
+        "gx": 9,
+        "gy": 8,
+        "name": "Herr Bühler",
+        "color": "#b8804a",
+        "subject": "Schreiner · Werkstatt"
+      },
+      {
+        "id": "lea",
+        "gx": 5,
+        "gy": 11,
+        "name": "Lea",
+        "color": "#F97316",
+        "subject": "Lernende",
+        "female": true
+      },
+      {
+        "id": "jonas",
+        "gx": 13,
+        "gy": 11,
+        "name": "Jonas",
+        "color": "#0EA5E9",
+        "subject": "Lernender",
+        "hat": "cap"
+      }
+    ],
+    "collectibles": [],
+    "playerStart": {
+      "x": 10,
+      "y": 13.5
+    },
+    "v4": {
+      "season": "summer",
+      "weather": "clear",
+      "timeOfDay": null
+    }
+  },
+  "dialogue": {
+    "schreiner": {
+      "intro": "Grüezi in der Werkstatt! Diese Woche bauen wir einen Hühnerstall für den Hof. Bevor du ein Werkzeug anfasst, schauen wir zusammen, was du dafür brauchst.",
+      "hint": "Schutzausrüstung kommt immer vor dem Werkzeug.",
+      "phases": [
+        {
+          "type": "intro"
+        },
+        {
+          "type": "choice",
+          "question": "Was ziehst du an, bevor du mit der Kreissäge arbeitest?",
+          "options": [
+            {
+              "text": "Schutzbrille und Gehörschutz",
+              "correct": true
+            },
+            {
+              "text": "Handschuhe und einen Schal",
+              "correct": false
+            },
+            {
+              "text": "Nichts, es geht ja schnell",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "question": "Am Boden liegt ein Verlängerungskabel quer durch die Werkstatt. Was machst du?",
+          "options": [
+            {
+              "text": "Ich lege es an den Rand und sichere es, damit niemand stolpert.",
+              "correct": true
+            },
+            {
+              "text": "Ich steige einfach darüber.",
+              "correct": false
+            },
+            {
+              "text": "Ich ziehe den Stecker während jemand sägt.",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "type": "complete",
+          "message": "Sehr gut. Handschuhe und lose Kleider können sich an der Säge verfangen, und ein Kabel am Boden ist eine Stolperfalle. Jetzt kannst du loslegen."
+        }
+      ]
+    },
+    "lea": {
+      "intro": "Hoi! Ich plane den Hühnerstall. Heute zeichne ich, wie gross er wird und welche Bretter wir brauchen. Morgen sägen wir zusammen mit Herrn Bühler.",
+      "hint": "Ein guter Plan spart Material und Zeit.",
+      "phases": [
+        {
+          "type": "intro"
+        },
+        {
+          "type": "complete",
+          "message": "Heute Abend erzähle ich im Forum, wie weit wir sind."
+        }
+      ]
+    },
+    "jonas": {
+      "intro": "Ich wollte zuerst nur gamen, aber hier merke ich, wofür ich Mathe brauche: Ohne Winkel und Masse passt beim Stall nichts zusammen.",
+      "hint": "Frag Herrn Bühler, bevor du die Säge benutzt.",
+      "phases": [
+        {
+          "type": "intro"
+        },
+        {
+          "type": "complete",
+          "message": "Wieso lerne ich das? Hier sehe ich es."
+        }
+      ]
+    }
+  },
+  "i18n": {}
+}

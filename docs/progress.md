@@ -13,6 +13,8 @@ jury.
 
 - [x] Checked dialogue and doors: level works; in the app, use fullscreen and X/Enter; Werkstatt door opens (00:15)
 
+- [x] Werkstatt interior live: workshop hall, coop under construction, timber store, Herr Bühler with two safety questions, Lea and Jonas; exit «↩ Zum Dorfplatz» returns in the same tab (00:40)
+
 ## Tonight's plan
 
 | # | Task | Who |
@@ -20,7 +22,7 @@ jury.
 | 1 | Invite partner: GitHub repo and editor rights on the Hazu | Gabriel |
 | 2 | ~~Design the village exterior~~ done as `level/bergdorf.json`; now check it in the app and polish in the builder | Gabriel |
 | 3 | NPC prompt template (Vorlage) plus teacher and coach personas | Partner |
-| 4 | Interior of the Werkstatt, then the Coaching-Raum (builder, one person at a time) | Gabriel |
+| 4 | ~~Interior of the Werkstatt~~ done; next the Coaching-Raum and Lernatelier | Gabriel |
 | 5 | Copy the widget template to `widgets/dashboard/`, first version: briefing and progress path with mock data | Partner |
 | 6 | Coach as a Genius configuration in «Figuren», using the prompt in `coach/` | Gabriel |
 | 7 | Commit, update this file, sleep a few hours | both |

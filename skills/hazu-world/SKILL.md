@@ -48,6 +48,12 @@ sub-Hazus and Punkte automatically.
 - 3D models (`.glb`) only appear as exhibits: a Punkt with
   `<model-viewer src="….glb">` stands as a turning model on a plinth. Not
   usable as walk-in buildings.
+- **Interiors** are their own level, pinned on the world (`layout.world.levels`)
+  with the place's `hazuId`. Their exit is a building with
+  `isTravelPoint: true` and `destination: "Bergdorf"` (the level's name). Never
+  `hazu:<world id>`: a door to the world Hazu opens a new app tab. Places
+  without their own level get an auto back door that has exactly that
+  problem.
 - NPCs: `dialogue[npcId]` holds intro, hint and quiz phases; `isGenius: true`
   plus `geniusSystemPrompt` makes an AI character.
 

@@ -108,7 +108,6 @@ const npcs = [
   npc("noah", 18, 10, "Noah", "#22C55E", "Lernender", { hat: "cap" }),
   npc("mia", 13, 14, "Mia", "#EAB308", "Lernende", { female: true, hat: "scarf" }),
   npc("coach", 22, 16, "Coach Sandro", "#8B5CF6", "Coach · 1:1", { isGenius: true }),
-  npc("schreiner", 7, 11, "Herr Bühler", "#b8804a", "Schreiner · Werkstatt"),
   npc("koechin", 22, 11, "Frau Rossi", "#EF4444", "Köchin · Küche", { female: true, hat: "chef" }),
   npc("workshop", 20, 20, "Frau Keller", "#3288EF", "Workshop-Leiterin", { female: true }),
 ];
@@ -153,23 +152,6 @@ const dialogue = {
     isGenius: true,
     geniusSystemPrompt:
       "Du bist Sandro, Coach im Bergdorf, einer Schule, in der man in echten Projekten lernt. Du führst 1:1-Gespräche mit Lernenden. Antworte immer auf Deutsch in Schweizer Schreibweise (ss statt ß), kurz, freundlich und auf Augenhöhe. Hilf, eigene Ziele zu setzen und den nächsten Schritt zu finden; gib keine fertigen Lösungen, sondern stelle gute Fragen. Du kennst die Grundsätze der Schule: Raum für eigene Interessen in einer klaren Struktur, Lernen in echten Projekten, Mindestanforderungen und Verbindlichkeit, regelmässiges Feedback. Bei Projekten mit Werkzeug, Tieren oder in der Küche denkst du an die Sicherheit und fragst nach, wenn etwas fehlt; du ersetzt keine Instruktion durch eine Fachperson. Am Ende fasst du in zwei Sätzen zusammen, was sich die Person vorgenommen hat.",
-  },
-  schreiner: {
-    intro: "Grüezi! In der Werkstatt bauen wir einen Hühnerstall. Bevor du die Säge anfasst, schauen wir zusammen, was du dafür brauchst.",
-    hint: "Schutzausrüstung kommt immer vor dem Werkzeug.",
-    phases: [
-      { type: "intro" },
-      {
-        type: "choice",
-        question: "Was ziehst du an, bevor du mit der Kreissäge arbeitest?",
-        options: [
-          { text: "Schutzbrille und Gehörschutz", correct: true },
-          { text: "Handschuhe und einen Schal", correct: false },
-          { text: "Nichts, es geht ja schnell", correct: false },
-        ],
-      },
-      { type: "complete", message: "Richtig. Handschuhe und lose Kleider können sich an der Säge verfangen." },
-    ],
   },
   koechin: {
     intro: "Willkommen in der Küche! Heute kochen wir zusammen das Mittagessen für alle.",

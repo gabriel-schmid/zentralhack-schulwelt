@@ -16,7 +16,7 @@
 | Place | What it is about | Station (widget) | Safety | Interior | Status |
 | ----- | ---------------- | ---------------- | ------ | -------- | ------ |
 | Dorfplatz (village square) | start and end of the day, presenting projects (summative) | **Dashboard** (see below) | – | open square, no interior | open |
-| Werkstatt (workshop) | plan and build a coop or a raised bed | Hazard hunt: spot hazards, pick protective gear | ear protection, safety glasses, cables, saw guard | yes | open |
+| Werkstatt (workshop) | plan and build a coop or a raised bed | Hazard hunt: spot hazards, pick protective gear | ear protection, safety glasses, cables, saw guard | live (`level/werkstatt.json`) | in progress |
 | Coaching-Raum (coaching room) | 1:1 conversation, goals, Friday feedback (formative) | talk to the AI coach | – | yes | open |
 | Lernatelier (study studio) | independent work at your own level | weekly plan, minimum requirements | – | yes | open |
 | Garten und Hof (garden and yard) | look after animals, tend beds | open | safe lifting, tools | later | open |
