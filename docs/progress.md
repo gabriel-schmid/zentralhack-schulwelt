@@ -8,7 +8,7 @@ jury.
 - [x] Team found, idea agreed
 - [x] Repo and Hazu structure set up (23:20)
 - [x] First walkable version of the village (auto-generated, 23:30)
-- [x] Designed Bergdorf level live: square with forum, workshop hall, five houses with doors, 8 NPCs incl. Genius coach (23:50)
+- [x] Designed Bergdorf level live: square with forum, workshop hall, five houses with doors, 8 NPCs incl. Genius coach (23:50, checked in the app)
 - [ ] Personas for all places
 
 ## Tonight's plan
