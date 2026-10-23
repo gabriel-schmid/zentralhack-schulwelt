@@ -24,3 +24,5 @@ here.
 | Library | Version | License | Where |
 | ------- | ------- | ------- | ----- |
 | Lato (Google Fonts) | – | OFL | all widgets |
+
+- Codex (OpenAI): repository review and shared simulation concept documentation.

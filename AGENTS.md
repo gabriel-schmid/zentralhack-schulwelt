@@ -22,6 +22,10 @@ The full idea: [docs/idea.md](docs/idea.md). Places and stations:
 [docs/pedagogy.md](docs/pedagogy.md). Our raw concept notes:
 [docs/concept-notes.md](docs/concept-notes.md).
 
+For concept, persona, coach and assessment work, also read the current
+[shared concept baseline](docs/shared-concept.md), which separates confirmed
+decisions from assumptions and open questions.
+
 ## How the project is built
 
 - **The world** runs in Hazu World on hazu.app. It is a view on a Hazu tree:

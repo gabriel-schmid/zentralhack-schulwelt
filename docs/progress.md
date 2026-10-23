@@ -42,3 +42,5 @@ jury.
 - [ ] AI coach answers using our principles
 - [ ] Backup video of the demo recorded
 - [ ] Final presentation rehearsed
+
+- [x] Shared concept baseline documented; freedom during the learning path and unchanged grading regulations clarified (00:42, Europe/Zurich).
