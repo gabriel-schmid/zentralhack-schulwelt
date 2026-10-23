@@ -7,7 +7,8 @@ jury.
 
 - [x] Team found, idea agreed
 - [x] Repo and Hazu structure set up (23:20)
-- [ ] First walkable version of the village
+- [x] First walkable version of the village (auto-generated, 23:30)
+- [x] Designed Bergdorf level live: square with forum, workshop hall, five houses with doors, 8 NPCs incl. Genius coach (23:50)
 - [ ] Personas for all places
 
 ## Tonight's plan
@@ -15,7 +16,7 @@ jury.
 | # | Task | Who |
 | - | ---- | --- |
 | 1 | Invite partner: GitHub repo and editor rights on the Hazu | Gabriel |
-| 2 | Design the village exterior in the builder (houses, paths, square) | Gabriel |
+| 2 | ~~Design the village exterior~~ done as `level/bergdorf.json`; now check it in the app and polish in the builder | Gabriel |
 | 3 | NPC prompt template (Vorlage) plus teacher and coach personas | Partner |
 | 4 | Interior of the Werkstatt, then the Coaching-Raum (builder, one person at a time) | Gabriel |
 | 5 | Copy the widget template to `widgets/dashboard/`, first version: briefing and progress path with mock data | Partner |
