@@ -11,6 +11,15 @@
 - **Stations** are widgets at a place (see
   [skills/widget/SKILL.md](../skills/widget/SKILL.md)).
 
+## Current layout (01:30)
+
+- **Village (Bergdorf):** Schulhaus on the square, Werkstatt, Küche, Garten und
+  Hof; Hauswart Toni and Jana outside.
+- **Schulhaus interior** (`level/schulhaus.json`, dollhouse rooms as data):
+  Aula (morning and evening circle, Frau Arnold, Lea, Noah), Lernatelier (Mia),
+  Coaching-Raum (Coach Sandro, Genius), Workshop-Raum (Frau Keller), Pausenzone.
+- **Werkstatt interior** (`level/werkstatt.json`) with the Sägestation.
+
 ## Places
 
 | Place | What it is about | Station (widget) | Safety | Interior | Status |

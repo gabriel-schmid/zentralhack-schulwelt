@@ -18,6 +18,10 @@ jury.
 - [x] Sägestation widget built and tested locally (gear, hazards, safe order, result saved as an item); wired into the Werkstatt as a station (01:00)
 - [x] Engine «indoor mode» assessed: local demo feasible, live delivery not before the end (docs/engine-indoor-mode.md) (01:00)
 
+- [x] Schulhaus live: the class meets indoors; Aula, Lernatelier, Coaching-Raum, Workshop-Raum and Pausenzone as dollhouse rooms (landmark documents in the level), checked locally (01:30)
+- [x] Village rebuilt around the Schulhaus; forum and outdoor workshop hall removed (01:30)
+- [ ] Engine indoor mode (local slice on branch world/indoor-mode) in progress
+
 ## Tonight's plan
 
 | # | Task | Who |

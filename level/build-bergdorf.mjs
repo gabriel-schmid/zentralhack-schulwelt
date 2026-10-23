@@ -14,6 +14,7 @@ const ROWS = 28;
 const T = { GRASS: 0, ROAD: 1, WATER: 2, PLAZA: 3, BRIDGE: 4, PARK: 5, FLOWERS: 6, FOREST: 7 };
 
 const PLACES = {
+  schulhaus: "_m0-qRVAAUwmuxfswuPp",
   werkstatt: "tZNMXBltrzdnsVkElfhC",
   coaching: "hJ73ZiKWocRZADF25pQj",
   garten: "bK_FhPCxRBLKvMG4_flE",
@@ -67,91 +68,48 @@ const house = (id, gx, gy, gw, gd, label, colors, extra = {}) => ({
 
 const buildings = [
   {
-    id: "forum",
-    gx: 13,
+    id: "schulhaus",
+    gx: 11,
     gy: 3,
-    gw: 5,
+    gw: 9,
     gd: 5,
-    hUnits: 1.5,
-    label: "Forum",
-    rendererFn: "forumTheatre",
-    v4Front: "south",
-    accent: "#FA8C16",
-  },
-  {
-    id: "auditorium",
-    gx: 17,
-    gy: 18,
-    gw: 6,
-    gd: 3,
-    hUnits: 2.2,
-    label: "Workshop-Saal",
-    rendererFn: "auditorium",
+    hUnits: 2.4,
+    h: 77,
+    label: "Schulhaus",
+    v4Archetype: "school",
+    topColor: "#f0e2c8",
+    leftColor: "#e2d2b4",
+    rightColor: "#d2c09e",
     accent: "#3288EF",
-    topColor: "#f4efe6",
-    leftColor: "#e9e2d6",
-    rightColor: "#ddd4c6",
-    v4Seating: { gx: 17, gy: 21, gw: 6, gd: 3 },
+    v4Roof: "#b0613f",
+    v4Wall: "#f0e2c8",
+    windowColor: "rgba(255,220,140,0.7)",
+    hazuId: PLACES.schulhaus,
   },
   house("werkstatt", 4, 8, 3, 3, "Werkstatt", ["#d9a066", "#b8804a", "#9a6634", "#F97316"], { hazuId: PLACES.werkstatt, hUnits: 2 }),
   house("kueche", 23, 8, 3, 3, "Küche", ["#f2d4c4", "#d9b2a0", "#bf9280", "#EF4444"], { hazuId: PLACES.kueche }),
-  house("lernatelier", 4, 14, 3, 3, "Lernatelier", ["#cfe6f5", "#a9cde6", "#88b3d1", "#0EA5E9"], { hazuId: PLACES.lernatelier }),
-  house("coaching", 23, 14, 2, 2, "Coaching-Raum", ["#e3d9f7", "#c6b5ec", "#a993dc", "#8B5CF6"], { hazuId: PLACES.coaching, hUnits: 1.3 }),
   house("stall", 13, 19, 2, 2, "Garten und Hof", ["#d8e8c8", "#b4cf9c", "#93b478", "#22C55E"], { hazuId: PLACES.garten, hUnits: 1.3 }),
 ];
 
 const npc = (id, gx, gy, name, color, subject, extra = {}) => ({ id, gx, gy, name, color, subject, ...extra });
 
 const npcs = [
-  npc("lehrerin", 15, 9, "Frau Arnold", "#3288EF", "Lehrerin · Forum", { female: true, hat: "glasses" }),
-  npc("lea", 12, 10, "Lea", "#F97316", "Lernende", { female: true }),
-  npc("noah", 18, 10, "Noah", "#22C55E", "Lernender", { hat: "cap" }),
-  npc("mia", 13, 14, "Mia", "#EAB308", "Lernende", { female: true, hat: "scarf" }),
-  npc("coach", 22, 16, "Coach Sandro", "#8B5CF6", "Coach · 1:1", { isGenius: true }),
+  npc("hauswart", 15, 9, "Hauswart Toni", "#64748B", "Hauswart · Schulhaus", { hat: "cap" }),
+  npc("jana", 12, 13, "Jana", "#22C55E", "Lernende"),
   npc("koechin", 22, 11, "Frau Rossi", "#EF4444", "Köchin · Küche", { female: true, hat: "chef" }),
-  npc("workshop", 20, 20, "Frau Keller", "#3288EF", "Workshop-Leiterin", { female: true }),
 ];
 
 const dialogue = {
-  lehrerin: {
+  hauswart: {
     intro:
-      "Guten Morgen und willkommen im Bergdorf! Jeden Morgen treffen wir uns hier im Forum: Ich sage, was heute ansteht, und ihr erzählt, was ihr euch vornehmt. Am Abend kommen wir wieder zusammen und teilen unsere Highlights.",
-    hint: "Schau dir die Orte im Dorf an. Jeder Ort hat sein eigenes Projekt.",
-    phases: [
-      { type: "intro" },
-      {
-        type: "choice",
-        question: "Was passiert am Abend im Forum?",
-        options: [
-          { text: "Wir erzählen, was wir erreicht haben, und teilen unsere Highlights.", correct: true },
-          { text: "Wir schreiben eine Prüfung.", correct: false },
-          { text: "Nichts, der Tag endet in den Werkstätten.", correct: false },
-        ],
-      },
-      { type: "complete", message: "Genau. So weiss jede und jeder, was die anderen gelernt haben." },
-    ],
+      "Grüezi im Bergdorf! Im Schulhaus trifft sich die ganze Klasse am Morgen und am Abend in der Aula. Drinnen findest du auch das Lernatelier, den Coaching-Raum und die Workshops.",
+    hint: "Die Tür ist vorne am Schulhaus. Draussen gibt es die Werkstatt, die Küche und den Garten.",
+    phases: [{ type: "intro" }, { type: "complete", message: "Viel Spass beim Entdecken!" }],
   },
-  lea: {
-    intro: "Hoi! Ich baue diese Woche mit Noah ein Hochbeet. Heute plane ich zuerst, welches Holz wir brauchen.",
-    hint: "Im Lernatelier kannst du deinen eigenen Wochenplan machen.",
-    phases: [{ type: "intro" }, { type: "complete", message: "Bis heute Abend im Forum!" }],
-  },
-  noah: {
-    intro: "Ich gehe heute in den Workshop von Frau Keller. Sie zeigt, wie man ein Projekt richtig plant.",
-    hint: "Die Workshops sind freiwillig. Du wählst selbst, was dich interessiert.",
-    phases: [{ type: "intro" }, { type: "complete", message: "Komm doch auch mit in den Workshop-Saal!" }],
-  },
-  mia: {
-    intro: "Ich habe heute ein 1:1 mit dem Coach. Wir schauen, ob ich meine Ziele von letzter Woche erreicht habe.",
-    hint: "Den Coach findest du beim Coaching-Raum.",
-    phases: [{ type: "intro" }, { type: "complete", message: "Ein 1:1 hilft mir, dranzubleiben." }],
-  },
-  coach: {
-    intro:
-      "Hallo, ich bin Sandro, dein Coach. Erzähl mir, woran du gerade arbeitest, oder sag mir, wo du nicht weiterkommst.",
-    isGenius: true,
-    geniusSystemPrompt:
-      "Du bist Sandro, Coach im Bergdorf, einer Schule, in der man in echten Projekten lernt. Du führst 1:1-Gespräche mit Lernenden. Antworte immer auf Deutsch in Schweizer Schreibweise (ss statt ß), kurz, freundlich und auf Augenhöhe. Hilf, eigene Ziele zu setzen und den nächsten Schritt zu finden; gib keine fertigen Lösungen, sondern stelle gute Fragen. Du kennst die Grundsätze der Schule: Raum für eigene Interessen in einer klaren Struktur, Lernen in echten Projekten, Mindestanforderungen und Verbindlichkeit, regelmässiges Feedback. Bei Projekten mit Werkzeug, Tieren oder in der Küche denkst du an die Sicherheit und fragst nach, wenn etwas fehlt; du ersetzt keine Instruktion durch eine Fachperson. Am Ende fasst du in zwei Sätzen zusammen, was sich die Person vorgenommen hat.",
+  jana: {
+    intro: "Hoi! Ich gehe nach der Morgenrunde in den Garten. Heute pflanzen wir Salat für die Küche.",
+    hint: "Jedes Projekt im Dorf braucht etwas, das wir wirklich brauchen.",
+    phases: [{ type: "intro" }, { type: "complete", message: "Bis heute Abend in der Aula!" }],
   },
   koechin: {
     intro: "Willkommen in der Küche! Heute kochen wir zusammen das Mittagessen für alle.",
@@ -168,24 +126,6 @@ const dialogue = {
         ],
       },
       { type: "complete", message: "Genau, Hygiene kommt zuerst." },
-    ],
-  },
-  workshop: {
-    intro:
-      "Hallo! Ich bin Frau Keller und leite die Workshops im Saal. Diese Woche geht es darum, wie man ein Projekt plant: Ziel, Schritte, Material und Zeit.",
-    hint: "Die Workshops sind freiwillig und finden während der Woche statt.",
-    phases: [
-      { type: "intro" },
-      {
-        type: "choice",
-        question: "Womit beginnt eine gute Projektplanung?",
-        options: [
-          { text: "Mit einem klaren Ziel", correct: true },
-          { text: "Mit dem Einkaufen des Materials", correct: false },
-          { text: "Mit dem Bauen, planen kann man später", correct: false },
-        ],
-      },
-      { type: "complete", message: "Genau. Wer das Ziel kennt, kann die Schritte planen." },
     ],
   },
 };

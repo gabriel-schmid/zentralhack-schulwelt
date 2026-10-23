@@ -69,10 +69,12 @@ The full idea: [docs/idea.md](docs/idea.md). Places and stations:
 | What | ID |
 | ---- | -- |
 | Schulwelt (world Hazu) | `TRAIMeIVPNXq5wfkfTG2` |
+| Schulhaus (interior: Aula, Lernatelier, Coaching, Workshop, Pause) | `_m0-qRVAAUwmuxfswuPp` |
+| Sägestation (widget station in the Werkstatt) | `3UrjDNf8urw8VD-7OEo5` |
 | Werkstatt (workshop) | `tZNMXBltrzdnsVkElfhC` |
-| Coaching-Raum (coaching room) | `hJ73ZiKWocRZADF25pQj` |
+| Coaching-Raum (coaching room, now inside the Schulhaus; Hazu unused) | `hJ73ZiKWocRZADF25pQj` |
 | Garten und Hof (garden and yard) | `bK_FhPCxRBLKvMG4_flE` |
 | Küche (kitchen) | `QWixzEpPTgQYY09Ww8cH` |
-| Lernatelier (study studio) | `frRqjhqx-Bk_71Wu9o8C` |
+| Lernatelier (study studio, now inside the Schulhaus; Hazu unused) | `frRqjhqx-Bk_71Wu9o8C` |
 | Dorfplatz (village square) | `eEES-rZbllKEqy1uuiRX` |
 | Figuren (Genius configurations) | `JITvlYasVsTNZ1MgXOPp` |
