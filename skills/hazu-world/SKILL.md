@@ -58,6 +58,15 @@ sub-Hazus and Punkte automatically.
 - **Gabriel**: world settings, uploading widgets and wiring them in as
   stations.
 
+## Playing and testing
+
+- **Interact with X or Enter** (or click), not E. Q/E turn the camera.
+- **Use the fullscreen button** (top right in the world). In the normal app
+  view the world can be taller than the window: dialogue text, the «Weiter»
+  button and door hints end up below the visible area, and hint labels may
+  flicker. In fullscreen everything shows.
+- Doors sit on the side of a house facing the road; walk there and press X.
+
 ## Limits (as of October 2026)
 
 - Quiz answers given in the world are not saved yet.
