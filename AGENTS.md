@@ -34,6 +34,8 @@ decisions from assumptions and open questions.
 - **Stations** are our own widgets: one HTML file each, opened as an overlay
   in the world. This is the part we program during the hackathon.
   How-to: [skills/widget/SKILL.md](skills/widget/SKILL.md).
+- **Characters (NPCs)** live in the level generators `level/build-*.mjs`.
+  How to write and place them: [skills/npc/SKILL.md](skills/npc/SKILL.md).
 - **The AI coach** is a Genius configuration on hazu.app. Its prompt lives in
   [coach/system-prompt.md](coach/system-prompt.md).
 
