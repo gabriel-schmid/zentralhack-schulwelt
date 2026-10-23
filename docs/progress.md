@@ -11,7 +11,7 @@ jury.
 - [x] Designed Bergdorf level live: square with forum, workshop hall, five houses with doors, 8 NPCs incl. Genius coach (23:50, checked in the app)
 - [ ] Personas for all places
 
-- [x] Checked dialogue and doors: level works; in the app, use fullscreen and X/Enter (00:15)
+- [x] Checked dialogue and doors: level works; in the app, use fullscreen and X/Enter; Werkstatt door opens (00:15)
 
 ## Tonight's plan
 
