@@ -6,7 +6,7 @@ unser Nachweis für die Jury.
 ## Freitag, 23.10.
 
 - [x] Team gefunden, Idee bestätigt
-- [ ] Repo und Hazu-Struktur aufgesetzt
+- [x] Repo und Hazu-Struktur aufgesetzt (23:20)
 - [ ] Erste begehbare Version des Dorfs
 - [ ] Personas für alle Orte
 

@@ -54,3 +54,17 @@ Die ganze Idee: [docs/idee.md](docs/idee.md). Orte und Stationen:
 ## Links
 
 - Hazu (privat): https://hazu.app/HIx4jrkOAhhawUaTpPN4
+- Welt: https://hazu.app/TRAIMeIVPNXq5wfkfTG2
+
+## Hazu-IDs
+
+| Was | ID |
+| --- | -- |
+| Schulwelt (Welt-Hazu) | `TRAIMeIVPNXq5wfkfTG2` |
+| Werkstatt | `tZNMXBltrzdnsVkElfhC` |
+| Coaching-Raum | `hJ73ZiKWocRZADF25pQj` |
+| Garten und Hof | `bK_FhPCxRBLKvMG4_flE` |
+| Küche | `QWixzEpPTgQYY09Ww8cH` |
+| Lernatelier | `frRqjhqx-Bk_71Wu9o8C` |
+| Dorfplatz | `eEES-rZbllKEqy1uuiRX` |
+| Figuren (Genius-Konfigurationen) | `JITvlYasVsTNZ1MgXOPp` |
