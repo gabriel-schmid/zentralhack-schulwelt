@@ -14,6 +14,10 @@ Unterstützung und reflektieren ihren Fortschritt. Ein KI-Coach kennt die
 pädagogischen Grundsätze. Arbeitssicherheit kommt als natürlicher Teil der
 Projekte vor, nicht als Hauptthema.
 
+**Bewertung und Vorgaben: [docs/challenge.md](docs/challenge.md).** Richte
+Vorschläge danach aus: sichtbarer Fortschritt im Hackathon (25 %), Innovation,
+Technik und Nutzen (je 20 %), Pitch (15 %, maximal 3 Minuten).
+
 Die ganze Idee: [docs/idee.md](docs/idee.md). Orte und Stationen:
 [docs/orte.md](docs/orte.md). Figuren: [docs/personas.md](docs/personas.md).
 
@@ -41,6 +45,8 @@ Die ganze Idee: [docs/idee.md](docs/idee.md). Orte und Stationen:
   Vision, kein Abbild.
 - Im Level-Builder arbeitet immer nur eine Person gleichzeitig (das Level ist
   ein einziges Dokument, der letzte Speicherstand gewinnt).
+- Jedes neue Werkzeug, jede Bibliothek und jedes KI-Tool in
+  [docs/werkzeuge.md](docs/werkzeuge.md) eintragen (Pflicht der Challenge).
 - Nach jedem Meilenstein [docs/fortschritt.md](docs/fortschritt.md) mit
   Uhrzeit nachführen. Die Jury bewertet den Fortschritt während der 24 Stunden.
 

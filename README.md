@@ -5,7 +5,20 @@ Werkstatt, Coaching-Raum, Garten, Küche, Lernatelier und Dorfplatz, dazu ein
 KI-Coach.
 
 - Idee und Einreichung: [docs/idee.md](docs/idee.md)
+- Challenge und Bewertung: [docs/challenge.md](docs/challenge.md)
 - Fortschritt: [docs/fortschritt.md](docs/fortschritt.md)
+- Werkzeuge, Open Source, KI: [docs/werkzeuge.md](docs/werkzeuge.md)
+
+## Für die Jury
+
+- **Problem:** Selbständiges Lernen, Coaching und Projektarbeit sind schwer zu
+  erklären; man muss sie erleben.
+- **Zielgruppe:** Schülerinnen und Schüler, Eltern, Lehrpersonen, Schulen.
+- **Lösung:** eine begehbare 3D-Welt mit Lernorten, interaktiven Stationen und
+  einem KI-Coach.
+- **Vorher vorhanden:** die Engine Hazu World auf hazu.app.
+- **Am Hackathon gebaut:** siehe [docs/fortschritt.md](docs/fortschritt.md)
+  und die Commits in diesem Repo.
 - Hazu (privat): https://hazu.app/HIx4jrkOAhhawUaTpPN4
 
 ## Ordner
