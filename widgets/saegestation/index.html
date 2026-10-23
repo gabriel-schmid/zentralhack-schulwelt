@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sägestation</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://storage.googleapis.com/hazu-ch.appspot.com/files/artifacts/AYbnyrL6JhG3xUjfimN8/hazu-api.js"></script>
+    <style>
+      :root {
+        --ink: #1f2a3a;
+        --muted: #5b6878;
+        --bg: #f7f4ee;
+        --card: #ffffff;
+        --wood: #c8955a;
+        --accent: #f97316;
+        --good: #22a35a;
+        --bad: #d64545;
+        --line: #e4dccf;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        font-family: Lato, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+      }
+      main {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: clamp(10px, 3vw, 24px);
+        gap: 10px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      header h1 {
+        margin: 0;
+        font-size: clamp(18px, 4vw, 28px);
+        font-weight: 900;
+      }
+      .steps {
+        margin-left: auto;
+        display: flex;
+        gap: 6px;
+      }
+      .steps span {
+        width: 28px;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--line);
+      }
+      .steps span.on {
+        background: var(--accent);
+      }
+      .lead {
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(14px, 2.4vw, 17px);
+      }
+      .stage {
+        flex: 1;
+        min-height: 0;
+        overflow: auto;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(150px, 45%), 1fr));
+        gap: 10px;
+      }
+      .item {
+        background: var(--card);
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        min-height: 96px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        cursor: pointer;
+        font: inherit;
+        color: inherit;
+        transition: transform 0.12s, border-color 0.12s;
+      }
+      .item:hover {
+        transform: translateY(-2px);
+      }
+      .item .ico {
+        font-size: 34px;
+        line-height: 1;
+      }
+      .item.picked {
+        border-color: var(--accent);
+        background: #fff4ea;
+      }
+      .item.right {
+        border-color: var(--good);
+        background: #eaf7ef;
+      }
+      .item.wrong {
+        border-color: var(--bad);
+        background: #fdeeee;
+      }
+      .scene {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        display: block;
+      }
+      .hotspot {
+        cursor: pointer;
+      }
+      .hotspot circle.ring {
+        fill: transparent;
+        stroke: transparent;
+        stroke-width: 4;
+      }
+      .hotspot.found circle.ring {
+        stroke: var(--good);
+        fill: rgba(34, 163, 90, 0.12);
+      }
+      .order {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .order button {
+        text-align: left;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--card);
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 12px;
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+      }
+      .row .n {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: var(--line);
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+        flex: none;
+      }
+      .row.done {
+        border-color: var(--good);
+        background: #eaf7ef;
+        cursor: default;
+      }
+      .row.done .n {
+        background: var(--good);
+        color: #fff;
+      }
+      .row.shake {
+        animation: shake 0.35s;
+        border-color: var(--bad);
+      }
+      @keyframes shake {
+        25% {
+          transform: translateX(-5px);
+        }
+        75% {
+          transform: translateX(5px);
+        }
+      }
+      .saw {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 8px;
+      }
+      .blade {
+        width: 56px;
+        height: 56px;
+        flex: none;
+      }
+      .blade.spin {
+        animation: spin 0.4s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      footer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 48px;
+      }
+      .msg {
+        flex: 1;
+        font-size: clamp(13px, 2.2vw, 16px);
+      }
+      .msg.good {
+        color: var(--good);
+      }
+      .msg.bad {
+        color: var(--bad);
+      }
+      .btn {
+        min-height: 44px;
+        padding: 0 20px;
+        border: 0;
+        border-radius: 10px;
+        background: var(--accent);
+        color: #fff;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .btn:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      .result {
+        text-align: center;
+        padding-top: 4vh;
+      }
+      .result .big {
+        font-size: clamp(40px, 10vw, 72px);
+        font-weight: 900;
+        color: var(--accent);
+      }
+      .result ul {
+        text-align: left;
+        display: inline-block;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>🪚 Sägestation</h1>
+        <div class="steps" aria-hidden="true"><span></span><span></span><span></span></div>
+      </header>
+      <p class="lead" id="lead"></p>
+      <section class="stage" id="stage"></section>
+      <footer>
+        <div class="msg" id="msg" role="status"></div>
+        <button class="btn" id="next" disabled>Weiter</button>
+      </footer>
+    </main>
+
+    <script>
+      // Step 1: protective gear for the table saw. `ok` marks what belongs on.
+      const GEAR = [
+        { id: "brille", ico: "🥽", label: "Schutzbrille", ok: true },
+        { id: "gehoer", ico: "🎧", label: "Gehörschutz", ok: true },
+        { id: "haare", ico: "💇", label: "Lange Haare zusammenbinden", ok: true },
+        { id: "kleider", ico: "👕", label: "Eng anliegende Kleidung", ok: true },
+        { id: "handschuhe", ico: "🧤", label: "Handschuhe", ok: false, why: "Handschuhe können vom Sägeblatt erfasst werden." },
+        { id: "schal", ico: "🧣", label: "Schal", ok: false, why: "Lose Kleidung kann sich im Sägeblatt verfangen." },
+        { id: "musik", ico: "🎵", label: "Kopfhörer mit Musik", ok: false, why: "Mit Musik hörst du Warnungen und die Maschine nicht." },
+        { id: "uhr", ico: "⌚", label: "Armband und Uhr anbehalten", ok: false, why: "Schmuck kann hängen bleiben." },
+      ];
+
+      // Step 2: hazards in the workshop scene (SVG coordinates, 800 x 450).
+      const HAZARDS = [
+        { id: "kabel", x: 250, y: 400, r: 46, text: "Kabel quer am Boden: Stolperfalle." },
+        { id: "haube", x: 452, y: 205, r: 40, text: "Die Schutzhaube über dem Sägeblatt fehlt." },
+        { id: "reste", x: 585, y: 238, r: 40, text: "Holzreste liegen neben dem laufenden Blatt." },
+        { id: "flasche", x: 690, y: 330, r: 36, text: "Eine offene Flasche am Arbeitsplatz kann umkippen." },
+      ];
+
+      // Step 3: the safe order of working at the table saw.
+      const ORDER = [
+        "Werkstück anzeichnen und Anschlag einstellen",
+        "Schutzhaube und Spaltkeil prüfen",
+        "Säge einschalten und auf volle Drehzahl kommen lassen",
+        "Werkstück mit dem Schiebestock gleichmässig durchschieben",
+        "Säge ausschalten und das Blatt auslaufen lassen",
+      ];
+
+      const MOCK = { context: { displayName: "Testperson", hazuId: null }, createItem: async () => null };
+
+      const $ = (id) => document.getElementById(id);
+      const state = { step: 0, score: 0, mistakes: [], hazu: MOCK };
+
+      function setStep(i) {
+        document.querySelectorAll(".steps span").forEach((s, k) => s.classList.toggle("on", k <= i));
+      }
+      function say(text, kind = "") {
+        const m = $("msg");
+        m.textContent = text;
+        m.className = `msg ${kind}`;
+      }
+      function nextButton(enabled, onClick, label = "Weiter") {
+        const b = $("next");
+        b.textContent = label;
+        b.disabled = !enabled;
+        b.onclick = onClick;
+      }
+      const shuffle = (a) => a.map((v) => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map((p) => p[1]);
+
+      // ---------------------------------------------------------------- step 1
+      function gearStep() {
+        setStep(0);
+        $("lead").textContent = "Herr Bühler: «Bevor du an die Tischkreissäge gehst: Was ziehst du an, was legst du ab?» Wähle alles, was stimmt.";
+        const stage = $("stage");
+        stage.innerHTML = `<div class="grid">${shuffle(GEAR)
+          .map((g) => `<button class="item" data-id="${g.id}"><span class="ico">${g.ico}</span>${g.label}</button>`)
+          .join("")}</div>`;
+        const picked = new Set();
+        stage.querySelectorAll(".item").forEach((b) =>
+          b.addEventListener("click", () => {
+            const id = b.dataset.id;
+            picked.has(id) ? picked.delete(id) : picked.add(id);
+            b.classList.toggle("picked", picked.has(id));
+            say("");
+            nextButton(picked.size > 0, check, "Prüfen");
+          }),
+        );
+        say("Tippe auf die Karten.");
+        nextButton(false, check, "Prüfen");
+
+        function check() {
+          let right = 0;
+          const notes = [];
+          for (const g of GEAR) {
+            const b = stage.querySelector(`[data-id="${g.id}"]`);
+            const chosen = picked.has(g.id);
+            b.classList.remove("picked");
+            if (chosen === g.ok) {
+              right++;
+              if (g.ok) b.classList.add("right");
+            } else {
+              b.classList.add("wrong");
+              if (g.why && chosen) notes.push(g.why);
+              if (g.ok && !chosen) notes.push(`${g.label} fehlt.`);
+            }
+          }
+          state.score += right;
+          state.mistakes.push(...notes);
+          stage.querySelectorAll(".item").forEach((b) => (b.disabled = true));
+          if (notes.length === 0) say("Perfekt ausgerüstet!", "good");
+          else say(notes[0], "bad");
+          nextButton(true, hazardStep);
+        }
+      }
+
+      // ---------------------------------------------------------------- step 2
+      function hazardStep() {
+        setStep(1);
+        $("lead").textContent = "Finde die vier Gefahren in der Werkstatt. Tippe sie an.";
+        $("stage").innerHTML = sceneSvg();
+        const found = new Set();
+        let misses = 0;
+        const svg = $("stage").querySelector("svg");
+        svg.addEventListener("click", (ev) => {
+          const spot = ev.target.closest(".hotspot");
+          if (!spot) {
+            misses++;
+            say("Da ist nichts. Schau genau hin.", "bad");
+            return;
+          }
+          const h = HAZARDS.find((x) => x.id === spot.dataset.id);
+          if (found.has(h.id)) return;
+          found.add(h.id);
+          spot.classList.add("found");
+          say(`${found.size}/4 · ${h.text}`, "good");
+          if (found.size === HAZARDS.length) {
+            state.score += Math.max(0, 4 - Math.floor(misses / 2));
+            nextButton(true, orderStep);
+          }
+        });
+        say("0/4 gefunden");
+        nextButton(false, orderStep);
+      }
+
+      function sceneSvg() {
+        const spots = HAZARDS.map(
+          (h) => `<g class="hotspot" data-id="${h.id}"><circle class="ring" cx="${h.x}" cy="${h.y}" r="${h.r}"/></g>`,
+        ).join("");
+        return `<svg class="scene" viewBox="0 0 800 450" role="img" aria-label="Werkstatt mit Tischkreissäge">
+          <rect width="800" height="450" fill="#efe6d8"/>
+          <rect y="330" width="800" height="120" fill="#d8c7ad"/>
+          <rect x="40" y="60" width="160" height="110" fill="#bcd6ea" stroke="#8a7458" stroke-width="6"/>
+          <line x1="120" y1="60" x2="120" y2="170" stroke="#8a7458" stroke-width="4"/>
+          <rect x="60" y="190" width="120" height="14" fill="#8a7458"/>
+          <rect x="70" y="160" width="12" height="30" fill="#c0392b"/><rect x="90" y="150" width="12" height="40" fill="#2c7be5"/><rect x="110" y="166" width="12" height="24" fill="#27ae60"/>
+          <!-- saw table -->
+          <rect x="330" y="230" width="320" height="28" rx="4" fill="#9aa3ad"/>
+          <rect x="350" y="258" width="20" height="100" fill="#6d757e"/><rect x="610" y="258" width="20" height="100" fill="#6d757e"/>
+          <path d="M412 230 A40 40 0 0 1 492 230 Z" fill="#c9ced4" stroke="#6d757e" stroke-width="3"/>
+          <g stroke="#6d757e" stroke-width="2">${Array.from({ length: 9 }, (_, i) => {
+            const a = Math.PI + (i * Math.PI) / 8;
+            return `<line x1="${452 + 36 * Math.cos(a)}" y1="${230 + 36 * Math.sin(a)}" x2="${452 + 44 * Math.cos(a)}" y2="${230 + 44 * Math.sin(a)}"/>`;
+          }).join("")}</g>
+          <rect x="300" y="214" width="110" height="16" fill="${"#d9a066"}"/>
+          <!-- offcuts next to the blade -->
+          <rect x="560" y="222" width="34" height="8" fill="#d9a066" transform="rotate(-12 577 226)"/>
+          <rect x="590" y="226" width="26" height="6" fill="#c8955a" transform="rotate(18 603 229)"/>
+          <!-- bottle -->
+          <rect x="680" y="300" width="22" height="50" rx="5" fill="#7fc4e8" opacity="0.85"/>
+          <rect x="684" y="292" width="14" height="10" fill="#4a90b8"/>
+          <rect x="655" y="350" width="80" height="10" fill="#8a7458"/>
+          <!-- cable across the floor -->
+          <path d="M40 410 C 160 360, 260 440, 360 395 S 520 400, 560 360" fill="none" stroke="#222" stroke-width="7" stroke-linecap="round"/>
+          <rect x="30" y="398" width="22" height="26" rx="3" fill="#f2f2f2" stroke="#999"/>
+          ${spots}
+        </svg>`;
+      }
+
+      // ---------------------------------------------------------------- step 3
+      function orderStep() {
+        setStep(2);
+        $("lead").textContent = "Jetzt wird gesägt. Tippe die Schritte in der richtigen Reihenfolge an.";
+        const stage = $("stage");
+        stage.innerHTML = `<div class="saw"><svg class="blade" id="blade" viewBox="0 0 56 56"><circle cx="28" cy="28" r="24" fill="#c9ced4" stroke="#6d757e" stroke-width="3"/>${Array.from({ length: 12 }, (_, i) => {
+          const a = (i * Math.PI) / 6;
+          return `<polygon points="${28 + 24 * Math.cos(a)},${28 + 24 * Math.sin(a)} ${28 + 28 * Math.cos(a + 0.18)},${28 + 28 * Math.sin(a + 0.18)} ${28 + 24 * Math.cos(a + 0.4)},${28 + 24 * Math.sin(a + 0.4)}" fill="#6d757e"/>`;
+        }).join("")}<circle cx="28" cy="28" r="5" fill="#6d757e"/></svg><span id="sawState">Säge aus</span></div>
+          <div class="order">${shuffle(ORDER.map((t, i) => ({ t, i })))
+            .map((o) => `<button class="row" data-i="${o.i}"><span class="n"></span>${o.t}</button>`)
+            .join("")}</div>`;
+        let nextIdx = 0;
+        let wrong = 0;
+        stage.querySelectorAll(".row").forEach((b) =>
+          b.addEventListener("click", () => {
+            if (b.classList.contains("done")) return;
+            const i = Number(b.dataset.i);
+            if (i !== nextIdx) {
+              wrong++;
+              b.classList.remove("shake");
+              void b.offsetWidth;
+              b.classList.add("shake");
+              say("Noch nicht. Was kommt vorher?", "bad");
+              return;
+            }
+            b.classList.add("done");
+            b.querySelector(".n").textContent = String(++nextIdx);
+            const blade = $("blade");
+            if (nextIdx === 3) {
+              blade.classList.add("spin");
+              $("sawState").textContent = "Säge läuft";
+            }
+            if (nextIdx === 5) {
+              blade.classList.remove("spin");
+              $("sawState").textContent = "Säge aus, Blatt steht still";
+            }
+            say(`Schritt ${nextIdx} von ${ORDER.length}`, "good");
+            if (nextIdx === ORDER.length) {
+              state.score += Math.max(0, 5 - wrong);
+              if (wrong) state.mistakes.push("Reihenfolge beim Sägen üben: erst prüfen, dann einschalten, ausschalten und auslaufen lassen.");
+              nextButton(true, resultStep, "Auswertung");
+            }
+          }),
+        );
+        say("Säge ist aus.");
+        nextButton(false, resultStep, "Auswertung");
+      }
+
+      // ---------------------------------------------------------------- result
+      async function resultStep() {
+        const max = GEAR.length + HAZARDS.length + ORDER.length;
+        const pct = Math.round((state.score / max) * 100);
+        const passed = pct >= 80;
+        $("lead").textContent = "";
+        $("stage").innerHTML = `<div class="result">
+          <div class="big">${pct}%</div>
+          <p><strong>${passed ? "Bereit für die Säge!" : "Fast. Schau dir die Punkte noch einmal an."}</strong></p>
+          ${state.mistakes.length ? `<ul>${[...new Set(state.mistakes)].slice(0, 4).map((m) => `<li>${m}</li>`).join("")}</ul>` : "<p>Keine Fehler. Herr Bühler ist stolz auf dich.</p>"}
+          <p style="color:var(--muted);font-size:13px">Diese Station ersetzt keine Instruktion durch eine Fachperson.</p>
+        </div>`;
+        say(passed ? "Station geschafft." : "Du kannst die Station wiederholen.", passed ? "good" : "");
+        nextButton(true, restart, "Nochmals");
+        await saveResult(pct, passed);
+      }
+
+      // Saves the result as an item in the station's Hazu (the learning pass).
+      async function saveResult(pct, passed) {
+        const h = state.hazu;
+        if (!h?.context?.hazuId || h === MOCK) return;
+        try {
+          await h.createItem({
+            parentId: h.context.hazuId,
+            type: "item",
+            title: `Sägestation: ${h.context.displayName || "Besuch"} · ${pct}%`,
+            description: `<p>${passed ? "Bestanden" : "Noch nicht bestanden"} am ${new Date().toLocaleString("de-CH")}.</p>`,
+          });
+        } catch (e) {
+          console.warn("Result not saved", e);
+        }
+      }
+
+      function restart() {
+        state.score = 0;
+        state.mistakes = [];
+        gearStep();
+      }
+
+      async function connect() {
+        const inHazu = window.parent !== window && window.HazuAPI;
+        if (!inHazu) return MOCK;
+        try {
+          return await HazuAPI.init();
+        } catch (e) {
+          console.warn("Bridge unreachable, using mock data", e);
+          return MOCK;
+        }
+      }
+
+      (async () => {
+        state.hazu = await connect();
+        gearStep();
+      })();
+    </script>
+  </body>
+</html>

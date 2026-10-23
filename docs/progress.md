@@ -15,6 +15,9 @@ jury.
 
 - [x] Werkstatt interior live: workshop hall, coop under construction, timber store, Herr Bühler with two safety questions, Lea and Jonas; exit «↩ Zum Dorfplatz» returns in the same tab, checked in the app (00:40)
 
+- [x] Sägestation widget built and tested locally (gear, hazards, safe order, result saved as an item); wired into the Werkstatt as a station (01:00)
+- [x] Engine «indoor mode» assessed: local demo feasible, live delivery not before the end (docs/engine-indoor-mode.md) (01:00)
+
 ## Tonight's plan
 
 | # | Task | Who |
