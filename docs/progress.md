@@ -13,7 +13,7 @@ jury.
 
 - [x] Checked dialogue and doors: level works; in the app, use fullscreen and X/Enter; Werkstatt door opens (00:15)
 
-- [x] Werkstatt interior live: workshop hall, coop under construction, timber store, Herr Bühler with two safety questions, Lea and Jonas; exit «↩ Zum Dorfplatz» returns in the same tab (00:40)
+- [x] Werkstatt interior live: workshop hall, coop under construction, timber store, Herr Bühler with two safety questions, Lea and Jonas; exit «↩ Zum Dorfplatz» returns in the same tab, checked in the app (00:40)
 
 ## Tonight's plan
 
