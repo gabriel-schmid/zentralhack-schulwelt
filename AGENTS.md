@@ -1,76 +1,76 @@
 # AGENTS.md
 
-Gemeinsamer Kontext für alle KI-Helfer (Claude, ChatGPT, Codex) in diesem
-Projekt. Lies diese Datei zuerst, dann die Datei in `skills/`, die zur Aufgabe
-passt.
+Shared context for every AI helper (Claude, ChatGPT, Codex) in this project.
+Read this file first, then the file in `skills/` that fits the task.
 
-## Projekt
+## Project
 
-Zentral Hack 2026 (23.–24. Oktober, HSLU Rotkreuz), Challenge «Bring your own
-Challenge» (Sponsor Suva). Wir bauen eine begehbare 3D-Welt, die zeigt, wie
-Schule sein könnte: ein Bergdorf, in dem Lernen in echten Projekten
-stattfindet. Lernende planen selbst, bauen etwas, holen sich im 1:1-Coaching
-Unterstützung und reflektieren ihren Fortschritt. Ein KI-Coach kennt die
-pädagogischen Grundsätze. Arbeitssicherheit kommt als natürlicher Teil der
-Projekte vor, nicht als Hauptthema.
+Zentral Hack 2026 (23–24 October, HSLU Rotkreuz), challenge «Bring your own
+challenge» (sponsor: Suva). We build a walkable 3D world that shows what school
+could be: a mountain village where learning happens in real projects. Learners
+plan their own work, build something, get support in 1:1 coaching and reflect
+on their progress. An AI coach knows the school's pedagogical principles. Work
+safety appears as a natural part of the projects, not as the main theme.
 
-**Bewertung und Vorgaben: [docs/challenge.md](docs/challenge.md).** Richte
-Vorschläge danach aus: sichtbarer Fortschritt im Hackathon (25 %), Innovation,
-Technik und Nutzen (je 20 %), Pitch (15 %, maximal 3 Minuten).
+**Judging and requirements: [docs/challenge.md](docs/challenge.md).** Shape
+suggestions around them: visible progress during the hackathon (25 %),
+innovation, technology and usefulness (20 % each), pitch (15 %, at most 3
+minutes).
 
-Die ganze Idee: [docs/idee.md](docs/idee.md). Orte und Stationen:
-[docs/orte.md](docs/orte.md). Figuren: [docs/personas.md](docs/personas.md).
+The full idea: [docs/idea.md](docs/idea.md). Places and stations:
+[docs/places.md](docs/places.md). Characters: [docs/personas.md](docs/personas.md).
 
-## Wie das Projekt gebaut ist
+## How the project is built
 
-- **Die Welt** läuft in Hazu World auf hazu.app. Sie ist eine Ansicht auf einen
-  Hazu-Baum: Unter-Hazus werden zu Häusern, Punkte zu Figuren und Tafeln.
+- **The world** runs in Hazu World on hazu.app. It is a view on a Hazu tree:
+  sub-Hazus become houses, Punkte (items) become characters and boards.
   Details: [skills/hazu-world/SKILL.md](skills/hazu-world/SKILL.md).
-- **Stationen** sind eigene Widgets: je eine HTML-Datei, die in der Welt als
-  Overlay öffnet. Das ist der Teil, den wir am Hackathon programmieren.
-  Anleitung: [skills/widget/SKILL.md](skills/widget/SKILL.md).
-- **Der KI-Coach** ist eine Genius-Konfiguration auf hazu.app. Sein Prompt
-  steht in [coach/system-prompt.md](coach/system-prompt.md).
+- **Stations** are our own widgets: one HTML file each, opened as an overlay
+  in the world. This is the part we program during the hackathon.
+  How-to: [skills/widget/SKILL.md](skills/widget/SKILL.md).
+- **The AI coach** is a Genius configuration on hazu.app. Its prompt lives in
+  [coach/system-prompt.md](coach/system-prompt.md).
 
-## Regeln
+## Rules
 
-- Antworte auf Deutsch (Schweizer Schreibweise, «ss» statt «ß»).
-- Ein Widget ist **eine einzige HTML-Datei** mit allem CSS und JS darin.
-  Externe Bibliotheken nur über CDN mit fester Version.
-- Kein Code aus der Hazu-Plattform oder der Hazu-World-Engine in dieses Repo.
-  Hier liegt nur, was wir am Hackathon neu bauen, und Doku.
-- Keine Zugangsdaten, Tokens, `.env`-Dateien oder echten Personendaten
-  committen.
-- Keine echte Schule und keine echten Personen nennen. Die Welt ist eine
-  Vision, kein Abbild.
-- Im Level-Builder arbeitet immer nur eine Person gleichzeitig (das Level ist
-  ein einziges Dokument, der letzte Speicherstand gewinnt).
-- Jedes neue Werkzeug, jede Bibliothek und jedes KI-Tool in
-  [docs/werkzeuge.md](docs/werkzeuge.md) eintragen (Pflicht der Challenge).
-- Nach jedem Meilenstein [docs/fortschritt.md](docs/fortschritt.md) mit
-  Uhrzeit nachführen. Die Jury bewertet den Fortschritt während der 24 Stunden.
+- **Language:** repo docs, code and comments in English. Text visitors see in
+  the world (dialogues, station UI, coach answers) in German, Swiss spelling
+  («ss», never «ß»). Texts we received in German (the submission, the official
+  challenge text) stay German.
+- A widget is **one single HTML file** with all CSS and JS inside. External
+  libraries only from a CDN with a pinned version.
+- No code from the Hazu platform or the Hazu World engine in this repo. Only
+  what we build during the hackathon, plus docs.
+- Never commit credentials, tokens, `.env` files or real personal data.
+- Never name a real school or real people. The world is a vision, not a copy.
+- Only one person in the level builder at a time (the level is one document;
+  the last save wins).
+- Add every new tool, library and AI tool to [docs/tools.md](docs/tools.md)
+  (required by the challenge).
+- After each milestone, update [docs/progress.md](docs/progress.md) with the
+  time. The jury judges progress made during the 24 hours.
 
-## Wer macht was
+## Who does what
 
-| Person | Bereich |
-| ------ | ------- |
-| Gabriel | Welt, Level-Builder, Einbinden der Stationen auf hazu.app, Technik |
-| Partner | Personas, Inhalte der Orte, Stationen (Widgets) |
+| Person | Area |
+| ------ | ---- |
+| Gabriel | World, level builder, wiring stations into hazu.app, tech |
+| Partner | Personas, content of the places, stations (widgets) |
 
 ## Links
 
-- Hazu (privat): https://hazu.app/HIx4jrkOAhhawUaTpPN4
-- Welt: https://hazu.app/TRAIMeIVPNXq5wfkfTG2
+- Hazu (private): https://hazu.app/HIx4jrkOAhhawUaTpPN4
+- World: https://hazu.app/TRAIMeIVPNXq5wfkfTG2
 
-## Hazu-IDs
+## Hazu IDs
 
-| Was | ID |
-| --- | -- |
-| Schulwelt (Welt-Hazu) | `TRAIMeIVPNXq5wfkfTG2` |
-| Werkstatt | `tZNMXBltrzdnsVkElfhC` |
-| Coaching-Raum | `hJ73ZiKWocRZADF25pQj` |
-| Garten und Hof | `bK_FhPCxRBLKvMG4_flE` |
-| Küche | `QWixzEpPTgQYY09Ww8cH` |
-| Lernatelier | `frRqjhqx-Bk_71Wu9o8C` |
-| Dorfplatz | `eEES-rZbllKEqy1uuiRX` |
-| Figuren (Genius-Konfigurationen) | `JITvlYasVsTNZ1MgXOPp` |
+| What | ID |
+| ---- | -- |
+| Schulwelt (world Hazu) | `TRAIMeIVPNXq5wfkfTG2` |
+| Werkstatt (workshop) | `tZNMXBltrzdnsVkElfhC` |
+| Coaching-Raum (coaching room) | `hJ73ZiKWocRZADF25pQj` |
+| Garten und Hof (garden and yard) | `bK_FhPCxRBLKvMG4_flE` |
+| Küche (kitchen) | `QWixzEpPTgQYY09Ww8cH` |
+| Lernatelier (study studio) | `frRqjhqx-Bk_71Wu9o8C` |
+| Dorfplatz (village square) | `eEES-rZbllKEqy1uuiRX` |
+| Figuren (Genius configurations) | `JITvlYasVsTNZ1MgXOPp` |

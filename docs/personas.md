@@ -1,16 +1,16 @@
 # Personas
 
-Die Figuren im Dorf. Pro Figur ein Abschnitt; auf hazu.app wird jede Figur
-ein Punkt an ihrem Ort (Text, Bilder, Quiz) oder, beim Coach, eine
-Genius-Konfiguration.
+The characters in the village. One section per character. On hazu.app each
+character becomes a Punkt at its place (text, images, quiz) or, for the coach,
+a Genius configuration. Dialogue lines visitors see are written in German.
 
-Vorlage:
+Template:
 
 ## Name
 
-- **Rolle im Dorf:**
-- **Ort:**
-- **Eigenschaften:**
-- **Wie sie spricht:**
-- **Was man bei ihr lernt / erlebt:**
-- **Erster Satz, wenn man sie anspricht:**
+- **Role in the village:**
+- **Place:**
+- **Traits:**
+- **How they talk:**
+- **What you learn or experience with them:**
+- **First line when you talk to them (German):**

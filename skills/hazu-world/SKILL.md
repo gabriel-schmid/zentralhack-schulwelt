@@ -1,46 +1,46 @@
 ---
 name: hazu-world
-description: Wie unsere Welt auf hazu.app aus dem Hazu-Baum entsteht, wie man sie im Level-Builder gestaltet und wie Stationen hineinkommen. Lesen, bevor du Orte, Figuren oder das Level änderst.
+description: How our world on hazu.app is built from the Hazu tree, how to shape it in the level builder and how stations get into it. Read before changing places, characters or the level.
 ---
 
 # Hazu World
 
-Hazu World ist eine **Ansicht** auf einen Hazu, wie die Liste oder der
-Kalender. Die Daten sind normale Hazu-Items; die Welt stellt sie nur dar.
+Hazu World is a **view** on a Hazu, like the list or the calendar. The data
+are ordinary Hazu items; the world only renders them.
 
-## Hazu-Baum → Welt
+## Hazu tree → world
 
-| Auf hazu.app | In der Welt |
-| ------------ | ----------- |
-| Welt-Hazu (`layout.defaultView: "world"`) | das Dorf |
-| Unter-Hazu im Welt-Hazu | ein Haus mit Tür; hineingehen öffnet diesen Ort |
-| Punkt (Item) | eine Figur oder Tafel mit Text, Bildern oder Quiz |
-| Hazu mit Tag `hz-world-sim` und Widget | eine Station; öffnet das Widget als Overlay |
-| Genius-Konfiguration im Ordner «Figuren» (Tag `hazuworld-characters`) | eine Tutor-Figur, z. B. der Coach |
+| On hazu.app | In the world |
+| ----------- | ------------ |
+| World Hazu (`layout.defaultView: "world"`) | the village |
+| Sub-Hazu inside the world Hazu | a house with a door; walking in opens that place |
+| Punkt (item) | a character or board with text, images or a quiz |
+| Hazu with tag `hz-world-sim` and a widget | a station; opens the widget as an overlay |
+| Genius configuration in «Figuren» (tag `hazuworld-characters`) | a tutor character, e.g. the coach |
 
-Solange es kein gespeichertes Level gibt, baut die Engine aus den Unter-Hazus
-und Punkten automatisch ein Dorf.
+As long as no level has been saved, the engine generates a village from the
+sub-Hazus and Punkte automatically.
 
-## Level-Builder
+## Level builder
 
-- Öffnet sich in der Welt-Ansicht der App, nur für Bearbeitende des Hazu.
-- Speichern legt eine neue Version des Level-Dokuments an. Unter «Versionen»
-  holt man frühere Stände zurück.
-- **Immer nur eine Person im Builder.** Das Level ist ein einziges Dokument;
-  der letzte Speicherstand gewinnt.
-- Grössere Stände als Backup nach `level/` exportieren und committen.
+- Opens in the app's world view, for editors of the Hazu only.
+- Saving creates a new version of the level document. «Versionen» brings back
+  earlier versions.
+- **Only one person in the builder at a time.** The level is one document; the
+  last save wins.
+- Export bigger versions to `level/` as a backup and commit them.
 
-## Wer was ändern kann
+## Who can change what
 
-- **Alle Bearbeitenden** im Browser: Orte (Unter-Hazus), Figuren-Inhalte
-  (Punkte), Texte, Quizze, Builder.
-- **Gabriel**: Welt-Einstellungen, Widgets hochladen und als Station
-  einbinden.
+- **All editors**, in the browser: places (sub-Hazus), character content
+  (Punkte), texts, quizzes, the builder.
+- **Gabriel**: world settings, uploading widgets and wiring them in as
+  stations.
 
-## Grenzen (Stand Oktober 2026)
+## Limits (as of October 2026)
 
-- Quizantworten aus der Welt werden noch nicht gespeichert.
-- VR und Sprache laufen nur im eigenständigen Tab, dort ohne Genius. Die Demo
-  läuft am Laptop im Browser.
-- Wer nicht Bearbeitende/r des Hazu ist, sieht die Welt erst, wenn sie
-  freigeschaltet ist.
+- Quiz answers given in the world are not saved yet.
+- VR and voice only work in the standalone tab, and there without Genius. The
+  demo runs in a laptop browser.
+- People who are not editors of the Hazu only see the world once it is
+  switched on for readers.

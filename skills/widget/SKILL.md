@@ -1,25 +1,27 @@
 ---
 name: widget
-description: Wie man eine Station für die Schulwelt baut, als eine HTML-Datei mit der Hazu-Bridge (Daten und KI). Lesen, bevor du ein Widget in widgets/ anlegst oder änderst.
+description: How to build a station for the Schulwelt as one HTML file using the Hazu bridge (data and AI). Read before creating or changing a widget in widgets/.
 ---
 
-# Eine Station (Widget) bauen
+# Building a station (widget)
 
-Eine Station ist **eine einzige HTML-Datei**. Sie läuft auf hazu.app in einem
-abgeschotteten iframe und spricht über die Hazu-Bridge mit der Plattform.
-Start: `widgets/_vorlage/index.html` kopieren.
+A station is **one single HTML file**. On hazu.app it runs in a sandboxed
+iframe and talks to the platform through the Hazu bridge. Start by copying
+`widgets/_template/index.html`.
 
-## Grundregeln
+## Basics
 
-- Alles in einer Datei: HTML, CSS, JS. Relative Imports funktionieren nicht.
-- Bibliotheken nur per CDN mit fester Version (z. B.
+- Everything in one file: HTML, CSS, JS. Relative imports do not work.
+- Libraries only from a CDN with a pinned version (e.g.
   `https://cdn.jsdelivr.net/npm/three@0.170.0/...`).
-- Responsive: Das Widget läuft im Overlay oder im Vollbild. `100vw`/`100vh`,
-  `clamp()` für Schrift, keine festen Pixelbreiten.
-- Schrift Lato, helles Design als Standard.
-- `localStorage`, `sessionStorage` und Cookies werfen im iframe einen Fehler.
-  Immer in `try/catch`, nie für Fortschritt verwenden.
-- Links immer mit `target="_blank"`.
+- Responsive: the widget runs in an overlay or full screen. Use `100vw`/`100vh`
+  and `clamp()` for font sizes; no fixed pixel widths.
+- Font Lato, light design by default.
+- Visitor-facing text in German (Swiss spelling, «ss»); code and comments in
+  English.
+- `localStorage`, `sessionStorage` and cookies throw inside the iframe. Always
+  wrap them in `try/catch` and never use them for progress.
+- Links always with `target="_blank"`.
 
 ## Bridge
 
@@ -30,23 +32,23 @@ Start: `widgets/_vorlage/index.html` kopieren.
 ```js
 const hazu = await HazuAPI.init();
 
-hazu.context.hazuId;      // Hazu, in dem die Station liegt
-hazu.context.displayName; // Name der Person
+hazu.context.hazuId;      // Hazu the station lives in
+hazu.context.displayName; // visitor's name
 hazu.context.language;    // "de", "en", "fr"
-hazu.context.isEditor;    // darf die Person bearbeiten?
+hazu.context.isEditor;    // may the visitor edit?
 
-// Daten lesen und schreiben
-const kinder = await hazu.getChildren();
+// Read and write data
+const children = await hazu.getChildren();
 const item = await hazu.getItem(id);
-const neu = await hazu.createItem({ parentId, title, type: "item", description });
+const created = await hazu.createItem({ parentId, title, type: "item", description });
 await hazu.updateItem(id, { title, description });
 ```
 
-### KI (Genius)
+### AI (Genius)
 
 ```js
 const session = await hazu.genius.createSession({
-  configId: "<ID der Genius-Konfiguration>", // von Gabriel
+  configId: "<Genius configuration ID>", // ask Gabriel
   overrides: { systemMessage: "…", model: "hazu/fast" },
 });
 
@@ -61,19 +63,19 @@ hazu.genius.streamMessage(
 );
 ```
 
-Modellnamen: `hazu/fast` (schnell, günstig), `hazu/standard`, `hazu/deep`.
-Keine anderen Modellnamen eintragen.
+Model names: `hazu/fast` (quick, cheap), `hazu/standard`, `hazu/deep`. Do not
+use any other model names.
 
-## Lokal testen
+## Testing locally
 
-Ausserhalb von Hazu gibt es keine Bridge. Die Vorlage merkt das und nimmt
-Testdaten (`MOCK`), damit man das Widget direkt im Browser öffnen kann. KI
-antwortet lokal mit einem Platzhaltertext.
+Outside Hazu there is no bridge. The template notices and switches to mock data
+(`MOCK`), so you can open the widget straight in a browser. Locally the AI
+answers with a placeholder.
 
-## In die Welt bringen
+## Getting it into the world
 
-1. Widget committen und pushen.
-2. Gabriel lädt die Datei auf hazu.app hoch und legt am passenden Ort einen
-   Hazu mit Tag `hz-world-sim` an, der das Widget öffnet.
-3. In der Welt prüfen: Station anlaufen, Widget öffnen, einmal durchspielen.
-4. In [docs/orte.md](../../docs/orte.md) den Status nachführen.
+1. Commit and push the widget.
+2. Gabriel uploads the file to hazu.app and creates a Hazu with tag
+   `hz-world-sim` at the right place that opens the widget.
+3. Check in the world: walk up to the station, open the widget, play it once.
+4. Update the status in [docs/places.md](../../docs/places.md).

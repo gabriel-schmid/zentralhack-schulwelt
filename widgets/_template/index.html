@@ -59,10 +59,10 @@
     </main>
 
     <script>
-      // ID der Genius-Konfiguration des Coachs (von Gabriel eintragen lassen).
+      // Genius configuration ID of the coach (ask Gabriel to fill it in).
       const COACH_CONFIG_ID = "";
 
-      // Testdaten, wenn die Datei ausserhalb von Hazu geöffnet wird.
+      // Mock data for when the file is opened outside Hazu.
       const MOCK = {
         context: { displayName: "Testperson", language: "de", isEditor: true },
         genius: {
@@ -75,19 +75,19 @@
         },
       };
 
-      async function verbinden() {
+      async function connect() {
         const inHazu = window.parent !== window && window.HazuAPI;
         if (!inHazu) return MOCK;
         try {
           return await HazuAPI.init();
         } catch (e) {
-          console.warn("Bridge nicht erreichbar, nehme Testdaten", e);
+          console.warn("Bridge unreachable, using mock data", e);
           return MOCK;
         }
       }
 
       (async () => {
-        const hazu = await verbinden();
+        const hazu = await connect();
         document.getElementById("hallo").textContent =
           `Hallo ${hazu.context.displayName || ""}!`;
 

@@ -1,4 +1,6 @@
-# Idee (eingereicht)
+# Idea (as submitted)
+
+The submission text, kept in German as handed in.
 
 Idee: Wir bauen eine begehbare 3D-Welt, die zeigt, wie Schule sein könnte: ein Bergdorf, in dem Lernen in echten Projekten stattfindet. Die Lernenden planen selbst, bauen etwas, holen sich im 1:1-Coaching Unterstützung und reflektieren ihren Fortschritt. Ein KI-Coach kennt die pädagogischen Grundsätze dieser Schule.
 
@@ -22,9 +24,9 @@ Aktueller Stand: Die Idee steht, gebaut ist noch nichts. Als Werkzeug nutzen wir
 
 Ziel für die 24 Stunden: Ein begehbares Bergdorf mit mehreren Lernorten und einem KI-Coach, das man entdecken kann. Welche Orte wir am stärksten ausbauen, entscheiden wir gemeinsam im Team.
 
-## Was schon da war, was neu ist
+## What existed before, what is new
 
-Für die Schlusspräsentation klar trennen:
+Keep these apart in the final presentation:
 
-- **Vorher vorhanden:** die 3D-Engine Hazu World (Laufen, Figuren, Level-Builder, Genius-Anbindung).
-- **Am Hackathon gebaut:** die Welt selbst, die Personas, die Stationen (Widgets), der KI-Coach mit seinen Grundsätzen.
+- **Existed before:** the Hazu World 3D engine (walking, characters, level builder, Genius integration).
+- **Built during the hackathon:** the world itself, the personas, the stations (widgets), the AI coach with its principles.

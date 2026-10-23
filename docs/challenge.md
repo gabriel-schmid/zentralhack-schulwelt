@@ -1,7 +1,7 @@
 # Challenge: Bring your own challenge by SUVA
 
-Offizielle Vorgaben der Organisation (Zentral Hack 2026). Schwierigkeit:
-Einsteiger. Preis: 1. Platz CHF 1'000.-
+Official requirements from the organisers (Zentral Hack 2026), kept in German
+as received. Difficulty: beginner. Prize: 1st place CHF 1'000.-
 
 ## Bewertung
 
@@ -22,7 +22,7 @@ Einsteiger. Preis: 1. Platz CHF 1'000.-
 - Arbeit dokumentiert, z. B. Repository und README.
 - Präsentation der Lösung und des Entwicklungsfortschritts.
 - Verwendete Open-Source-Komponenten und KI-Tools transparent ausweisen
-  (→ [werkzeuge.md](werkzeuge.md)).
+  (→ [tools.md](tools.md)).
 
 ## Kann
 
@@ -54,23 +54,23 @@ Einsteiger. Preis: 1. Platz CHF 1'000.-
   Fortschritt während des Hackathons. Bei bestehenden Teilen erkennbar machen,
   was neu entwickelt oder wesentlich verbessert wurde.
 
-## Teamgrösse
+## Team size
 
-Die Vorgaben widersprechen sich: oben «3 bis 5 Personen», unter Zielpublikum
-«Teams von 2 bis 4 Personen». Zu zweit ist damit gedeckt; im Zweifel bei der
-Organisation nachfragen.
+The requirements contradict each other: «3 bis 5 Personen» at the top, «Teams
+von 2 bis 4 Personen» under the target audience. A team of two is covered by
+the latter; ask the organisers if in doubt.
 
-## Was das für uns heisst
+## What this means for us
 
-- **Fortschritt sichtbar machen (25 %):** Commits und
-  [fortschritt.md](fortschritt.md) laufend nachführen; in der Präsentation
-  klar trennen, was vorher da war (Engine) und was wir gebaut haben.
-- **Technik zeigen (20 %):** Die Stationen (Widgets) mit echter Logik und der
-  KI-Coach sind unser technischer Beitrag.
-- **Nutzen klar machen (20 %):** Für wen ist die Welt (Lernende, Eltern,
-  Lehrpersonen, Schulen) und was haben sie davon.
-- **Weiterentwicklung skizzieren:** Wie andere Schulen ihr eigenes Modell als
-  Welt bauen könnten.
-- **Nutzerfeedback (Kann):** Am Samstag ein paar andere Teilnehmende durch
-  die Welt laufen lassen und ihre Rückmeldungen notieren.
-- **Pitch:** 3 Minuten, mit Live-Demo und Backup-Video.
+- **Make progress visible (25 %):** commit often and keep
+  [progress.md](progress.md) up to date; in the presentation, separate clearly
+  what existed before (the engine) from what we built.
+- **Show technology (20 %):** the stations (widgets) with real logic and the AI
+  coach are our technical contribution.
+- **Make the benefit clear (20 %):** who the world is for (learners, parents,
+  teachers, schools) and what they get out of it.
+- **Sketch the next steps:** how other schools could build their own model as
+  a world.
+- **User feedback (optional):** on Saturday, let a few other participants walk
+  through the world and note their feedback.
+- **Pitch:** 3 minutes, with a live demo and a backup video.

@@ -1,47 +1,46 @@
 # Schulwelt – Zentral Hack 2026
 
-Eine begehbare 3D-Welt, die zeigt, wie Schule sein könnte: ein Bergdorf mit
-Werkstatt, Coaching-Raum, Garten, Küche, Lernatelier und Dorfplatz, dazu ein
-KI-Coach.
+A walkable 3D world that shows what school could be: a mountain village with a
+workshop, coaching room, garden, kitchen, study studio and village square, plus
+an AI coach.
 
-- Idee und Einreichung: [docs/idee.md](docs/idee.md)
-- Challenge und Bewertung: [docs/challenge.md](docs/challenge.md)
-- Fortschritt: [docs/fortschritt.md](docs/fortschritt.md)
-- Werkzeuge, Open Source, KI: [docs/werkzeuge.md](docs/werkzeuge.md)
+- Idea and submission: [docs/idea.md](docs/idea.md)
+- Challenge and judging: [docs/challenge.md](docs/challenge.md)
+- Progress: [docs/progress.md](docs/progress.md)
+- Tools, open source, AI: [docs/tools.md](docs/tools.md)
 
-## Für die Jury
+## For the jury
 
-- **Problem:** Selbständiges Lernen, Coaching und Projektarbeit sind schwer zu
-  erklären; man muss sie erleben.
-- **Zielgruppe:** Schülerinnen und Schüler, Eltern, Lehrpersonen, Schulen.
-- **Lösung:** eine begehbare 3D-Welt mit Lernorten, interaktiven Stationen und
-  einem KI-Coach.
-- **Vorher vorhanden:** die Engine Hazu World auf hazu.app.
-- **Am Hackathon gebaut:** siehe [docs/fortschritt.md](docs/fortschritt.md)
-  und die Commits in diesem Repo.
-- Hazu (privat): https://hazu.app/HIx4jrkOAhhawUaTpPN4
+- **Problem:** self-directed learning, coaching and project work are hard to
+  explain; you have to experience them.
+- **Audience:** pupils, parents, teachers, schools.
+- **Solution:** a walkable 3D world with learning places, interactive stations
+  and an AI coach.
+- **Existed before:** the Hazu World engine on hazu.app.
+- **Built during the hackathon:** see [docs/progress.md](docs/progress.md) and
+  the commits in this repo.
 
-## Ordner
+## Folders
 
-| Ordner | Inhalt |
-| ------ | ------ |
-| `docs/` | Idee, Orte, Personas, Pädagogik, Sicherheit, Fortschritt |
-| `skills/` | Anleitungen für Mensch und KI: Hazu World, Widgets bauen |
-| `widgets/` | eine Station pro Ordner; `_vorlage/` zum Kopieren |
-| `coach/` | System-Prompt des KI-Coachs |
-| `level/` | Backups der Level-Stände aus dem Builder |
+| Folder | Contents |
+| ------ | -------- |
+| `docs/` | idea, challenge, places, personas, pedagogy, safety, progress, tools |
+| `skills/` | guides for humans and AI: Hazu World, building widgets |
+| `widgets/` | one station per folder; copy `_template/` to start |
+| `coach/` | the AI coach's system prompt |
+| `level/` | backups of level versions from the builder |
 
-## Mit KI arbeiten
+## Working with AI
 
-- **Claude Code / Codex:** lesen `AGENTS.md` automatisch.
-- **ChatGPT:** ein Projekt anlegen und `AGENTS.md`, `skills/widget/SKILL.md`
-  und die passenden Dateien aus `docs/` als Projektdateien hochladen. Nach
-  grösseren Änderungen die Dateien dort ersetzen.
+- **Claude Code / Codex:** read `AGENTS.md` automatically.
+- **ChatGPT:** create a project and upload `AGENTS.md`,
+  `skills/widget/SKILL.md` and the relevant files from `docs/` as project
+  files. Replace them there after bigger changes.
 
-## Eine neue Station bauen
+## Building a new station
 
-1. `widgets/_vorlage/` kopieren, z. B. nach `widgets/gefahren-suche/`.
-2. `index.html` lokal im Browser öffnen. Ausserhalb von Hazu läuft die Vorlage
-   mit Testdaten.
-3. Committen und pushen. Gabriel lädt die Datei auf hazu.app hoch und macht
-   daraus eine Station in der Welt.
+1. Copy `widgets/_template/`, e.g. to `widgets/hazard-hunt/`.
+2. Open `index.html` in a browser. Outside Hazu the template runs with mock
+   data.
+3. Commit and push. Gabriel uploads the file to hazu.app and turns it into a
+   station in the world.
