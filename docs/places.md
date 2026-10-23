@@ -1,17 +1,43 @@
 # Places and stations
 
-Each place is a sub-Hazu of the world on hazu.app and shows up in the village
-as a house. A station is a widget at that place (see
-[skills/widget/SKILL.md](../skills/widget/SKILL.md)).
+## How the world is laid out
 
-| Place | What it is about | Station (widget) | Safety | Status |
-| ----- | ---------------- | ---------------- | ------ | ------ |
-| Werkstatt (workshop) | plan and build a coop or a raised bed | Hazard hunt: spot hazards in a scene, pick protective gear | ear protection, safety glasses, cables, saw guard | open |
-| Coaching-Raum (coaching room) | 1:1 conversation, setting own goals | talk to the AI coach | – | open |
-| Garten und Hof (garden and yard) | look after animals, tend beds | open | safe lifting, tools | open |
-| Küche (kitchen) | cook together | open | hygiene, knives, hot pans | open |
-| Lernatelier (study studio) | independent work | weekly plan / learning pass | – | open |
-| Dorfplatz (village square) | show projects, celebrate | open | – | open |
+- **Exterior:** the world Hazu «Schulwelt» is the village itself. Its level is
+  designed in the builder; each house stands for one place.
+- **Interiors:** each place is a sub-Hazu of the world. Walking through its
+  door opens that place on its own, and it gets its own level (the room
+  inside), designed in the builder while you are in it. Punkte inside the
+  place become its characters and boards.
+- **Stations** are widgets at a place (see
+  [skills/widget/SKILL.md](../skills/widget/SKILL.md)).
 
-Minimum goal: three places fully playable, so the village can be experienced
-from start to finish.
+## Places
+
+| Place | What it is about | Station (widget) | Safety | Interior | Status |
+| ----- | ---------------- | ---------------- | ------ | -------- | ------ |
+| Dorfplatz (village square) | start and end of the day, presenting projects (summative) | **Dashboard** (see below) | – | open square, no interior | open |
+| Werkstatt (workshop) | plan and build a coop or a raised bed | Hazard hunt: spot hazards, pick protective gear | ear protection, safety glasses, cables, saw guard | yes | open |
+| Coaching-Raum (coaching room) | 1:1 conversation, goals, Friday feedback (formative) | talk to the AI coach | – | yes | open |
+| Lernatelier (study studio) | independent work at your own level | weekly plan, minimum requirements | – | yes | open |
+| Garten und Hof (garden and yard) | look after animals, tend beds | open | safe lifting, tools | later | open |
+| Küche (kitchen) | cook together | open | hygiene, knives, hot pans | later | open |
+| Interessen-Atelier (special interests) | time and space for what a learner cares about | open | – | later | proposed, not on hazu.app yet |
+
+Minimum goal: the village plus three interiors fully playable (Werkstatt,
+Coaching-Raum, Lernatelier).
+
+## Station: Dashboard (daily overview)
+
+The frame of the day, from the concept notes. One widget, opened on the
+village square.
+
+- **Morning briefing:** what today is about, the learner's goals.
+- **Book a 1:1:** pick a slot with the coach.
+- **Progress path:** a timeline with milestones; a reached milestone is
+  ticked.
+- **Closing round:** tell what happened, note highlights.
+- **Friday:** 1:1 and feedback.
+
+Technical: progress and highlights are saved as Hazu items through the bridge
+(`createItem` / `updateItem`), so they survive a reload. The briefing and the
+closing round can use Genius (e.g. a short summary of the day's highlights).

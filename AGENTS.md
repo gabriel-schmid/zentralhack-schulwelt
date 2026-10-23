@@ -18,7 +18,9 @@ innovation, technology and usefulness (20 % each), pitch (15 %, at most 3
 minutes).
 
 The full idea: [docs/idea.md](docs/idea.md). Places and stations:
-[docs/places.md](docs/places.md). Characters: [docs/personas.md](docs/personas.md).
+[docs/places.md](docs/places.md). Characters: [docs/personas.md](docs/personas.md). Principles:
+[docs/pedagogy.md](docs/pedagogy.md). Our raw concept notes:
+[docs/concept-notes.md](docs/concept-notes.md).
 
 ## How the project is built
 

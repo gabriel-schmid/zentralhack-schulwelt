@@ -1,6 +1,28 @@
-# Idea (as submitted)
+# Idea
 
-The submission text, kept in German as handed in.
+## Summary (English)
+
+Today's school gives structure, belonging and a feedback culture, but leaves
+little room for differentiation, practical relevance ("why am I learning
+this?") and learners' own interests. Our answer is **room for intrinsic
+motivation inside a clear structure**: time, rooms and coaches set the frame,
+minimum requirements and commitment keep it binding, and learners choose what
+they work on within it.
+
+We show this as a walkable 3D mountain village. Each house is a place with its
+own interior: workshop, coaching room, garden and yard, kitchen, study studio,
+village square and a corner for special interests. A daily **dashboard**
+frames the day: morning briefing, bookable 1:1 sessions, a progress path with
+milestones and a closing round with highlights. Characters are AI-driven NPCs
+built from a prompt template plus personas (learners, teachers, coaches).
+Feedback runs formatively along the way (coach, Friday 1:1) and ends in a
+summative moment on the village square. Work safety shows up naturally where
+projects use tools, animals or the kitchen.
+
+Background: [concept-notes.md](concept-notes.md). Principles:
+[pedagogy.md](pedagogy.md). Places and stations: [places.md](places.md).
+
+## Submission (German, as handed in)
 
 Idee: Wir bauen eine begehbare 3D-Welt, die zeigt, wie Schule sein könnte: ein Bergdorf, in dem Lernen in echten Projekten stattfindet. Die Lernenden planen selbst, bauen etwas, holen sich im 1:1-Coaching Unterstützung und reflektieren ihren Fortschritt. Ein KI-Coach kennt die pädagogischen Grundsätze dieser Schule.
 
