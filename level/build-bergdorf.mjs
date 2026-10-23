@@ -8,6 +8,7 @@
 // opens that place (building.hazuId). NPCs stay at their spot all day.
 
 import { writeFileSync } from "node:fs";
+import { mixAnswers } from "./lib.mjs";
 
 const COLS = 30;
 const ROWS = 28;
@@ -66,6 +67,67 @@ const house = (id, gx, gy, gw, gd, label, colors, extra = {}) => ({
   ...extra,
 });
 
+
+// The Schulhaus facade as a landmark document (footprint 9 x 5 tiles =
+// 18 x 10 m, frame at the footprint centre, +z faces the square). Two
+// plastered wings with window bands, a taller timber entrance hall with a
+// glass front and a blue canopy, flower boxes, benches, a bike rack and a
+// Swiss flag: friendly instead of a plain block.
+const B = (pos, scale, color, mat = "PLASTER", extra = {}) => ({ shape: "box", pos, scale, color, mat, ...extra });
+function schulhausFacade() {
+  const parts = [];
+  const cream = "#f6ead0";
+  const wood = "#c98f55";
+  const roof = "#5a4a3f";
+  const blue = "#3288EF";
+  const glass = "#a9d8f2";
+  parts.push(B([0, 0.2, 0], [18.6, 0.4, 10.6], "#b9b3a8", "STONE"));
+  for (const sx of [-1, 1]) {
+    const cx = sx * 5.75;
+    parts.push(B([cx, 3.9, 0], [6.5, 7, 10], cream));
+    parts.push(B([cx, 7.6, 0], [7.1, 0.4, 10.8], roof, "CONCRETE"));
+    parts.push(B([cx, 6.95, 5.04], [6.5, 0.35, 0.06], "#f2b84b", "PAINT"));
+    for (const fy of [2.1, 5.0])
+      for (const wx of [-2.1, 0, 2.1]) {
+        parts.push(B([cx + wx, fy, 5.04], [1.5, 1.7, 0.08], glass, "GLAZING", { glow: 0.35 }));
+        parts.push(B([cx + wx, fy - 0.92, 5.1], [1.7, 0.12, 0.2], "#ffffff", "PAINT"));
+      }
+    // flower box under the ground-floor windows
+    parts.push(B([cx, 0.65, 5.45], [5.8, 0.5, 0.6], wood, "WOOD"));
+    for (const fx of [-2.4, -1.2, 0, 1.2, 2.4])
+      parts.push(B([cx + fx, 1.05, 5.45], [0.7, 0.35, 0.45], fx % 2.4 === 0 ? "#e04f5f" : "#f6c445", "LEAF"));
+  }
+  // entrance hall
+  parts.push(B([0, 4.65, 0.4], [5, 8.5, 10], wood, "CLAD"));
+  parts.push(B([0, 9.1, 0.4], [5.6, 0.4, 10.6], blue, "PAINT"));
+  parts.push(B([0, 3.3, 5.43], [3.8, 5.4, 0.08], glass, "GLAZING", { glow: 0.45 }));
+  parts.push(B([0, 1.3, 5.5], [1.8, 2.4, 0.08], "#2f4a6a", "PAINT"));
+  parts.push(B([0, 6.75, 5.45], [4, 0.9, 0.1], "#ffffff", "PAINT"));
+  // canopy on two posts
+  parts.push(B([0, 3.3, 6.6], [6.2, 0.25, 2.6], blue, "PAINT"));
+  for (const px of [-2.8, 2.8]) parts.push({ shape: "cyl", pos: [px, 1.65, 7.7], scale: [0.18, 3.3, 0.18], color: "#ffffff", mat: "METAL" });
+  // benches and bike rack on the forecourt
+  for (const bx of [-6, 6]) {
+    parts.push(B([bx, 0.45, 7.2], [2.4, 0.12, 0.6], wood, "WOOD"));
+    parts.push(B([bx, 0.22, 7.2], [2.2, 0.44, 0.3], "#6d757e", "METAL"));
+  }
+  for (let i = 0; i < 4; i++) parts.push({ shape: "torus", pos: [-8.2 + i * 0.6, 0.45, 6.6], rot: [0, Math.PI / 2, 0], scale: [0.8, 0.8, 0.8], color: "#6d757e", mat: "METAL" });
+  // Swiss flag
+  parts.push({ shape: "cyl", pos: [8.3, 3.5, 6.8], scale: [0.12, 7, 0.12], color: "#e8e8e8", mat: "METAL" });
+  parts.push(B([8.95, 6.4, 6.8], [1.2, 1.2, 0.04], "#d52b1e", "FABRIC"));
+  parts.push(B([8.95, 6.4, 6.83], [0.75, 0.22, 0.02], "#ffffff", "FABRIC"));
+  parts.push(B([8.95, 6.4, 6.83], [0.22, 0.75, 0.02], "#ffffff", "FABRIC"));
+  return {
+    $schema: "hazu.world/landmark@1",
+    id: "schulhaus_aussen",
+    version: "1.0.0",
+    title: "Schulhaus",
+    frame: { kind: "footprint", name: "F" },
+    parts,
+    result: { top: 9.3, door: { at: [0, 0, 6.6] } },
+  };
+}
+
 const buildings = [
   {
     id: "schulhaus",
@@ -76,14 +138,8 @@ const buildings = [
     hUnits: 2.4,
     h: 77,
     label: "Schulhaus",
-    v4Archetype: "school",
-    topColor: "#f0e2c8",
-    leftColor: "#e2d2b4",
-    rightColor: "#d2c09e",
+    rendererFn: "schulhaus_aussen",
     accent: "#3288EF",
-    v4Roof: "#b0613f",
-    v4Wall: "#f0e2c8",
-    windowColor: "rgba(255,220,140,0.7)",
     hazuId: PLACES.schulhaus,
   },
   house("werkstatt", 4, 8, 3, 3, "Werkstatt", ["#d9a066", "#b8804a", "#9a6634", "#F97316"], { hazuId: PLACES.werkstatt, hUnits: 2 }),
@@ -94,7 +150,7 @@ const buildings = [
 const npc = (id, gx, gy, name, color, subject, extra = {}) => ({ id, gx, gy, name, color, subject, ...extra });
 
 const npcs = [
-  npc("hauswart", 15, 9, "Hauswart Toni", "#64748B", "Hauswart · Schulhaus", { hat: "cap" }),
+  npc("hauswart", 12, 10, "Hauswart Toni", "#64748B", "Hauswart · Schulhaus", { hat: "cap" }),
   npc("jana", 12, 13, "Jana", "#22C55E", "Lernende"),
   npc("koechin", 22, 11, "Frau Rossi", "#EF4444", "Köchin · Küche", { female: true, hat: "chef" }),
 ];
@@ -148,13 +204,14 @@ const level = {
     tileWalkable: [true, true, false, true, true, true, true, false],
     map,
     buildings,
+    landmarks: [schulhausFacade()],
     props,
     npcs,
     collectibles: [],
     playerStart: { x: 15.5, y: 13.5 },
     v4: { season: "summer", weather: "clear", timeOfDay: null },
   },
-  dialogue,
+  dialogue: mixAnswers(dialogue),
   i18n: {},
 };
 

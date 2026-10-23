@@ -20,7 +20,9 @@ jury.
 
 - [x] Schulhaus live: the class meets indoors; Aula, Lernatelier, Coaching-Raum, Workshop-Raum and Pausenzone as dollhouse rooms (landmark documents in the level), checked locally (01:30)
 - [x] Village rebuilt around the Schulhaus; forum and outdoor workshop hall removed (01:30)
-- [ ] Engine indoor mode (local slice on branch world/indoor-mode) in progress
+- [x] Engine indoor mode built as a local slice on branch `world/indoor-mode` (flat room, auto walls with cutaway, no sky/island); tests 786/788, demo runs locally (02:00)
+- [x] Quiz answers mixed (correct option no longer always first) (02:15)
+- [x] Welcoming Schulhaus facade (wings, timber entrance hall with glass front, canopy, flower boxes, Swiss flag) and school-like interior (floors, windows, door frames, lockers, boards, curtains, exit door); checked locally and in the app via Playwriter (02:40)
 
 ## Tonight's plan
 

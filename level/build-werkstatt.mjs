@@ -8,6 +8,7 @@
 // the world Hazu itself would open a new app tab).
 
 import { writeFileSync } from "node:fs";
+import { mixAnswers } from "./lib.mjs";
 
 const COLS = 20;
 const ROWS = 18;
@@ -115,7 +116,7 @@ const dialogue = {
     intro:
       "Hoi! Ich plane den Hühnerstall. Heute zeichne ich, wie gross er wird und welche Bretter wir brauchen. Morgen sägen wir zusammen mit Herrn Bühler.",
     hint: "Ein guter Plan spart Material und Zeit.",
-    phases: [{ type: "intro" }, { type: "complete", message: "Heute Abend erzähle ich im Forum, wie weit wir sind." }],
+    phases: [{ type: "intro" }, { type: "complete", message: "Heute Abend erzähle ich in der Aula, wie weit wir sind." }],
   },
   jonas: {
     intro:
@@ -140,7 +141,7 @@ const level = {
     playerStart: { x: 10, y: 13.5 },
     v4: { season: "summer", weather: "clear", timeOfDay: null },
   },
-  dialogue,
+  dialogue: mixAnswers(dialogue),
   i18n: {},
 };
 

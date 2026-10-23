@@ -560,12 +560,12 @@
           "question": "Was ziehst du an, bevor du mit der Kreissäge arbeitest?",
           "options": [
             {
-              "text": "Schutzbrille und Gehörschutz",
-              "correct": true
-            },
-            {
               "text": "Handschuhe und einen Schal",
               "correct": false
+            },
+            {
+              "text": "Schutzbrille und Gehörschutz",
+              "correct": true
             },
             {
               "text": "Nichts, es geht ja schnell",
@@ -578,16 +578,16 @@
           "question": "Am Boden liegt ein Verlängerungskabel quer durch die Werkstatt. Was machst du?",
           "options": [
             {
-              "text": "Ich lege es an den Rand und sichere es, damit niemand stolpert.",
-              "correct": true
-            },
-            {
               "text": "Ich steige einfach darüber.",
               "correct": false
             },
             {
               "text": "Ich ziehe den Stecker während jemand sägt.",
               "correct": false
+            },
+            {
+              "text": "Ich lege es an den Rand und sichere es, damit niemand stolpert.",
+              "correct": true
             }
           ]
         },
@@ -606,7 +606,7 @@
         },
         {
           "type": "complete",
-          "message": "Heute Abend erzähle ich im Forum, wie weit wir sind."
+          "message": "Heute Abend erzähle ich in der Aula, wie weit wir sind."
         }
       ]
     },
