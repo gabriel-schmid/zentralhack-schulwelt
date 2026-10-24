@@ -934,54 +934,6 @@
         "rendererFn": "schulhaus_aussen",
         "accent": "#3288EF",
         "hazuId": "_m0-qRVAAUwmuxfswuPp"
-      },
-      {
-        "id": "werkstatt",
-        "gx": 4,
-        "gy": 8,
-        "gw": 3,
-        "gd": 3,
-        "hUnits": 2,
-        "h": 64,
-        "label": "Werkstatt",
-        "topColor": "#d9a066",
-        "leftColor": "#b8804a",
-        "rightColor": "#9a6634",
-        "accent": "#F97316",
-        "windowColor": "rgba(255,220,140,0.7)",
-        "hazuId": "tZNMXBltrzdnsVkElfhC"
-      },
-      {
-        "id": "kueche",
-        "gx": 23,
-        "gy": 8,
-        "gw": 3,
-        "gd": 3,
-        "hUnits": 1.6,
-        "h": 51,
-        "label": "Küche",
-        "topColor": "#f2d4c4",
-        "leftColor": "#d9b2a0",
-        "rightColor": "#bf9280",
-        "accent": "#EF4444",
-        "windowColor": "rgba(255,220,140,0.7)",
-        "hazuId": "QWixzEpPTgQYY09Ww8cH"
-      },
-      {
-        "id": "stall",
-        "gx": 13,
-        "gy": 19,
-        "gw": 2,
-        "gd": 2,
-        "hUnits": 1.3,
-        "h": 42,
-        "label": "Garten und Hof",
-        "topColor": "#d8e8c8",
-        "leftColor": "#b4cf9c",
-        "rightColor": "#93b478",
-        "accent": "#22C55E",
-        "windowColor": "rgba(255,220,140,0.7)",
-        "hazuId": "bK_FhPCxRBLKvMG4_flE"
       }
     ],
     "landmarks": [
@@ -2020,31 +1972,12 @@
     ],
     "npcs": [
       {
-        "id": "hauswart",
-        "gx": 12,
+        "id": "joel",
+        "gx": 13,
         "gy": 10,
-        "name": "Hauswart Toni",
-        "color": "#64748B",
-        "subject": "Hauswart · Schulhaus",
-        "hat": "cap"
-      },
-      {
-        "id": "jana",
-        "gx": 12,
-        "gy": 13,
-        "name": "Jana",
+        "name": "Joel",
         "color": "#22C55E",
-        "subject": "Lernende"
-      },
-      {
-        "id": "koechin",
-        "gx": 22,
-        "gy": 11,
-        "name": "Frau Rossi",
-        "color": "#EF4444",
-        "subject": "Köchin · Küche",
-        "female": true,
-        "hat": "chef"
+        "subject": "Lernender · 3. Jahr"
       }
     ],
     "collectibles": [],
@@ -2059,60 +1992,16 @@
     }
   },
   "dialogue": {
-    "hauswart": {
-      "intro": "Grüezi im Bergdorf! Im Schulhaus trifft sich die ganze Klasse am Morgen und am Abend in der Aula. Drinnen findest du auch das Lernatelier, den Coaching-Raum und die Workshops.",
-      "hint": "Die Tür ist vorne am Schulhaus. Draussen gibt es die Werkstatt, die Küche und den Garten.",
+    "joel": {
+      "intro": "Hoi, ich bin Joel! Hier lernt man in eigenen Projekten. Ich mache eine Audiokarte über Treffpunkte im Dorf. Am Morgen treffen wir uns alle in der Aula, dann plant jede und jeder den eigenen Tag.",
+      "hint": "Die Tür ist vorne am Schulhaus, unter dem blauen Vordach.",
       "phases": [
         {
           "type": "intro"
         },
         {
           "type": "complete",
-          "message": "Viel Spass beim Entdecken!"
-        }
-      ]
-    },
-    "jana": {
-      "intro": "Hoi! Ich gehe nach der Morgenrunde in den Garten. Heute pflanzen wir Salat für die Küche.",
-      "hint": "Jedes Projekt im Dorf braucht etwas, das wir wirklich brauchen.",
-      "phases": [
-        {
-          "type": "intro"
-        },
-        {
-          "type": "complete",
-          "message": "Bis heute Abend in der Aula!"
-        }
-      ]
-    },
-    "koechin": {
-      "intro": "Willkommen in der Küche! Heute kochen wir zusammen das Mittagessen für alle.",
-      "hint": "Ein Messer legst du immer mit der Klinge vom Rand weg ab.",
-      "phases": [
-        {
-          "type": "intro"
-        },
-        {
-          "type": "choice",
-          "question": "Was machst du zuerst, bevor du mit Lebensmitteln arbeitest?",
-          "options": [
-            {
-              "text": "Hände waschen",
-              "correct": true
-            },
-            {
-              "text": "Den Herd einschalten",
-              "correct": false
-            },
-            {
-              "text": "Das Messer schleifen",
-              "correct": false
-            }
-          ]
-        },
-        {
-          "type": "complete",
-          "message": "Genau, Hygiene kommt zuerst."
+          "message": "Komm mit ins Schulhaus. Drinnen findest du die Aula, das Lernatelier, den Coaching-Raum und die Workshops."
         }
       ]
     }

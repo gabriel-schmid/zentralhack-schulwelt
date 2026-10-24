@@ -72,6 +72,14 @@ Outside Hazu there is no bridge. The template notices and switches to mock data
 (`MOCK`), so you can open the widget straight in a browser. Locally the AI
 answers with a placeholder.
 
+## Uploading a large widget
+
+A whole-file base64 upload through the MCP is error-prone above ~20 KB. The
+bridge's own `uploadFile` (run in the station's iframe in a signed-in browser,
+e.g. via Playwriter) uploads the exact bytes; then point the station's
+`event.widgetViewSettings.url` at the returned document URL. Small fixes go
+through `patch_file_source`.
+
 ## Getting it into the world
 
 1. Commit and push the widget.

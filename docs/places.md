@@ -13,15 +13,14 @@
 
 ## Current layout (01:30)
 
-- **Village (Bergdorf):** Schulhaus on the square, Werkstatt, Küche, Garten und
-  Hof; Hauswart Toni and Jana outside.
+- **Village (Bergdorf):** only the arrival: the Schulhaus on the square, Joel greets
+  visitors. Werkstatt, Küche and Garten are in «Reserve» on hazu.app.
 - **Schulhaus interior** (`level/schulhaus.json`, dollhouse rooms as data,
   24 x 18 tiles, revised 02:26): Bibliothek, Aula (morning and evening circle,
   Frau Arnold, Lea) and Interessen-Atelier (Tobi) in the north; a corridor with
   lockers; Lernatelier (Quirin), Coaching-Raum (Herr Meinhard, Genius), Pausenzone
   (Yara, Matilda) and Workshop-Raum (Herr Tesla, stations below) in the south; the entrance hall runs from
   the corridor to the exit. Tile ranges per room: `skills/npc/SKILL.md`.
-- **Werkstatt interior** (`level/werkstatt.json`) with the Sägestation.
 
 ## Places
 

@@ -37,6 +37,15 @@ jury.
 
 - [x] Schulhaus walls: colliders every 0.4 m (radius 0.2), so the body no longer walks halfway into walls; all doorways still passable (checked locally) (03:36)
 
+## Saturday morning
+
+- [x] Bug fixed: stations never saved on hazu.app (the SDK declares `HazuAPI` as a global const, the template checked `window.HazuAPI`); fixed in all widgets and the template, checked live: lab and conflict scene save their result items (07:57)
+- [x] Concept focus: the village is only the arrival (Schulhaus + Joel as greeter); Werkstatt, Küche, Garten and the Sägestation moved to «Reserve»; Toni, Jana, Rossi removed (07:57)
+- [x] «Säuren und Basen» rebuilt as an open lab (Säure-Base-Labor): mix freely, read the red-cabbage colour, measure pH, neutralise, three challenges; live with Herr Tesla (07:57)
+- [x] Luca's «Ein Mathematikvormittag» (Lea and Joel, learning goal + own route + formative feedback) is live in the Schulhaus; link to a character still to decide with Luca
+- [ ] Herr Meinhard (AI) tested in the world
+- [ ] Pitch: 75 s video tour + one live question to Herr Meinhard; backup video
+
 ## Tonight's plan
 
 | # | Task | Who |

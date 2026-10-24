@@ -2,10 +2,10 @@
 //
 //   node level/build-bergdorf.mjs
 //
-// Layout (tiles): forest border, a village square in the middle with the
-// forum (amphitheatre) on its north side for the morning and evening circle,
-// the workshop auditorium in the south, and one house per place whose door
-// opens that place (building.hazuId). NPCs stay at their spot all day.
+// Layout (tiles): forest border, a village square in the middle and the
+// Schulhaus on its north side; its door opens the Schulhaus interior
+// (building.hazuId). The village is only the arrival: Joel greets visitors
+// on the square, everything else happens inside the Schulhaus.
 
 import { writeFileSync } from "node:fs";
 import { mixAnswers } from "./lib.mjs";
@@ -16,11 +16,6 @@ const T = { GRASS: 0, ROAD: 1, WATER: 2, PLAZA: 3, BRIDGE: 4, PARK: 5, FLOWERS: 
 
 const PLACES = {
   schulhaus: "_m0-qRVAAUwmuxfswuPp",
-  werkstatt: "tZNMXBltrzdnsVkElfhC",
-  coaching: "hJ73ZiKWocRZADF25pQj",
-  garten: "bK_FhPCxRBLKvMG4_flE",
-  kueche: "QWixzEpPTgQYY09Ww8cH",
-  lernatelier: "frRqjhqx-Bk_71Wu9o8C",
 };
 
 const map = Array.from({ length: ROWS }, () => Array(COLS).fill(T.GRASS));
@@ -49,24 +44,6 @@ fill(3, 4, 4, 1, T.FLOWERS);
 
 // a pond by the garden
 fill(3, 20, 3, 3, T.WATER);
-
-const house = (id, gx, gy, gw, gd, label, colors, extra = {}) => ({
-  id,
-  gx,
-  gy,
-  gw,
-  gd,
-  hUnits: extra.hUnits ?? 1.6,
-  h: Math.round((extra.hUnits ?? 1.6) * 32),
-  label,
-  topColor: colors[0],
-  leftColor: colors[1],
-  rightColor: colors[2],
-  accent: colors[3],
-  windowColor: "rgba(255,220,140,0.7)",
-  ...extra,
-});
-
 
 // The Schulhaus facade as a landmark document (footprint 9 x 5 tiles =
 // 18 x 10 m, frame at the footprint centre, +z faces the square). Two
@@ -142,46 +119,27 @@ const buildings = [
     accent: "#3288EF",
     hazuId: PLACES.schulhaus,
   },
-  house("werkstatt", 4, 8, 3, 3, "Werkstatt", ["#d9a066", "#b8804a", "#9a6634", "#F97316"], { hazuId: PLACES.werkstatt, hUnits: 2 }),
-  house("kueche", 23, 8, 3, 3, "Küche", ["#f2d4c4", "#d9b2a0", "#bf9280", "#EF4444"], { hazuId: PLACES.kueche }),
-  house("stall", 13, 19, 2, 2, "Garten und Hof", ["#d8e8c8", "#b4cf9c", "#93b478", "#22C55E"], { hazuId: PLACES.garten, hUnits: 1.3 }),
 ];
 
 const npc = (id, gx, gy, name, color, subject, extra = {}) => ({ id, gx, gy, name, color, subject, ...extra });
 
 const npcs = [
-  npc("hauswart", 12, 10, "Hauswart Toni", "#64748B", "Hauswart · Schulhaus", { hat: "cap" }),
-  npc("jana", 12, 13, "Jana", "#22C55E", "Lernende"),
-  npc("koechin", 22, 11, "Frau Rossi", "#EF4444", "Köchin · Küche", { female: true, hat: "chef" }),
+  npc("joel", 13, 10, "Joel", "#22C55E", "Lernender · 3. Jahr"),
 ];
 
+// Joel from docs/personas.md: he greets visitors and points to the Schulhaus.
+// He is also the lead of the conflict station inside.
 const dialogue = {
-  hauswart: {
+  joel: {
     intro:
-      "Grüezi im Bergdorf! Im Schulhaus trifft sich die ganze Klasse am Morgen und am Abend in der Aula. Drinnen findest du auch das Lernatelier, den Coaching-Raum und die Workshops.",
-    hint: "Die Tür ist vorne am Schulhaus. Draussen gibt es die Werkstatt, die Küche und den Garten.",
-    phases: [{ type: "intro" }, { type: "complete", message: "Viel Spass beim Entdecken!" }],
-  },
-  jana: {
-    intro: "Hoi! Ich gehe nach der Morgenrunde in den Garten. Heute pflanzen wir Salat für die Küche.",
-    hint: "Jedes Projekt im Dorf braucht etwas, das wir wirklich brauchen.",
-    phases: [{ type: "intro" }, { type: "complete", message: "Bis heute Abend in der Aula!" }],
-  },
-  koechin: {
-    intro: "Willkommen in der Küche! Heute kochen wir zusammen das Mittagessen für alle.",
-    hint: "Ein Messer legst du immer mit der Klinge vom Rand weg ab.",
+      "Hoi, ich bin Joel! Hier lernt man in eigenen Projekten. Ich mache eine Audiokarte über Treffpunkte im Dorf. Am Morgen treffen wir uns alle in der Aula, dann plant jede und jeder den eigenen Tag.",
+    hint: "Die Tür ist vorne am Schulhaus, unter dem blauen Vordach.",
     phases: [
       { type: "intro" },
       {
-        type: "choice",
-        question: "Was machst du zuerst, bevor du mit Lebensmitteln arbeitest?",
-        options: [
-          { text: "Hände waschen", correct: true },
-          { text: "Den Herd einschalten", correct: false },
-          { text: "Das Messer schleifen", correct: false },
-        ],
+        type: "complete",
+        message: "Komm mit ins Schulhaus. Drinnen findest du die Aula, das Lernatelier, den Coaching-Raum und die Workshops.",
       },
-      { type: "complete", message: "Genau, Hygiene kommt zuerst." },
     ],
   },
 };
