@@ -64,7 +64,7 @@ All three stations sit in the Schulhaus Hazu `_m0-qRVAAUwmuxfswuPp`.
 | Station | Hazu | Repo source | Document | Live revision | Character (tag) |
 | ------- | ---- | ----------- | -------- | ------------- | --------------- |
 | Tagesplan | `Kur3--1W2Om9ChLwzcu3` | `widgets/tagesplan/index.html` | `doc_e52cf725ed3f4ab481ee75d18fdddc81` | 3 | Yara (`hw-npc-yara`) |
-| Säure-Base-Labor | `k6O-jIz2NIb6e-Q0dgax` | `widgets/saeuren-basen/index.html` | `doc_1eb34a79537341709ae92c5deef143db` | 3 | Herr Tesla (`hw-npc-workshop`) |
+| Säure-Base-Labor | `k6O-jIz2NIb6e-Q0dgax` | `widgets/saeuren-basen/index.html` | `doc_1eb34a79537341709ae92c5deef143db` || 4 | Herr Tesla (`hw-npc-workshop`) |
 | Konflikt in der Projektgruppe | `OlhBe1_bzlj7rSR4fv_T` | `widgets/konflikt/index.html` | `doc_c8bc1b33c87247c28d0d2085f5b5c73c` | 3 | Herr Meinhard (`hw-npc-coach`) |
 
 Widgets are uploaded as they are, without conversion. The sha256 of each live
@@ -73,7 +73,7 @@ revision equals `sha256sum` of the repo file:
 | Station | sha256 (live = repo) | Last repo commit |
 | ------- | -------------------- | ---------------- |
 | Tagesplan | `674b5e5873fc8efb26dbcf405bbd7e20a3cc56da08504cb84a1aa706e14e2af2` | `08da13e` |
-| Säure-Base-Labor | `ef63d5da48d666f6758c016979a51de5d4e83659f8a8b3a4df2c502da0c4982b` | `3149aed` |
+| Säure-Base-Labor | `330f5b458550f1bdc5d13a5437c9790d8f4f7c877466737e4c2f619f214c9194` | `d521a1f` |
 | Konflikt | `24c933ba8ca912d083ddc754fefc008c2ba84cf483ace7d6cb50972beac75383` | `a42ce14` |
 
 ## Reserve Hazu
