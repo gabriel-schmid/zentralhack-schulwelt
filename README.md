@@ -115,6 +115,26 @@ This repository holds only what we built during the hackathon, plus docs. No
 platform or engine code lives here; the indoor mode is in the engine's own
 repository (PR above).
 
+## What came from us, what came from AI
+
+| Part | From |
+| ---- | ---- |
+| Idea of a walkable school simulation | us |
+| School model: freedom inside a clear structure, fixed points, binding minimum requirements, coaching, own projects, optional workshops, formative before summative | us |
+| Personas and their attributes | us |
+| Route through the school morning, which concept element appears where, which characters and stations exist | us |
+| Writing up our notes as documents (concept baseline, personas) | AI (ChatGPT, Codex), from our notes |
+| Code, levels, furniture, stations, wording of dialogues and docs | AI (Claude Code), on our instructions |
+| Checking every result in the browser and deciding what stays | us |
+
+On Friday from about 19:00 to 23:00 we worked on paper only: we wrote down
+our thoughts and ideas, drew up the school model and defined the personas
+with their attributes. Only after that did we
+set up the repository (23:20) and start building. From then on, AI did as
+much of the implementation as possible. We gave the goals and the content,
+and played and reviewed each step. Details per tool:
+[docs/tools.md](docs/tools.md).
+
 ## Progress timeline
 
 Full log with times: [docs/progress.md](docs/progress.md). Commits in this
