@@ -160,6 +160,9 @@ repo show the same steps.
 - **Saturday 08:00–10:00:** morning route ⓪–⑦ with real furniture; Tagesplan
   station; every character turned into a guided conversation covering the
   concept; small Bergdorf around the square.
+- **Saturday 10:00–14:30:** paper notes and the AI split documented;
+  lab and Workshop-Raum improved; engine indoor mode reviewed, merged and
+  live; world open without an account; final demo video and pitch deck.
 
 ## Team and roles
 

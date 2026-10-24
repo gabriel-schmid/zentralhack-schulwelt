@@ -62,16 +62,28 @@ Morning (world and stations):
 - [x] README for the jury (problem, target group, route, before vs new) and full AI and open-source disclosure in [tools.md](tools.md) (10:09)
 - [x] Lab safety rules cite chemsuisse (school guide 2019) and Suva (eye protection) ([safety.md](safety.md)) (10:11)
 - [x] Real lockers in the corridor, furniture silhouettes, neutral conversation replies (10:12)
+- [x] Suva-relevant lines woven into the route: Frau Arnold on learning from near misses, Herr Tesla on choosing safety gear yourself (11:40)
+- [x] Deployment manifest: every live Hazu revision traced to a repo file by checksum, plus the conversion scripts ([deployment.md](deployment.md)) (12:05)
+- [x] Säure-Base-Labor: shuffled safety gear, icons instead of emojis, back button, realistic mixing (12:25)
+- [x] Workshop-Raum lab equipment (bench, fume hood, safety corner, periodic table, solar panel) (12:40)
+- [x] Herr Tesla's walk-to spot and the three station posts placed inside the rooms (12:49)
+- [x] Paper notes from Friday evening and «What came from us, what came from AI» in the README; personas matched to the paper notes (12:55)
+- [x] Animated pitch deck as a Hazu presentation (12:50); reworked to the scene-framed pitch (13:50)
+- [x] World open without an account: anyone with the link can walk it (13:16)
+- [x] Tobi's conversation rewritten around his own project; learner traits as subtitles (13:20)
+- [x] Final demo video, 48 s with music (14:03)
+- [x] Konflikt station: initials centred in the cast circles (14:20)
 - [x] Luca's Mathematikvormittag archived in «Reserve» as a widget; its content (Lea and Joel, Frau Sutter's Mathe-Fixpunkt, Quirin) now lives in the route's Lernatelier characters (09:38)
 
 Engine (outside this repo):
 
-- [x] Indoor mode PR [HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183) open: review fixes (XR sky state, weather indoors, AR table), ceiling in first person, shadows, sliding along walls instead of stopping; not merged or deployed
+- [x] Indoor mode PR [HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183) with review fixes (XR sky state, weather indoors, AR table), ceiling in first person, shadows, sliding along walls instead of stopping
+- [x] Indoor mode reviewed and merged by Hazu's CTO (10:12); live on hazu.app with the 12:29 engine build; the Schulhaus runs in it
 
 Still open:
 
 - [ ] Herr Meinhard (AI) tested in the world with the pitch question
-- [ ] Backup video recorded (shot list in [pitch.md](pitch.md))
+- [x] Backup video recorded: `output/demo-final.mp4` (14:03)
 - [ ] Pitch rehearsed and timed (draft in [pitch.md](pitch.md))
 - [ ] Optional: two or three other participants walk through the world; note their feedback
 
