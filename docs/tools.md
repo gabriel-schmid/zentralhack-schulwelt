@@ -10,7 +10,7 @@ tool here.
 | Claude Code with Claude models (Anthropic) | Gabriel | Most of the code, levels, dialogues, stations (widgets) and docs in this repo, and the engine indoor-mode PR, produced under Gabriel's direction: he set the goals, decided the content and checked the results. Several Claude Code agents worked in parallel on separate parts (levels, stations, docs). Commits co-authored by Claude carry a `Co-Authored-By` line. |
 | ChatGPT (OpenAI) | Luca | Concept discussion, personas, content |
 | Codex (OpenAI) | Luca | Repository review, shared concept baseline, personas and the Mathematikvormittag station (branch `codex/mathe`) |
-| Hazu Genius | in the world | Runs the AI coach Herr Meinhard live, with our system prompt ([coach/system-prompt.md](../coach/system-prompt.md)). Part of the existing Hazu platform. |
+| Hazu Genius | in the world | Runs the AI coach Herr Meinhard live, with our system prompt ([coach/system-prompt.md](../coach/system-prompt.md)). Part of the existing Hazu platform. Model: Genius's default `hazu/fast`, currently GPT-6 Luna hosted in Frankfurt, under an EU-only model policy. |
 
 How AI output was checked:
 

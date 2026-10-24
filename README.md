@@ -172,5 +172,6 @@ The route's Lernatelier scenes reuse the content of Luca's mathematics morning.
 | `coach/` | system prompt of the AI coach |
 | `skills/` | guides for people and AI helpers: Hazu World, characters, widgets |
 
+What is live where on hazu.app (Hazu IDs, revisions, checksums): [docs/deployment.md](docs/deployment.md).
 Open source, third-party components and AI tools: [docs/tools.md](docs/tools.md).
 AI helpers and contributors start with [AGENTS.md](AGENTS.md).
