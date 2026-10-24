@@ -18,6 +18,27 @@ script below runs 2:50, leaving 10 s of buffer.
 The speaker split is a suggestion: Gabriel takes tech and demo, Luca takes
 concept and pedagogy. Swap freely.
 
+## Deck
+
+Animated Hazu presentation: [hazu.app/-WB585D_sJABMLk5Cu0V](https://hazu.app/-WB585D_sJABMLk5Cu0V)
+(private, opens in the presentation view; F for fullscreen, arrow keys step
+through builds and slides).
+
+| Slide | Script block | Builds |
+| ----- | ------------ | ------ |
+| 1 Titel: Schulwelt, Gabriel & Luca, Zentral Hack 2026 | before 1 | names and challenge label |
+| 2 «Wieso lerne ich das?» | 1 Hook (Luca) | 2 lines |
+| 3 Raum für intrinsische Motivation in einer klaren Struktur | 2 Idee (Luca) | 3 pairs: Fixpunkte and Mindestanforderungen, Coaching and Projekte, formativ and Sicherheit |
+| 4 Ein Morgen in der Schulwelt | 3 Demo (video, Gabriel) | none; the demo video goes here |
+| 5 Frag den KI-Coach | 4 Live-Moment (Gabriel) | question, then the world link |
+| 6 Was in 24 Stunden neu entstand | 5 Fortschritt (Gabriel) | existing parts, new parts, «Konzept von uns, Umsetzung mit KI» |
+| 7 Erleben statt erklären | 6 Nutzen & nächste Schritte (Luca) | audiences, Suva prevention, next step, closing line |
+
+The «Schulwelt» wordmark moves from slide 1 to slides 2 and 3 (magic move).
+To embed the video on slide 4, upload the mp4 to the deck Hazu and replace
+the slide's `<img>` with
+`<video src="…/video.mp4" poster="…/c-schulhaus-diorama.jpg" controls></video>`.
+
 ## Script
 
 ### 1 Hook (12 s, Luca)
