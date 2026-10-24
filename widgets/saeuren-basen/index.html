@@ -1138,7 +1138,8 @@
         window.lastResult = result; // for local testing
         if (h === MOCK || !h?.context?.hazuId || typeof h.createItem !== "function") return "local";
         try {
-          await h.createItem({ parentId: h.context.hazuId, type: "item", title: result.title, description: result.description });
+          // Results stay private: on hazu.app an item without privacy defaults to "public" (readable without login).
+          await h.createItem({ parentId: h.context.hazuId, type: "item", title: result.title, description: result.description, privacy: "private" });
           return true;
         } catch (e) {
           console.warn("Result not saved", e);

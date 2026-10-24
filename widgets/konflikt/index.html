@@ -995,6 +995,8 @@
           await h.createItem({
             parentId: h.context.hazuId,
             type: "item",
+            // Results stay private: on hazu.app an item without privacy defaults to "public" (readable without login).
+            privacy: "private",
             title: `Konflikt in der Projektgruppe: ${h.context.displayName || "Besuch"} · ${end.title}`,
             description:
               `<p><strong>Ende:</strong> ${esc(end.title)}</p>` +

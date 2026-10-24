@@ -988,6 +988,8 @@
             type: "item",
             title,
             description,
+            // Results stay private: on hazu.app an item without privacy defaults to "public" (readable without login).
+            privacy: "private",
           });
           window.lastResult = { mode: local ? "lokal" : "hazu", id: created?.id ?? null, title, description, plan: { ...state.plan } };
           state.savedAt = new Date().toLocaleTimeString("de-CH", { hour: "2-digit", minute: "2-digit" });

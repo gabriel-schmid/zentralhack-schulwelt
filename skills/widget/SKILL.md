@@ -40,7 +40,8 @@ hazu.context.isEditor;    // may the visitor edit?
 // Read and write data
 const children = await hazu.getChildren();
 const item = await hazu.getItem(id);
-const created = await hazu.createItem({ parentId, title, type: "item", description });
+// Always pass privacy: "private" — without it the item is "public" (readable without login on hazu.app).
+const created = await hazu.createItem({ parentId, title, type: "item", description, privacy: "private" });
 await hazu.updateItem(id, { title, description });
 ```
 
