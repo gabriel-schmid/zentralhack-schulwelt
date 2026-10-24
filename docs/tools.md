@@ -52,6 +52,11 @@ and live on hazu.app since Saturday 12:29). That code lives in the engine reposi
 | Playwriter (Chrome extension + CLI, Playwright API) | – | MIT | browser checks of the world and stations | used during the hackathon |
 | Piper TTS (`piper-tts`) | 1.8.0 | GPL-3.0 | Luca's local German narration trial, run outside the repo; not part of the world | used during the hackathon |
 | Piper voice `de_DE-thorsten-medium` | – | model card lists the Thorsten dataset as CC0 | same trial | used during the hackathon |
+| «Carefree» by Kevin MacLeod ([incompetech.com](https://incompetech.com/music/royalty-free/mp3-royaltyfree/Carefree.mp3)) | – | CC BY 4.0 | background music of the demo video | used during the hackathon |
+
+Music attribution (also on the demo video's end card): "Carefree" Kevin
+MacLeod (incompetech.com), Licensed under Creative Commons: By Attribution 4.0
+License, http://creativecommons.org/licenses/by/4.0/
 
 Details of the narration trial: `docs/local-tts.md` on branch `codex/mathe`.
 
