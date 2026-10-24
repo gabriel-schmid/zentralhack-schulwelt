@@ -130,7 +130,8 @@ Update the numbers just before the pitch.
 
 > L: «Okay, ich bin überzeugt. Wann fangen wir an?»
 >
-> G: «Jede Schule kann ihr Modell so zeigen. Schule muss man erleben.»
+> G: «Jede Schule kann ihr Modell so zeigen, und Lehrpersonen erleben Schule
+> einmal anders. Schule muss man erleben.»
 
 ## Jury focus
 
