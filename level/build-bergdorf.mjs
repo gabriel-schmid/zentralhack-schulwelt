@@ -14,7 +14,7 @@
 
 import { writeFileSync } from "node:fs";
 import { mixAnswers } from "./lib.mjs";
-import { routeVillage } from "./route-dialogues.mjs";
+import { backgroundVillageDialogue, backgroundVillageNpcs, routeVillage } from "./route-dialogues.mjs";
 
 const COLS = 30;
 const ROWS = 28;
@@ -213,14 +213,25 @@ const buildings = [
 
 const npc = (id, gx, gy, name, color, subject, extra = {}) => ({ id, gx, gy, name, color, subject, ...extra });
 
+const bgTiles = {
+  livio: [19.2, 11.7],
+  mara: [19.15, 12.65],
+  silvan: [10.75, 12.5],
+  selin: [23.1, 4.2],
+};
+
 const npcs = [
-  npc("joel", 13, 10, "Joel", "#22C55E", "Lernender · 3. Jahr", { look: { hairStyle: "short", hair: "#3b2a1e" } }),
+  npc("joel", 13, 10, "Joel", "#22C55E", "⓪ Lernender · 3. Jahr", { look: { hairStyle: "short", hair: "#3b2a1e" } }),
+  // background characters (backgroundVillageNpcs), off the path from the
+  // start to the Schulhaus door: two by the fountain, a visitor at the bus
+  // stop, one on the meadow
+  ...backgroundVillageNpcs.map(({ id, name, color, subject, extra }) => npc(id, ...bgTiles[id], name, color, subject, extra)),
 ];
 
 // Joel from docs/personas.md greets visitors and points to door ① of the
 // «Vormittag» route (routeVillage in route-dialogues.mjs). He appears again
 // in the Schulhaus, in the Lernatelier with Lea.
-const dialogue = { ...routeVillage };
+const dialogue = { ...routeVillage, ...backgroundVillageDialogue };
 
 const tree = (gx, gy) => ({ type: "tree", gx, gy });
 

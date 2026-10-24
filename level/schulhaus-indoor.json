@@ -1700,7 +1700,7 @@
     "gy": 2,
     "name": "Frau Arnold",
     "color": "#3288EF",
-    "subject": "Lehrerin · Morgenrunde",
+    "subject": "① Lehrerin · Morgenrunde",
     "female": true,
     "hat": "glasses"
    },
@@ -1710,18 +1710,18 @@
     "gy": 2,
     "name": "Matilda",
     "color": "#EC4899",
-    "subject": "Lernende · 3. Jahr",
+    "subject": "① Lernende · 3. Jahr",
     "female": true,
     "hat": "beret"
    },
-   {"id":"lea","gx":2.9,"gy":8.5,"name":"Lea","color":"#F97316","subject":"Lernende · 2. Jahr","female":true},
+   {"id":"lea","gx":2.9,"gy":8.5,"name":"Lea","color":"#F97316","subject":"② Lernende · 2. Jahr","female":true},
    {
     "id": "joel",
     "gx": 3.55,
     "gy": 8.5,
     "name": "Joel",
     "color": "#22C55E",
-    "subject": "Lernender · 3. Jahr",
+    "subject": "② Lernender · 3. Jahr",
     "look": {"hairStyle":"short","hair":"#3b2a1e"}
    },
    {
@@ -1730,7 +1730,7 @@
     "gy": 9.6,
     "name": "Frau Sutter",
     "color": "#14B8A6",
-    "subject": "Mathematik · Fixpunkt",
+    "subject": "③ Mathematik · Fixpunkt",
     "female": true,
     "look": {"hairStyle":"bun","hair":"#6b4a2b"},
     "hat": "glasses"
@@ -1741,7 +1741,7 @@
     "gy": 10,
     "name": "Quirin",
     "color": "#0EA5E9",
-    "subject": "Lernender · Lernatelier",
+    "subject": "② Lernender · Lernatelier",
     "look": {"hairStyle":"spiky"}
    },
    {
@@ -1750,18 +1750,18 @@
     "gy": 4,
     "name": "Tobi",
     "color": "#22C55E",
-    "subject": "Lernender · Interessen-Atelier",
+    "subject": "④ Lernender · Interessen-Atelier",
     "hat": "cap",
     "look": {"hairStyle":"short"}
    },
-   {"id":"yara","gx":12.7,"gy":12.8,"name":"Yara","color":"#EAB308","subject":"Lernende · Tagesplan","female":true},
+   {"id":"yara","gx":12.7,"gy":12.8,"name":"Yara","color":"#EAB308","subject":"◎ Tagesplan · Eingangshalle","female":true},
    {
     "id": "coach",
     "gx": 19,
     "gy": 11,
     "name": "Herr Meinhard",
     "color": "#8B5CF6",
-    "subject": "Coach · 1:1",
+    "subject": "⑤ Coach · 1:1",
     "isGenius": true,
     "hat": "glasses",
     "look": {"hairStyle":"short","hair":"#b8b4ad"}
@@ -1772,8 +1772,117 @@
     "gy": 15,
     "name": "Herr Tesla",
     "color": "#F97316",
-    "subject": "Workshop-Coach · Technik",
+    "subject": "⑥ Workshop-Coach · Technik",
     "look": {"hairStyle":"short"}
+   },
+   {
+    "id": "ladina",
+    "gx": 3.7,
+    "gy": 15.1,
+    "name": "Ladina",
+    "color": "#A8A29E",
+    "subject": "Lernende · im Haus",
+    "female": true,
+    "look": {"hairStyle":"ponytail","hair":"#6b4a2b"}
+   },
+   {
+    "id": "flurin",
+    "gx": 4.4,
+    "gy": 15.9,
+    "name": "Flurin",
+    "color": "#93B4D6",
+    "subject": "Lernender · im Haus",
+    "hat": "cap",
+    "look": {"hairStyle":"short","hatColor":"#5f6b78"}
+   },
+   {
+    "id": "noemi",
+    "gx": 3.1,
+    "gy": 16.5,
+    "name": "Noemi",
+    "color": "#D6C7A1",
+    "subject": "Lernende · im Haus",
+    "female": true,
+    "look": {"hairStyle":"long","hair":"#2b1d14","scale":0.94}
+   },
+   {
+    "id": "nils",
+    "gx": 7.6,
+    "gy": 6.3,
+    "name": "Nils",
+    "color": "#9CA3AF",
+    "subject": "Lernender · im Haus",
+    "look": {"hairStyle":"spiky","hair":"#c9a36a","scale":0.93}
+   },
+   {
+    "id": "anouk",
+    "gx": 8.35,
+    "gy": 6.6,
+    "name": "Anouk",
+    "color": "#A3B8CC",
+    "subject": "Lernende · im Haus",
+    "female": true,
+    "look": {"hairStyle":"bun","hat":"beanie","hatColor":"#8E9AAF"}
+   },
+   {
+    "id": "seraina",
+    "gx": 2.8,
+    "gy": 0.7,
+    "name": "Seraina",
+    "color": "#BFB5A8",
+    "subject": "Lernende · im Haus",
+    "female": true,
+    "hat": "glasses",
+    "look": {"hairStyle":"bob","hair":"#4a3426"}
+   },
+   {
+    "id": "gian",
+    "gx": 3.8,
+    "gy": 0.85,
+    "name": "Gian",
+    "color": "#8E9AAF",
+    "subject": "Lernender · im Haus",
+    "look": {"hairStyle":"short","hair":"#1f1712"}
+   },
+   {
+    "id": "elin",
+    "gx": 15.4,
+    "gy": 1.9,
+    "name": "Elin",
+    "color": "#C8B89A",
+    "subject": "Lernende · im Haus",
+    "female": true,
+    "hat": "scarf",
+    "look": {"hairStyle":"long","hair":"#8a5a36","scarf":"#7d8b99"}
+   },
+   {
+    "id": "dario",
+    "gx": 16.3,
+    "gy": 2.15,
+    "name": "Dario",
+    "color": "#A7B5A0",
+    "subject": "Lernender · im Haus",
+    "look": {"hairStyle":"short","hair":"#3b2a1e"}
+   },
+   {
+    "id": "ronja",
+    "gx": 7,
+    "gy": 10.95,
+    "name": "Ronja",
+    "color": "#9FB1BF",
+    "subject": "Lernende · im Haus",
+    "female": true,
+    "look": {"hairStyle":"ponytail","hair":"#b5651d"}
+   },
+   {
+    "id": "andri",
+    "gx": 7.65,
+    "gy": 11.45,
+    "name": "Andri",
+    "color": "#B5A89A",
+    "subject": "Lernender · im Haus",
+    "hat": "glasses",
+    "look": {"hairStyle":"short","hair":"#6b4a2b","scale":0.92}
    }
   ],
   "collectibles": [],
@@ -2132,6 +2241,50 @@
      "message": "Genau. Heute ist hier das Säure-Base-Labor offen: Mit Rotkohlsaft testest du, was sauer und was basisch ist. Zuerst die Sicherheitsschritte der Station. Danach zurück in die Aula, zur Abendrunde ⑦."
     }
    ]
+  },
+  "ladina": {
+   "intro": "Ich hab heute zwei freie Blöcke für mein Projekt. Nach der Pause geht's los.",
+   "phases": [{"type":"intro"},{"type":"complete","message":"Bis später!"}]
+  },
+  "flurin": {
+   "intro": "Im Workshop bei Herrn Tesla war's spannend. Jetzt weiss ich, wie ich in meinem Projekt messen kann.",
+   "phases": [{"type":"intro"},{"type":"complete","message":"Mach's gut!"}]
+  },
+  "noemi": {
+   "intro": "Nicht jedes Thema muss mich packen. Die Mindestanforderungen schaffe ich trotzdem.",
+   "phases": [{"type":"intro"},{"type":"complete","message":"Tschüss!"}]
+  },
+  "nils": {
+   "intro": "Am Freitag hab ich mein 1:1 bei Herrn Meinhard. Wir schauen, ob mein Plan aufgeht.",
+   "phases": [{"type":"intro"},{"type":"complete","message":"Bis bald!"}]
+  },
+  "anouk": {
+   "intro": "Ich frag zuerst die anderen, dann die Lehrerin. Meistens weiss es schon jemand.",
+   "phases": [{"type":"intro"},{"type":"complete","message":"Bis später!"}]
+  },
+  "seraina": {
+   "intro": "«Wieso lerne ich das?» darf man hier fragen. Ich such gerade die Antwort für mein Projekt.",
+   "phases": [{"type":"intro"},{"type":"complete","message":"Viel Spass noch!"}]
+  },
+  "gian": {
+   "intro": "Zuerst die Mindestanforderungen, dann bau ich weiter. Das Buch hier hilft mir dabei.",
+   "phases": [{"type":"intro"},{"type":"complete","message":"Bis später!"}]
+  },
+  "elin": {
+   "intro": "Am Morgen sitze ich hier mit meiner Klasse. Danach plane ich meinen Tag selbst.",
+   "phases": [{"type":"intro"},{"type":"complete","message":"Wir sehen uns!"}]
+  },
+  "dario": {
+   "intro": "Heute Abend zeige ich mein Highlight hier in der Aula. Und was noch offen ist.",
+   "phases": [{"type":"intro"},{"type":"complete","message":"Bis zur Abendrunde!"}]
+  },
+  "ronja": {
+   "intro": "Am Fixpunkt gibt's eine Rückmeldung, keine Note. So sehe ich früh, ob ich auf Kurs bin.",
+   "phases": [{"type":"intro"},{"type":"complete","message":"Bis später!"}]
+  },
+  "andri": {
+   "intro": "Ronja hilft mir bei den Brüchen. Wer erklärt, versteht es selbst besser, sagt sie.",
+   "phases": [{"type":"intro"},{"type":"complete","message":"Tschüss!"}]
   }
  },
  "i18n": {}

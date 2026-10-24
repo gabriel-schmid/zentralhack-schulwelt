@@ -28,7 +28,7 @@
 
 import { writeFileSync } from "node:fs";
 import { mixAnswers } from "./lib.mjs";
-import { routeDialogue, routeNpcs } from "./route-dialogues.mjs";
+import { backgroundDialogue, backgroundNpcs, routeDialogue, routeNpcs } from "./route-dialogues.mjs";
 
 const INDOOR = process.argv.includes("--indoor");
 const COLS = 24;
@@ -764,6 +764,24 @@ const cast = (id, gx, gy, more = {}) => {
   const { subject: sub = subject, ...opts } = more;
   return npc(id, gx, gy, name, color, sub, { ...extra, ...opts });
 };
+// Background characters (backgroundNpcs): small groups standing on free
+// floor, off furniture, doorways, anchors, the open locker doors and the
+// route characters' spots. Tile (gx, gy) puts the figure at (gx + 0.5, gy + 0.5).
+const bgTiles = {
+  ladina: [3.7, 15.1], // Pausenzone, east of the low table
+  flurin: [4.4, 15.9],
+  noemi: [3.1, 16.5],
+  nils: [7.6, 6.3], // corridor, at the west locker bank
+  anouk: [8.35, 6.6],
+  seraina: [2.8, 0.7], // Bibliothek, at the bookcase
+  gian: [3.8, 0.85],
+  elin: [15.4, 1.9], // Aula, east of the stage, in front of the benches
+  dario: [16.3, 2.15],
+  ronja: [7, 10.95], // Lernatelier, east end of the back table
+  andri: [7.65, 11.45],
+};
+const extras = backgroundNpcs.map(({ id, name, color, subject, extra }) => npc(id, ...bgTiles[id], name, color, subject, extra));
+
 const npcs = [
   cast("lehrerin", 12, 2),
   cast("matilda", 10, 2),
@@ -775,6 +793,7 @@ const npcs = [
   cast("yara", 12.7, 12.8),
   cast("coach", 19, 11),
   cast("workshop", 21, 15),
+  ...extras,
 ];
 
 const COACH_PROMPT = [
@@ -793,6 +812,7 @@ const COACH_PROMPT = [
 // Genius prompt.
 const dialogue = {
   ...routeDialogue,
+  ...backgroundDialogue,
   coach: { ...routeDialogue.coach, geniusSystemPrompt: COACH_PROMPT },
 };
 

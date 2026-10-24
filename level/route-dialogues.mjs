@@ -31,25 +31,25 @@ const quiz = (question, right, ...wrong) => ({
 // names the target room.
 export const routeNpcs = [
   // ① Aula, Morgenrunde
-  { id: "lehrerin", name: "Frau Arnold", color: "#3288EF", subject: "Lehrerin · Morgenrunde", room: "Aula", extra: { female: true, hat: "glasses" } },
+  { id: "lehrerin", name: "Frau Arnold", color: "#3288EF", subject: "① Lehrerin · Morgenrunde", room: "Aula", extra: { female: true, hat: "glasses" } },
   // ① Aula
-  { id: "matilda", name: "Matilda", color: "#EC4899", subject: "Lernende · 3. Jahr", room: "Aula", extra: { female: true, hat: "beret" } },
+  { id: "matilda", name: "Matilda", color: "#EC4899", subject: "① Lernende · 3. Jahr", room: "Aula", extra: { female: true, hat: "beret" } },
   // ② Lernatelier, at one table with Joel
-  { id: "lea", name: "Lea", color: "#F97316", subject: "Lernende · 2. Jahr", room: "Lernatelier", extra: { female: true } },
+  { id: "lea", name: "Lea", color: "#F97316", subject: "② Lernende · 2. Jahr", room: "Lernatelier", extra: { female: true } },
   // ② Lernatelier, at one table with Lea (a second Joel greets in the village)
-  { id: "joel", name: "Joel", color: "#22C55E", subject: "Lernender · 3. Jahr", room: "Lernatelier", extra: {} },
+  { id: "joel", name: "Joel", color: "#22C55E", subject: "② Lernender · 3. Jahr", room: "Lernatelier", extra: {} },
   // ③ Lernatelier, the mathematics teacher at the Mathe-Fixpunkt
-  { id: "mathe", name: "Frau Sutter", color: "#14B8A6", subject: "Mathematik · Fixpunkt", room: "Lernatelier", extra: { female: true, look: { hairStyle: "short" } } },
+  { id: "mathe", name: "Frau Sutter", color: "#14B8A6", subject: "③ Mathematik · Fixpunkt", room: "Lernatelier", extra: { female: true, look: { hairStyle: "short" } } },
   // ② Lernatelier, by the hall door
-  { id: "quirin", name: "Quirin", color: "#0EA5E9", subject: "Lernender · Lernatelier", room: "Lernatelier", extra: { look: { hairStyle: "spiky" } } },
+  { id: "quirin", name: "Quirin", color: "#0EA5E9", subject: "② Lernender · Lernatelier", room: "Lernatelier", extra: { look: { hairStyle: "spiky" } } },
   // ④ Interessen-Atelier
-  { id: "tobi", name: "Tobi", color: "#22C55E", subject: "Lernender · Interessen-Atelier", room: "Interessen-Atelier", extra: { hat: "cap", look: { hairStyle: "short" } } },
+  { id: "tobi", name: "Tobi", color: "#22C55E", subject: "④ Lernender · Interessen-Atelier", room: "Interessen-Atelier", extra: { hat: "cap", look: { hairStyle: "short" } } },
   // ⑤ Coaching-Raum (Genius; build-schulhaus.mjs adds COACH_PROMPT)
-  { id: "coach", name: "Herr Meinhard", color: "#8B5CF6", subject: "Coach · 1:1", room: "Coaching-Raum", extra: { isGenius: true, hat: "glasses", look: { hairStyle: "short", hair: "#b8b4ad" } } },
+  { id: "coach", name: "Herr Meinhard", color: "#8B5CF6", subject: "⑤ Coach · 1:1", room: "Coaching-Raum", extra: { isGenius: true, hat: "glasses", look: { hairStyle: "short", hair: "#b8b4ad" } } },
   // ⑥ Workshop-Raum
-  { id: "workshop", name: "Herr Tesla", color: "#F97316", subject: "Workshop-Coach · Technik", room: "Workshop-Raum", extra: { look: { hairStyle: "short" } } },
+  { id: "workshop", name: "Herr Tesla", color: "#F97316", subject: "⑥ Workshop-Coach · Technik", room: "Workshop-Raum", extra: { look: { hairStyle: "short" } } },
   // Entrance hall, next to the Tagesplan (before ①)
-  { id: "yara", name: "Yara", color: "#EAB308", subject: "Lernende · Tagesplan", room: "Eingangshalle", extra: { female: true } },
+  { id: "yara", name: "Yara", color: "#EAB308", subject: "◎ Tagesplan · Eingangshalle", room: "Eingangshalle", extra: { female: true } },
 ];
 
 export const routeDialogue = {
@@ -402,3 +402,63 @@ export const routeSigns = [
   { step: 6, room: "Workshop-Raum", text: "⑥ Säure-Base-Labor" },
   { step: 7, room: "Aula", text: "⑦ Abendrunde: Highlights erzählen und zeigen, was offen bleibt" },
 ];
+
+// Background characters: learners (and one visitor in the village) who just
+// stand around and make the house feel lived in. Muted shirts and the
+// subject «… im Haus» / «… unterwegs» tell them apart from the route
+// characters, whose subject starts with the route number. Each has only an
+// intro and a closing line, no question, so the task counter skips them.
+// Their lines hint at confirmed concept points (docs/shared-concept.md) in an
+// everyday way. Tiles are placed in build-schulhaus.mjs / build-bergdorf.mjs.
+const chat = (intro, message) => ({ intro, phases: [{ type: "intro" }, { type: "complete", message }] });
+
+export const backgroundNpcs = [
+  // Pausenzone, around the low table
+  { id: "ladina", name: "Ladina", color: "#A8A29E", subject: "Lernende · im Haus", room: "Pausenzone", extra: { female: true, look: { hairStyle: "ponytail", hair: "#6b4a2b" } } },
+  { id: "flurin", name: "Flurin", color: "#93B4D6", subject: "Lernender · im Haus", room: "Pausenzone", extra: { hat: "cap", look: { hairStyle: "short", hatColor: "#5f6b78" } } },
+  { id: "noemi", name: "Noemi", color: "#D6C7A1", subject: "Lernende · im Haus", room: "Pausenzone", extra: { female: true, look: { hairStyle: "long", hair: "#2b1d14", scale: 0.94 } } },
+  // corridor, at the lockers
+  { id: "nils", name: "Nils", color: "#9CA3AF", subject: "Lernender · im Haus", room: "Korridor", extra: { look: { hairStyle: "spiky", hair: "#c9a36a", scale: 0.93 } } },
+  { id: "anouk", name: "Anouk", color: "#A3B8CC", subject: "Lernende · im Haus", room: "Korridor", extra: { female: true, look: { hairStyle: "bun", hat: "beanie", hatColor: "#8E9AAF" } } },
+  // Bibliothek, at the bookcase
+  { id: "seraina", name: "Seraina", color: "#BFB5A8", subject: "Lernende · im Haus", room: "Bibliothek", extra: { female: true, hat: "glasses", look: { hairStyle: "bob", hair: "#4a3426" } } },
+  { id: "gian", name: "Gian", color: "#8E9AAF", subject: "Lernender · im Haus", room: "Bibliothek", extra: { look: { hairStyle: "short", hair: "#1f1712" } } },
+  // Aula, in front of the benches on the east side
+  { id: "elin", name: "Elin", color: "#C8B89A", subject: "Lernende · im Haus", room: "Aula", extra: { female: true, hat: "scarf", look: { hairStyle: "long", hair: "#8a5a36", scarf: "#7d8b99" } } },
+  { id: "dario", name: "Dario", color: "#A7B5A0", subject: "Lernender · im Haus", room: "Aula", extra: { look: { hairStyle: "short", hair: "#3b2a1e" } } },
+  // Lernatelier, at the free back table
+  { id: "ronja", name: "Ronja", color: "#9FB1BF", subject: "Lernende · im Haus", room: "Lernatelier", extra: { female: true, look: { hairStyle: "ponytail", hair: "#b5651d" } } },
+  { id: "andri", name: "Andri", color: "#B5A89A", subject: "Lernender · im Haus", room: "Lernatelier", extra: { hat: "glasses", look: { hairStyle: "short", hair: "#6b4a2b", scale: 0.92 } } },
+];
+
+export const backgroundDialogue = {
+  ladina: chat("Ich hab heute zwei freie Blöcke für mein Projekt. Nach der Pause geht's los.", "Bis später!"),
+  flurin: chat("Im Workshop bei Herrn Tesla war's spannend. Jetzt weiss ich, wie ich in meinem Projekt messen kann.", "Mach's gut!"),
+  noemi: chat("Nicht jedes Thema muss mich packen. Die Mindestanforderungen schaffe ich trotzdem.", "Tschüss!"),
+  nils: chat("Am Freitag hab ich mein 1:1 bei Herrn Meinhard. Wir schauen, ob mein Plan aufgeht.", "Bis bald!"),
+  anouk: chat("Ich frag zuerst die anderen, dann die Lehrerin. Meistens weiss es schon jemand.", "Bis später!"),
+  seraina: chat("«Wieso lerne ich das?» darf man hier fragen. Ich such gerade die Antwort für mein Projekt.", "Viel Spass noch!"),
+  gian: chat("Zuerst die Mindestanforderungen, dann bau ich weiter. Das Buch hier hilft mir dabei.", "Bis später!"),
+  elin: chat("Am Morgen sitze ich hier mit meiner Klasse. Danach plane ich meinen Tag selbst.", "Wir sehen uns!"),
+  dario: chat("Heute Abend zeige ich mein Highlight hier in der Aula. Und was noch offen ist.", "Bis zur Abendrunde!"),
+  ronja: chat("Am Fixpunkt gibt's eine Rückmeldung, keine Note. So sehe ich früh, ob ich auf Kurs bin.", "Bis später!"),
+  andri: chat("Ronja hilft mir bei den Brüchen. Wer erklärt, versteht es selbst besser, sagt sie.", "Tschüss!"),
+};
+
+// Background characters in the village (build-bergdorf.mjs).
+export const backgroundVillageNpcs = [
+  // on the square, by the fountain
+  { id: "livio", name: "Livio", color: "#9CA3AF", subject: "Lernender · unterwegs", place: "Dorfbrunnen", extra: { hat: "cap", look: { hairStyle: "short", hatColor: "#7d8b99" } } },
+  { id: "mara", name: "Mara", color: "#D6C7A1", subject: "Lernende · unterwegs", place: "Dorfbrunnen", extra: { female: true, look: { hairStyle: "bob", hair: "#2b1d14", scale: 0.94 } } },
+  // at the bus stop, an adult visitor
+  { id: "silvan", name: "Silvan", color: "#A8A29E", subject: "Besuch", place: "Bushaltestelle", extra: { hat: "glasses", look: { hairStyle: "short", hair: "#8d8780", scale: 1.05 } } },
+  // on the meadow by the goals
+  { id: "selin", name: "Selin", color: "#93B4D6", subject: "Lernende · unterwegs", place: "Wiese", extra: { female: true, look: { hairStyle: "ponytail", hair: "#3b2a1e", hat: "beanie", hatColor: "#A7B5A0" } } },
+];
+
+export const backgroundVillageDialogue = {
+  livio: chat("Ich mache heute Interviews im Dorf, für mein Projekt. Nachher geht's zurück ins Schulhaus.", "Bis später!"),
+  mara: chat("Gleich ist Morgenrunde in der Aula. Dort sag ich, was ich heute vorhabe.", "Komm auch!"),
+  silvan: chat("Ich bin zu Besuch und schaue mir heute den Schultag an. Mal sehen, wie viel die Lernenden selbst planen.", "Einen schönen Tag!"),
+  selin: chat("In der Pause spielen wir hier Fussball. Danach hab ich Lernzeit für Mathe.", "Tschüss!"),
+};

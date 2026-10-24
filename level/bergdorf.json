@@ -2775,10 +2775,66 @@
         "gy": 10,
         "name": "Joel",
         "color": "#22C55E",
-        "subject": "Lernender · 3. Jahr",
+        "subject": "⓪ Lernender · 3. Jahr",
         "look": {
           "hairStyle": "short",
           "hair": "#3b2a1e"
+        }
+      },
+      {
+        "id": "livio",
+        "gx": 19.2,
+        "gy": 11.7,
+        "name": "Livio",
+        "color": "#9CA3AF",
+        "subject": "Lernender · unterwegs",
+        "hat": "cap",
+        "look": {
+          "hairStyle": "short",
+          "hatColor": "#7d8b99"
+        }
+      },
+      {
+        "id": "mara",
+        "gx": 19.15,
+        "gy": 12.65,
+        "name": "Mara",
+        "color": "#D6C7A1",
+        "subject": "Lernende · unterwegs",
+        "female": true,
+        "look": {
+          "hairStyle": "bob",
+          "hair": "#2b1d14",
+          "scale": 0.94
+        }
+      },
+      {
+        "id": "silvan",
+        "gx": 10.75,
+        "gy": 12.5,
+        "name": "Silvan",
+        "color": "#A8A29E",
+        "subject": "Besuch",
+        "hat": "glasses",
+        "look": {
+          "hairStyle": "short",
+          "hair": "#8d8780",
+          "scale": 1.05
+        }
+      },
+      {
+        "id": "selin",
+        "gx": 23.1,
+        "gy": 4.2,
+        "name": "Selin",
+        "color": "#93B4D6",
+        "subject": "Lernende · unterwegs",
+        "female": true,
+        "look": {
+          "hairStyle": "ponytail",
+          "hair": "#3b2a1e",
+          "hat": "beanie",
+          "hatColor": "#A7B5A0"
         }
       }
     ],
@@ -2839,6 +2895,54 @@
         {
           "type": "complete",
           "message": "Genau! Die Tür ist vorne am Schulhaus, unter dem blauen Vordach. Ich muss los, die Morgenrunde fängt gleich an. Wir sehen uns im Lernatelier, da rechne ich mit Lea."
+        }
+      ]
+    },
+    "livio": {
+      "intro": "Ich mache heute Interviews im Dorf, für mein Projekt. Nachher geht's zurück ins Schulhaus.",
+      "phases": [
+        {
+          "type": "intro"
+        },
+        {
+          "type": "complete",
+          "message": "Bis später!"
+        }
+      ]
+    },
+    "mara": {
+      "intro": "Gleich ist Morgenrunde in der Aula. Dort sag ich, was ich heute vorhabe.",
+      "phases": [
+        {
+          "type": "intro"
+        },
+        {
+          "type": "complete",
+          "message": "Komm auch!"
+        }
+      ]
+    },
+    "silvan": {
+      "intro": "Ich bin zu Besuch und schaue mir heute den Schultag an. Mal sehen, wie viel die Lernenden selbst planen.",
+      "phases": [
+        {
+          "type": "intro"
+        },
+        {
+          "type": "complete",
+          "message": "Einen schönen Tag!"
+        }
+      ]
+    },
+    "selin": {
+      "intro": "In der Pause spielen wir hier Fussball. Danach hab ich Lernzeit für Mathe.",
+      "phases": [
+        {
+          "type": "intro"
+        },
+        {
+          "type": "complete",
+          "message": "Tschüss!"
         }
       ]
     }
