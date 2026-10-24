@@ -122,6 +122,7 @@ repository (PR above).
 | Idea of a walkable school simulation | us |
 | School model: freedom inside a clear structure, fixed points, binding minimum requirements, coaching, own projects, optional workshops, formative before summative | us |
 | Personas and their attributes | us |
+| Each persona's own project and current difficulty | AI proposals from our attributes, chosen and adjusted by us ([personas](docs/personas.md)) |
 | Route through the school morning, which concept element appears where, which characters and stations exist | us |
 | Writing up our notes as documents (concept baseline, personas) | AI (ChatGPT, Codex), from our notes |
 | Code, levels, furniture, stations, wording of dialogues and docs | AI (Claude Code), on our instructions |

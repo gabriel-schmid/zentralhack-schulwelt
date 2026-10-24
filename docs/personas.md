@@ -3,6 +3,19 @@
 Working draft, 24 October 2026. All characters and personal situations are
 fictional. Read with [shared-concept.md](shared-concept.md).
 
+## Paper notes and this file
+
+The **Given** traits come from our handwritten persona notes of Friday evening
+([photo 1](paper/3-personas.jpg), [photo 2](paper/4-personas-tesla-matilda.jpg)).
+Differences to the paper:
+
+- Quirin was called Max on paper; we renamed him.
+- Frau Arnold (Morgenrunde), Frau Sutter (Mathe-Fixpunkt) and the background
+  characters are not on the paper. We added them on Saturday when we laid out
+  the route through the morning.
+- Own projects, difficulties and coaching notes (**Draft**) are AI proposals
+  built from our traits; we chose and adjusted them.
+
 ## Shared baseline
 
 **Given** identifies owner-provided traits. **Draft** contains generated,
@@ -120,7 +133,7 @@ drawing, less sporty, few but close friends.
 ## Herr Meinhard — coach, 60
 
 **Given:** Role-model type, humorous and talkative, popular, active, married,
-adult children. The note “communist / philosophy” still needs clarification.
+adult children, studied German and philosophy («Germanist / Philo» on the paper notes).
 
 **Draft:**
 - **Own project:** With a small voluntary group, test how coaching can be more
