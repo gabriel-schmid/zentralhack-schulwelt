@@ -66,9 +66,9 @@ mia: {
 
 ```js
 coach: {
-  intro: "Hallo, ich bin Sandro …",
+  intro: "Hallo, ich bin Herr Meinhard …",
   isGenius: true,
-  geniusSystemPrompt: "Du bist Sandro, Coach im Bergdorf … Antworte immer auf Deutsch in Schweizer Schreibweise …",
+  geniusSystemPrompt: "Du bist Herr Meinhard, Coach im Schulhaus … Antworte immer auf Deutsch in Schweizer Schreibweise …",
 },
 ```
 

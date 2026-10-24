@@ -305,20 +305,36 @@ const buildings = [
 
 const npc = (id, gx, gy, name, color, subject, extra = {}) => ({ id, gx, gy, name, color, subject, ...extra });
 
+// Characters: learners and coaches from docs/personas.md (fictional drafts).
+// Frau Arnold stays as the Aula teacher because no persona covers the
+// morning and evening circle. Tiles are free floor, clear of anchors.
 const npcs = [
   npc("lehrerin", 12, 2, "Frau Arnold", "#3288EF", "Lehrerin · Aula", { female: true, hat: "glasses" }),
-  npc("lea", 11, 4, "Lea", "#F97316", "Lernende", { female: true }),
-  npc("noah", 12, 5, "Noah", "#22C55E", "Lernender", { hat: "cap" }),
-  npc("mia", 7, 10, "Mia", "#EAB308", "Lernende · Lernatelier", { female: true, hat: "scarf" }),
-  npc("coach", 19, 12, "Coach Sandro", "#8B5CF6", "Coach · 1:1", { isGenius: true }),
-  npc("workshop", 18, 13, "Frau Keller", "#3288EF", "Workshop-Leiterin", { female: true }),
+  npc("lea", 10, 2, "Lea", "#F97316", "Lernende · 2. Jahr", { female: true }),
+  npc("tobi", 19, 4, "Tobi", "#22C55E", "Lernender · Interessen-Atelier", { hat: "cap" }),
+  npc("quirin", 8, 10, "Quirin", "#0EA5E9", "Lernender · Lernatelier"),
+  npc("yara", 5, 16, "Yara", "#EAB308", "Lernende · Pausenzone", { female: true }),
+  npc("matilda", 7, 14, "Matilda", "#EC4899", "Lernende · Pausenzone", { female: true, hat: "beret" }),
+  npc("coach", 19, 11, "Herr Meinhard", "#8B5CF6", "Coach · 1:1", { isGenius: true, hat: "glasses" }),
+  npc("workshop", 21, 15, "Herr Tesla", "#F97316", "Workshop-Coach · Technik"),
 ];
+
+const COACH_PROMPT = [
+  "Du bist Herr Meinhard, 60, Coach im Schulhaus des Bergdorfs, einer Schule, in der man in echten Projekten lernt. Du führst 1:1-Gespräche. Die Person vor dir spricht als sie selbst über ihre eigenen Ziele, nicht in einer Rolle; nimm sie ernst, ob jugendlich oder erwachsen.",
+  "Antworte immer auf Deutsch in Schweizer Schreibweise (ss, nie ß), warm, mit etwas Humor, in einfacher Sprache und kurz: höchstens drei bis vier Sätze pro Antwort, meist mit einer Frage am Schluss.",
+  "Haltung: Du stellst gute Fragen, statt Lösungen zu liefern. Unter Druck möchtest du schnell eine Lösung anbieten oder lange von dir erzählen; halte dich zurück und frage zuerst. Die Person entscheidet selbst und soll wissen, wo sie Unterstützung findet. Du berätst und unterstützt nach den Grundsätzen der Schule, aber Lernen lässt sich nicht erzwingen.",
+  "Was an dieser Schule feststeht: Freiheit gilt von Anfang an, auch für den Weg zu den Mindestanforderungen; sie ist keine Belohnung nach einer bestandenen Prüfung. Die Mindestanforderungen ergeben sich aus dem Rahmenlehrplan und den Lernzielen, die Lehrpersonen oder die Schule daraus ableiten. Sie sind verbindlich und werden geprüft; wer sie nicht erreicht, kann nach den geltenden Reglementen ein Fach oder eine Stufe nicht bestehen. Die bestehenden Notenreglemente gelten weiter. Formative Rückmeldungen unterwegs zeigen, ob der Fortschritt reicht, und machen ein Risiko früh sichtbar. Fragst du nach dem Fortschritt, frag auch, woran die Person ihn erkennt.",
+  "Was noch offen ist: Schulstufe, Lehrplan und konkrete Mindestziele, wie viel Wahl genau bei Themen, Tempo, Gruppen, Produkten und Prüfungsformen, Zeitstrukturen und Coaching-Zeit, wie Gruppenprojekte einzeln bewertet werden und was geschieht, wenn jemand nicht weiterkommt oder sich weigert. Stelle nichts davon als entschieden dar; sag ehrlich, dass es noch nicht festgelegt ist.",
+  "Gesprächsverlauf: Frag zuerst, worum es der Person geht und was sie erreichen will. Hilf, das Ziel konkret zu machen, den nächsten kleinen Schritt zu finden und eigene Interessen mit dem Verbindlichen zu verbinden. Die Frage «Wieso lerne ich das?» ist berechtigt; hilf, einen Sinn zu finden, statt sie abzuwehren.",
+  "Sicherheit: Geht es um echte Arbeit mit Werkzeug, Strom, Tieren oder in der Küche, denkst du an die Sicherheit, fragst nach, wenn etwas fehlt, und sagst klar, dass du keine Instruktion durch eine Fachperson ersetzt.",
+  "Abschluss: Will die Person zum Ende kommen oder ist ein nächster Schritt klar, fasse in zwei Sätzen zusammen, was sie als Nächstes vorhat, und halte eine konkrete Abmachung fest (was, bis wann, woran man es merkt). Frag, ob das so stimmt.",
+].join(" ");
 
 const dialogue = {
   lehrerin: {
     intro:
       "Guten Morgen! Hier in der Aula treffen wir uns jeden Morgen: Ich sage, was heute ansteht, und ihr erzählt, was ihr euch vornehmt. Am Abend kommen wir wieder hier zusammen und teilen unsere Highlights.",
-    hint: "Im Coaching-Raum planst du mit Sandro deine Ziele.",
+    hint: "Im Coaching-Raum sprichst du mit Herrn Meinhard über deine Ziele.",
     phases: [
       { type: "intro" },
       {
@@ -334,42 +350,77 @@ const dialogue = {
     ],
   },
   lea: {
-    intro: "Hoi! Heute erzähle ich in der Morgenrunde, dass wir mit dem Hühnerstall anfangen.",
-    hint: "Die Werkstatt ist draussen im Dorf.",
-    phases: [{ type: "intro" }, { type: "complete", message: "Bis heute Abend hier in der Aula!" }],
-  },
-  noah: {
-    intro: "Ich gehe nach der Morgenrunde in den Workshop von Frau Keller. Sie zeigt, wie man ein Projekt plant.",
-    hint: "Die Workshops sind freiwillig. Du wählst selbst, was dich interessiert.",
-    phases: [{ type: "intro" }, { type: "complete", message: "Der Workshop-Raum ist hinten rechts in der Halle." }],
-  },
-  mia: {
-    intro: "Im Lernatelier mache ich meinen Wochenplan. Mathe habe ich schon fertig, jetzt arbeite ich an meinem Interessensprojekt über Bienen.",
-    hint: "Mindestanforderungen zuerst, dann bleibt Zeit für eigene Projekte.",
-    phases: [{ type: "intro" }, { type: "complete", message: "Am Freitag bespreche ich alles im 1:1." }],
-  },
-  coach: {
-    intro: "Hallo, ich bin Sandro, dein Coach. Erzähl mir, woran du gerade arbeitest, oder sag mir, wo du nicht weiterkommst.",
-    isGenius: true,
-    geniusSystemPrompt:
-      "Du bist Sandro, Coach im Bergdorf, einer Schule, in der man in echten Projekten lernt. Du führst 1:1-Gespräche mit Lernenden. Antworte immer auf Deutsch in Schweizer Schreibweise (ss statt ß), kurz, freundlich und auf Augenhöhe. Hilf, eigene Ziele zu setzen und den nächsten Schritt zu finden; gib keine fertigen Lösungen, sondern stelle gute Fragen. Du kennst die Grundsätze der Schule: Raum für eigene Interessen in einer klaren Struktur, Lernen in echten Projekten, Mindestanforderungen und Verbindlichkeit, regelmässiges Feedback. Bei Projekten mit Werkzeug, Tieren oder in der Küche denkst du an die Sicherheit und fragst nach, wenn etwas fehlt; du ersetzt keine Instruktion durch eine Fachperson. Am Ende fasst du in zwei Sätzen zusammen, was sich die Person vorgenommen hat.",
-  },
-  workshop: {
     intro:
-      "Hallo! Ich bin Frau Keller und leite die Workshops. Diese Woche geht es darum, wie man ein Projekt plant: Ziel, Schritte, Material und Zeit.",
-    hint: "Die Workshops sind freiwillig und finden während der Woche statt.",
+      "Hoi! Ich baue ein Spiel: Eine Klasse wählt ihre Schulreise, mit verschiedenen Abstimmungsregeln. Das Verrückte ist, jede Regel ergibt einen anderen Sieger. Heute frage ich in der Morgenrunde, wer es testen will.",
+    phases: [
+      { type: "intro" },
+      { type: "complete", message: "Welche Regel ich nehme, weiss ich noch nicht. Vielleicht gibt es gar nicht die eine richtige." },
+    ],
+  },
+  tobi: {
+    intro:
+      "Ich mache einen Audio-Pfad ums Schulhaus, mit Geräuschen und gesprochenen Wegweisern. Die Aufnahmen kann ich. Aber alle Tester verpassen die gleiche Abzweigung, dabei ist die doch völlig klar …",
+    phases: [
+      { type: "intro" },
+      { type: "complete", message: "Morgen laufe ich nur mit und sage nichts. Danach frage ich genau nach, wo es unklar war." },
+    ],
+  },
+  quirin: {
+    intro:
+      "Nach dem Training verpasse ich immer knapp den Bus und warte dann ewig. Das untersuche ich jetzt, mit einer Liste aller Fahrten. Ein früherer Bus wäre gut für mich, aber dann verpassen ihn die anderen.",
+    hint: "Freiheit ist hier keine Belohnung.",
     phases: [
       { type: "intro" },
       {
         type: "choice",
-        question: "Womit beginnt eine gute Projektplanung?",
+        question: "Ab wann darfst du hier deinen Weg selbst wählen?",
         options: [
-          { text: "Mit einem klaren Ziel", correct: true },
-          { text: "Mit dem Einkaufen des Materials", correct: false },
-          { text: "Mit dem Bauen, planen kann man später", correct: false },
+          { text: "Von Anfang an, auch auf dem Weg zu den Mindestanforderungen", correct: true },
+          { text: "Erst wenn ich alle Prüfungen bestanden habe", correct: false },
+          { text: "Nur am Freitagnachmittag", correct: false },
         ],
       },
-      { type: "complete", message: "Genau. Wer das Ziel kennt, kann die Schritte planen." },
+      { type: "complete", message: "Genau. Die Mindestanforderungen gelten trotzdem und werden geprüft. Darum übe ich gerade, Fahrpläne richtig zu lesen." },
+    ],
+  },
+  yara: {
+    intro:
+      "Ich organisiere einen Tausch- und Flicknachmittag für Kleider und Alltagsdinge. Viele wollen mitmachen, mega! Nur aufräumen will niemand. Und ob das Geld reicht, muss ich noch nachrechnen.",
+    hint: "Bis zur Prüfung soll es keine Überraschung geben.",
+    phases: [
+      { type: "intro" },
+      {
+        type: "choice",
+        question: "Wozu sind die Rückmeldungen unterwegs da?",
+        options: [
+          { text: "Sie zeigen früh, ob ich die Mindestanforderungen schaffe", correct: true },
+          { text: "Sie ersetzen die Noten", correct: false },
+          { text: "Sie sind nur für die Lehrpersonen", correct: false },
+        ],
+      },
+      { type: "complete", message: "Genau. Beim Budget hat mir das schon geholfen: Jetzt weiss ich, wo ich noch üben muss." },
+    ],
+  },
+  matilda: {
+    intro:
+      "Ich plane drei Mittagessen, günstig und fein. Beim letzten konnte ein Gast mehrere Zutaten nicht essen, und ich hatte vorher nicht gefragt. Peinlich. Diesmal frage ich alle, bevor ich einkaufe.",
+    phases: [
+      { type: "intro" },
+      { type: "complete", message: "Und nein, ich zeichne keine Plakate dafür. Zeichnen ist gerade nur für mich." },
+    ],
+  },
+  coach: {
+    intro:
+      "Hallo, ich bin Herr Meinhard, Coach hier im Schulhaus. Hier geht es um dich, nicht um eine Rolle: Was möchtest du erreichen, und wo stehst du gerade? Erzähl ruhig, ich frage nach. Am Schluss halten wir fest, was du als Nächstes tust.",
+    isGenius: true,
+    geniusSystemPrompt: COACH_PROMPT,
+  },
+  workshop: {
+    intro:
+      "Willkommen im Workshop, ich bin Herr Tesla! Wir bauen eine kleine Solar-Ladestation für draussen. Sie funktioniert, aber die Testpersonen verstehen die Anzeigen nicht. Also müssen wir sie besser machen, und zwar mit euch.",
+    phases: [
+      { type: "intro" },
+      { type: "complete", message: "Ausprobieren ist hier erwünscht. An echtem Strom arbeitest du aber erst, wenn ich dich eingeführt habe." },
     ],
   },
 };

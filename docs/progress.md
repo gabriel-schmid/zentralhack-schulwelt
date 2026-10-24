@@ -29,6 +29,12 @@ jury.
 - [ ] Indoor mode PR for AndyBot (not live without an app release and Andy's approval)
 - [ ] Optional: Obergeschoss as its own level, reached by stairs (travel point), no engine change needed
 
+- [x] Luca's personas in the Schulhaus (Frau Arnold, Lea, Tobi, Quirin, Yara, Matilda, Herr Tesla) and Herr Meinhard as Genius coach: the visitor speaks as themselves; live as revision 4, checked in the app (03:27)
+- [x] Station «Säuren und Basen» (`widgets/saeuren-basen/`) with Herr Tesla: safety gear, hypothesis, red-cabbage indicator, pH scale; live and linked to him (03:27)
+- [x] Station «Konflikt in der Projektgruppe» (`widgets/konflikt/`): decide for Joel in a group conflict, scripted branches, 8 endings; live and linked to Herr Meinhard (03:27)
+- [x] Stations are linked to characters with the tag `hw-npc-<id>` (also the Sägestation); unused place Hazus moved to «Reserve», so the world shows no stray signboards (03:27)
+- [x] Indoor PR HazuInc/HazuApp#7183: second review fixed (XR sky state, weather indoors, AR table) and a ceiling in first person (03:27)
+
 ## Tonight's plan
 
 | # | Task | Who |

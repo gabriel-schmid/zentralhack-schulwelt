@@ -157,3 +157,7 @@ Define places, resources, speech styles and supporting NPCs. Develop prompts
 without prescribing outcomes or fixed friendships/conflicts. Shared spaces,
 materials, workshops and coaching create encounters while each main character
 retains ownership of their project.
+
+Exception (24 October, decided by Gabriel): in the conflict station
+(`widgets/konflikt/`) Joel, Matilda and Tobi share one exhibition project, so the
+scene can show uneven workload in a group.

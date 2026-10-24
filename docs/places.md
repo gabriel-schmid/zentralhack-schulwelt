@@ -17,9 +17,9 @@
   Hof; Hauswart Toni and Jana outside.
 - **Schulhaus interior** (`level/schulhaus.json`, dollhouse rooms as data,
   24 x 18 tiles, revised 02:26): Bibliothek, Aula (morning and evening circle,
-  Frau Arnold, Lea, Noah) and Interessen-Atelier in the north; a corridor with
-  lockers; Lernatelier (Mia), Coaching-Raum (Coach Sandro, Genius), Pausenzone
-  and Workshop-Raum (Frau Keller) in the south; the entrance hall runs from
+  Frau Arnold, Lea) and Interessen-Atelier (Tobi) in the north; a corridor with
+  lockers; Lernatelier (Quirin), Coaching-Raum (Herr Meinhard, Genius), Pausenzone
+  (Yara, Matilda) and Workshop-Raum (Herr Tesla, stations below) in the south; the entrance hall runs from
   the corridor to the exit. Tile ranges per room: `skills/npc/SKILL.md`.
 - **Werkstatt interior** (`level/werkstatt.json`) with the Sägestation.
 
@@ -29,7 +29,8 @@
 | ----- | ---------------- | ---------------- | ------ | -------- | ------ |
 | Dorfplatz (village square) | start and end of the day, presenting projects (summative) | **Dashboard** (see below) | – | open square, no interior | open |
 | Werkstatt (workshop) | plan and build a coop or a raised bed | Sägestation (`widgets/saegestation/`): pick protective gear, spot hazards, saw in the safe order | ear protection, safety glasses, cables, saw guard | live (`level/werkstatt.json`) | in progress |
-| Coaching-Raum (coaching room) | 1:1 conversation, goals, Friday feedback (formative) | talk to the AI coach | – | yes | open |
+| Coaching-Raum (coaching room) | 1:1 conversation, goals, Friday feedback (formative) | talk to Herr Meinhard (Genius): the visitor speaks as themselves | – | live in the Schulhaus | in progress |
+| Workshop-Raum (Schulhaus) | optional workshops with Herr Tesla | Säuren und Basen (`widgets/saeuren-basen/`): safety gear, hypothesis, red-cabbage indicator, pH scale; Konflikt in der Projektgruppe (`widgets/konflikt/`): decide for Joel in a group conflict | safety glasses, gloves, never taste | live | in progress |
 | Lernatelier (study studio) | independent work at your own level | weekly plan, minimum requirements | – | yes | open |
 | Garten und Hof (garden and yard) | look after animals, tend beds | open | safe lifting, tools | later | open |
 | Küche (kitchen) | cook together | open | hygiene, knives, hot pans | later | open |

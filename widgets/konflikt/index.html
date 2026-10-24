@@ -1,0 +1,1042 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Konflikt in der Projektgruppe</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://storage.googleapis.com/hazu-ch.appspot.com/files/artifacts/AYbnyrL6JhG3xUjfimN8/hazu-api.js"></script>
+    <style>
+      :root {
+        --ink: #1f2a3a;
+        --muted: #5b6878;
+        --bg: #f4f6fa;
+        --card: #ffffff;
+        --line: #dfe4ec;
+        --accent: #3288ef;
+        --good: #22a35a;
+        --warn: #d99a00;
+        --bad: #d64545;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        font-family: Lato, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+      }
+      main {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: clamp(8px, 2.5vw, 18px);
+        gap: 8px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(16px, 3.6vw, 22px);
+        font-weight: 900;
+        line-height: 1.15;
+      }
+      .day {
+        margin-left: auto;
+        flex: none;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--muted);
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 3px 10px;
+        white-space: nowrap;
+      }
+      .meters {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1.2fr;
+        gap: 8px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 6px 10px;
+      }
+      .meters[hidden] {
+        display: none;
+      }
+      .meter {
+        min-width: 0;
+        font-size: 12px;
+      }
+      .meter .lbl {
+        display: flex;
+        justify-content: space-between;
+        gap: 4px;
+        color: var(--muted);
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .meter .delta {
+        font-weight: 700;
+      }
+      .delta.up {
+        color: var(--good);
+      }
+      .delta.down {
+        color: var(--bad);
+      }
+      .bar {
+        height: 7px;
+        margin-top: 4px;
+        border-radius: 4px;
+        background: var(--line);
+        overflow: hidden;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        width: 0;
+        border-radius: 4px;
+        transition: width 0.5s ease, background 0.5s;
+      }
+      #moodBar i {
+        background: #8a6cf0;
+      }
+      #workBar i {
+        background: var(--accent);
+      }
+      .risk {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 3px;
+        font-weight: 700;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+      .risk .dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        flex: none;
+        background: var(--line);
+        transition: background 0.5s;
+      }
+      .stage {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 2px 2px 6px;
+      }
+      .line {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: clamp(14px, 2.6vw, 16px);
+        line-height: 1.35;
+        animation: pop 0.25s ease both;
+      }
+      .line.me {
+        flex-direction: row-reverse;
+      }
+      .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        flex: none;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-weight: 900;
+        font-size: 13px;
+      }
+      .bubble {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 6px 10px;
+        max-width: 85%;
+      }
+      .line.me .bubble {
+        background: #e7f1fe;
+        border-color: #c4dcfb;
+      }
+      .bubble b {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .narr {
+        font-style: italic;
+        color: var(--muted);
+        font-size: clamp(13px, 2.4vw, 15px);
+        line-height: 1.4;
+        animation: pop 0.25s ease both;
+      }
+      .note {
+        font-size: 12px;
+        color: var(--muted);
+        border-left: 3px solid var(--warn);
+        padding: 2px 8px;
+      }
+      .prompt {
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .choices {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .choice {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 44px;
+        width: 100%;
+        text-align: left;
+        background: var(--card);
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        padding: 6px 10px;
+        font: inherit;
+        font-size: clamp(14px, 2.5vw, 16px);
+        color: inherit;
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+      .choice:hover,
+      .choice:focus-visible {
+        border-color: var(--accent);
+        outline: none;
+      }
+      .choice .n {
+        flex: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--line);
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+        font-size: 13px;
+      }
+      .btn {
+        align-self: flex-end;
+        min-height: 44px;
+        padding: 0 22px;
+        border: 0;
+        border-radius: 10px;
+        background: var(--accent);
+        color: #fff;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+      .btn.ghost {
+        background: transparent;
+        color: var(--accent);
+        border: 2px solid var(--accent);
+      }
+      .btn:disabled {
+        opacity: 0.45;
+        cursor: default;
+      }
+      .btn:focus-visible {
+        outline: 3px solid #9cc5f7;
+        outline-offset: 2px;
+      }
+      .ending {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-left: 6px solid var(--accent);
+        border-radius: 10px;
+        padding: 8px 12px;
+      }
+      .ending h2 {
+        margin: 0 0 4px;
+        font-size: clamp(16px, 3.4vw, 20px);
+      }
+      .ending p {
+        margin: 0;
+        line-height: 1.4;
+      }
+      .path {
+        margin: 0;
+        padding-left: 20px;
+        font-size: 14px;
+        line-height: 1.35;
+      }
+      .path li {
+        margin-bottom: 3px;
+      }
+      .tag {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0 7px;
+        margin-left: 4px;
+        white-space: nowrap;
+      }
+      h3 {
+        margin: 4px 0 0;
+        font-size: 14px;
+      }
+      textarea {
+        width: 100%;
+        min-height: 64px;
+        resize: vertical;
+        font: inherit;
+        font-size: 15px;
+        padding: 8px;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+      }
+      textarea:focus {
+        border-color: var(--accent);
+        outline: none;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+      .status {
+        flex: 1 1 160px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .intro p {
+        margin: 0 0 6px;
+        line-height: 1.4;
+      }
+      .cast {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 4px 0 6px;
+      }
+      .cast span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+      }
+      @keyframes pop {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+      }
+      @media (max-width: 480px) {
+        .meters {
+          grid-template-columns: 1fr 1fr;
+        }
+        .meter.formativ {
+          grid-column: 1 / -1;
+        }
+        .meter.formativ .risk {
+          margin-top: 0;
+        }
+        .meter.formativ {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Konflikt in der Projektgruppe</h1>
+        <span class="day" id="day"></span>
+      </header>
+      <section class="meters" id="meters" hidden aria-label="Dein Stand">
+        <div class="meter">
+          <div class="lbl"><span>Stimmung</span><span class="delta" id="moodDelta"></span></div>
+          <div class="bar" id="moodBar"><i></i></div>
+        </div>
+        <div class="meter">
+          <div class="lbl"><span>Dein Beitrag</span><span class="delta" id="workDelta"></span></div>
+          <div class="bar" id="workBar"><i></i></div>
+        </div>
+        <div class="meter formativ" title="Formative Einschätzung: Zeigt früh, ob dein eigener Teil auf dem Weg zur Mindestanforderung ist. Keine Note.">
+          <div class="lbl"><span>Formative Einschätzung</span></div>
+          <div class="risk"><span class="dot" id="riskDot"></span><span id="riskText"></span></div>
+        </div>
+      </section>
+      <section class="stage" id="stage" aria-live="polite"></section>
+    </main>
+
+    <script>
+      /*
+       * SCRIPT FORMAT. Everything visitors read lives in the constants below, so the
+       * texts can be edited without touching the logic further down. CAST lists the
+       * characters (the key is used as `who` in lines; "erz" means narration, "note"
+       * an info box). START holds the starting values of the two states, mood (group
+       * atmosphere) and work (own contribution), both 0–100. SCENES is an object keyed
+       * by scene id; the first scene is START.scene. Each scene has a `day` label, an
+       * `expect` value (roughly how much contribution would be needed by now; it only
+       * drives the formative indicator), `lines` shown before the choice, a `prompt`
+       * and 2–3 `choices`. A choice has a `label` (what the visitor says or does), a
+       * `type` (key of TYPES, shown in the summary), `effects` ({ mood, work } added to
+       * the states), optional `set` (list of flags remembered for later scenes),
+       * `reply` (lines the others say in reaction) and `next` (a scene id or "ende").
+       * Any line can carry `when` ({ minWork, maxWork, minMood, maxMood, flag,
+       * notFlag }) so it only appears when the states and flags match. ENDINGS are
+       * checked top to bottom and the first whose `when` matches is shown (its `risk`,
+       * ok / unsure / danger, sets the final formative indicator); REFLECTION
+       * is the closing question.
+       */
+
+      const CAST = {
+        joel: { name: "Du (Joel)", short: "J", color: "#3288ef" },
+        matilda: { name: "Matilda", short: "M", color: "#e0567a" },
+        tobi: { name: "Tobi", short: "T", color: "#1f9e8a" },
+        meinhard: { name: "Herr Meinhard", short: "HM", color: "#7a5c3e" },
+      };
+
+      const INTRO = {
+        day: "Noch 5 Tage",
+        text: [
+          "Matilda, Tobi und du habt euch dieses Projekt selbst ausgesucht: eine kleine Ausstellung «Treffpunkte im Dorf – früher und heute».",
+          "Dein Teil: aus deinen vier Interviews drei kurze Hörstücke schneiden und einen Infotext schreiben. Die Interviews hast du geführt. Seither ist wenig passiert.",
+          "Am Montag präsentiert ihr auf dem Dorfplatz. Du spielst Joel. Es gibt keine einzige richtige Lösung.",
+        ],
+        button: "Los geht's",
+      };
+
+      const START = { scene: "montag", mood: 40, work: 15 };
+
+      const TYPES = {
+        schwierigkeit: "Schwierigkeit gezeigt",
+        uneinigkeit: "Uneinig über die Aufgabe",
+        verweigerung: "Verweigert",
+        ausweichen: "Ausgewichen",
+        abgeben: "Abgeben wollen",
+        engagement: "Selbst angepackt",
+        nachfragen: "Nachgefragt",
+      };
+
+      const SCENES = {
+        montag: {
+          day: "Montag · noch 5 Tage",
+          expect: 30,
+          lines: [
+            { who: "erz", text: "Lernatelier, Arbeitszeit. Matilda legt ihren Stift hin." },
+            { who: "matilda", text: "Joel, ehrlich: Ich schreibe seit zwei Wochen die Texte, Tobi macht die Karte. Von dir kam nichts mehr." },
+            { who: "tobi", text: "Ohne Hörstücke fehlt die Hälfte der Ausstellung." },
+          ],
+          prompt: "Was sagst du?",
+          choices: [
+            {
+              label: "«Ich hänge fest. Ich weiss nicht, wie ich aus einer Stunde Aufnahme drei Minuten mache.»",
+              type: "schwierigkeit",
+              effects: { mood: 10, work: 0 },
+              set: ["offen"],
+              reply: [
+                { who: "matilda", text: "Okay. Das hättest du früher sagen können." },
+                { who: "tobi", text: "Schneiden kann ich dir zeigen. Machen musst du es aber selbst." },
+              ],
+              next: "hilfe",
+            },
+            {
+              label: "«Ehrlich gesagt finde ich Hörstücke sinnlos. An einer Ausstellung hört sich das niemand an.»",
+              type: "uneinigkeit",
+              effects: { mood: -5, work: 0 },
+              reply: [
+                { who: "matilda", text: "Dann sag das doch! Die Idee kam von dir." },
+                { who: "tobi", text: "Hm, vielleicht hat er nicht ganz unrecht. Was wäre besser?" },
+              ],
+              next: "streit",
+            },
+            {
+              label: "«Ich habe keine Lust mehr auf das Projekt. Macht ihr doch.»",
+              type: "verweigerung",
+              effects: { mood: -15, work: 0 },
+              set: ["keineLust"],
+              reply: [
+                { who: "matilda", text: "Wow. Wir haben das zusammen ausgesucht." },
+                { who: "erz", text: "Tobi schaut weg. Niemand sagt mehr etwas." },
+              ],
+              next: "rueckzug",
+            },
+          ],
+        },
+
+        hilfe: {
+          day: "Dienstag · noch 4 Tage",
+          expect: 40,
+          lines: [
+            { who: "erz", text: "Tobi setzt sich mit dir an den Laptop." },
+            { who: "tobi", text: "Hör dir das erste Interview an. Wo sagt die Person etwas, das dich selbst überrascht?" },
+          ],
+          prompt: "Wie gehst du vor?",
+          choices: [
+            {
+              label: "«Bei der Stelle mit dem alten Dorfbrunnen. Das wusste ich nicht.»",
+              type: "engagement",
+              effects: { mood: 10, work: 20 },
+              reply: [
+                { who: "tobi", text: "Siehst du. Schneid genau das heraus, ich schaue nur zu." },
+                { who: "erz", text: "Nach vierzig Minuten ist dein erstes Hörstück fertig. Es klingt gut." },
+              ],
+              next: "coaching",
+            },
+            {
+              label: "«Kannst du das nicht schnell machen? Du bist eh schneller.»",
+              type: "abgeben",
+              effects: { mood: -10, work: 5 },
+              reply: [
+                { who: "tobi", text: "Könnte ich. Dann ist es aber mein Teil, nicht deiner." },
+                { who: "matilda", text: "Genau das meine ich." },
+              ],
+              next: "coaching",
+            },
+            {
+              label: "«Ich schreibe zuerst auf, was ich alles brauche. Dann fange ich an.»",
+              type: "engagement",
+              effects: { mood: 5, work: 10 },
+              reply: [{ who: "tobi", text: "Gut. Aber nicht nur planen, okay?" }],
+              next: "coaching",
+            },
+          ],
+        },
+
+        streit: {
+          day: "Dienstag · noch 4 Tage",
+          expect: 40,
+          lines: [
+            { who: "matilda", text: "Gut. Dann schlag etwas Besseres vor. Aber eines, das bis Montag steht." },
+          ],
+          prompt: "Was machst du?",
+          choices: [
+            {
+              label: "«Eine Hörstation mit Kopfhörern und einer Frage dazu. Die baue ich selbst.»",
+              type: "engagement",
+              effects: { mood: 5, work: 20 },
+              set: ["eigeneIdee"],
+              reply: [
+                { who: "tobi", text: "Das ist sogar besser. Kabel habe ich." },
+                { who: "matilda", text: "Okay. Aber dann ziehst du das auch durch." },
+              ],
+              next: "coaching",
+            },
+            {
+              label: "«Schon gut. Dann mache ich die Hörstücke halt.»",
+              type: "ausweichen",
+              effects: { mood: 0, work: 10 },
+              reply: [
+                { who: "matilda", text: "«Halt». Super Motivation." },
+                { who: "erz", text: "Tobi zuckt mit den Schultern." },
+              ],
+              next: "coaching",
+            },
+            {
+              label: "«Die ganze Ausstellung ist eine schlechte Idee. Macht sie ohne mich.»",
+              type: "verweigerung",
+              effects: { mood: -15, work: 0 },
+              set: ["keineLust"],
+              reply: [{ who: "matilda", text: "Dann gehe ich jetzt zu Herrn Meinhard." }],
+              next: "coaching",
+            },
+          ],
+        },
+
+        rueckzug: {
+          day: "Dienstag · noch 4 Tage",
+          expect: 40,
+          lines: [
+            { who: "matilda", text: "Ich gehe heute zu Herrn Meinhard. Kommst du mit oder nicht?" },
+            { who: "tobi", text: "Joel, was ist eigentlich los? Am Anfang wolltest du das unbedingt." },
+          ],
+          prompt: "Was antwortest du?",
+          choices: [
+            {
+              label: "«Die Interviews waren cool. Aber der Rest ist zäh, und ich weiss nicht, wie anfangen.»",
+              type: "schwierigkeit",
+              effects: { mood: 10, work: 0 },
+              set: ["offen"],
+              reply: [
+                { who: "tobi", text: "Das Zähe kann ich dir zeigen." },
+                { who: "matilda", text: "Warum sagst du das erst jetzt?" },
+              ],
+              next: "coaching",
+            },
+            {
+              label: "«Ich komme mit. Aber ich sage nichts.»",
+              type: "ausweichen",
+              effects: { mood: -5, work: 0 },
+              reply: [{ who: "matilda", text: "Wie du willst." }],
+              next: "coaching",
+            },
+            {
+              label: "«Nein. Ich gehe Fussball spielen.»",
+              type: "verweigerung",
+              effects: { mood: -15, work: 0 },
+              reply: [
+                { who: "matilda", text: "Dann gehen wir ohne dich." },
+                { who: "erz", text: "Am Mittwoch lädt Herr Meinhard dich trotzdem zum Gespräch ein." },
+              ],
+              next: "coaching",
+            },
+          ],
+        },
+
+        coaching: {
+          day: "Mittwoch · noch 3 Tage",
+          expect: 50,
+          lines: [
+            { who: "erz", text: "Coaching-Raum. Herr Meinhard schiebt dir einen Stuhl hin." },
+            { who: "meinhard", text: "Matilda war bei mir. Ich will aber zuerst deine Sicht hören.", when: { flag: "keineLust" } },
+            { who: "meinhard", text: "Ihr habt dieses Projekt selbst gewählt. Wie ihr dahin kommt, entscheidet ihr. Die Mindestanforderungen müsst ihr aber erreichen. Die Motivation dafür muss von euch kommen, nicht von mir." },
+            { who: "meinhard", text: "Euren Streit löse ich nicht für euch. Aber ich helfe dir, deinen nächsten Schritt zu finden." },
+            { who: "note", text: "Wie Einzelbeiträge in Gruppenprojekten beurteilt werden, ist in diesem Schulmodell noch nicht entschieden." },
+          ],
+          prompt: "Was sagst du?",
+          choices: [
+            {
+              label: "«Ich will meinen Teil fertig machen. Was wäre ein realistischer Plan bis Montag?»",
+              type: "engagement",
+              effects: { mood: 5, work: 10 },
+              set: ["abmachung"],
+              reply: [
+                { who: "meinhard", text: "Was schaffst du bis Donnerstagabend? Schreib es auf. Am Freitag schauen wir kurz darauf." },
+                { who: "erz", text: "Du notierst eine Abmachung mit drei kleinen Schritten." },
+              ],
+              next: "arbeitszeit",
+            },
+            {
+              label: "«Können Sie Matilda sagen, sie soll mir einfach eine klare Aufgabe geben?»",
+              type: "abgeben",
+              effects: { mood: -5, work: 0 },
+              reply: [
+                { who: "meinhard", text: "Nein. Das ist eure Abmachung, nicht meine. Du kannst sie aber selbst fragen." },
+              ],
+              next: "arbeitszeit",
+            },
+            {
+              label: "«Was passiert, wenn ich einfach nichts mache?»",
+              type: "nachfragen",
+              effects: { mood: 0, work: 0 },
+              reply: [
+                { who: "meinhard", text: "Zum Lernen zwingen kann ich dich nicht. Die Mindestanforderungen gelten trotzdem." },
+                { who: "meinhard", text: "Erreichst du sie nicht, kann deine Beurteilung ungenügend sein. Das wäre deine Entscheidung, mit Folgen für dich und für die Gruppe." },
+                { who: "meinhard", text: "Und wenn sich jemand ganz verweigert und wir keinen anderen Weg finden, sind nach den Schulregeln als letztes Mittel auch Disziplinarmassnahmen möglich. So weit soll es nicht kommen." },
+              ],
+              next: "arbeitszeit",
+            },
+          ],
+        },
+
+        arbeitszeit: {
+          day: "Donnerstag · noch 2 Tage",
+          expect: 65,
+          lines: [
+            { who: "erz", text: "Zwei Stunden Arbeitszeit im Lernatelier." },
+            { who: "tobi", text: "Die Kopfhörer sind da. Es fehlen nur noch deine Aufnahmen.", when: { flag: "eigeneIdee" } },
+            { who: "tobi", text: "Ich schneide gerade mein eigenes Zeug. Ruf, wenn du hängst.", when: { notFlag: "eigeneIdee" } },
+            { who: "matilda", text: "Ich brauche bis heute Abend wenigstens deinen Infotext." },
+          ],
+          prompt: "Was machst du mit den zwei Stunden?",
+          choices: [
+            {
+              label: "Ich mache meinen Teil fertig, auch das Mühsame.",
+              type: "engagement",
+              effects: { mood: 10, work: 35 },
+              reply: [
+                { who: "erz", text: "Es ist zäh. Aber am Ende hast du drei Hörstücke und einen Infotext." },
+                { who: "matilda", text: "Danke. Das hilft mir echt." },
+              ],
+              next: "probe",
+            },
+            {
+              label: "Ich führe ein fünftes Interview. Das macht mir am meisten Spass.",
+              type: "ausweichen",
+              effects: { mood: -5, work: 10 },
+              reply: [
+                { who: "matilda", text: "Noch mehr Material? Wir brauchen das, was schon da ist." },
+                { who: "erz", text: "Das Interview ist spannend. Geschnitten ist aber noch nichts." },
+              ],
+              next: "probe",
+            },
+            {
+              label: "Ich mache später. Die anderen sind auf dem Fussballplatz.",
+              type: "ausweichen",
+              effects: { mood: -15, work: 0 },
+              reply: [{ who: "erz", text: "Als du zurückkommst, ist der Platz neben Matilda leer. Sie arbeitet in der Bibliothek." }],
+              next: "probe",
+            },
+          ],
+        },
+
+        probe: {
+          day: "Freitag · Probedurchlauf",
+          expect: 75,
+          lines: [
+            { who: "tobi", text: "Probedurchlauf. Alle zeigen den eigenen Teil, je zwei Minuten." },
+            { who: "matilda", text: "Okay, das ist richtig gut geworden.", when: { minWork: 60 } },
+            { who: "matilda", text: "Es ist etwas da. Aber es wirkt noch nicht fertig.", when: { minWork: 30, maxWork: 59 } },
+            { who: "matilda", text: "Du hast also fast nichts. Ehrlich: Ich decke das am Montag nicht.", when: { maxWork: 29 } },
+            { who: "meinhard", text: "Ich schaue mit euch auf den Stand. Joel, deine formative Einschätzung siehst du oben." },
+          ],
+          prompt: "Was machst du?",
+          choices: [
+            {
+              label: "Ich zeige, was ich habe, sage, was fehlt, und was ich bis Montag noch mache.",
+              type: "engagement",
+              effects: { mood: 10, work: 10 },
+              reply: [{ who: "tobi", text: "Fair. So können wir planen." }],
+              next: "ende",
+            },
+            {
+              label: "«Matilda, kannst du meinen Teil am Montag vorstellen? Du kannst das besser.»",
+              type: "abgeben",
+              effects: { mood: -15, work: 0 },
+              reply: [{ who: "matilda", text: "Nein. Ich stelle nichts vor, das ich nicht gemacht habe." }],
+              next: "ende",
+            },
+            {
+              label: "«Ich glaube, am Montag bin ich krank.»",
+              type: "ausweichen",
+              effects: { mood: -20, work: 0 },
+              set: ["fehlt"],
+              reply: [{ who: "tobi", text: "Ernsthaft?" }],
+              next: "ende",
+            },
+          ],
+        },
+      };
+
+      const ENDINGS = [
+        {
+          when: { flag: "fehlt", minWork: 50 },
+          title: "Fertig, aber nicht da",
+          color: "#d99a00",
+          risk: "unsure",
+          text: "Dein Teil ist fertig, aber am Montag fehlst du. Tobi spielt deine Hörstücke ab. Ob das als dein eigener Nachweis zählt, ist in diesem Schulmodell noch offen. Matilda ist enttäuscht.",
+        },
+        {
+          when: { flag: "fehlt" },
+          title: "Nicht da, Teil unfertig",
+          color: "#d64545",
+          risk: "danger",
+          text: "Am Montag fehlst du, und dein Teil ist nicht fertig. Matilda und Tobi präsentieren ohne Hörstücke. Für die Mindestanforderung fehlt dein eigener Nachweis. Was das für deine Beurteilung heisst, regelt das Reglement der Schule.",
+        },
+        {
+          when: { maxWork: 39 },
+          title: "Mindestanforderung nicht erreicht",
+          color: "#d64545",
+          risk: "danger",
+          text: "Am Montag präsentieren Matilda und Tobi. Dein Teil fehlt. Die formative Einschätzung war rot, und dein eigener Beitrag reicht nicht für die Mindestanforderung. Was das für deine Beurteilung heisst, regelt das Reglement der Schule. Herr Meinhard lädt dich zu einem Gespräch ein: Wie geht es jetzt weiter?",
+        },
+        {
+          when: { maxWork: 69 },
+          title: "Knapp",
+          color: "#d99a00",
+          risk: "unsure",
+          text: "Deine Hörstücke sind da, aber kurz und unfertig. Die formative Einschätzung bleibt gelb: Ob das für die Mindestanforderung reicht, ist unsicher.",
+        },
+        {
+          when: { maxMood: 34 },
+          title: "Geschafft, aber allein",
+          color: "#d99a00",
+          risk: "ok",
+          text: "Dein Teil steht, die Ausstellung auch. Aber in der Gruppe redet kaum noch jemand mit dir. Beim nächsten Projekt wird es schwer, wieder zusammenzuarbeiten.",
+        },
+        {
+          when: { flag: "keineLust" },
+          title: "Die Kurve gekriegt",
+          color: "#22a35a",
+          risk: "ok",
+          text: "Zuerst wolltest du aussteigen. Dann hast du doch angepackt. Dein Teil ist fertig, und die Gruppe hat gemerkt, dass du es ernst meinst.",
+        },
+        {
+          when: { flag: "eigeneIdee" },
+          title: "Eigene Idee getragen",
+          color: "#22a35a",
+          risk: "ok",
+          text: "Deine Hörstation ist der Ort, an dem am Montag die meisten Leute stehen bleiben. Du hast die Aufgabe so verändert, dass sie für dich Sinn ergibt, und sie dann durchgezogen.",
+        },
+        {
+          when: {},
+          title: "Gemeinsam getragen",
+          color: "#22a35a",
+          risk: "ok",
+          text: "Deine Hörstücke laufen, Matilda erklärt die Texte, Tobi die Karte. Die Präsentation gehört euch dreien.",
+        },
+      ];
+
+      const REFLECTION = "Was hätte Joel gebraucht, um von sich aus dranzubleiben? Und was brauchst du selbst?";
+
+      const UI = {
+        next: "Weiter",
+        toEnd: "Zum Ende",
+        endDay: "Montag · Präsentation",
+        pathTitle: "Dein Weg",
+        reflectTitle: "Zum Nachdenken",
+        placeholder: "Deine Gedanken (freiwillig)",
+        save: "Abschliessen und speichern",
+        saving: "Speichere …",
+        saved: "Gespeichert. Danke!",
+        saveFailed: "Speichern hat nicht geklappt. Du kannst es nochmals versuchen.",
+        offline: "Ohne Verbindung zu Hazu wird nichts gespeichert.",
+        again: "Nochmals spielen",
+        risk: { ok: "auf Kurs", unsure: "unsicher", danger: "gefährdet" },
+      };
+
+      // ------------------------------------------------------------------ logic
+      const MOCK = { context: { displayName: "Testperson", hazuId: null }, createItem: async () => null };
+      const $ = (id) => document.getElementById(id);
+      const stage = $("stage");
+      const clamp = (v) => Math.max(0, Math.min(100, v));
+      const esc = (s) =>
+        String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+      const state = { hazu: MOCK, scene: null, mood: 0, work: 0, flags: new Set(), path: [], saved: false };
+
+      function matches(when) {
+        if (!when) return true;
+        const { minWork, maxWork, minMood, maxMood, flag, notFlag } = when;
+        if (minWork != null && state.work < minWork) return false;
+        if (maxWork != null && state.work > maxWork) return false;
+        if (minMood != null && state.mood < minMood) return false;
+        if (maxMood != null && state.mood > maxMood) return false;
+        if (flag && !state.flags.has(flag)) return false;
+        if (notFlag && state.flags.has(notFlag)) return false;
+        return true;
+      }
+
+      const RISK_COLORS = { ok: "var(--good)", unsure: "var(--warn)", danger: "var(--bad)" };
+      function riskLevel(expect) {
+        const gap = expect - state.work;
+        const level = gap <= 5 ? "ok" : gap <= 25 ? "unsure" : "danger";
+        return [level, RISK_COLORS[level]];
+      }
+
+      function showDelta(el, d) {
+        el.textContent = d ? (d > 0 ? `+${d}` : `${d}`) : "";
+        el.className = `delta ${d > 0 ? "up" : d < 0 ? "down" : ""}`;
+      }
+
+      function updateMeters(expect, deltas = {}, risk) {
+        $("meters").hidden = false;
+        $("moodBar").firstElementChild.style.width = `${state.mood}%`;
+        $("workBar").firstElementChild.style.width = `${state.work}%`;
+        showDelta($("moodDelta"), deltas.mood || 0);
+        showDelta($("workDelta"), deltas.work || 0);
+        const [level, color] = risk ? [risk, RISK_COLORS[risk]] : riskLevel(expect);
+        $("riskDot").style.background = color;
+        $("riskText").textContent = UI.risk[level];
+      }
+
+      function addLine(line) {
+        if (!matches(line.when)) return;
+        let el;
+        if (line.who === "erz" || line.who === "note") {
+          el = document.createElement("p");
+          el.className = line.who === "erz" ? "narr" : "note";
+          el.style.margin = "0";
+          el.textContent = line.text;
+        } else {
+          const c = CAST[line.who];
+          el = document.createElement("div");
+          el.className = `line${line.who === "joel" ? " me" : ""}`;
+          el.innerHTML = `<span class="avatar" style="background:${c.color}">${esc(c.short)}</span><div class="bubble"><b>${esc(c.name)}</b>${esc(line.text)}</div>`;
+        }
+        stage.appendChild(el);
+      }
+
+      function addButton(label, onClick, ghost = false) {
+        const b = document.createElement("button");
+        b.className = `btn${ghost ? " ghost" : ""}`;
+        b.textContent = label;
+        b.addEventListener("click", onClick);
+        stage.appendChild(b);
+        return b;
+      }
+
+      function scrollEnd() {
+        stage.scrollTo({ top: stage.scrollHeight, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      }
+
+      function intro() {
+        Object.assign(state, { scene: null, mood: START.mood, work: START.work, flags: new Set(), path: [], saved: false });
+        $("meters").hidden = true;
+        $("day").textContent = INTRO.day;
+        const cast = ["matilda", "tobi", "meinhard"]
+          .map((k) => `<span><span class="avatar" style="background:${CAST[k].color}">${esc(CAST[k].short)}</span>${esc(CAST[k].name)}</span>`)
+          .join("");
+        stage.innerHTML = `<div class="intro">${INTRO.text.map((t) => `<p>${esc(t)}</p>`).join("")}<div class="cast">${cast}</div></div>`;
+        addButton(INTRO.button, () => showScene(START.scene)).focus();
+        stage.scrollTop = 0;
+      }
+
+      function showScene(id) {
+        const scene = SCENES[id];
+        state.scene = id;
+        $("day").textContent = scene.day;
+        updateMeters(scene.expect);
+        stage.innerHTML = "";
+        scene.lines.forEach(addLine);
+        const prompt = document.createElement("p");
+        prompt.className = "prompt";
+        prompt.style.margin = "0";
+        prompt.textContent = scene.prompt;
+        stage.appendChild(prompt);
+        const list = document.createElement("div");
+        list.className = "choices";
+        list.setAttribute("role", "group");
+        list.setAttribute("aria-label", scene.prompt);
+        scene.choices.forEach((ch, i) => {
+          const b = document.createElement("button");
+          b.className = "choice";
+          b.dataset.choice = String(i + 1);
+          b.innerHTML = `<span class="n">${i + 1}</span><span>${esc(ch.label)}</span>`;
+          b.addEventListener("click", () => choose(scene, ch, list, prompt));
+          list.appendChild(b);
+        });
+        stage.appendChild(list);
+        stage.scrollTop = 0;
+        list.firstElementChild.focus({ preventScroll: true });
+      }
+
+      function choose(scene, ch, list, prompt) {
+        list.remove();
+        prompt.remove();
+        const d = { mood: ch.effects?.mood || 0, work: ch.effects?.work || 0 };
+        state.mood = clamp(state.mood + d.mood);
+        state.work = clamp(state.work + d.work);
+        (ch.set || []).forEach((f) => state.flags.add(f));
+        state.path.push({ day: scene.day, label: ch.label, type: ch.type });
+        addLine({ who: "joel", text: ch.label.replace(/^«|»$/g, "") });
+        (ch.reply || []).forEach(addLine);
+        updateMeters(ch.next === "ende" ? 70 : SCENES[ch.next].expect, d);
+        const btn = addButton(ch.next === "ende" ? UI.toEnd : UI.next, () =>
+          ch.next === "ende" ? showEnding() : showScene(ch.next),
+        );
+        btn.focus({ preventScroll: true });
+        scrollEnd();
+      }
+
+      function showEnding() {
+        const end = ENDINGS.find((e) => matches(e.when));
+        state.ending = end;
+        $("day").textContent = UI.endDay;
+        updateMeters(70, {}, end.risk);
+        const path = state.path
+          .map((p) => `<li>${esc(p.label)} <span class="tag">${esc(TYPES[p.type] || p.type)}</span></li>`)
+          .join("");
+        stage.innerHTML = `
+          <div class="ending" style="border-left-color:${end.color}"><h2>${esc(end.title)}</h2><p>${esc(end.text)}</p></div>
+          <h3>${esc(UI.pathTitle)}</h3><ol class="path">${path}</ol>
+          <h3><label for="reflect">${esc(REFLECTION)}</label></h3>
+          <textarea id="reflect" placeholder="${esc(UI.placeholder)}"></textarea>
+          <div class="row"><span class="status" id="saveStatus" role="status"></span></div>`;
+        const row = stage.querySelector(".row");
+        const again = document.createElement("button");
+        again.className = "btn ghost";
+        again.textContent = UI.again;
+        again.addEventListener("click", intro);
+        const save = document.createElement("button");
+        save.className = "btn";
+        save.textContent = UI.save;
+        save.addEventListener("click", () => saveResult(save));
+        row.append(again, save);
+        stage.scrollTop = 0;
+        if (state.hazu === MOCK) $("saveStatus").textContent = UI.offline;
+      }
+
+      // Saves path, ending, final states and the reflection as an item in the station's Hazu.
+      async function saveResult(btn) {
+        const h = state.hazu;
+        const status = $("saveStatus");
+        if (h === MOCK || !h?.context?.hazuId) {
+          status.textContent = UI.offline;
+          return;
+        }
+        btn.disabled = true;
+        status.textContent = UI.saving;
+        const reflection = $("reflect").value.trim();
+        const end = state.ending;
+        const steps = state.path
+          .map((p) => `<li><strong>${esc(p.day)}:</strong> ${esc(p.label)} <em>(${esc(TYPES[p.type] || p.type)})</em></li>`)
+          .join("");
+        try {
+          await h.createItem({
+            parentId: h.context.hazuId,
+            type: "item",
+            title: `Konflikt in der Projektgruppe: ${h.context.displayName || "Besuch"} · ${end.title}`,
+            description:
+              `<p><strong>Ende:</strong> ${esc(end.title)}</p>` +
+              `<p>Stimmung ${state.mood}/100 · eigener Beitrag ${state.work}/100</p>` +
+              `<ol>${steps}</ol>` +
+              `<p><strong>${esc(REFLECTION)}</strong><br>${reflection ? esc(reflection) : "<em>(keine Antwort)</em>"}</p>` +
+              `<p>${new Date().toLocaleString("de-CH")}</p>`,
+          });
+          state.saved = true;
+          status.textContent = UI.saved;
+        } catch (e) {
+          console.warn("Result not saved", e);
+          status.textContent = UI.saveFailed;
+          btn.disabled = false;
+        }
+      }
+
+      // Number keys pick a choice; Enter/Space work through native button focus.
+      document.addEventListener("keydown", (ev) => {
+        if (ev.target.tagName === "TEXTAREA" || ev.metaKey || ev.ctrlKey || ev.altKey) return;
+        const b = stage.querySelector(`.choice[data-choice="${ev.key}"]`);
+        if (b) {
+          ev.preventDefault();
+          b.click();
+        }
+      });
+
+      async function connect() {
+        const inHazu = window.parent !== window && window.HazuAPI;
+        if (!inHazu) return MOCK;
+        try {
+          return await HazuAPI.init();
+        } catch (e) {
+          console.warn("Bridge unreachable, using mock data", e);
+          return MOCK;
+        }
+      }
+
+      (async () => {
+        state.hazu = await connect();
+        intro();
+      })();
+    </script>
+  </body>
+</html>

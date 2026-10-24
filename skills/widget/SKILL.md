@@ -76,6 +76,11 @@ answers with a placeholder.
 
 1. Commit and push the widget.
 2. Gabriel uploads the file to hazu.app and creates a Hazu with tag
-   `hz-world-sim` at the right place that opens the widget.
+   `hz-world-sim` inside the place's Hazu (e.g. the Schulhaus) that opens the
+   widget. Add the tag `hw-npc-<character id>` too: only then the station
+   stands as a screen next to that character. Without it the world shows it
+   as a loose signboard near the start. Every other sub-Hazu of the world
+   without a door also becomes such a signboard; keep unused ones in
+   «Reserve».
 3. Check in the world: walk up to the station, open the widget, play it once.
 4. Update the status in [docs/places.md](../../docs/places.md).
