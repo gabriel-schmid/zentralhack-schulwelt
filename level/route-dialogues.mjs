@@ -134,7 +134,7 @@ export const routeDialogue = {
         "Eher nicht.",
       ),
       talk(
-        "Ob ja oder nein: Nicht alles muss alle interessieren. Ich koche gern, meine Freundin zeichnet lieber Comics. Darum plant hier jede ihren Tag selbst.",
+        "Ob ja oder nein: Nicht alles muss alle interessieren. Ich zeichne zum Beispiel sehr gern, aber Plakate fürs Essen mache ich keine. Das Zeichnen gehört gerade nur mir.",
         "Allein planen klingt einsam.",
         "Und deine Klasse?",
       ),
