@@ -64,7 +64,7 @@ All three stations sit in the Schulhaus Hazu `_m0-qRVAAUwmuxfswuPp`.
 | Station | Hazu | Repo source | Document | Live revision | Character (tag) |
 | ------- | ---- | ----------- | -------- | ------------- | --------------- |
 | Tagesplan | `Kur3--1W2Om9ChLwzcu3` | `widgets/tagesplan/index.html` | `doc_e52cf725ed3f4ab481ee75d18fdddc81` | 3 | Yara (`hw-npc-yara`) |
-| Säure-Base-Labor | `k6O-jIz2NIb6e-Q0dgax` | `widgets/saeuren-basen/index.html` | `doc_1eb34a79537341709ae92c5deef143db` || 4 | Herr Tesla (`hw-npc-workshop`) |
+| Säure-Base-Labor | `k6O-jIz2NIb6e-Q0dgax` | `widgets/saeuren-basen/index.html` | `doc_1eb34a79537341709ae92c5deef143db` | 4 | Herr Tesla (`hw-npc-workshop`) |
 | Konflikt in der Projektgruppe | `OlhBe1_bzlj7rSR4fv_T` | `widgets/konflikt/index.html` | `doc_c8bc1b33c87247c28d0d2085f5b5c73c` | 3 | Herr Meinhard (`hw-npc-coach`) |
 
 Widgets are uploaded as they are, without conversion. The sha256 of each live
