@@ -76,7 +76,7 @@
       };
 
       async function connect() {
-        const inHazu = window.parent !== window && window.HazuAPI;
+        const inHazu = window.parent !== window && typeof HazuAPI !== "undefined"; // the SDK declares a global const, not window.HazuAPI
         if (!inHazu) return MOCK;
         try {
           return await HazuAPI.init();
