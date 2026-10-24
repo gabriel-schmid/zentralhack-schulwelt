@@ -46,3 +46,5 @@ jury.
 - [ ] Final presentation rehearsed
 
 - [x] Shared concept baseline documented; freedom during the learning path and unchanged grading regulations clarified (00:42, Europe/Zurich).
+
+- [x] Documented six learner and two coach personas, age-appropriate independent projects, and separation of given traits from draft scenarios (02:25, Europe/Zurich).
