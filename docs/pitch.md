@@ -146,8 +146,10 @@ What each jury perspective should hear, and where it comes up.
 ## Shot list (backup and demo video)
 
 Record in fullscreen, desktop browser, no mouse cursor in the frame where
-possible. Target total for the demo: 75 s. Clip H is the backup for the live
-moment and is not part of the 75 s.
+possible. The first version (`output/backup-demo-v1.mp4`) used these clips at
+75 s. The final video (`output/demo-final.mp4`) is about 45 s, with music, and
+leaves out Herr Meinhard and the Konflikt station because the coach is shown
+live. Clip H is the backup for the live moment.
 
 | Clip | Place | Action | Target |
 | ---- | ----- | ------ | ------ |
