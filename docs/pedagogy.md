@@ -31,7 +31,7 @@ binding.
 
 | Element | In the world |
 | ------- | ------------ |
-| Time structure | Daily dashboard: morning briefing, work time, closing round; Friday 1:1 and feedback |
+| Time structure | Tagesplan: Morgenrunde, fixed and free blocks, Abendrunde; Friday 1:1 and feedback |
 | Rooms | Each house is a place with its own purpose and interior |
 | People / coaches | Coach, teacher personas and other NPCs |
 | Curriculum / learning goals | Minimum requirements agreed with the teacher |
@@ -42,7 +42,11 @@ binding.
 
 - **Formative**, along the way: coach conversations, Friday 1:1, feedback at
   the stations.
-- **Summative**, at the end: presenting the project on the village square.
+- **Summative:** still open. How individual summative evidence works when
+  learning happens in group projects is not decided; a project presentation
+  alone is not yet an agreed assessment model
+  ([shared-concept.md](shared-concept.md), open decision 6). The existing
+  grading regulations (Notenreglement) continue to apply.
 
 ## Responsibility
 

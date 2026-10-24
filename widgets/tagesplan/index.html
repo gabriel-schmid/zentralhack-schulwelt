@@ -678,6 +678,7 @@
     <script>
       // ------------------------------------------------------------------ data
       const ROOMS = {
+        halle: "Eingangshalle",
         aula: "Aula",
         lernatelier: "Lernatelier",
         atelier: "Interessen-Atelier",
@@ -688,12 +689,13 @@
 
       // What a visitor finds in each room (third tab).
       const HOUSE = [
-        ["aula", "Morgen- und Abendrunde mit Frau Arnold. Hier triffst du Lea."],
-        ["lernatelier", "Lernzeit für die verbindlichen Ziele. Quirin arbeitet hier; Lea und Joel zeigen ihren Mathe-Vormittag."],
+        ["halle", "Hier am Tagesplan steht Yara. Sie zeigt dir, welche Blöcke fix sind und welche du selbst füllst."],
+        ["aula", "Morgen- und Abendrunde mit Frau Arnold. Matilda erzählt, was sie heute vorhat."],
+        ["lernatelier", "Mathe-Fixpunkt und Lernzeit. Lea und Joel rechnen an einem Tisch, Frau Sutter gibt Rückmeldung, Quirin rechnet mit dem Fahrplan."],
         ["atelier", "Zeit für eigene Interessen. Tobi baut einen Audio-Rundgang."],
-        ["coaching", "1:1 mit Herrn Meinhard: Sprich selbst mit ihm. Dazu die Konfliktszene «Projektgruppe»."],
+        ["coaching", "1:1 mit Herrn Meinhard: Sprich selbst mit ihm. Bei ihm auch die Konfliktszene «Projektgruppe»."],
         ["workshop", "Workshops bei Herrn Tesla, zum Beispiel das Säure-Base-Labor mit Rotkohlsaft."],
-        ["pause", "Durchatmen und andere treffen. Hier sind Yara und Matilda."],
+        ["pause", "Mittagessen und Pausen. Hier wartet niemand auf dich, nur ein Sofa zum Durchatmen."],
       ];
 
       // The school day. Fixed points are the same for everyone; free blocks are chosen.
@@ -717,7 +719,7 @@
 
       const OPTIONS = {
         lernzeit: { title: "Lernzeit", room: "lernatelier",
-          hint: "Lea und Joel beim Mathe-Vormittag zusehen und üben." },
+          hint: "Mit Lea und Joel üben. Frau Sutter hilft, wenn ihr festsitzt." },
         projekt: { title: "Eigenes Projekt", room: "atelier",
           hint: "Tobi testet seinen Audio-Rundgang; Zeit für das, was dich interessiert." },
         workshop: { title: "Workshop «Säure-Base-Labor»", room: "workshop",
@@ -725,9 +727,9 @@
         coaching: { title: "1:1 bei Herrn Meinhard", room: "coaching",
           hint: "Sprich selbst mit Herrn Meinhard über dein Ziel und den nächsten Schritt." },
         pause: { title: "Pause", room: "pause",
-          hint: "Durchatmen und Yara und Matilda treffen." },
+          hint: "Durchatmen in der Pausenzone." },
         konflikt: { title: "Konfliktszene «Projektgruppe»", room: "coaching",
-          hint: "Entscheide für Joel, wie es in seiner Projektgruppe weitergeht." },
+          hint: "Bei Herrn Meinhard: Entscheide für Joel, wie es in seiner Projektgruppe weitergeht." },
       };
       const REQUIRED = "lernzeit";
 
@@ -803,13 +805,13 @@
             mathe: ["lernatelier", "Budget: beginnt die verschobene Aufgabe"],
             b1: ["coaching", "1:1: Wer räumt auf? Aufgaben klären, ohne alles selbst zu tun"],
             b2: ["lernatelier", "Lernzeit: schätzt und berechnet die Materialkosten"],
-            b3: ["pause", "Projekt: fragt Helfende für die Stationen an"],
-            b4: ["pause", "Projekt: Ämtliplan mit den Helfenden"],
+            b3: ["halle", "Projekt: fragt Helfende für die Stationen an"],
+            b4: ["halle", "Projekt: Ämtliplan mit den Helfenden"],
             abend: ["aula", "erzählt, wer jetzt beim Aufräumen hilft"],
           },
-          status: [[0, "risk", "Der Budget-Nachweis zum Mathe-Mindestziel ist zweimal verschoben. Heute begonnen, ein Checkpoint ist vereinbart."]],
+          status: [[0, "risk", "Der Budget-Nachweis zum Mathe-Mindestziel ist zweimal verschoben. Heute begonnen, am nächsten Mathe-Fixpunkt zeigt sie es."]],
           help: { b2: "Wie rechne ich aus, was das Material kostet?" },
-          next: "Das Budget fertig rechnen und am vereinbarten Checkpoint zeigen.",
+          next: "Das Budget fertig rechnen und am nächsten Mathe-Fixpunkt zeigen.",
           question: "Reicht das Geld für Faden, Knöpfe und Werkzeug?" },
         { id: "matilda", name: "Matilda", year: "3. Klasse", project: "Drei günstige Mittagessen für Gäste",
           plan: {
@@ -817,7 +819,7 @@
             mathe: ["lernatelier", "lineare Kosten: Preis pro Portion"],
             b1: ["atelier", "Projekt: neues Menü ohne die Zutaten, die ein Gast nicht verträgt"],
             b2: ["lernatelier", "Lernzeit: rechnet Mengen für zwölf Personen um"],
-            b3: ["pause", "fragt die Gäste nach Unverträglichkeiten"],
+            b3: ["aula", "fragt die Gäste nach Unverträglichkeiten"],
             b4: ["atelier", "schreibt die Einladung für das nächste Essen"],
             abend: ["aula", "zeigt das neue Menü und die Kosten pro Person"],
           },

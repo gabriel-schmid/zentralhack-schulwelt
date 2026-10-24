@@ -11,45 +11,74 @@
 - **Stations** are widgets at a place (see
   [skills/widget/SKILL.md](../skills/widget/SKILL.md)).
 
-## Current layout (01:30)
+## Current layout
 
-- **Village (Bergdorf):** only the arrival: the Schulhaus on the square, Joel greets
-  visitors. Werkstatt, Küche and Garten are in «Reserve» on hazu.app.
+- **Village (Bergdorf):** arrival only. The Schulhaus stands on the square and
+  Joel greets visitors (route step ⓪). Werkstatt, Küche and Garten are in
+  «Reserve» on hazu.app, not in the visitor's path.
 - **Schulhaus interior** (`level/schulhaus.json`, dollhouse rooms as data,
-  24 x 18 tiles, revised 02:26): Bibliothek, Aula (morning and evening circle,
-  Frau Arnold, Lea) and Interessen-Atelier (Tobi) in the north; a corridor with
-  lockers; Lernatelier (Quirin), Coaching-Raum (Herr Meinhard, Genius), Pausenzone
-  (Yara, Matilda) and Workshop-Raum (Herr Tesla, stations below) in the south; the entrance hall runs from
-  the corridor to the exit. Tile ranges per room: `skills/npc/SKILL.md`.
+  24 x 18 tiles): Bibliothek, Aula and Interessen-Atelier in the north; a
+  corridor with lockers; Lernatelier, Coaching-Raum, Pausenzone and
+  Workshop-Raum in the south; the entrance hall runs from the corridor to the
+  exit. Tile ranges per room: `skills/npc/SKILL.md`.
+
+Who stands where:
+
+| Room | Characters | Station |
+| ---- | ---------- | ------- |
+| Eingangshalle (entrance hall) | Yara, next to the board | Tagesplan |
+| Aula | Frau Arnold, Matilda | – |
+| Lernatelier | Lea and Joel at one table, Frau Sutter (Mathematik, «Mathe-Fixpunkt»), Quirin | – |
+| Interessen-Atelier | Tobi | – |
+| Coaching-Raum | Herr Meinhard (Genius coach) | Konflikt in der Projektgruppe |
+| Workshop-Raum | Herr Tesla | Säure-Base-Labor |
+| Bibliothek, Pausenzone | nobody | – |
+
+## Route
+
+| Step | Place | What the visitor meets |
+| ---- | ----- | ---------------------- |
+| ⓪ | Village square | Joel greets and points to the Schulhaus |
+| – | Eingangshalle | Yara at the Tagesplan: fixed and free blocks, plan your own day |
+| ① | Aula | Morgenrunde with Frau Arnold; Matilda says what she plans today |
+| ② | Lernatelier | Lea and Joel learn together (videos, comprehension questions, asking each other first) |
+| ③ | Lernatelier | Mathe-Fixpunkt with Frau Sutter: binding goals, feedback rather than a mark; Quirin's maths in his project |
+| ④ | Interessen-Atelier | Tobi's own project, an audio walk |
+| ⑤ | Coaching-Raum | 1:1 with Herr Meinhard; Konflikt station on request |
+| ⑥ | Workshop-Raum | optional workshop with Herr Tesla, Säure-Base-Labor |
+| ⑦ | Aula | Abendrunde (sign only): show what moved forward and what stays open |
 
 ## Places
 
 | Place | What it is about | Station (widget) | Safety | Interior | Status |
 | ----- | ---------------- | ---------------- | ------ | -------- | ------ |
-| Dorfplatz (village square) | start and end of the day, presenting projects (summative) | **Dashboard** (see below) | – | open square, no interior | open |
-| Werkstatt (workshop) | plan and build a coop or a raised bed | Sägestation (`widgets/saegestation/`): pick protective gear, spot hazards, saw in the safe order | ear protection, safety glasses, cables, saw guard | live (`level/werkstatt.json`) | in progress |
-| Coaching-Raum (coaching room) | 1:1 conversation, goals, Friday feedback (formative) | talk to Herr Meinhard (Genius): the visitor speaks as themselves | – | live in the Schulhaus | in progress |
-| Workshop-Raum (Schulhaus) | optional workshops with Herr Tesla | Säuren und Basen (`widgets/saeuren-basen/`): safety gear, hypothesis, red-cabbage indicator, pH scale; Konflikt in der Projektgruppe (`widgets/konflikt/`): decide for Joel in a group conflict | safety glasses, gloves, never taste | live | in progress |
-| Lernatelier (study studio) | independent work at your own level | weekly plan, minimum requirements | – | yes | open |
-| Garten und Hof (garden and yard) | look after animals, tend beds | open | safe lifting, tools | later | open |
-| Küche (kitchen) | cook together | open | hygiene, knives, hot pans | later | open |
-| Interessen-Atelier (special interests) | time and space for what a learner cares about | open | – | later | proposed, not on hazu.app yet |
+| Village square (Dorfplatz) | arrival; Joel greets | – | – | open square, no interior | live |
+| Schulhaus · Eingangshalle | the frame of the day: time, rooms, people | Tagesplan (`widgets/tagesplan/`) with Yara: plan the free blocks, «Sicht Coach», «Im Haus» | – | live | live |
+| Schulhaus · Aula | Morgenrunde and Abendrunde | – | – | live | live |
+| Schulhaus · Lernatelier | self-study at your own level, Mathe-Fixpunkt | – | – | live | live |
+| Schulhaus · Interessen-Atelier | time and space for what a learner cares about | – | – | live | live |
+| Schulhaus · Coaching-Raum | 1:1 conversation, goals, follow-up (formative) | talk to Herr Meinhard (Genius): the visitor speaks as themselves; Konflikt in der Projektgruppe (`widgets/konflikt/`): decide for Joel in a group conflict | – | live | live |
+| Schulhaus · Workshop-Raum | optional workshops with Herr Tesla | Säure-Base-Labor (`widgets/saeuren-basen/`): safety gear, hypothesis, red-cabbage indicator, pH scale | safety glasses, gloves, never taste | live | live |
+| Schulhaus · Bibliothek, Pausenzone | quiet reading, lunch and breaks | – | – | live, no characters | live |
+| Werkstatt (workshop) | plan and build a coop or a raised bed | Sägestation (`widgets/saegestation/`): protective gear, hazards, safe sawing order | ear protection, safety glasses, cables, saw guard | `level/werkstatt.json` | Reserve |
+| Küche (kitchen) | cook together | – | hygiene, knives, hot pans | – | Reserve |
+| Garten und Hof (garden and yard) | look after animals, tend beds | – | safe lifting, tools | – | Reserve |
 
-Minimum goal: the village plus three interiors fully playable (Werkstatt,
-Coaching-Raum, Lernatelier).
+Also in Reserve: Luca's «Ein Mathematikvormittag» widget. Its content (Lea
+and Joel, Frau Sutter) now lives in the Lernatelier characters.
 
-## Station: Dashboard (daily overview)
+## Station: Tagesplan (daily overview)
 
-The frame of the day, from the concept notes. One widget, opened on the
-village square.
+The frame of the day, from the concept notes. One widget at the board in the
+entrance hall, introduced by Yara.
 
-- **Morning briefing:** what today is about, the learner's goals.
-- **Book a 1:1:** pick a slot with the coach.
-- **Progress path:** a timeline with milestones; a reached milestone is
-  ticked.
-- **Closing round:** tell what happened, note highlights.
-- **Friday:** 1:1 and feedback.
+- **Mein Tag:** fixed points for everyone (Morgenrunde, Mathe-Fixpunkt,
+  Mittag, Abendrunde) and free blocks the visitor fills: Lernzeit, Eigenes
+  Projekt, Workshop, 1:1, Konflikt station, Pause. Each choice names a room.
+  Rule in this example: at least one block of Lernzeit for the binding goals.
+- **Sicht Coach:** fictional learners through the day: where they are, who
+  asks for help, a formative status (not a mark) and the next step.
+- **Im Haus:** what the visitor finds in each room.
 
-Technical: progress and highlights are saved as Hazu items through the bridge
-(`createItem` / `updateItem`), so they survive a reload. The briefing and the
-closing round can use Genius (e.g. a short summary of the day's highlights).
+Technical: the saved plan is a private Hazu item created through the bridge
+(`createItem`), so it survives a reload.
