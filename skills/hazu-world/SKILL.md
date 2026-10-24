@@ -64,6 +64,15 @@ sub-Hazus and Punkte automatically.
 - **Gabriel**: world settings, uploading widgets and wiring them in as
   stations.
 
+## Uploading a level revision
+
+The level is a managed file (`level.json`) on its place Hazu; the world pins
+one revision. For a small change, patch the live revision with the Hazu MCP
+`patch_file_source` (exact find/replace) instead of re-sending the whole file
+as base64: a hand-copied 50 KB base64 once changed one word in a dialogue.
+Either way, the returned sha256 must equal the local file's before you move
+the world's pin (`layout.world.levels[]`, only that entry).
+
 ## Playing and testing
 
 - **Interact with X or Enter** (or click), not E. Q/E turn the camera.
