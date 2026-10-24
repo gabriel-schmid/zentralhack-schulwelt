@@ -1148,6 +1148,7 @@
      {"shape":"box","pos":[-17,2.75,1.5],"scale":[0.38,0.9,3],"color":"#f3ede2"},
      {"shape":"box","pos":[-17,1.15,0.08],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-17,1.15,2.92],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
+     {"repeat":{"i":26},"collider":[3,"-3+i*0.4"],"r":0.2},
      {"shape":"box","pos":[-7.05,0.03,2],"scale":[19.7,0.06,9.8],"color":"#c98b7a","mat":"PAINT"},
      {"shape":"box","pos":[-2,0.05,2],"scale":[6.8,0.06,3.6],"color":"#e9d5b7","mat":"PAINT"},
      {"frame":[-4.2,0,2,1.5708],"parts":[{"use":"sofa","with":{"w":1.05,"d":0.95,"c":"#d9774b","k":"#f3b08c","n":1}}]},
@@ -1898,6 +1899,7 @@
      {"shape":"box","pos":[-17,2.75,-2.5],"scale":[0.38,0.9,3],"color":"#f3ede2"},
      {"shape":"box","pos":[-17,1.15,-3.92],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-17,1.15,-1.08],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
+     {"repeat":{"i":26},"collider":[3,"-7+i*0.4"],"r":0.2},
      {"shape":"box","pos":[-7.05,0.03,-2],"scale":[19.7,0.06,9.8],"color":"#a9c4a0","mat":"PAINT"},
      {
       "frame": [2.85,0,-2,-1.5708],
@@ -2177,7 +2179,7 @@
   ],
   "props": [],
   "npcs": [
-   {"id":"yara","gx":12.7,"gy":12.8,"name":"Yara","color":"#EAB308","subject":"▶ Start · Tagesplan","female":true},
+   {"id":"yara","gx":12.1,"gy":12.45,"name":"Yara","color":"#EAB308","subject":"▶ Start · Tagesplan","female":true},
    {
     "id": "lehrerin",
     "gx": 12,
@@ -2240,8 +2242,8 @@
    },
    {
     "id": "coach",
-    "gx": 21,
-    "gy": 11,
+    "gx": 22.1,
+    "gy": 11.1,
     "name": "Herr Meinhard",
     "color": "#8B5CF6",
     "subject": "⑤ Coach · 1:1",
@@ -2251,8 +2253,8 @@
    },
    {
     "id": "workshop",
-    "gx": 22.8,
-    "gy": 14.3,
+    "gx": 21.7,
+    "gy": 13.9,
     "name": "Herr Tesla",
     "color": "#F97316",
     "subject": "⑥ Workshop-Coach · Technik",

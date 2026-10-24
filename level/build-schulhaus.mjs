@@ -750,7 +750,7 @@ const landmarks = [
     bookcase(8.4, 12.2, 9.8, 12.8, "north", 1.6, 4, 2, 5, C.binders, -0.1, true); // weekly-plan shelf
     sign(6.75, 7.89, "north");
   }),
-  roomDoc("schulhaus_coaching", anchors.coaching, ({ wallWithDoor, wallWithDoorZ, wall, floor, sofa, plant, sign, board, lowtable, local }) => {
+  roomDoc("schulhaus_coaching", anchors.coaching, ({ wallWithDoor, wallWithDoorZ, wall, floor, sofa, plant, sign, board, lowtable, local, collideLine }) => {
     wallWithDoor(14, COLS, 8, 16.5, 18);
     // A wide passage into the Workshop-Raum (⑤ → ⑥), east of the
     // workbenches. «Hingehen» walks a straight grid path that does not know
@@ -759,6 +759,9 @@ const landmarks = [
     // through it instead of stopping at the wall.
     wallWithDoor(14, COLS, 13, 21, 23.9);
     wallWithDoorZ(14, 8, 13, 9.5, 11);
+    // no east wall (the dollhouse's open side): colliders keep walkers and
+    // «Hingehen» spots off the island rim
+    collideLine(COLS, 8, COLS, 13, 0.2, 0.4);
     floor(14.05, 8.05, 23.9, 12.95, C.floorCarpet);
     // two armchairs facing each other (east, in line with the passage to
     // the Workshop-Raum), a low table, a rug, a plant, goals board
@@ -787,6 +790,7 @@ const landmarks = [
   }),
   roomDoc("schulhaus_workshop", anchors.workshop, ({ wallWithDoorZ, floor, place, use, footprint, sign, board, collideLine }) => {
     wallWithDoorZ(14, 13, 18, 14.5, 16);
+    collideLine(COLS, 13, COLS, 18, 0.2, 0.4); // open east side, as in the Coaching-Raum
     floor(14.05, 13.05, 23.9, 17.95, C.floorGreen);
     // two workbenches facing a screen on the east wall, stools, a toolbox
     board(COLS, 15.5, "west", 5.6, 1.7, 1.1, "#1d2733", { f: "#2b2f36", wd: 0, tr: 0 }); // screen
@@ -961,7 +965,11 @@ const extras = backgroundNpcs.map(({ id, name, color, subject, extra }) => npc(i
 
 // In route order: the world panel's list and the «Übersicht» follow it.
 const npcs = [
-  cast("yara", 12.7, 12.8),
+  // The engine stands each character's station post 2.4 m to its
+  // south-east (sims/place.js, fixed angle 0.9 rad, not the figure's yaw), so
+  // each guide with a station keeps open floor on that side: Yara south of
+  // the Tagesplan, her post clear of the hall wall and the Workshop door.
+  cast("yara", 12.1, 12.45),
   cast("lehrerin", 12, 2),
   cast("matilda", 10, 2),
   cast("lea", 2.9, 8.5),
@@ -969,10 +977,14 @@ const npcs = [
   cast("quirin", 8, 10),
   cast("mathe", 1.9, 9.6, { female: true, hat: "glasses", look: { hairStyle: "bun", hair: "#6b4a2b" } }),
   cast("tobi", 19, 4),
-  cast("coach", 21, 11), // between the armchairs, in line with the passage
-  // by the screen, east of the workbenches, in line with the passage from
-  // the Coaching-Raum (see the connecting door there)
-  cast("workshop", 22.8, 14.3),
+  // south of the east armchair, in line with the passage; his post stands
+  // east of the walk line through it, clear of the passage's jamb
+  cast("coach", 22.1, 11.1),
+  // east of the workbenches, in line with the passage from the Coaching-Raum
+  // (see the connecting door there), far enough from the open east edge that
+  // «Hingehen» lands in front of him inside the room and his post stands on
+  // the floor between him and the screen
+  cast("workshop", 21.7, 13.9),
   ...extras,
 ];
 
