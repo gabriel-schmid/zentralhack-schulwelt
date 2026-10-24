@@ -492,7 +492,7 @@ const landmarks = [
   }),
   // The day plan on the hall side of the Coaching-Raum wall (x = 14), facing
   // west: a framed board with a header strip (its name sign), dark columns
-  // for the fixed points (Morgenrunde, Mathe-Checkpoint, Abendrunde) and
+  // for the fixed points (Morgenrunde, Mathe-Fixpunkt, Abendrunde) and
   // lighter blocks in three lanes for the time each learner plans freely.
   // Its anchor sits behind the wall, in the Coaching-Raum's corner.
   roomDoc("schulhaus_tagesplan", anchors.tagesplan, ({ box, sign }) => {
@@ -585,7 +585,7 @@ const npcs = [
   cast("mathe", 1.9, 9.6, { female: true, hat: "glasses", look: { hairStyle: "bun", hair: "#6b4a2b" } }),
   cast("quirin", 8, 10),
   cast("tobi", 19, 4),
-  cast("yara", 12.7, 12.8, { subject: "Lernende · Tagesplan" }),
+  cast("yara", 12.7, 12.8),
   cast("coach", 19, 11),
   cast("workshop", 21, 15),
 ];
@@ -601,33 +601,12 @@ const COACH_PROMPT = [
   "Abschluss: Will die Person zum Ende kommen oder ist ein nächster Schritt klar, fasse in zwei Sätzen zusammen, was sie als Nächstes vorhat, und halte eine konkrete Abmachung fest (was, bis wann, woran man es merkt). Frag, ob das so stimmt.",
 ].join(" ");
 
-// Route texts, plus the coach's Genius prompt and Yara's new role at the
-// Tagesplan (the station is wired later through the tag hw-npc-yara).
+// Route texts (all from route-dialogues.mjs, Yara's Tagesplan role included;
+// the station is wired later through the tag hw-npc-yara), plus the coach's
+// Genius prompt.
 const dialogue = {
   ...routeDialogue,
   coach: { ...routeDialogue.coach, geniusSystemPrompt: COACH_PROMPT },
-  yara: {
-    intro:
-      "Hoi, ich bin Yara. Planen ist mein Ding, gerade organisiere ich einen Tausch- und Flicknachmittag. Hier am Tagesplan planst du deinen eigenen Tag: Die dunklen Blöcke sind fix, die hellen füllst du selbst. Die Coaches sehen alle Pläne und merken so früh, wer Hilfe braucht.",
-    hint: "Frau Arnold hat es in der Morgenrunde gesagt: Drei Dinge sind fix.",
-    phases: [
-      { type: "intro" },
-      {
-        type: "choice",
-        question: "Welche Blöcke sind heute für alle fix?",
-        options: [
-          { text: "Morgenrunde, Mathe-Checkpoint und Abendrunde", correct: true },
-          { text: "Alle, der Tagesplan ist für alle gleich", correct: false },
-          { text: "Keine, alle planen den ganzen Tag frei", correct: false },
-        ],
-      },
-      {
-        type: "complete",
-        message:
-          "Genau. Dazwischen planst du selbst: Fach, eigenes Projekt, Coaching oder Workshop. Und für meinen Nachmittag suche ich immer noch jemanden, der beim Aufräumen hilft.",
-      },
-    ],
-  },
 };
 
 const level = {

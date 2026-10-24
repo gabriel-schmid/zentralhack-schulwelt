@@ -116,40 +116,40 @@ Lernatelier, ④ Interessen-Atelier, ⑤ Coaching-Raum, ⑥ Workshop-Raum, ⑦ A
 
 | # | Element | Where now / planned | Line or mechanic | Status |
 | - | ------- | ------------------- | ---------------- | ------ |
-| 1 | Durchmischung | ② Lea (2. Jahr) and Joel (3. Jahr) at one table; Tagesplan Mathe-Fixpunkt | Joel: «Dafür habe ich ihr vorhin den Grundwert erklärt.» Tagesplan: «Verbindlicher Fachtermin für alle Jahrgänge.» Nobody names the mixing as a value | weak |
-| 2 | Klassen, Zugehörigkeit | – | No line. Frau Arnold's «Wer erzählt, was er oder sie heute vorhat?» implies a group but never says «Klasse» | missing |
-| 3 | Respekt gegenüber LP, Vorbild | – (persona material only: Meinhard «role-model type», Tesla asks for feedback on his own design) | No line | missing |
+| 1 | Durchmischung | ② Lea (2. Jahr) and Joel (3. Jahr) at one table; Tagesplan Mathe-Fixpunkt | Joel: «Dafür habe ich ihr vorhin den Grundwert erklärt.» Tagesplan: «Verbindlicher Fachtermin für alle Jahrgänge.» Nobody names the mixing as a value | covered (Matilda: «In der Lernzeit sitze ich oft neben Jüngeren, das hilft beiden») |
+| 2 | Klassen, Zugehörigkeit | – | No line. Frau Arnold's «Wer erzählt, was er oder sie heute vorhat?» implies a group but never says «Klasse» | covered (Matilda conversation + quiz; phrased as her day in this example, open decision 3 untouched) |
+| 3 | Respekt gegenüber LP, Vorbild | – (persona material only: Meinhard «role-model type», Tesla asks for feedback on his own design) | No line | covered as Vorbild (Herr Tesla: «auch ich lerne noch und brauche Rückmeldung») |
 | 4/13 | Abwechslung | ① Frau Arnold; Tagesplan free blocks | Arnold: «Dazwischen plant ihr selbst: Fach, eigenes Projekt, Coaching oder Workshop.» Tagesplan options Lernzeit / Eigenes Projekt / Workshop / 1:1 / Pause | covered |
 | 5 | Klare Struktur | ① Frau Arnold; hall Yara + Tagesplan | Arnold: «Fix sind heute drei Dinge…» Yara: «Die dunklen Blöcke sind fix, die hellen füllst du selbst.» Choice «Welche Blöcke sind heute für alle fix?» | covered |
-| 6 | Feedbackkultur | ③ Frau Sutter; ④ Tobi (testers); Tagesplan Abendrunde; Konflikt «Probedurchlauf» | Sutter: «Rückmeldung, keine Note». Tobi: «Alle Testenden verpassen die gleiche Abzweigung.» Feedback as a normal, two-way habit is never named | weak |
-| 7/36 | Innere Differenzierung | ③ Frau Sutter; Tagesplan «Sicht Coach» | Sutter: «Lea Prozente, Joel lineare Funktionen» is a difference by year (external). Coach view shows different status and next step per learner, but only if the visitor opens that tab | weak |
-| 8/35 | Praxisbezug «Wieso lerne ich das?» | ② Quirin; ① Matilda; ② Joel | Quirin: «Fahrpläne lesen und Wartezeiten ausrechnen ist Mathe.» Matilda: quantities and cost for twelve portions. Joel: T-shirt cost term. The question itself is only in the Genius prompt | covered |
+| 6 | Feedbackkultur | ③ Frau Sutter; ④ Tobi (testers); Tagesplan Abendrunde; Konflikt «Probedurchlauf» | Sutter: «Rückmeldung, keine Note». Tobi: «Alle Testenden verpassen die gleiche Abzweigung.» Feedback as a normal, two-way habit is never named | covered (Tobi: «Rückmeldung ist normal, auch für mich»; Herr Tesla asks his testers) |
+| 7/36 | Innere Differenzierung | ③ Frau Sutter; Tagesplan «Sicht Coach» | Sutter: «Lea Prozente, Joel lineare Funktionen» is a difference by year (external). Coach view shows different status and next step per learner, but only if the visitor opens that tab | covered (Lea: «gleicher Tisch, ganz verschiedene Hilfe»; Joel: «Gleicher Tisch, andere Ziele») |
+| 8/35 | Praxisbezug «Wieso lerne ich das?» | ② Quirin; ① Matilda; ② Joel | Quirin: «Fahrpläne lesen und Wartezeiten ausrechnen ist Mathe.» Matilda: quantities and cost for twelve portions. Joel: T-shirt cost term. The question itself is only in the Genius prompt | covered (Quirin now says «Wieso lerne ich Zeitspannen rechnen?» aloud) |
 | 9/22 | Interesse / Wahlmöglichkeiten, besonderes Interesse | ④ Tobi, Interessen-Atelier; Tagesplan «Eigenes Projekt» | Tobi: «In der freien Lernzeit baue ich einen Audio-Pfad…» Tagesplan: «Zeit für das, was dich interessiert.» | covered |
-| 10 | Raum für intrinsische Motivation (core) | ⑥ Tesla; Konflikt station | Tesla: «Der Workshop ist freiwillig: Wer kommt, will es wissen.» Konflikt, Meinhard: «Die Motivation dafür muss von euch kommen, nicht von mir.» The core idea is never stated on the main route | weak |
+| 10 | Raum für intrinsische Motivation (core) | ⑥ Tesla; Konflikt station | Tesla: «Der Workshop ist freiwillig: Wer kommt, will es wissen.» Konflikt, Meinhard: «Die Motivation dafür muss von euch kommen, nicht von mir.» The core idea is never stated on the main route | covered (Herr Meinhard intro: «die Motivation kommt von dir») |
 | 11/23/38 | Struktur / Rahmenbedingungen: Zeit, Räume, Personen | Tagesplan (Yara); door signs ①–⑦; «Im Haus» tab | «Jede Wahl führt zu einem Ort hier im Schulhaus.» Each block names a room and a person. Lehrplan/Lernziel: see 14 | covered |
 | 12 | Überprüfbarkeit | ③ Frau Sutter; Tagesplan status | Sutter: «Am Checkpoint frage ich nach Erklärungen.» Joel: «Video geschaut heisst aber noch nicht verstanden.» | covered |
-| 14/25 | Mindestanforderung / LP, derived by teachers | ③ Frau Sutter; ② Quirin; Tagesplan rule | Sutter: «Jede Klasse hat verbindliche Lernziele.» Tagesplan: «Mindestens ein Block Lernzeit für die verbindlichen Ziele.» That teachers derive them from the framework curriculum, with some scope, is not said | weak (binding: covered; derivation: missing) |
-| 15 | Verbindlichkeit | ⑤ Meinhard intro; Tagesplan rule; Konflikt | Meinhard: «Am Schluss halten wir deinen nächsten Schritt fest.» Konflikt: «Schreib es auf. Am Freitag schauen wir kurz darauf.» Follow-up of an agreement is only in the optional station | weak |
+| 14/25 | Mindestanforderung / LP, derived by teachers | ③ Frau Sutter; ② Quirin; Tagesplan rule | Sutter: «Jede Klasse hat verbindliche Lernziele.» Tagesplan: «Mindestens ein Block Lernzeit für die verbindlichen Ziele.» That teachers derive them from the framework curriculum, with some scope, is not said | covered (Frau Sutter: «leiten wir Lehrpersonen aus dem Lehrplan ab, dabei haben wir etwas Spielraum») |
+| 15 | Verbindlichkeit | ⑤ Meinhard intro; Tagesplan rule; Konflikt | Meinhard: «Am Schluss halten wir deinen nächsten Schritt fest.» Konflikt: «Schreib es auf. Am Freitag schauen wir kurz darauf.» Follow-up of an agreement is only in the optional station | covered (Frau Arnold: «Ein Plan, den man laut sagt, gilt mehr»; Herr Meinhard: Freitag follow-up) |
 | 16/42 | Briefing vom Tag, Morgenrunde | ① Frau Arnold, Matilda; Tagesplan «Morgenrunde» | Arnold intro; Matilda states her plan. Tagesplan: «Briefing: Was steht heute an?» | covered |
-| 17 | 1:1 planbar | Tagesplan option «1:1 bei Herrn Meinhard» | A free block can be booked as 1:1. No character says it | weak |
-| 18/42 | Abschluss / Highlights, Abendrunde | ① Frau Arnold (choice + complete); sign ⑦; Tagesplan «Abendrunde» | Arnold choice: «Wir zeigen, was weitergekommen ist und was noch offen ist.» Tagesplan: «Highlights erzählen». At ⑦ there is only a sign, no character | weak |
-| 19 | Freitag: 1:1 und Feedback | Konflikt (Freitag · Probedurchlauf); coach prompt | Konflikt only. pedagogy.md lists it; no route line | missing (route) |
+| 17 | 1:1 planbar | Tagesplan option «1:1 bei Herrn Meinhard» | A free block can be booked as 1:1. No character says it | covered (Yara conversation + quiz «Ein 1:1 beim Coach») |
+| 18/42 | Abschluss / Highlights, Abendrunde | ① Frau Arnold (choice + complete); sign ⑦; Tagesplan «Abendrunde» | Arnold choice: «Wir zeigen, was weitergekommen ist und was noch offen ist.» Tagesplan: «Highlights erzählen». At ⑦ there is only a sign, no character | covered (Frau Arnold quiz «Ein Highlight und was noch offen ist», complete names ⑦; sign text in routeSigns updated, the built sign label is not) |
+| 19 | Freitag: 1:1 und Feedback | Konflikt (Freitag · Probedurchlauf); coach prompt | Konflikt only. pedagogy.md lists it; no route line | covered (Herr Meinhard intro: «Am Freitag schauen wir im 1:1, ob es geklappt hat») |
 | 20 | Timeline / progress path with milestones | Konflikt shows Montag → Freitag with a formative meter | No milestone path; the Tagesplan covers one day | missing |
 | 21 | Lehrer-Persona | Frau Arnold, Frau Sutter, Herr Meinhard, Herr Tesla | All four speak. Frau Arnold and Frau Sutter have no entry in personas.md | covered (docs gap) |
 | 24 | Formativ → summativ | ③ Frau Sutter; Tagesplan coach view; Konflikt meter | Sutter choice: «Ersetzt die Rückmeldung am Checkpoint die Prüfung?» → «Nein, die Prüfung folgt später nach dem geltenden Notenreglement». pedagogy.md still calls the Dorfplatz presentation the summative moment, which shared-concept open decision 6 does not confirm | covered (doc conflict) |
-| 26 | Minimum objectives assessed; failing possible | Konflikt endings; coach prompt | Konflikt: «Für die Mindestanforderung fehlt dein eigener Nachweis.» No route line says that failing a subject is possible | weak |
+| 26 | Minimum objectives assessed; failing possible | Konflikt endings; coach prompt | Konflikt: «Für die Mindestanforderung fehlt dein eigener Nachweis.» No route line says that failing a subject is possible | covered (Frau Sutter: «Wer die Ziele nicht erreicht, kann das Fach nicht bestehen») |
 | 27 | Grading regulations unchanged | ③ Frau Sutter; Tagesplan coach view | «nach dem geltenden Notenreglement»; «nach dem bestehenden Notenreglement» | covered |
 | 28 | Freedom from the beginning | ② Quirin; ③ Sutter; ① Arnold; Tagesplan | Quirin: «In Mathe habe ich die Mindestanforderungen noch nicht geschafft, und trotzdem darf ich an meinem Projekt arbeiten.» Choice «Freiheit gilt von Anfang an, die Mindestanforderungen bleiben». Sutter: «Den Weg dahin planen sie selbst.» | covered |
 | 29 | Scope of freedom (open) | Tagesplan | «Regel in diesem Beispiel» marks the rule as an example | covered (kept open) |
-| 30 | Coaches advise, cannot force | Konflikt (Meinhard); Genius prompt | «Zum Lernen zwingen kann ich dich nicht.» Only on one Konflikt branch and in the prompt; Meinhard's fixed intro does not say it | weak |
+| 30 | Coaches advise, cannot force | Konflikt (Meinhard); Genius prompt | «Zum Lernen zwingen kann ich dich nicht.» Only on one Konflikt branch and in the prompt; Meinhard's fixed intro does not say it | covered (Herr Meinhard intro: «Zwingen kann ich niemanden») |
 | 31 | Formative shows risk early | ③ Sutter complete; Tagesplan status «gefährdet»; Konflikt meter | Sutter: «Die Rückmeldung zeigt früh, ob es für die Lernziele reicht, damit die Prüfung keine Überraschung wird.» | covered |
 | 32 | Disciplinary measures last resort (triggers open) | Konflikt, branch «Was passiert, wenn ich einfach nichts mache?» | «…als letztes Mittel auch Disziplinarmassnahmen möglich. So weit soll es nicht kommen.» Only one branch | weak (acceptable as a side detail) |
 | 33 | Not every activity must interest everyone | ① Matilda | «Und nein, ich zeichne keine Plakate dafür. Zeichnen ist gerade nur für mich.» | covered |
-| 34 | Transfer of shared competencies to interests | Tagesplan Tobi («schreibt eine Wegbeschreibung genauer (Sprachziel)»); ② Quirin | Visible in the coach view; Tobi's dialogue says «Mathe und Deutsch bleiben im Plan» but not that his project serves a Sprachziel | weak |
-| 37 | Specialisation alongside minimum objectives | ④ Tobi; ② Quirin | Implicit in both | weak |
+| 34 | Transfer of shared competencies to interests | Tagesplan Tobi («schreibt eine Wegbeschreibung genauer (Sprachziel)»); ② Quirin | Visible in the coach view; Tobi's dialogue says «Mathe und Deutsch bleiben im Plan» but not that his project serves a Sprachziel | covered (Tobi: «das zählt sogar für mein Deutsch-Ziel») |
+| 37 | Specialisation alongside minimum objectives | ④ Tobi; ② Quirin | Implicit in both | covered (Tobi, Quirin: own project, the binding subjects stay in the plan) |
 | 39 | Videos + comprehension questions before checkpoints | ② Lea, Joel; Tagesplan Mathe-Fixpunkt | Lea: «Joel und ich haben unsere Mathe-Videos geschaut und die Verständnisfragen selbst beantwortet.» Joel: «Video geschaut heisst aber noch nicht verstanden.» | covered |
-| 40 | Checkpoints alternate with accompanied self-study | ② Lea; ③ Sutter; Tagesplan Fixpunkt → Lernzeit | Lea: «Zuerst fragen wir uns gegenseitig, erst dann Frau Sutter.» Sutter: «Wer auf mich wartet, notiert die Frage…» The rhythm (checkpoint, then accompanied Lernzeit, then the next checkpoint) is not said | weak |
-| 41 | Optional workshops with expert knowledge | ⑥ Herr Tesla; Säure-Base-Labor | «Der Workshop ist freiwillig.» Optional: covered. Expertise (why a workshop coach rather than the class teacher) is not said | weak |
+| 40 | Checkpoints alternate with accompanied self-study | ② Lea; ③ Sutter; Tagesplan Fixpunkt → Lernzeit | Lea: «Zuerst fragen wir uns gegenseitig, erst dann Frau Sutter.» Sutter: «Wer auf mich wartet, notiert die Frage…» The rhythm (checkpoint, then accompanied Lernzeit, then the next checkpoint) is not said | covered (Frau Sutter: «Nach dem Fixpunkt kommt begleitete Lernzeit, dann der nächste Fixpunkt») |
+| 41 | Optional workshops with expert knowledge | ⑥ Herr Tesla; Säure-Base-Labor | «Der Workshop ist freiwillig.» Optional: covered. Expertise (why a workshop coach rather than the class teacher) is not said | covered (Herr Tesla: freiwillig, «Fachwissen, das ihr in euren eigenen Projekten brauchen könnt» + quiz) |
 | 43 | 1:1 coaching | ⑤ Herr Meinhard (Genius) | «Jetzt geht es um dich, nicht um eine Rolle.» Live conversation with the visitor | covered |
 | 44 | Safety (Suva) | ⑥ Säure-Base-Labor; Sägestation (Werkstatt, not on the route) | Lab: protective gear step, «nie etwas davon kosten». Source given as «Allgemeine Laborregeln für den Chemieunterricht»; no Suva source anywhere in `widgets/` or `level/` | weak |
 
@@ -158,12 +158,13 @@ Inconsistencies found while checking (to fix, not concept gaps):
 - Tagesplan tab «Im Haus» still says Aula «Hier triffst du Lea» and Pausenzone
   «Hier sind Yara und Matilda». On the route Lea is in the Lernatelier, Matilda
   in the Aula and Yara at the Tagesplan in the entrance hall.
-- `route-dialogues.mjs` keeps a Pausenzone Yara with the formative question
-  «Wozu sind die Rückmeldungen unterwegs da?». `build-schulhaus.mjs` overrides
-  Yara with the Tagesplan text, so that question is no longer live (Frau Sutter
-  now carries the formative point).
-- Frau Arnold says «Mathe-Checkpoint»; the Tagesplan block is «Mathe-Fixpunkt».
-  One term is easier for visitors.
+- **Fixed (route dialogues):** `route-dialogues.mjs` kept a Pausenzone Yara with the formative question
+  «Wozu sind die Rückmeldungen unterwegs da?» that `build-schulhaus.mjs`
+  overrode. The stale entry is gone; Yara's Tagesplan conversation is now the
+  only Yara text, and Frau Sutter carries the formative point.
+- **Fixed (route dialogues):** Frau Arnold said «Mathe-Checkpoint»; the Tagesplan block is «Mathe-Fixpunkt».
+  All dialogues, Frau Sutter's subtitle and routeSigns now say «Mathe-Fixpunkt»;
+  Yara's text lives only in `route-dialogues.mjs`.
 - The Konflikt station is listed under the Workshop-Raum in places.md and under
   the Coaching-Raum in the Tagesplan. Its place in the world is not settled.
 - pedagogy.md names the Dorfplatz presentation as the summative assessment;
@@ -171,6 +172,12 @@ Inconsistencies found while checking (to fix, not concept gaps):
   agreed assessment model. The Konflikt station correctly keeps it open.
 
 ## 3. Gaps and instructions for the dialogue writer
+
+Done on 24 October 2026: every scripted character is now a guided
+conversation (intro, two or three conversation turns, one quiz, closing line)
+in `level/route-dialogues.mjs`, carrying the elements below. Still open: the
+timeline (20), the Suva source for safety (44) and the Tagesplan «Im Haus»
+tab.
 
 Dialogue format: `intro`, optional `hint`, optional `choice` (correct option
 first), `complete`. «Step 1» = intro, «step 2» = choice, «step 3» = complete.
