@@ -2467,7 +2467,7 @@
     },
     {
      "type": "choice",
-     "question": "Ob ja oder nein: Nicht alles muss alle interessieren. Ich zeichne zum Beispiel sehr gern, aber Plakate fürs Essen mache ich keine. Das Zeichnen gehört gerade nur mir.",
+     "question": "Ob ja oder nein: Nicht alles muss alle interessieren. Ich zeichne zum Beispiel sehr gern, aber im Moment nur für mich. Plakate fürs Essen mache ich deshalb keine.",
      "options": [
       {"text":"Allein planen klingt einsam.","correct":true,"feedback":"…"},
       {"text":"Und deine Klasse?","correct":true,"feedback":"…"}

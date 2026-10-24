@@ -22,7 +22,7 @@ world only loads exactly those bytes.
 | Level | Repo source | Live document | Revision | Asset | sha256 of the live file |
 | ----- | ----------- | ------------- | -------- | ----- | ----------------------- |
 | Bergdorf (village, on the world Hazu `TRAIMeIVPNXq5wfkfTG2`) | `level/build-bergdorf.mjs` → `level/bergdorf.json` | `doc_eea84d56d6c0485c8b6fd000cda306ac` | 3 | `asset_3c0811d9f4e2460ebef9615a250ba272` | `1ad8c838ce49c01a7065d422156d2c531433c11c40f69253712e65cc1ad168b4` |
-| Schulhaus (on the place Hazu `_m0-qRVAAUwmuxfswuPp`) | `level/build-schulhaus.mjs` + `level/route-dialogues.mjs` → `level/schulhaus.json` | `doc_0efde5e6ab4d4b90bff0952529122f55` | 9 | `asset_0df6ae8163c84fe4aebea90bf14a012e` | `cd4fae555322a194f852e8793a5e27e435ecaa0ae3da49007e76c982e0cea99d` |
+| Schulhaus (on the place Hazu `_m0-qRVAAUwmuxfswuPp`) | `level/build-schulhaus.mjs` + `level/route-dialogues.mjs` → `level/schulhaus.json` | `doc_0efde5e6ab4d4b90bff0952529122f55` | 10 | `asset_ef9fda48bfb14f4097d526c3a4b20063` | `66664d082c9415a268883f517edfc517855935a9af399575750de363f03246f8` |
 
 The uploaded file is not the raw repo JSON. It is the converted `level@1`
 document: the engine's `levelRoundTrip` (Hazu World SDK,
