@@ -124,6 +124,12 @@ const DEFS = {
       { shape: "box", pos: [0, 0.86, 0], scale: ["w", 0.08, "d"], color: "#c8955a", mat: "WOOD" },
       { for: { f: [-1, -0.34, 0.34, 1], sz: [-1, 1] }, shape: "box", pos: ["f*(w/2-0.08)", 0.41, "sz*(d/2-0.08)"], scale: [0.08, 0.82, 0.08], color: "#5f6b78", mat: "METAL" },
       { shape: "box", pos: [0, 0.2, 0], scale: ["w-0.1", 0.03, "d-0.12"], color: "#a8744a", mat: "WOOD" },
+      { for: { f: [-0.25, 0.25] }, shape: "box", pos: ["f*w", 0.74, "d/2-0.03"], scale: [0.6, 0.16, 0.04], color: "#a8744a", mat: "WOOD" },
+      { for: { f: [-0.25, 0.25] }, shape: "box", pos: ["f*w", 0.74, "d/2-0.005"], scale: [0.14, 0.03, 0.03], color: "#2b2f36", mat: "METAL", skipLean: true },
+      { for: { s: [-1, 1] }, parts: [
+        { shape: "box", pos: ["w/2-0.3", 0.98, "s*(d/2-0.12)"], scale: [0.2, 0.14, 0.06], color: "#4a6fa5", mat: "METAL" },
+        { shape: "box", pos: ["w/2-0.3", 0.91, "s*(d/2-0.12)+s*0.08"], scale: [0.04, 0.04, 0.14], color: "#d4d8de", mat: "METAL", skipLean: true },
+      ] },
     ],
   },
   // sofa or armchair: base, back, armrests, n seat cushions
@@ -148,14 +154,136 @@ const DEFS = {
       { repeat: { i: "n" }, shape: "box", pos: [0, "0.05+i*(h-0.07)/(n-1)", 0], scale: ["w", 0.035, "d"], color: "#8a6236", mat: "WOOD" },
     ],
   },
-  // potted plant
+  // potted plant: tapered pot with a rim, a bushy crown of leaf clumps
   plant: {
     parts: [
-      { shape: "cyl8", pos: [0, 0.22, 0], scale: [0.46, 0.44, 0.46], color: "#c0663f", mat: "PAINT" },
-      { shape: "ico", pos: [0, 0.95, 0], scale: [0.85, 1.05, 0.85], color: "#4c9a5a", mat: "LEAF" },
-      { shape: "ico", pos: [0.12, 1.35, -0.06], scale: [0.5, 0.6, 0.5], color: "#5aae68", mat: "LEAF", skipLean: true },
+      { shape: "pot", pos: [0, 0.22, 0], color: "#c0663f", mat: "PAINT" },
+      { shape: "cyl8", pos: [0, 0.44, 0], scale: [0.54, 0.06, 0.54], color: "#a9542f", mat: "PAINT" },
+      { shape: "box", pos: [0, 0.6, 0], scale: [0.05, 0.3, 0.05], color: "#5a3f24", mat: "WOOD", skipLean: true },
+      { shape: "ico", pos: [0, 0.95, 0], scale: [0.82, 0.72, 0.82], color: "#5aae68", mat: "LEAF" },
+      { for: { a: [0, 2.1, 4.2] }, shape: "ico", pos: ["0.26*cos(a)", 0.78, "0.26*sin(a)"], scale: [0.44, 0.38, 0.44], color: "#4c9a5a", mat: "LEAF", skipLean: true },
+      { shape: "ico", pos: [0.05, 1.3, -0.03], scale: [0.52, 0.5, 0.52], color: "#6cc07a", mat: "LEAF" },
     ],
   },
+  // board on a wall, front +z from the wall face: surface c, frame f (wood
+  // when `wd`, else aluminium), a tray with chalk and a sponge when `tr`
+  board: {
+    params: ["w", "h", "y", "c", "f", "wd", "tr"],
+    defaults: { f: "#8a6236", wd: 1, tr: 1 },
+    parts: [
+      { shape: "box", pos: [0, "y+h/2", 0.02], scale: ["w", "h", 0.03], color: "c", mat: "PAINT" },
+      { if: "wd", parts: [
+        { for: { s: [-1, 1] }, shape: "box", pos: [0, "y+h/2+s*(h/2+0.025)", 0.03], scale: ["w+0.1", 0.05, 0.05], color: "f", mat: "WOOD" },
+        { for: { s: [-1, 1] }, shape: "box", pos: ["s*(w/2+0.025)", "y+h/2", 0.03], scale: [0.05, "h", 0.05], color: "f", mat: "WOOD" },
+      ] },
+      { if: "!wd", parts: [
+        { for: { s: [-1, 1] }, shape: "box", pos: [0, "y+h/2+s*(h/2+0.02)", 0.03], scale: ["w+0.08", 0.04, 0.05], color: "f", mat: "METAL" },
+        { for: { s: [-1, 1] }, shape: "box", pos: ["s*(w/2+0.02)", "y+h/2", 0.03], scale: [0.04, "h", 0.05], color: "f", mat: "METAL" },
+      ] },
+      { if: "tr", parts: [
+        { shape: "box", pos: [0, "y-0.07", 0.07], scale: ["w*0.8", 0.025, 0.11], color: METAL, mat: "METAL" },
+        { shape: "box", pos: [0, "y-0.05", 0.12], scale: ["w*0.8", 0.03, 0.012], color: METAL, mat: "METAL", skipLean: true },
+        { for: { k: [-0.3, -0.22, 0.12] }, shape: "box", pos: ["k*w", "y-0.048", 0.07], scale: [0.08, 0.016, 0.016], color: "#ffffff", mat: "PAINT", skipLean: true },
+        { shape: "box", pos: ["0.3*w", "y-0.04", 0.07], scale: [0.12, 0.04, 0.05], color: "#f6c445", mat: "FABRIC", skipLean: true },
+      ] },
+    ],
+  },
+  // stage curtain gathered in n folds (alternating shades), front +z
+  curtain: {
+    params: ["n", "h"],
+    parts: [
+      { repeat: { i: "n" }, shape: "cyl8", pos: ["(i-(n-1)/2)*0.25", "h/2", 0], scale: [0.29, "h", 0.2], color: "i%2 ? '#8f2a37' : '#b23a48'", mat: "FABRIC" },
+    ],
+  },
+  // lectern: base, column, sloping top with a ledge, a school badge, a mic
+  lectern: {
+    parts: [
+      { shape: "box", pos: [0, 0.02, 0], scale: [0.55, 0.04, 0.45], color: "#5a3b22", mat: "WOOD" },
+      { shape: "box", pos: [0, 0.52, 0], scale: [0.42, 0.96, 0.32], color: "#8a6236", mat: "WOOD" },
+      { shape: "box", pos: [0, 0.5, 0.165], scale: [0.36, 0.8, 0.02], color: "#a8744a", mat: "WOOD" },
+      { shape: "box", pos: [0, 1.06, 0], rot: [-0.3, 0, 0], scale: [0.62, 0.05, 0.46], color: "#6e4c2a", mat: "WOOD" },
+      { shape: "box", pos: [0, 1.0, -0.22], scale: [0.6, 0.06, 0.03], color: "#5a3b22", mat: "WOOD", skipLean: true },
+      { shape: "cyl8", pos: [0, 0.72, 0.18], rot: [1.5708, 0, 0], scale: [0.18, 0.02, 0.18], color: "#3288EF", mat: "PAINT", skipLean: true },
+      { shape: "cyl6", pos: [0.18, 1.22, 0.05], rot: [-0.5, 0, 0], scale: [0.02, 0.3, 0.02], color: "#2b2f36", mat: "METAL", skipLean: true },
+    ],
+  },
+  // low (coffee) table: rounded top, four legs, a shelf below, a mug and a notebook
+  lowtable: {
+    params: ["w", "d", "h"],
+    defaults: { h: 0.45 },
+    parts: [
+      { shape: "rbox", pos: [0, "h-0.03", 0], scale: ["w", 0.06, "d"], color: "#d6b07a", mat: "WOOD" },
+      { for: { sx: [-1, 1], sz: [-1, 1] }, shape: "box", pos: ["sx*(w/2-0.08)", "(h-0.06)/2", "sz*(d/2-0.08)"], scale: [0.06, "h-0.06", 0.06], color: "#8a6236", mat: "WOOD" },
+      { shape: "box", pos: [0, 0.12, 0], scale: ["w-0.2", 0.025, "d-0.2"], color: "#a8744a", mat: "WOOD" },
+      { shape: "box", pos: ["-w*0.18", "h+0.012", 0.02], rot: [0, 0.3, 0], scale: [0.21, 0.025, 0.29], color: "#3288EF", mat: "PAINT", skipLean: true },
+      { shape: "cyl8", pos: ["w*0.22", "h+0.05", "-d*0.1"], scale: [0.08, 0.1, 0.08], color: "#f4efe6", mat: "PAINT", skipLean: true },
+    ],
+  },
+  // red toolbox with a lid and a carrying handle
+  toolbox: {
+    parts: [
+      { shape: "box", pos: [0, 0.1, 0], scale: [0.46, 0.2, 0.22], color: "#c0392b", mat: "PAINT" },
+      { shape: "box", pos: [0, 0.225, 0], scale: [0.48, 0.05, 0.24], color: "#962d22", mat: "PAINT" },
+      { for: { s: [-1, 1] }, shape: "box", pos: ["s*0.12", 0.28, 0], scale: [0.025, 0.07, 0.025], color: "#2b2f36", mat: "METAL", skipLean: true },
+      { shape: "box", pos: [0, 0.32, 0], scale: [0.27, 0.025, 0.03], color: "#2b2f36", mat: "METAL", skipLean: true },
+      { for: { s: [-1, 1] }, shape: "box", pos: ["s*0.16", 0.18, 0.115], scale: [0.04, 0.05, 0.012], color: METAL, mat: "METAL", skipLean: true },
+    ],
+  },
+  // blue tote crate, open on top, with wood offcuts sticking out
+  crate: {
+    parts: [
+      { shape: "box", pos: [0, 0.01, 0], scale: [0.44, 0.02, 0.32], color: "#1f5fae", mat: "PAINT" },
+      { for: { s: [-1, 1] }, shape: "box", pos: [0, 0.1, "s*0.15"], scale: [0.44, 0.2, 0.02], color: "#2c7be5", mat: "PAINT" },
+      { for: { s: [-1, 1] }, shape: "box", pos: ["s*0.21", 0.1, 0], scale: [0.02, 0.2, 0.28], color: "#2c7be5", mat: "PAINT" },
+      { shape: "box", pos: [-0.06, 0.19, 0.02], rot: [0, 0.2, 0.5], scale: [0.36, 0.05, 0.08], color: "#e2c497", mat: "WOOD" },
+      { shape: "box", pos: [0.08, 0.16, -0.04], rot: [0.3, -0.3, 0], scale: [0.07, 0.07, 0.3], color: "#c8955a", mat: "WOOD", skipLean: true },
+    ],
+  },
+  // one school locker column, 0.4 m wide, doors toward +z: two compartments
+  // with coloured doors (vent slits, handle, number plate) on a plinth under
+  // a cap; `o` opens the lower (1) or upper (2) door on its hinge, showing a
+  // school bag or a jacket inside
+  locker: {
+    params: ["c", "o"],
+    defaults: { o: 0 },
+    let: { W: 0.4, D: 0.5, hc: 0.885 },
+    parts: [
+      { for: { s: [-1, 1] }, shape: "box", pos: ["s*(W/2-0.008)", 0.985, 0], scale: [0.016, 1.77, "D"], color: "#9aa1ab", mat: "METAL" },
+      { shape: "box", pos: [0, 1.885, 0.005], scale: ["W+0.004", 0.03, "D+0.01"], color: "#8a919b", mat: "METAL" },
+      { shape: "box", pos: [0, 0.05, -0.03], scale: ["W-0.01", 0.1, "D-0.06"], color: "#3d4450", mat: "PAINT" },
+      { for: { t: [0, 1] }, if: "o != t+1", parts: [
+        { shape: "box", pos: [0, "0.1+hc*t+hc/2", 0], scale: ["W-0.02", "hc", "D-0.01"], color: "#23272e", mat: "PAINT" },
+        { shape: "box", pos: [0, "0.1+hc*t+hc/2", "D/2+0.01"], scale: ["W-0.03", "hc-0.03", 0.02], color: "c", mat: "PAINT" },
+        { for: { v: [0, 1, 2] }, shape: "box", pos: [-0.02, "0.1+hc*(t+1)-0.1-v*0.035", "D/2+0.022"], scale: [0.22, 0.012, 0.006], color: "#1f2329", mat: "PAINT", skipLean: true },
+        { shape: "box", pos: ["W/2-0.055", "0.1+hc*t+hc/2", "D/2+0.032"], scale: [0.022, 0.15, 0.022], color: "#d4d8de", mat: "METAL", skipLean: true },
+        { shape: "box", pos: [-0.02, "0.1+hc*(t+1)-0.24", "D/2+0.022"], scale: [0.07, 0.035, 0.006], color: "#eee8d8", mat: "PAINT", skipLean: true },
+      ] },
+      { if: "o", let: { y0: "0.1+hc*(o-1)" }, parts: [
+        { shape: "box", pos: [0, "y0+hc/2", "-D/2+0.015"], scale: ["W-0.02", "hc", 0.03], color: "#b8bec7", mat: "METAL" },
+        { for: { s: [0, 1] }, shape: "box", pos: [0, "y0+0.01+s*(hc-0.02)", 0], scale: ["W-0.02", 0.02, "D-0.01"], color: "#8a919b", mat: "METAL" },
+        { frame: ["-W/2+0.015", 0, "D/2", -1.75], parts: [
+          { shape: "box", pos: ["(W-0.03)/2", "y0+hc/2", 0.01], scale: ["W-0.03", "hc-0.03", 0.02], color: "c", mat: "PAINT" },
+          { for: { v: [0, 1, 2] }, shape: "box", pos: ["(W-0.03)/2-0.02", "y0+hc-0.1-v*0.035", 0.022], scale: [0.22, 0.012, 0.006], color: "#1f2329", mat: "PAINT", skipLean: true },
+          { shape: "box", pos: ["W-0.085", "y0+hc/2", 0.032], scale: [0.022, 0.15, 0.022], color: "#d4d8de", mat: "METAL", skipLean: true },
+        ] },
+        { if: "o == 2", parts: [
+          { shape: "rbox", pos: [0, "y0+hc-0.38", -0.04], scale: [0.32, 0.58, 0.16], color: "#c0392b", mat: "FABRIC" },
+          { shape: "rboxSoft", pos: [0, "y0+hc-0.12", -0.08], scale: [0.2, 0.14, 0.1], color: "#962d22", mat: "FABRIC", skipLean: true },
+          { shape: "box", pos: [0, "y0+0.17", 0], rot: [0, 0.4, 0], scale: [0.22, 0.12, 0.08], color: "#f1c40f", mat: "PAINT", skipLean: true },
+        ] },
+        { if: "o == 1", parts: [
+          { shape: "rboxSoft", pos: [0, "y0+0.2", -0.02], scale: [0.32, 0.36, 0.24], color: "#16a085", mat: "FABRIC" },
+          { shape: "rboxSoft", pos: [0, "y0+0.13", 0.11], scale: [0.24, 0.16, 0.07], color: "#0f7a65", mat: "FABRIC", skipLean: true },
+          { shape: "box", pos: [0, "y0+0.4", -0.02], scale: [0.14, 0.03, 0.03], color: "#2b2f36", mat: "PAINT", skipLean: true },
+        ] },
+      ] },
+    ],
+  },
+};
+
+// Own geometries (three.js arguments), carried by the rooms that use them.
+const GEOMS = {
+  pot: { type: "cylinder", args: [0.24, 0.17, 0.44, 10] }, // tapered flower pot
 };
 
 // Deterministic pseudo-random numbers (book heights and colours).
@@ -185,6 +313,14 @@ function roomDoc(id, anchor, build) {
     return part;
   };
   const collide = (x, z, r) => parts.push({ collider: P(x, z), r: r2(r) });
+  // Colliders every `step` metres from (x0, z0) to (x1, z1) as one repeat node.
+  const collideLine = (x0, z0, x1, z1, r, step) => {
+    const [ax, az] = P(x0, z0);
+    const [bx, bz] = P(x1, z1);
+    const n = Math.max(1, Math.ceil(Math.hypot(bx - ax, bz - az) / step));
+    const at = (a, b) => (b === a ? a : `${a}+i*${Math.round(((b - a) / n) * 1e4) / 1e4}`);
+    parts.push({ repeat: { i: n + 1 }, collider: [at(ax, bx), at(az, bz)], r });
+  };
   const t = WALL_T / TILE_M / 2;
   // Axis-aligned wall with colliders every 0.4 m: close enough that the
   // walker's body (radius 0.3) stays out of the wall, small enough that
@@ -193,9 +329,7 @@ function roomDoc(id, anchor, build) {
   const wall = (x0, z0, x1, z1) => {
     if (z0 === z1) box(x0, z0 - t, x1, z0 + t, 0, WALL_H, C.wall);
     else box(x0 - t, z0, x0 + t, z1, 0, WALL_H, C.wall);
-    const len = Math.hypot(x1 - x0, z1 - z0);
-    const n = Math.max(1, Math.ceil((len * TILE_M) / 0.4));
-    for (let i = 0; i <= n; i++) collide(x0 + ((x1 - x0) * i) / n, z0 + ((z1 - z0) * i) / n, 0.2);
+    collideLine(x0, z0, x1, z1, 0.2, 0.4);
   };
   // A wall along x (z fixed) with a framed doorway between a and b.
   const wallWithDoor = (x0, x1, z, a, b) => {
@@ -228,10 +362,10 @@ function roomDoc(id, anchor, build) {
   };
   // A child frame at tile point (x, z) whose +z faces `face`, holding
   // component uses or local parts (metres).
-  const place = (x, z, face, nodes) => {
+  const place = (x, z, face, nodes, y = 0) => {
     const [px, pz] = P(x, z);
     const yaw = FACE[face];
-    parts.push({ frame: yaw ? [px, 0, pz, yaw] : [px, 0, pz], parts: nodes });
+    parts.push({ frame: yaw ? [px, y, pz, yaw] : [px, y, pz], parts: nodes });
   };
   const use = (name, w) => (w ? { use: name, with: w } : { use: name });
   const local = (shape, x, y, z, sx, sy, sz, color, mat, lean) => {
@@ -278,8 +412,9 @@ function roomDoc(id, anchor, build) {
   };
   // A bookcase over a footprint, facing `face`, with rows of books (or
   // binders) in varying heights and colours: `bays` gaps between uprights,
-  // `n` boards; `fill` books per bay and level.
-  const bookcase = (x0, z0, x1, z1, face, h, n, bays, fill, colors, back = 0) => {
+  // `n` boards; `fill` books per bay and level. `binders`: ring binders of
+  // one height with white spine labels.
+  const bookcase = (x0, z0, x1, z1, face, h, n, bays, fill, colors, back = 0, binders = false) => {
     const along = face === "south" || face === "north";
     const W = ((along ? x1 - x0 : z1 - z0) - 0.04) * TILE_M;
     const D = 0.45;
@@ -296,8 +431,8 @@ function roomDoc(id, anchor, build) {
       for (let b = 0; b < bays; b++) {
         let x = -W / 2 + 0.05 + b * bayW + 0.04 + rnd() * 0.25;
         for (let i = 0; i < fill; i++) {
-          const w = 0.05 + rnd() * 0.05;
-          const bh = gap * (0.55 + rnd() * 0.3);
+          const w = binders ? 0.07 : 0.05 + rnd() * 0.05;
+          const bh = gap * (binders ? 0.8 : 0.55 + rnd() * 0.3);
           const y0 = 0.05 + lv * gap + 0.0175;
           const book = { x: r2(x + w / 2), y: r2(y0 + bh / 2), w: r2(w), h: r2(bh), c: colors[Math.floor(rnd() * colors.length)] };
           (i % 2 ? leanBooks : books).push(book);
@@ -307,10 +442,25 @@ function roomDoc(id, anchor, build) {
       }
     // one node per set of books, every other book left out on the lean tiers
     const row = { shape: "box", pos: ["x", "y", r2(-D / 2 + 0.16)], scale: ["w", "h", 0.26], color: "c", mat: "PAINT" };
-    nodes.push({ each: books, ...row }, { each: leanBooks, ...row, skipLean: true });
+    const label = { shape: "box", pos: ["x", "y+h*0.12", r2(-D / 2 + 0.293)], scale: ["w*0.62", "h*0.36", 0.006], color: "#f8f6ee", mat: "PAINT", skipLean: true };
+    const ring = { shape: "cyl6", pos: ["x", "y-h*0.3", r2(-D / 2 + 0.292)], rot: [1.5708, 0, 0], scale: [0.03, 0.006, 0.03], color: "#2b2f36", mat: "PAINT", skipLean: true };
+    if (binders) nodes.push({ each: books, parts: [row, label, ring] }, { each: leanBooks, parts: [{ ...row, skipLean: true }, label, ring] });
+    else nodes.push({ each: books, ...row }, { each: leanBooks, ...row, skipLean: true });
     // centre of the case: pushed back toward the wall
     const back3 = { south: [0, -1], north: [0, 1], east: [-1, 0], west: [1, 0] }[face];
     place(cx + (back3[0] * shift) / TILE_M, cz + (back3[1] * shift) / TILE_M, face, nodes);
+    footprint(x0, z0, x1, z1);
+  };
+  // A framed board on a wall (`board` component): (x, z) on the wall line,
+  // its face toward `face`; w, h in metres, y its lower edge.
+  const board = (x, z, face, w, h, y, c, more = {}, extra = []) => {
+    const d = { south: [0, t], north: [0, -t], east: [t, 0], west: [-t, 0] }[face];
+    place(x + d[0], z + d[1], face, [use("board", { w, h, y, c, ...more }), ...extra]);
+  };
+  // A low table over a footprint (`lowtable`, with a mug and a notebook).
+  const lowtable = (x0, z0, x1, z1, h = 0.45) => {
+    const [x, z] = mid(x0, z0, x1, z1);
+    place(x, z, "south", [use("lowtable", { w: r2((x1 - x0) * TILE_M - 0.1), d: r2((z1 - z0) * TILE_M - 0.1), h })]);
     footprint(x0, z0, x1, z1);
   };
   // The room's name sign at tile point (x, z), facing `face`.
@@ -347,11 +497,15 @@ function roomDoc(id, anchor, build) {
   build({
     box, wall, wallWithDoor, wallWithDoorZ, thing, floor, onBack, onSide, windowsBack, windowsSide, notes,
     footprint, place, use, local, desk, chair, chairsAround, sofa, plant, bookcase, sign,
+    collide, collideLine, board, lowtable,
   });
   // only the components this room uses
   const used = new Set(JSON.stringify(parts).match(/"use":"\w+"/g)?.map((s) => s.slice(7, -1)));
   const define = Object.fromEntries(Object.entries(DEFS).filter(([k]) => used.has(k)));
   const doc = { $schema: "hazu.world/landmark@1", id, frame: { kind: "footprint", name: "F" } };
+  const json = JSON.stringify(define);
+  const geometries = Object.fromEntries(Object.entries(GEOMS).filter(([k]) => json.includes(`"shape":"${k}"`)));
+  if (Object.keys(geometries).length) doc.geometries = geometries;
   if (used.size) doc.define = define;
   doc.parts = parts;
   return doc;
@@ -373,19 +527,29 @@ const anchors = {
 };
 
 const landmarks = [
-  roomDoc("schulhaus_aula", anchors.aula, ({ box, wall, wallWithDoor, thing, floor, onBack, windowsBack, place, use, footprint, sign }) => {
+  roomDoc("schulhaus_aula", anchors.aula, ({ box, wall, wallWithDoor, thing, floor, onBack, windowsBack, place, use, footprint, sign, collide, board }) => {
     wall(0, 0, COLS, 0); // back wall of the whole house
     wall(6, 0, 6, 6);
     wall(18, 0, 18, 6);
     wallWithDoor(6, 18, 6, 10.5, 13.5); // wide double door onto the corridor
     floor(6.1, 0.1, 17.9, 5.95, C.floorWood);
-    // stage, lectern, board, curtains, clock, high windows
+    // stage with a dark skirt, a light nosing and two steps in the middle;
+    // a lectern, the framed board, gathered curtains under a pelmet, a clock,
+    // high windows
     thing(9, 0.2, 15, 1.8, 0.45, C.stage);
-    onBack(10, 14, 1.2, 1.6, C.board);
-    box(11.7, 1.3, 12.3, 1.7, 0.45, 1.1, C.woodDark, "WOOD");
-    onBack(9.2, 9.9, 0.5, 2.6, C.curtain, "FABRIC");
-    onBack(14.1, 14.8, 0.5, 2.6, C.curtain, "FABRIC");
-    onBack(11.75, 12.25, 2.95, 0.45, C.white);
+    box(9, 1.8, 15, 1.83, 0.04, 0.36, "#5a3b22", "WOOD");
+    box(8.98, 1.77, 15.02, 1.85, 0.4, 0.06, C.wood, "WOOD");
+    box(11.3, 1.8, 12.7, 1.95, 0, 0.3, C.stage, "WOOD");
+    box(11.3, 1.95, 12.7, 2.1, 0, 0.15, C.stage, "WOOD");
+    for (const [z, y] of [[1.95, 0.27], [2.1, 0.12]]) box(11.3, z - 0.01, 12.7, z + 0.005, y, 0.03, C.wood, "WOOD").skipLean = true;
+    for (const x of [11.7, 12.3]) collide(x, 1.95, 0.3);
+    place(12, 1.15, "south", [use("lectern")], 0.45);
+    board(12, 0, "south", 7.6, 1.45, 1.15, C.board);
+    for (const x of [9.55, 14.45]) place(x, 0.2, "south", [use("curtain", { n: 6, h: 2.7 })], 0.45);
+    box(9, 0.08, 15, 0.3, 2.95, 0.22, "#8f2a37", "FABRIC");
+    place(6.08, 3, "east", [{ shape: "cyl20", pos: [0, 2.45, 0.02], rot: [1.5708, 0, 0], scale: [0.4, 0.05, 0.4], color: C.white, mat: "PAINT" },
+      { shape: "box", pos: [0, 2.49, 0.05], scale: [0.025, 0.14, 0.01], color: "#2b2f36", mat: "PAINT", skipLean: true },
+      { shape: "box", pos: [0.04, 2.45, 0.05], rot: [0, 0, 1.2], scale: [0.02, 0.1, 0.01], color: "#2b2f36", mat: "PAINT", skipLean: true }]);
     windowsBack([[6.6, 8.4], [15.6, 17.4]]);
     // benches in three rows with a middle aisle, facing the stage
     for (const z of [3, 4, 5])
@@ -406,7 +570,7 @@ const landmarks = [
     onBack(0.6, 1.8, 1.4, 1.4, C.glass, "GLAZING", 0.4);
     sign(3, 6.11, "south");
   }),
-  roomDoc("schulhaus_interessen", anchors.interessen, ({ wallWithDoor, floor, onBack, notes, windowsBack, desk, chairsAround, plant, sign }) => {
+  roomDoc("schulhaus_interessen", anchors.interessen, ({ wallWithDoor, floor, notes, windowsBack, desk, chairsAround, plant, sign, board }) => {
     wallWithDoor(18, COLS, 6, 20.2, 21.8);
     floor(18.1, 0.1, 23.9, 5.95, C.floorGreen);
     // project tables with chairs, a plant, a pin board with project notes
@@ -415,18 +579,18 @@ const landmarks = [
     desk(21.6, 3.8, 23.4, 4.8);
     chairsAround(21.6, 3.8, 23.4, 4.8, 2, C.chairs.slice(2), ["north"]);
     plant(23.2, 0.4, 23.7, 0.9);
-    onBack(18.6, 21.4, 1.1, 1.3, C.wood, "WOOD");
-    notes(18.8, 0.13, 1.25, 6);
+    board(20, 0, "south", 5.5, 1.3, 1.1, "#c9a26b", { tr: 0 }); // cork pin board
+    notes(18.8, 0.095, 1.25, 6);
     windowsBack([[21.9, 22.9]]);
     sign(21, 6.11, "south");
   }),
-  roomDoc("schulhaus_lernatelier", anchors.lernatelier, ({ wallWithDoor, wallWithDoorZ, wall, floor, onSide, desk, chairsAround, bookcase, sign }) => {
+  roomDoc("schulhaus_lernatelier", anchors.lernatelier, ({ wallWithDoor, wallWithDoorZ, wall, floor, desk, chairsAround, bookcase, sign, board }) => {
     wallWithDoor(0, 10, 8, 6, 7.5); // north wall onto the corridor
     wall(0, 13, 10, 13);
     wallWithDoorZ(10, 8, 13, 9.5, 11); // east wall onto the hall
     floor(0.1, 8.05, 9.95, 12.95, C.floorWood);
     // group tables in two rows, the green board on the west wall
-    onSide(0, 9.2, 12, 1.1, 1.2, C.board);
+    board(0, 10.6, "east", 5.4, 1.2, 1.05, C.board);
     let k = 0;
     for (const x of [3, 5.6])
       for (const z of [9.3, 11.3]) {
@@ -435,10 +599,10 @@ const landmarks = [
         const sides = x === 3 && z === 9.3 ? ["south"] : undefined;
         chairsAround(x, z, x + 1.4, z + 0.8, 2, C.chairs.slice(k++ % 3), sides);
       }
-    bookcase(8.4, 12.2, 9.8, 12.8, "north", 1.6, 4, 2, 5, C.binders, -0.1); // weekly-plan shelf
+    bookcase(8.4, 12.2, 9.8, 12.8, "north", 1.6, 4, 2, 5, C.binders, -0.1, true); // weekly-plan shelf
     sign(6.75, 7.89, "north");
   }),
-  roomDoc("schulhaus_coaching", anchors.coaching, ({ wallWithDoor, wallWithDoorZ, wall, floor, onSide, desk, sofa, plant, sign }) => {
+  roomDoc("schulhaus_coaching", anchors.coaching, ({ wallWithDoor, wallWithDoorZ, wall, floor, sofa, plant, sign, board, lowtable, local }) => {
     wallWithDoor(14, COLS, 8, 16.5, 18);
     wall(14, 13, COLS, 13);
     wallWithDoorZ(14, 8, 13, 9.5, 11);
@@ -447,28 +611,44 @@ const landmarks = [
     floor(17.8, 9.6, 21.2, 11.4, "#e9d5b7", 1);
     sofa(17.9, 10, 18.9, 11, "east", 1.05, 0.95, C.fabricWarm, "#f3b08c");
     sofa(20.1, 10, 21.1, 11, "west", 1.05, 0.95, C.fabric, "#9db8e3");
-    desk(19.15, 10.25, 19.85, 10.75, { h: 0.45, l: C.woodDark });
+    lowtable(19.15, 10.25, 19.85, 10.75);
     plant(23.2, 12.2, 23.7, 12.7);
-    onSide(COLS, 9, 12, 1.1, 1.2, C.white);
+    // whiteboard with a few lines of goals in marker and sticky notes
+    const ink = (x, y, w, color) => local("box", x, y, 0.04, w, 0.025, 0.01, color, "PAINT", true);
+    board(COLS, 10.5, "west", 5.8, 1.2, 1.05, C.white, { f: "#c3c8cf", wd: 0 }, [
+      ink(-2.1, 2.0, 1.1, "#1e3a8a"), ink(-2.25, 1.82, 0.8, "#1e3a8a"), ink(-2.0, 1.64, 1.3, "#1e3a8a"), ink(-2.2, 1.46, 0.9, "#15803d"),
+      ink(-0.4, 2.0, 0.9, "#b91c1c"), ink(-0.3, 1.82, 1.1, "#1e3a8a"), ink(-0.45, 1.64, 0.8, "#1e3a8a"),
+      ...[[1.3, 1.85, C.note[0]], [1.75, 1.85, C.note[2]], [1.3, 1.45, C.note[3]], [2.2, 1.6, C.note[1]]].map(([x, y, c]) => local("box", x, y, 0.045, 0.3, 0.3, 0.01, c, "PAINT")),
+    ]);
     sign(17.25, 7.89, "north");
   }),
-  roomDoc("schulhaus_pause", anchors.pause, ({ floor, windowsSide, desk, sofa, plant, sign }) => {
+  roomDoc("schulhaus_pause", anchors.pause, ({ floor, windowsSide, lowtable, sofa, plant, sign }) => {
     floor(0.1, 13.05, 9.95, 17.95, C.floorLino);
     // sofa, coffee table, a plant
     sofa(1.4, 14, 4.6, 14.9, "south", 4.4, 1, C.fabric, "#9db8e3", 3);
-    desk(2.5, 15.6, 3.5, 16.4, { h: 0.42, l: C.woodDark });
+    lowtable(2.5, 15.6, 3.5, 16.4, 0.42);
     plant(0.4, 17.2, 0.9, 17.7);
     windowsSide(0, [[14.2, 16.2]]);
     sign(5.5, 13.11, "south"); // centred on its north wall, seen from the hall
   }),
-  roomDoc("schulhaus_workshop", anchors.workshop, ({ wallWithDoorZ, floor, onSide, place, use, local, footprint, sign }) => {
+  roomDoc("schulhaus_workshop", anchors.workshop, ({ wallWithDoorZ, floor, place, use, footprint, sign, board }) => {
     wallWithDoorZ(14, 13, 18, 14.5, 16);
     floor(14.05, 13.05, 23.9, 17.95, C.floorGreen);
     // two workbenches facing a screen on the east wall, stools, a toolbox
-    onSide(COLS, 14, 17, 1.1, 1.8, C.board);
+    board(COLS, 15.5, "west", 5.6, 1.7, 1.1, "#1d2733", { f: "#2b2f36", wd: 0, tr: 0 }); // screen
+    // pegboard with tools on the north wall
+    board(16.3, 13, "south", 2.6, 1.0, 1.15, "#d8b98a", { tr: 0 });
+    const tool = (x, y, rz, sx, sy, color, mat = "METAL") => ({ shape: "box", pos: [x, y, 0.06], rot: rz ? [0, 0, rz] : undefined, scale: [sx, sy, 0.025], color, mat });
+    place(16.3, 13 + WALL_T / TILE_M / 2, "south", [
+      tool(-0.9, 1.6, 0, 0.04, 0.34, C.wood, "WOOD"), tool(-0.9, 1.79, 0, 0.16, 0.05, "#3d4450"), // hammer
+      tool(-0.35, 1.7, 0, 0.5, 0.13, "#b8bec7"), tool(-0.66, 1.7, 0, 0.12, 0.13, "#c0392b", "PAINT"), // saw
+      tool(0.25, 1.62, 0.25, 0.04, 0.4, "#9aa1ab"), // wrench
+      tool(0.6, 1.62, 0, 0.035, 0.22, "#d4d8de"), tool(0.6, 1.83, 0, 0.06, 0.16, "#F97316", "PAINT"), // screwdriver
+      tool(0.95, 1.6, 0, 0.05, 0.3, C.woodDark, "WOOD"), tool(0.95, 1.79, 0, 0.12, 0.1, "#5f6b78"), // mallet
+    ]);
     for (const [z0, z1, stoolZ, extra] of [
-      [14.2, 15, 14.16, local("box", -2.6, 1.0, 0, 0.45, 0.2, 0.22, "#c0392b", "PAINT", true)],
-      [16.2, 17, 17.04, local("box", 1.8, 0.98, 0.1, 0.4, 0.16, 0.3, "#2c7be5", "PAINT", true)],
+      [14.2, 15, 14.16, { frame: [-2.6, 0.9, 0], parts: [use("toolbox")] }],
+      [16.2, 17, 17.04, { frame: [1.8, 0.9, 0.1, 0.3], parts: [use("crate")] }],
     ]) {
       place(18.25, (z0 + z1) / 2, "south", [use("workbench", { w: 8.9, d: 1.5 }), extra]);
       footprint(16, z0, 20.5, z1);
@@ -476,17 +656,24 @@ const landmarks = [
     }
     sign(13.89, 15.25, "west");
   }),
-  roomDoc("schulhaus_halle", anchors.halle, ({ box, thing, floor, sign }) => {
+  roomDoc("schulhaus_halle", anchors.halle, ({ floor, place, use, collide, collideLine, sign }) => {
     floor(0.1, 6.05, 23.9, 7.95, C.floorLino); // corridor
     floor(10.05, 8.05, 13.95, 17.95, C.floorLino); // entrance hall
-    // lockers along the corridor's north side (vent and handle), a doormat
-    const locker = (x, color) => {
-      thing(x, 6.2, x + 0.5, 6.65, 1.9, color, "PAINT");
-      box(x + 0.12, 6.65, x + 0.38, 6.665, 1.66, 0.05, "#3d4450", "PAINT").skipLean = true;
-      box(x + 0.38, 6.65, x + 0.42, 6.675, 0.95, 0.16, METAL, "METAL").skipLean = true;
+    // two banks of school lockers against the corridor's north wall (0.4 m
+    // columns, 0.5 m deep), one open upper door with a jacket, one open
+    // lower door with a school bag; a doormat
+    const LZ = 6 + WALL_T / TILE_M / 2 + 0.125; // column centre, its back on the wall
+    const bank = (x0, n, shift, open) => {
+      const W = 0.2; // tiles
+      for (let i = 0; i < n; i++) {
+        const o = open[0] === i ? open[1] : 0;
+        place(x0 + (i + 0.5) * W, LZ, "south", [use("locker", o ? { c: C.locker[(i + shift) % 5], o } : { c: C.locker[(i + shift) % 5] })]);
+        if (o) collide(x0 + i * W + 0.02, LZ + 0.25, 0.25); // the open door
+      }
+      collideLine(x0 + 0.1, LZ, x0 + n * W - 0.1, LZ, 0.3, 0.4);
     };
-    for (let i = 0; i < 4; i++) locker(6.4 + i * 0.6, C.locker[i % 5]);
-    for (let i = 0; i < 4; i++) locker(14.6 + i * 0.6, C.locker[(i + 2) % 5]);
+    bank(6.4, 10, 0, [3, 2]);
+    bank(14.6, 10, 2, [6, 1]);
     floor(11, 16.6, 13, 17.4, "#7a5a3a", 1);
     sign(10.11, 11.95, "east"); // on the hall wall between the Lernatelier door and the corner
   }),

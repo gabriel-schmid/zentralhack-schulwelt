@@ -13,11 +13,12 @@
 //             option first; mixAnswers() reorders it when the level is built
 //   complete  closing line that points to the next route stop
 
-// A conversation turn: the character speaks, every reply moves on.
+// A conversation turn: the character speaks, every reply moves on. The
+// feedback replaces the engine's «Richtig!», which reads oddly for a reply.
 const talk = (line, ...replies) => ({
   type: "choice",
   question: line,
-  options: replies.map((text) => ({ text, correct: true })),
+  options: replies.map((text) => ({ text, correct: true, feedback: "…" })),
 });
 // The one real question: the correct answer first, then the wrong ones.
 const quiz = (question, right, ...wrong) => ({

@@ -2808,11 +2808,13 @@
           "options": [
             {
               "text": "Klingt gut, ich gehe rein.",
-              "correct": true
+              "correct": true,
+              "feedback": "…"
             },
             {
               "text": "Und danach?",
-              "correct": true
+              "correct": true,
+              "feedback": "…"
             }
           ]
         },

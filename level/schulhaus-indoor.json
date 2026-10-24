@@ -168,245 +168,111 @@
        },
        {"shape":"box","pos":[0,0.76,-0.17],"scale":["w",0.14,0.03],"color":"c","mat":"WOOD"}
       ]
+     },
+     "board": {
+      "params": ["w","h","y","c","f","wd","tr"],
+      "defaults": {"f":"#8a6236","wd":1,"tr":1},
+      "parts": [
+       {"shape":"box","pos":[0,"y+h/2",0.02],"scale":["w","h",0.03],"color":"c","mat":"PAINT"},
+       {
+        "if": "wd",
+        "parts": [
+         {
+          "for": {"s":[-1,1]},
+          "shape": "box",
+          "pos": [0,"y+h/2+s*(h/2+0.025)",0.03],
+          "scale": ["w+0.1",0.05,0.05],
+          "color": "f",
+          "mat": "WOOD"
+         },
+         {"for":{"s":[-1,1]},"shape":"box","pos":["s*(w/2+0.025)","y+h/2",0.03],"scale":[0.05,"h",0.05],"color":"f","mat":"WOOD"}
+        ]
+       },
+       {
+        "if": "!wd",
+        "parts": [
+         {
+          "for": {"s":[-1,1]},
+          "shape": "box",
+          "pos": [0,"y+h/2+s*(h/2+0.02)",0.03],
+          "scale": ["w+0.08",0.04,0.05],
+          "color": "f",
+          "mat": "METAL"
+         },
+         {"for":{"s":[-1,1]},"shape":"box","pos":["s*(w/2+0.02)","y+h/2",0.03],"scale":[0.04,"h",0.05],"color":"f","mat":"METAL"}
+        ]
+       },
+       {
+        "if": "tr",
+        "parts": [
+         {"shape":"box","pos":[0,"y-0.07",0.07],"scale":["w*0.8",0.025,0.11],"color":"#7c828c","mat":"METAL"},
+         {"shape":"box","pos":[0,"y-0.05",0.12],"scale":["w*0.8",0.03,0.012],"color":"#7c828c","mat":"METAL","skipLean":true},
+         {
+          "for": {"k":[-0.3,-0.22,0.12]},
+          "shape": "box",
+          "pos": ["k*w","y-0.048",0.07],
+          "scale": [0.08,0.016,0.016],
+          "color": "#ffffff",
+          "mat": "PAINT",
+          "skipLean": true
+         },
+         {"shape":"box","pos":["0.3*w","y-0.04",0.07],"scale":[0.12,0.04,0.05],"color":"#f6c445","mat":"FABRIC","skipLean":true}
+        ]
+       }
+      ]
+     },
+     "curtain": {
+      "params": ["n","h"],
+      "parts": [
+       {
+        "repeat": {"i":"n"},
+        "shape": "cyl8",
+        "pos": ["(i-(n-1)/2)*0.25","h/2",0],
+        "scale": [0.29,"h",0.2],
+        "color": "i%2 ? '#8f2a37' : '#b23a48'",
+        "mat": "FABRIC"
+       }
+      ]
+     },
+     "lectern": {
+      "parts": [
+       {"shape":"box","pos":[0,0.02,0],"scale":[0.55,0.04,0.45],"color":"#5a3b22","mat":"WOOD"},
+       {"shape":"box","pos":[0,0.52,0],"scale":[0.42,0.96,0.32],"color":"#8a6236","mat":"WOOD"},
+       {"shape":"box","pos":[0,0.5,0.165],"scale":[0.36,0.8,0.02],"color":"#a8744a","mat":"WOOD"},
+       {"shape":"box","pos":[0,1.06,0],"rot":[-0.3,0,0],"scale":[0.62,0.05,0.46],"color":"#6e4c2a","mat":"WOOD"},
+       {"shape":"box","pos":[0,1,-0.22],"scale":[0.6,0.06,0.03],"color":"#5a3b22","mat":"WOOD","skipLean":true},
+       {
+        "shape": "cyl8",
+        "pos": [0,0.72,0.18],
+        "rot": [1.5708,0,0],
+        "scale": [0.18,0.02,0.18],
+        "color": "#3288EF",
+        "mat": "PAINT",
+        "skipLean": true
+       },
+       {
+        "shape": "cyl6",
+        "pos": [0.18,1.22,0.05],
+        "rot": [-0.5,0,0],
+        "scale": [0.02,0.3,0.02],
+        "color": "#2b2f36",
+        "mat": "METAL",
+        "skipLean": true
+       }
+      ]
      }
     },
     "parts": [
      {"shape":"box","pos":[9,1.6,-3],"scale":[48,3.2,0.3],"color":"#f3ede2"},
-     {"collider":[-15,-3],"r":0.2},
-     {"collider":[-14.6,-3],"r":0.2},
-     {"collider":[-14.2,-3],"r":0.2},
-     {"collider":[-13.8,-3],"r":0.2},
-     {"collider":[-13.4,-3],"r":0.2},
-     {"collider":[-13,-3],"r":0.2},
-     {"collider":[-12.6,-3],"r":0.2},
-     {"collider":[-12.2,-3],"r":0.2},
-     {"collider":[-11.8,-3],"r":0.2},
-     {"collider":[-11.4,-3],"r":0.2},
-     {"collider":[-11,-3],"r":0.2},
-     {"collider":[-10.6,-3],"r":0.2},
-     {"collider":[-10.2,-3],"r":0.2},
-     {"collider":[-9.8,-3],"r":0.2},
-     {"collider":[-9.4,-3],"r":0.2},
-     {"collider":[-9,-3],"r":0.2},
-     {"collider":[-8.6,-3],"r":0.2},
-     {"collider":[-8.2,-3],"r":0.2},
-     {"collider":[-7.8,-3],"r":0.2},
-     {"collider":[-7.4,-3],"r":0.2},
-     {"collider":[-7,-3],"r":0.2},
-     {"collider":[-6.6,-3],"r":0.2},
-     {"collider":[-6.2,-3],"r":0.2},
-     {"collider":[-5.8,-3],"r":0.2},
-     {"collider":[-5.4,-3],"r":0.2},
-     {"collider":[-5,-3],"r":0.2},
-     {"collider":[-4.6,-3],"r":0.2},
-     {"collider":[-4.2,-3],"r":0.2},
-     {"collider":[-3.8,-3],"r":0.2},
-     {"collider":[-3.4,-3],"r":0.2},
-     {"collider":[-3,-3],"r":0.2},
-     {"collider":[-2.6,-3],"r":0.2},
-     {"collider":[-2.2,-3],"r":0.2},
-     {"collider":[-1.8,-3],"r":0.2},
-     {"collider":[-1.4,-3],"r":0.2},
-     {"collider":[-1,-3],"r":0.2},
-     {"collider":[-0.6,-3],"r":0.2},
-     {"collider":[-0.2,-3],"r":0.2},
-     {"collider":[0.2,-3],"r":0.2},
-     {"collider":[0.6,-3],"r":0.2},
-     {"collider":[1,-3],"r":0.2},
-     {"collider":[1.4,-3],"r":0.2},
-     {"collider":[1.8,-3],"r":0.2},
-     {"collider":[2.2,-3],"r":0.2},
-     {"collider":[2.6,-3],"r":0.2},
-     {"collider":[3,-3],"r":0.2},
-     {"collider":[3.4,-3],"r":0.2},
-     {"collider":[3.8,-3],"r":0.2},
-     {"collider":[4.2,-3],"r":0.2},
-     {"collider":[4.6,-3],"r":0.2},
-     {"collider":[5,-3],"r":0.2},
-     {"collider":[5.4,-3],"r":0.2},
-     {"collider":[5.8,-3],"r":0.2},
-     {"collider":[6.2,-3],"r":0.2},
-     {"collider":[6.6,-3],"r":0.2},
-     {"collider":[7,-3],"r":0.2},
-     {"collider":[7.4,-3],"r":0.2},
-     {"collider":[7.8,-3],"r":0.2},
-     {"collider":[8.2,-3],"r":0.2},
-     {"collider":[8.6,-3],"r":0.2},
-     {"collider":[9,-3],"r":0.2},
-     {"collider":[9.4,-3],"r":0.2},
-     {"collider":[9.8,-3],"r":0.2},
-     {"collider":[10.2,-3],"r":0.2},
-     {"collider":[10.6,-3],"r":0.2},
-     {"collider":[11,-3],"r":0.2},
-     {"collider":[11.4,-3],"r":0.2},
-     {"collider":[11.8,-3],"r":0.2},
-     {"collider":[12.2,-3],"r":0.2},
-     {"collider":[12.6,-3],"r":0.2},
-     {"collider":[13,-3],"r":0.2},
-     {"collider":[13.4,-3],"r":0.2},
-     {"collider":[13.8,-3],"r":0.2},
-     {"collider":[14.2,-3],"r":0.2},
-     {"collider":[14.6,-3],"r":0.2},
-     {"collider":[15,-3],"r":0.2},
-     {"collider":[15.4,-3],"r":0.2},
-     {"collider":[15.8,-3],"r":0.2},
-     {"collider":[16.2,-3],"r":0.2},
-     {"collider":[16.6,-3],"r":0.2},
-     {"collider":[17,-3],"r":0.2},
-     {"collider":[17.4,-3],"r":0.2},
-     {"collider":[17.8,-3],"r":0.2},
-     {"collider":[18.2,-3],"r":0.2},
-     {"collider":[18.6,-3],"r":0.2},
-     {"collider":[19,-3],"r":0.2},
-     {"collider":[19.4,-3],"r":0.2},
-     {"collider":[19.8,-3],"r":0.2},
-     {"collider":[20.2,-3],"r":0.2},
-     {"collider":[20.6,-3],"r":0.2},
-     {"collider":[21,-3],"r":0.2},
-     {"collider":[21.4,-3],"r":0.2},
-     {"collider":[21.8,-3],"r":0.2},
-     {"collider":[22.2,-3],"r":0.2},
-     {"collider":[22.6,-3],"r":0.2},
-     {"collider":[23,-3],"r":0.2},
-     {"collider":[23.4,-3],"r":0.2},
-     {"collider":[23.8,-3],"r":0.2},
-     {"collider":[24.2,-3],"r":0.2},
-     {"collider":[24.6,-3],"r":0.2},
-     {"collider":[25,-3],"r":0.2},
-     {"collider":[25.4,-3],"r":0.2},
-     {"collider":[25.8,-3],"r":0.2},
-     {"collider":[26.2,-3],"r":0.2},
-     {"collider":[26.6,-3],"r":0.2},
-     {"collider":[27,-3],"r":0.2},
-     {"collider":[27.4,-3],"r":0.2},
-     {"collider":[27.8,-3],"r":0.2},
-     {"collider":[28.2,-3],"r":0.2},
-     {"collider":[28.6,-3],"r":0.2},
-     {"collider":[29,-3],"r":0.2},
-     {"collider":[29.4,-3],"r":0.2},
-     {"collider":[29.8,-3],"r":0.2},
-     {"collider":[30.2,-3],"r":0.2},
-     {"collider":[30.6,-3],"r":0.2},
-     {"collider":[31,-3],"r":0.2},
-     {"collider":[31.4,-3],"r":0.2},
-     {"collider":[31.8,-3],"r":0.2},
-     {"collider":[32.2,-3],"r":0.2},
-     {"collider":[32.6,-3],"r":0.2},
-     {"collider":[33,-3],"r":0.2},
+     {"repeat":{"i":121},"collider":["-15+i*0.4",-3],"r":0.2},
      {"shape":"box","pos":[-3,1.6,3],"scale":[0.3,3.2,12],"color":"#f3ede2"},
-     {"collider":[-3,-3],"r":0.2},
-     {"collider":[-3,-2.6],"r":0.2},
-     {"collider":[-3,-2.2],"r":0.2},
-     {"collider":[-3,-1.8],"r":0.2},
-     {"collider":[-3,-1.4],"r":0.2},
-     {"collider":[-3,-1],"r":0.2},
-     {"collider":[-3,-0.6],"r":0.2},
-     {"collider":[-3,-0.2],"r":0.2},
-     {"collider":[-3,0.2],"r":0.2},
-     {"collider":[-3,0.6],"r":0.2},
-     {"collider":[-3,1],"r":0.2},
-     {"collider":[-3,1.4],"r":0.2},
-     {"collider":[-3,1.8],"r":0.2},
-     {"collider":[-3,2.2],"r":0.2},
-     {"collider":[-3,2.6],"r":0.2},
-     {"collider":[-3,3],"r":0.2},
-     {"collider":[-3,3.4],"r":0.2},
-     {"collider":[-3,3.8],"r":0.2},
-     {"collider":[-3,4.2],"r":0.2},
-     {"collider":[-3,4.6],"r":0.2},
-     {"collider":[-3,5],"r":0.2},
-     {"collider":[-3,5.4],"r":0.2},
-     {"collider":[-3,5.8],"r":0.2},
-     {"collider":[-3,6.2],"r":0.2},
-     {"collider":[-3,6.6],"r":0.2},
-     {"collider":[-3,7],"r":0.2},
-     {"collider":[-3,7.4],"r":0.2},
-     {"collider":[-3,7.8],"r":0.2},
-     {"collider":[-3,8.2],"r":0.2},
-     {"collider":[-3,8.6],"r":0.2},
-     {"collider":[-3,9],"r":0.2},
+     {"repeat":{"i":31},"collider":[-3,"-3+i*0.4"],"r":0.2},
      {"shape":"box","pos":[21,1.6,3],"scale":[0.3,3.2,12],"color":"#f3ede2"},
-     {"collider":[21,-3],"r":0.2},
-     {"collider":[21,-2.6],"r":0.2},
-     {"collider":[21,-2.2],"r":0.2},
-     {"collider":[21,-1.8],"r":0.2},
-     {"collider":[21,-1.4],"r":0.2},
-     {"collider":[21,-1],"r":0.2},
-     {"collider":[21,-0.6],"r":0.2},
-     {"collider":[21,-0.2],"r":0.2},
-     {"collider":[21,0.2],"r":0.2},
-     {"collider":[21,0.6],"r":0.2},
-     {"collider":[21,1],"r":0.2},
-     {"collider":[21,1.4],"r":0.2},
-     {"collider":[21,1.8],"r":0.2},
-     {"collider":[21,2.2],"r":0.2},
-     {"collider":[21,2.6],"r":0.2},
-     {"collider":[21,3],"r":0.2},
-     {"collider":[21,3.4],"r":0.2},
-     {"collider":[21,3.8],"r":0.2},
-     {"collider":[21,4.2],"r":0.2},
-     {"collider":[21,4.6],"r":0.2},
-     {"collider":[21,5],"r":0.2},
-     {"collider":[21,5.4],"r":0.2},
-     {"collider":[21,5.8],"r":0.2},
-     {"collider":[21,6.2],"r":0.2},
-     {"collider":[21,6.6],"r":0.2},
-     {"collider":[21,7],"r":0.2},
-     {"collider":[21,7.4],"r":0.2},
-     {"collider":[21,7.8],"r":0.2},
-     {"collider":[21,8.2],"r":0.2},
-     {"collider":[21,8.6],"r":0.2},
-     {"collider":[21,9],"r":0.2},
+     {"repeat":{"i":31},"collider":[21,"-3+i*0.4"],"r":0.2},
      {"shape":"box","pos":[1.5,1.6,9],"scale":[9,3.2,0.3],"color":"#f3ede2"},
-     {"collider":[-3,9],"r":0.2},
-     {"collider":[-2.61,9],"r":0.2},
-     {"collider":[-2.22,9],"r":0.2},
-     {"collider":[-1.83,9],"r":0.2},
-     {"collider":[-1.43,9],"r":0.2},
-     {"collider":[-1.04,9],"r":0.2},
-     {"collider":[-0.65,9],"r":0.2},
-     {"collider":[-0.26,9],"r":0.2},
-     {"collider":[0.13,9],"r":0.2},
-     {"collider":[0.52,9],"r":0.2},
-     {"collider":[0.91,9],"r":0.2},
-     {"collider":[1.3,9],"r":0.2},
-     {"collider":[1.7,9],"r":0.2},
-     {"collider":[2.09,9],"r":0.2},
-     {"collider":[2.48,9],"r":0.2},
-     {"collider":[2.87,9],"r":0.2},
-     {"collider":[3.26,9],"r":0.2},
-     {"collider":[3.65,9],"r":0.2},
-     {"collider":[4.04,9],"r":0.2},
-     {"collider":[4.43,9],"r":0.2},
-     {"collider":[4.83,9],"r":0.2},
-     {"collider":[5.22,9],"r":0.2},
-     {"collider":[5.61,9],"r":0.2},
-     {"collider":[6,9],"r":0.2},
+     {"repeat":{"i":24},"collider":["-3+i*0.3913",9],"r":0.2},
      {"shape":"box","pos":[16.5,1.6,9],"scale":[9,3.2,0.3],"color":"#f3ede2"},
-     {"collider":[12,9],"r":0.2},
-     {"collider":[12.39,9],"r":0.2},
-     {"collider":[12.78,9],"r":0.2},
-     {"collider":[13.17,9],"r":0.2},
-     {"collider":[13.57,9],"r":0.2},
-     {"collider":[13.96,9],"r":0.2},
-     {"collider":[14.35,9],"r":0.2},
-     {"collider":[14.74,9],"r":0.2},
-     {"collider":[15.13,9],"r":0.2},
-     {"collider":[15.52,9],"r":0.2},
-     {"collider":[15.91,9],"r":0.2},
-     {"collider":[16.3,9],"r":0.2},
-     {"collider":[16.7,9],"r":0.2},
-     {"collider":[17.09,9],"r":0.2},
-     {"collider":[17.48,9],"r":0.2},
-     {"collider":[17.87,9],"r":0.2},
-     {"collider":[18.26,9],"r":0.2},
-     {"collider":[18.65,9],"r":0.2},
-     {"collider":[19.04,9],"r":0.2},
-     {"collider":[19.43,9],"r":0.2},
-     {"collider":[19.83,9],"r":0.2},
-     {"collider":[20.22,9],"r":0.2},
-     {"collider":[20.61,9],"r":0.2},
-     {"collider":[21,9],"r":0.2},
+     {"repeat":{"i":24},"collider":["12+i*0.3913",9],"r":0.2},
      {"shape":"box","pos":[9,2.75,9],"scale":[6,0.9,0.38],"color":"#f3ede2"},
      {"shape":"box","pos":[6.08,1.15,9],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[11.92,1.15,9],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
@@ -424,11 +290,35 @@
      {"collider":[12,0.2],"r":0.5},
      {"collider":[14,-1.6],"r":0.5},
      {"collider":[14,0.2],"r":0.5},
-     {"shape":"box","pos":[9,2,-2.78],"scale":[8,1.6,0.1],"color":"#2f4a3a","mat":"PAINT"},
-     {"shape":"box","pos":[9,1,0],"scale":[1.2,1.1,0.8],"color":"#8a6236","mat":"WOOD"},
-     {"shape":"box","pos":[4.1,1.8,-2.78],"scale":[1.4,2.6,0.1],"color":"#b23a48","mat":"FABRIC"},
-     {"shape":"box","pos":[13.9,1.8,-2.78],"scale":[1.4,2.6,0.1],"color":"#b23a48","mat":"FABRIC"},
-     {"shape":"box","pos":[9,3.18,-2.78],"scale":[1,0.45,0.1],"color":"#fafafa","mat":"PAINT"},
+     {"shape":"box","pos":[9,0.22,0.63],"scale":[12,0.36,0.06],"color":"#5a3b22","mat":"WOOD"},
+     {"shape":"box","pos":[9,0.43,0.62],"scale":[12.08,0.06,0.16],"color":"#c8955a","mat":"WOOD"},
+     {"shape":"box","pos":[9,0.15,0.75],"scale":[2.8,0.3,0.3],"color":"#a8744a","mat":"WOOD"},
+     {"shape":"box","pos":[9,0.08,1.05],"scale":[2.8,0.15,0.3],"color":"#a8744a","mat":"WOOD"},
+     {"shape":"box","pos":[9,0.29,0.9],"scale":[2.8,0.03,0.03],"color":"#c8955a","mat":"WOOD","skipLean":true},
+     {"shape":"box","pos":[9,0.14,1.19],"scale":[2.8,0.03,0.03],"color":"#c8955a","mat":"WOOD","skipLean":true},
+     {"collider":[8.4,0.9],"r":0.3},
+     {"collider":[9.6,0.9],"r":0.3},
+     {"frame":[9,0.45,-0.7],"parts":[{"use":"lectern"}]},
+     {"frame":[9,0,-2.85],"parts":[{"use":"board","with":{"w":7.6,"h":1.45,"y":1.15,"c":"#2f4a3a"}}]},
+     {"frame":[4.1,0.45,-2.6],"parts":[{"use":"curtain","with":{"n":6,"h":2.7}}]},
+     {"frame":[13.9,0.45,-2.6],"parts":[{"use":"curtain","with":{"n":6,"h":2.7}}]},
+     {"shape":"box","pos":[9,3.06,-2.62],"scale":[12,0.22,0.44],"color":"#8f2a37","mat":"FABRIC"},
+     {
+      "frame": [-2.84,0,3,1.5708],
+      "parts": [
+       {"shape":"cyl20","pos":[0,2.45,0.02],"rot":[1.5708,0,0],"scale":[0.4,0.05,0.4],"color":"#fafafa","mat":"PAINT"},
+       {"shape":"box","pos":[0,2.49,0.05],"scale":[0.025,0.14,0.01],"color":"#2b2f36","mat":"PAINT","skipLean":true},
+       {
+        "shape": "box",
+        "pos": [0.04,2.45,0.05],
+        "rot": [0,0,1.2],
+        "scale": [0.02,0.1,0.01],
+        "color": "#2b2f36",
+        "mat": "PAINT",
+        "skipLean": true
+       }
+      ]
+     },
      {"shape":"box","pos":[0,2.1,-2.78],"scale":[3.6,1.4,0.1],"color":"#a9d8f2","mat":"GLAZING","glow":0.4},
      {"shape":"box","pos":[0,1.35,-2.78],"scale":[3.8,0.1,0.1],"color":"#fafafa","mat":"PAINT"},
      {"shape":"box","pos":[18,2.1,-2.78],"scale":[3.6,1.4,0.1],"color":"#a9d8f2","mat":"GLAZING","glow":0.4},
@@ -570,31 +460,9 @@
     },
     "parts": [
      {"shape":"box","pos":[-0.8,1.6,9],"scale":[4.4,3.2,0.3],"color":"#f3ede2"},
-     {"collider":[-3,9],"r":0.2},
-     {"collider":[-2.6,9],"r":0.2},
-     {"collider":[-2.2,9],"r":0.2},
-     {"collider":[-1.8,9],"r":0.2},
-     {"collider":[-1.4,9],"r":0.2},
-     {"collider":[-1,9],"r":0.2},
-     {"collider":[-0.6,9],"r":0.2},
-     {"collider":[-0.2,9],"r":0.2},
-     {"collider":[0.2,9],"r":0.2},
-     {"collider":[0.6,9],"r":0.2},
-     {"collider":[1,9],"r":0.2},
-     {"collider":[1.4,9],"r":0.2},
+     {"repeat":{"i":12},"collider":["-3+i*0.4",9],"r":0.2},
      {"shape":"box","pos":[6.8,1.6,9],"scale":[4.4,3.2,0.3],"color":"#f3ede2"},
-     {"collider":[4.6,9],"r":0.2},
-     {"collider":[5,9],"r":0.2},
-     {"collider":[5.4,9],"r":0.2},
-     {"collider":[5.8,9],"r":0.2},
-     {"collider":[6.2,9],"r":0.2},
-     {"collider":[6.6,9],"r":0.2},
-     {"collider":[7,9],"r":0.2},
-     {"collider":[7.4,9],"r":0.2},
-     {"collider":[7.8,9],"r":0.2},
-     {"collider":[8.2,9],"r":0.2},
-     {"collider":[8.6,9],"r":0.2},
-     {"collider":[9,9],"r":0.2},
+     {"repeat":{"i":12},"collider":["4.6+i*0.4",9],"r":0.2},
      {"shape":"box","pos":[3,2.75,9],"scale":[3.2,0.9,0.38],"color":"#f3ede2"},
      {"shape":"box","pos":[1.48,1.15,9],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[4.52,1.15,9],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
@@ -717,6 +585,7 @@
     "$schema": "hazu.world/landmark@1",
     "id": "schulhaus_interessen",
     "frame": {"kind":"footprint","name":"F"},
+    "geometries": {"pot":{"type":"cylinder","args":[0.24,0.17,0.44,10]}},
     "define": {
      "table": {
       "params": ["w","d","h","c","l"],
@@ -760,39 +629,80 @@
      },
      "plant": {
       "parts": [
-       {"shape":"cyl8","pos":[0,0.22,0],"scale":[0.46,0.44,0.46],"color":"#c0663f","mat":"PAINT"},
-       {"shape":"ico","pos":[0,0.95,0],"scale":[0.85,1.05,0.85],"color":"#4c9a5a","mat":"LEAF"},
-       {"shape":"ico","pos":[0.12,1.35,-0.06],"scale":[0.5,0.6,0.5],"color":"#5aae68","mat":"LEAF","skipLean":true}
+       {"shape":"pot","pos":[0,0.22,0],"color":"#c0663f","mat":"PAINT"},
+       {"shape":"cyl8","pos":[0,0.44,0],"scale":[0.54,0.06,0.54],"color":"#a9542f","mat":"PAINT"},
+       {"shape":"box","pos":[0,0.6,0],"scale":[0.05,0.3,0.05],"color":"#5a3f24","mat":"WOOD","skipLean":true},
+       {"shape":"ico","pos":[0,0.95,0],"scale":[0.82,0.72,0.82],"color":"#5aae68","mat":"LEAF"},
+       {
+        "for": {"a":[0,2.1,4.2]},
+        "shape": "ico",
+        "pos": ["0.26*cos(a)",0.78,"0.26*sin(a)"],
+        "scale": [0.44,0.38,0.44],
+        "color": "#4c9a5a",
+        "mat": "LEAF",
+        "skipLean": true
+       },
+       {"shape":"ico","pos":[0.05,1.3,-0.03],"scale":[0.52,0.5,0.52],"color":"#6cc07a","mat":"LEAF"}
+      ]
+     },
+     "board": {
+      "params": ["w","h","y","c","f","wd","tr"],
+      "defaults": {"f":"#8a6236","wd":1,"tr":1},
+      "parts": [
+       {"shape":"box","pos":[0,"y+h/2",0.02],"scale":["w","h",0.03],"color":"c","mat":"PAINT"},
+       {
+        "if": "wd",
+        "parts": [
+         {
+          "for": {"s":[-1,1]},
+          "shape": "box",
+          "pos": [0,"y+h/2+s*(h/2+0.025)",0.03],
+          "scale": ["w+0.1",0.05,0.05],
+          "color": "f",
+          "mat": "WOOD"
+         },
+         {"for":{"s":[-1,1]},"shape":"box","pos":["s*(w/2+0.025)","y+h/2",0.03],"scale":[0.05,"h",0.05],"color":"f","mat":"WOOD"}
+        ]
+       },
+       {
+        "if": "!wd",
+        "parts": [
+         {
+          "for": {"s":[-1,1]},
+          "shape": "box",
+          "pos": [0,"y+h/2+s*(h/2+0.02)",0.03],
+          "scale": ["w+0.08",0.04,0.05],
+          "color": "f",
+          "mat": "METAL"
+         },
+         {"for":{"s":[-1,1]},"shape":"box","pos":["s*(w/2+0.02)","y+h/2",0.03],"scale":[0.04,"h",0.05],"color":"f","mat":"METAL"}
+        ]
+       },
+       {
+        "if": "tr",
+        "parts": [
+         {"shape":"box","pos":[0,"y-0.07",0.07],"scale":["w*0.8",0.025,0.11],"color":"#7c828c","mat":"METAL"},
+         {"shape":"box","pos":[0,"y-0.05",0.12],"scale":["w*0.8",0.03,0.012],"color":"#7c828c","mat":"METAL","skipLean":true},
+         {
+          "for": {"k":[-0.3,-0.22,0.12]},
+          "shape": "box",
+          "pos": ["k*w","y-0.048",0.07],
+          "scale": [0.08,0.016,0.016],
+          "color": "#ffffff",
+          "mat": "PAINT",
+          "skipLean": true
+         },
+         {"shape":"box","pos":["0.3*w","y-0.04",0.07],"scale":[0.12,0.04,0.05],"color":"#f6c445","mat":"FABRIC","skipLean":true}
+        ]
+       }
       ]
      }
     },
     "parts": [
      {"shape":"box","pos":[-6.8,1.6,9],"scale":[4.4,3.2,0.3],"color":"#f3ede2"},
-     {"collider":[-9,9],"r":0.2},
-     {"collider":[-8.6,9],"r":0.2},
-     {"collider":[-8.2,9],"r":0.2},
-     {"collider":[-7.8,9],"r":0.2},
-     {"collider":[-7.4,9],"r":0.2},
-     {"collider":[-7,9],"r":0.2},
-     {"collider":[-6.6,9],"r":0.2},
-     {"collider":[-6.2,9],"r":0.2},
-     {"collider":[-5.8,9],"r":0.2},
-     {"collider":[-5.4,9],"r":0.2},
-     {"collider":[-5,9],"r":0.2},
-     {"collider":[-4.6,9],"r":0.2},
+     {"repeat":{"i":12},"collider":["-9+i*0.4",9],"r":0.2},
      {"shape":"box","pos":[0.8,1.6,9],"scale":[4.4,3.2,0.3],"color":"#f3ede2"},
-     {"collider":[-1.4,9],"r":0.2},
-     {"collider":[-1,9],"r":0.2},
-     {"collider":[-0.6,9],"r":0.2},
-     {"collider":[-0.2,9],"r":0.2},
-     {"collider":[0.2,9],"r":0.2},
-     {"collider":[0.6,9],"r":0.2},
-     {"collider":[1,9],"r":0.2},
-     {"collider":[1.4,9],"r":0.2},
-     {"collider":[1.8,9],"r":0.2},
-     {"collider":[2.2,9],"r":0.2},
-     {"collider":[2.6,9],"r":0.2},
-     {"collider":[3,9],"r":0.2},
+     {"repeat":{"i":12},"collider":["-1.4+i*0.4",9],"r":0.2},
      {"shape":"box","pos":[-3,2.75,9],"scale":[3.2,0.9,0.38],"color":"#f3ede2"},
      {"shape":"box","pos":[-4.52,1.15,9],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-1.48,1.15,9],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
@@ -811,13 +721,13 @@
      {"frame":[0.9,0,4.48],"parts":[{"use":"chair","with":{"c":"#EAB308"}}]},
      {"frame":[1.9,0,-1.7],"parts":[{"use":"plant"}]},
      {"collider":[2,-1.7],"r":0.5},
-     {"shape":"box","pos":[-5,1.75,-2.78],"scale":[5.6,1.3,0.1],"color":"#c8955a","mat":"WOOD"},
-     {"shape":"box","pos":[-7.05,1.4,-2.69],"scale":[0.7,0.3,0.1],"color":"#fde68a","mat":"PAINT"},
-     {"shape":"box","pos":[-6.05,1.4,-2.69],"scale":[0.7,0.3,0.1],"color":"#fca5a5","mat":"PAINT"},
-     {"shape":"box","pos":[-5.05,1.4,-2.69],"scale":[0.7,0.3,0.1],"color":"#a7f3d0","mat":"PAINT"},
-     {"shape":"box","pos":[-7.05,1.8,-2.69],"scale":[0.7,0.3,0.1],"color":"#bfdbfe","mat":"PAINT"},
-     {"shape":"box","pos":[-6.05,1.8,-2.69],"scale":[0.7,0.3,0.1],"color":"#fde68a","mat":"PAINT"},
-     {"shape":"box","pos":[-5.05,1.8,-2.69],"scale":[0.7,0.3,0.1],"color":"#fca5a5","mat":"PAINT"},
+     {"frame":[-5,0,-2.85],"parts":[{"use":"board","with":{"w":5.5,"h":1.3,"y":1.1,"c":"#c9a26b","tr":0}}]},
+     {"shape":"box","pos":[-7.05,1.4,-2.76],"scale":[0.7,0.3,0.1],"color":"#fde68a","mat":"PAINT"},
+     {"shape":"box","pos":[-6.05,1.4,-2.76],"scale":[0.7,0.3,0.1],"color":"#fca5a5","mat":"PAINT"},
+     {"shape":"box","pos":[-5.05,1.4,-2.76],"scale":[0.7,0.3,0.1],"color":"#a7f3d0","mat":"PAINT"},
+     {"shape":"box","pos":[-7.05,1.8,-2.76],"scale":[0.7,0.3,0.1],"color":"#bfdbfe","mat":"PAINT"},
+     {"shape":"box","pos":[-6.05,1.8,-2.76],"scale":[0.7,0.3,0.1],"color":"#fde68a","mat":"PAINT"},
+     {"shape":"box","pos":[-5.05,1.8,-2.76],"scale":[0.7,0.3,0.1],"color":"#fca5a5","mat":"PAINT"},
      {"shape":"box","pos":[-0.2,2.1,-2.78],"scale":[2,1.4,0.1],"color":"#a9d8f2","mat":"GLAZING","glow":0.4},
      {"shape":"box","pos":[-0.2,1.35,-2.78],"scale":[2.2,0.1,0.1],"color":"#fafafa","mat":"PAINT"},
      {"sign":{"at":[-3,2.62,9.22]}}
@@ -890,138 +800,79 @@
         "mat": "WOOD"
        }
       ]
+     },
+     "board": {
+      "params": ["w","h","y","c","f","wd","tr"],
+      "defaults": {"f":"#8a6236","wd":1,"tr":1},
+      "parts": [
+       {"shape":"box","pos":[0,"y+h/2",0.02],"scale":["w","h",0.03],"color":"c","mat":"PAINT"},
+       {
+        "if": "wd",
+        "parts": [
+         {
+          "for": {"s":[-1,1]},
+          "shape": "box",
+          "pos": [0,"y+h/2+s*(h/2+0.025)",0.03],
+          "scale": ["w+0.1",0.05,0.05],
+          "color": "f",
+          "mat": "WOOD"
+         },
+         {"for":{"s":[-1,1]},"shape":"box","pos":["s*(w/2+0.025)","y+h/2",0.03],"scale":[0.05,"h",0.05],"color":"f","mat":"WOOD"}
+        ]
+       },
+       {
+        "if": "!wd",
+        "parts": [
+         {
+          "for": {"s":[-1,1]},
+          "shape": "box",
+          "pos": [0,"y+h/2+s*(h/2+0.02)",0.03],
+          "scale": ["w+0.08",0.04,0.05],
+          "color": "f",
+          "mat": "METAL"
+         },
+         {"for":{"s":[-1,1]},"shape":"box","pos":["s*(w/2+0.02)","y+h/2",0.03],"scale":[0.04,"h",0.05],"color":"f","mat":"METAL"}
+        ]
+       },
+       {
+        "if": "tr",
+        "parts": [
+         {"shape":"box","pos":[0,"y-0.07",0.07],"scale":["w*0.8",0.025,0.11],"color":"#7c828c","mat":"METAL"},
+         {"shape":"box","pos":[0,"y-0.05",0.12],"scale":["w*0.8",0.03,0.012],"color":"#7c828c","mat":"METAL","skipLean":true},
+         {
+          "for": {"k":[-0.3,-0.22,0.12]},
+          "shape": "box",
+          "pos": ["k*w","y-0.048",0.07],
+          "scale": [0.08,0.016,0.016],
+          "color": "#ffffff",
+          "mat": "PAINT",
+          "skipLean": true
+         },
+         {"shape":"box","pos":["0.3*w","y-0.04",0.07],"scale":[0.12,0.04,0.05],"color":"#f6c445","mat":"FABRIC","skipLean":true}
+        ]
+       }
+      ]
      }
     },
     "parts": [
      {"shape":"box","pos":[3,1.6,-3],"scale":[12,3.2,0.3],"color":"#f3ede2"},
-     {"collider":[-3,-3],"r":0.2},
-     {"collider":[-2.6,-3],"r":0.2},
-     {"collider":[-2.2,-3],"r":0.2},
-     {"collider":[-1.8,-3],"r":0.2},
-     {"collider":[-1.4,-3],"r":0.2},
-     {"collider":[-1,-3],"r":0.2},
-     {"collider":[-0.6,-3],"r":0.2},
-     {"collider":[-0.2,-3],"r":0.2},
-     {"collider":[0.2,-3],"r":0.2},
-     {"collider":[0.6,-3],"r":0.2},
-     {"collider":[1,-3],"r":0.2},
-     {"collider":[1.4,-3],"r":0.2},
-     {"collider":[1.8,-3],"r":0.2},
-     {"collider":[2.2,-3],"r":0.2},
-     {"collider":[2.6,-3],"r":0.2},
-     {"collider":[3,-3],"r":0.2},
-     {"collider":[3.4,-3],"r":0.2},
-     {"collider":[3.8,-3],"r":0.2},
-     {"collider":[4.2,-3],"r":0.2},
-     {"collider":[4.6,-3],"r":0.2},
-     {"collider":[5,-3],"r":0.2},
-     {"collider":[5.4,-3],"r":0.2},
-     {"collider":[5.8,-3],"r":0.2},
-     {"collider":[6.2,-3],"r":0.2},
-     {"collider":[6.6,-3],"r":0.2},
-     {"collider":[7,-3],"r":0.2},
-     {"collider":[7.4,-3],"r":0.2},
-     {"collider":[7.8,-3],"r":0.2},
-     {"collider":[8.2,-3],"r":0.2},
-     {"collider":[8.6,-3],"r":0.2},
-     {"collider":[9,-3],"r":0.2},
+     {"repeat":{"i":31},"collider":["-3+i*0.4",-3],"r":0.2},
      {"shape":"box","pos":[14.5,1.6,-3],"scale":[5,3.2,0.3],"color":"#f3ede2"},
-     {"collider":[12,-3],"r":0.2},
-     {"collider":[12.38,-3],"r":0.2},
-     {"collider":[12.77,-3],"r":0.2},
-     {"collider":[13.15,-3],"r":0.2},
-     {"collider":[13.54,-3],"r":0.2},
-     {"collider":[13.92,-3],"r":0.2},
-     {"collider":[14.31,-3],"r":0.2},
-     {"collider":[14.69,-3],"r":0.2},
-     {"collider":[15.08,-3],"r":0.2},
-     {"collider":[15.46,-3],"r":0.2},
-     {"collider":[15.85,-3],"r":0.2},
-     {"collider":[16.23,-3],"r":0.2},
-     {"collider":[16.62,-3],"r":0.2},
-     {"collider":[17,-3],"r":0.2},
+     {"repeat":{"i":14},"collider":["12+i*0.3846",-3],"r":0.2},
      {"shape":"box","pos":[10.5,2.75,-3],"scale":[3,0.9,0.38],"color":"#f3ede2"},
      {"shape":"box","pos":[9.08,1.15,-3],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[11.92,1.15,-3],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[7,1.6,7],"scale":[20,3.2,0.3],"color":"#f3ede2"},
-     {"collider":[-3,7],"r":0.2},
-     {"collider":[-2.6,7],"r":0.2},
-     {"collider":[-2.2,7],"r":0.2},
-     {"collider":[-1.8,7],"r":0.2},
-     {"collider":[-1.4,7],"r":0.2},
-     {"collider":[-1,7],"r":0.2},
-     {"collider":[-0.6,7],"r":0.2},
-     {"collider":[-0.2,7],"r":0.2},
-     {"collider":[0.2,7],"r":0.2},
-     {"collider":[0.6,7],"r":0.2},
-     {"collider":[1,7],"r":0.2},
-     {"collider":[1.4,7],"r":0.2},
-     {"collider":[1.8,7],"r":0.2},
-     {"collider":[2.2,7],"r":0.2},
-     {"collider":[2.6,7],"r":0.2},
-     {"collider":[3,7],"r":0.2},
-     {"collider":[3.4,7],"r":0.2},
-     {"collider":[3.8,7],"r":0.2},
-     {"collider":[4.2,7],"r":0.2},
-     {"collider":[4.6,7],"r":0.2},
-     {"collider":[5,7],"r":0.2},
-     {"collider":[5.4,7],"r":0.2},
-     {"collider":[5.8,7],"r":0.2},
-     {"collider":[6.2,7],"r":0.2},
-     {"collider":[6.6,7],"r":0.2},
-     {"collider":[7,7],"r":0.2},
-     {"collider":[7.4,7],"r":0.2},
-     {"collider":[7.8,7],"r":0.2},
-     {"collider":[8.2,7],"r":0.2},
-     {"collider":[8.6,7],"r":0.2},
-     {"collider":[9,7],"r":0.2},
-     {"collider":[9.4,7],"r":0.2},
-     {"collider":[9.8,7],"r":0.2},
-     {"collider":[10.2,7],"r":0.2},
-     {"collider":[10.6,7],"r":0.2},
-     {"collider":[11,7],"r":0.2},
-     {"collider":[11.4,7],"r":0.2},
-     {"collider":[11.8,7],"r":0.2},
-     {"collider":[12.2,7],"r":0.2},
-     {"collider":[12.6,7],"r":0.2},
-     {"collider":[13,7],"r":0.2},
-     {"collider":[13.4,7],"r":0.2},
-     {"collider":[13.8,7],"r":0.2},
-     {"collider":[14.2,7],"r":0.2},
-     {"collider":[14.6,7],"r":0.2},
-     {"collider":[15,7],"r":0.2},
-     {"collider":[15.4,7],"r":0.2},
-     {"collider":[15.8,7],"r":0.2},
-     {"collider":[16.2,7],"r":0.2},
-     {"collider":[16.6,7],"r":0.2},
-     {"collider":[17,7],"r":0.2},
+     {"repeat":{"i":51},"collider":["-3+i*0.4",7],"r":0.2},
      {"shape":"box","pos":[17,1.6,-1.5],"scale":[0.3,3.2,3],"color":"#f3ede2"},
-     {"collider":[17,-3],"r":0.2},
-     {"collider":[17,-2.62],"r":0.2},
-     {"collider":[17,-2.25],"r":0.2},
-     {"collider":[17,-1.87],"r":0.2},
-     {"collider":[17,-1.5],"r":0.2},
-     {"collider":[17,-1.12],"r":0.2},
-     {"collider":[17,-0.75],"r":0.2},
-     {"collider":[17,-0.37],"r":0.2},
-     {"collider":[17,0],"r":0.2},
+     {"repeat":{"i":9},"collider":[17,"-3+i*0.375"],"r":0.2},
      {"shape":"box","pos":[17,1.6,5],"scale":[0.3,3.2,4],"color":"#f3ede2"},
-     {"collider":[17,3],"r":0.2},
-     {"collider":[17,3.4],"r":0.2},
-     {"collider":[17,3.8],"r":0.2},
-     {"collider":[17,4.2],"r":0.2},
-     {"collider":[17,4.6],"r":0.2},
-     {"collider":[17,5],"r":0.2},
-     {"collider":[17,5.4],"r":0.2},
-     {"collider":[17,5.8],"r":0.2},
-     {"collider":[17,6.2],"r":0.2},
-     {"collider":[17,6.6],"r":0.2},
-     {"collider":[17,7],"r":0.2},
+     {"repeat":{"i":11},"collider":[17,"3+i*0.4"],"r":0.2},
      {"shape":"box","pos":[17,2.75,1.5],"scale":[0.38,0.9,3],"color":"#f3ede2"},
      {"shape":"box","pos":[17,1.15,0.08],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[17,1.15,2.92],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[7.05,0.03,2],"scale":[19.7,0.06,9.8],"color":"#d9b88a","mat":"PAINT"},
-     {"shape":"box","pos":[-2.78,1.7,2.2],"scale":[0.1,1.2,5.6],"color":"#2f4a3a","mat":"PAINT"},
+     {"frame":[-2.85,0,2.2,1.5708],"parts":[{"use":"board","with":{"w":5.4,"h":1.2,"y":1.05,"c":"#2f4a3a"}}]},
      {"frame":[4.4,0,0.4],"parts":[{"use":"table","with":{"w":2.7,"d":1.5}}]},
      {"collider":[4,0.4],"r":0.5},
      {"frame":[3.7,0,1.32,3.1416],"parts":[{"use":"chair","with":{"c":"#3288EF"}}]},
@@ -1050,52 +901,81 @@
        {"use":"shelf","with":{"w":2.72,"d":0.45,"h":1.6,"n":4,"u":3}},
        {
         "each": [
-         {"x":-1.02,"y":0.26,"w":0.06,"h":0.39,"c":"#22C55E"},
-         {"x":-0.87,"y":0.23,"w":0.09,"h":0.33,"c":"#EAB308"},
-         {"x":-0.61,"y":0.24,"w":0.06,"h":0.34,"c":"#3288EF"},
-         {"x":0.32,"y":0.22,"w":0.06,"h":0.31,"c":"#ef4444"},
-         {"x":0.58,"y":0.25,"w":0.09,"h":0.37,"c":"#EAB308"},
-         {"x":0.87,"y":0.27,"w":0.08,"h":0.4,"c":"#EAB308"},
-         {"x":-1.09,"y":0.72,"w":0.06,"h":0.29,"c":"#EAB308"},
-         {"x":-0.93,"y":0.78,"w":0.08,"h":0.4,"c":"#F97316"},
-         {"x":-0.79,"y":0.78,"w":0.08,"h":0.4,"c":"#3288EF"},
-         {"x":0.24,"y":0.75,"w":0.09,"h":0.35,"c":"#ef4444"},
-         {"x":0.42,"y":0.73,"w":0.09,"h":0.3,"c":"#3288EF"},
-         {"x":0.62,"y":0.78,"w":0.1,"h":0.41,"c":"#ef4444"},
-         {"x":-1.19,"y":1.26,"w":0.05,"h":0.35,"c":"#22C55E"},
-         {"x":-0.82,"y":1.23,"w":0.05,"h":0.29,"c":"#EAB308"},
-         {"x":-0.66,"y":1.27,"w":0.07,"h":0.37,"c":"#ef4444"},
-         {"x":0.35,"y":1.27,"w":0.09,"h":0.37,"c":"#ef4444"},
-         {"x":0.61,"y":1.26,"w":0.08,"h":0.34,"c":"#22C55E"},
-         {"x":0.87,"y":1.28,"w":0.06,"h":0.38,"c":"#3288EF"}
+         {"x":-1.02,"y":0.27,"w":0.07,"h":0.41,"c":"#F97316"},
+         {"x":-0.86,"y":0.27,"w":0.07,"h":0.41,"c":"#3288EF"},
+         {"x":-0.71,"y":0.27,"w":0.07,"h":0.41,"c":"#ef4444"},
+         {"x":0.27,"y":0.27,"w":0.07,"h":0.41,"c":"#ef4444"},
+         {"x":0.54,"y":0.27,"w":0.07,"h":0.41,"c":"#3288EF"},
+         {"x":0.93,"y":0.27,"w":0.07,"h":0.41,"c":"#EAB308"},
+         {"x":-1.19,"y":0.78,"w":0.07,"h":0.41,"c":"#F97316"},
+         {"x":-0.92,"y":0.78,"w":0.07,"h":0.41,"c":"#3288EF"},
+         {"x":-0.77,"y":0.78,"w":0.07,"h":0.41,"c":"#22C55E"},
+         {"x":0.13,"y":0.78,"w":0.07,"h":0.41,"c":"#F97316"},
+         {"x":0.28,"y":0.78,"w":0.07,"h":0.41,"c":"#22C55E"},
+         {"x":0.44,"y":0.78,"w":0.07,"h":0.41,"c":"#22C55E"},
+         {"x":-1.22,"y":1.29,"w":0.07,"h":0.41,"c":"#EAB308"},
+         {"x":-1.07,"y":1.29,"w":0.07,"h":0.41,"c":"#F97316"},
+         {"x":-0.92,"y":1.29,"w":0.07,"h":0.41,"c":"#F97316"},
+         {"x":0.11,"y":1.29,"w":0.07,"h":0.41,"c":"#EAB308"},
+         {"x":0.27,"y":1.29,"w":0.07,"h":0.41,"c":"#ef4444"},
+         {"x":0.54,"y":1.29,"w":0.07,"h":0.41,"c":"#ef4444"}
         ],
-        "shape": "box",
-        "pos": ["x","y",-0.06],
-        "scale": ["w","h",0.26],
-        "color": "c",
-        "mat": "PAINT"
+        "parts": [
+         {"shape":"box","pos":["x","y",-0.06],"scale":["w","h",0.26],"color":"c","mat":"PAINT"},
+         {
+          "shape": "box",
+          "pos": ["x","y+h*0.12",0.07],
+          "scale": ["w*0.62","h*0.36",0.006],
+          "color": "#f8f6ee",
+          "mat": "PAINT",
+          "skipLean": true
+         },
+         {
+          "shape": "cyl6",
+          "pos": ["x","y-h*0.3",0.07],
+          "rot": [1.5708,0,0],
+          "scale": [0.03,0.006,0.03],
+          "color": "#2b2f36",
+          "mat": "PAINT",
+          "skipLean": true
+         }
+        ]
        },
        {
         "each": [
-         {"x":-0.95,"y":0.25,"w":0.06,"h":0.37,"c":"#F97316"},
-         {"x":-0.79,"y":0.23,"w":0.06,"h":0.33,"c":"#ef4444"},
-         {"x":0.38,"y":0.22,"w":0.06,"h":0.3,"c":"#EAB308"},
-         {"x":0.79,"y":0.26,"w":0.07,"h":0.39,"c":"#ef4444"},
-         {"x":-1.02,"y":0.74,"w":0.08,"h":0.32,"c":"#F97316"},
-         {"x":-0.86,"y":0.77,"w":0.05,"h":0.39,"c":"#22C55E"},
-         {"x":0.33,"y":0.79,"w":0.09,"h":0.42,"c":"#ef4444"},
-         {"x":0.52,"y":0.72,"w":0.1,"h":0.29,"c":"#3288EF"},
-         {"x":-1.01,"y":1.26,"w":0.07,"h":0.35,"c":"#F97316"},
-         {"x":-0.75,"y":1.28,"w":0.09,"h":0.39,"c":"#22C55E"},
-         {"x":0.54,"y":1.28,"w":0.05,"h":0.39,"c":"#EAB308"},
-         {"x":0.81,"y":1.23,"w":0.05,"h":0.29,"c":"#F97316"}
+         {"x":-0.94,"y":0.27,"w":0.07,"h":0.41,"c":"#22C55E"},
+         {"x":-0.79,"y":0.27,"w":0.07,"h":0.41,"c":"#F97316"},
+         {"x":0.47,"y":0.27,"w":0.07,"h":0.41,"c":"#F97316"},
+         {"x":0.74,"y":0.27,"w":0.07,"h":0.41,"c":"#F97316"},
+         {"x":-1.12,"y":0.78,"w":0.07,"h":0.41,"c":"#EAB308"},
+         {"x":-0.84,"y":0.78,"w":0.07,"h":0.41,"c":"#3288EF"},
+         {"x":0.21,"y":0.78,"w":0.07,"h":0.41,"c":"#ef4444"},
+         {"x":0.36,"y":0.78,"w":0.07,"h":0.41,"c":"#EAB308"},
+         {"x":-1.15,"y":1.29,"w":0.07,"h":0.41,"c":"#22C55E"},
+         {"x":-1,"y":1.29,"w":0.07,"h":0.41,"c":"#EAB308"},
+         {"x":0.19,"y":1.29,"w":0.07,"h":0.41,"c":"#EAB308"},
+         {"x":0.46,"y":1.29,"w":0.07,"h":0.41,"c":"#ef4444"}
         ],
-        "shape": "box",
-        "pos": ["x","y",-0.06],
-        "scale": ["w","h",0.26],
-        "color": "c",
-        "mat": "PAINT",
-        "skipLean": true
+        "parts": [
+         {"shape":"box","pos":["x","y",-0.06],"scale":["w","h",0.26],"color":"c","mat":"PAINT","skipLean":true},
+         {
+          "shape": "box",
+          "pos": ["x","y+h*0.12",0.07],
+          "scale": ["w*0.62","h*0.36",0.006],
+          "color": "#f8f6ee",
+          "mat": "PAINT",
+          "skipLean": true
+         },
+         {
+          "shape": "cyl6",
+          "pos": ["x","y-h*0.3",0.07],
+          "rot": [1.5708,0,0],
+          "scale": [0.03,0.006,0.03],
+          "color": "#2b2f36",
+          "mat": "PAINT",
+          "skipLean": true
+         }
+        ]
        }
       ]
      },
@@ -1107,22 +987,8 @@
     "$schema": "hazu.world/landmark@1",
     "id": "schulhaus_coaching",
     "frame": {"kind":"footprint","name":"F"},
+    "geometries": {"pot":{"type":"cylinder","args":[0.24,0.17,0.44,10]}},
     "define": {
-     "table": {
-      "params": ["w","d","h","c","l"],
-      "defaults": {"h":0.75,"c":"#e2c497","l":"#7c828c"},
-      "parts": [
-       {"shape":"box","pos":[0,"h-0.02",0],"scale":["w",0.04,"d"],"color":"c","mat":"WOOD"},
-       {
-        "for": {"sx":[-1,1],"sz":[-1,1]},
-        "shape": "box",
-        "pos": ["sx*(w/2-0.07)","h/2-0.02","sz*(d/2-0.07)"],
-        "scale": [0.045,"h-0.04",0.045],
-        "color": "l",
-        "mat": "METAL"
-       }
-      ]
-     },
      "sofa": {
       "params": ["w","d","c","k","n"],
       "defaults": {"n":1},
@@ -1158,137 +1024,122 @@
      },
      "plant": {
       "parts": [
-       {"shape":"cyl8","pos":[0,0.22,0],"scale":[0.46,0.44,0.46],"color":"#c0663f","mat":"PAINT"},
-       {"shape":"ico","pos":[0,0.95,0],"scale":[0.85,1.05,0.85],"color":"#4c9a5a","mat":"LEAF"},
-       {"shape":"ico","pos":[0.12,1.35,-0.06],"scale":[0.5,0.6,0.5],"color":"#5aae68","mat":"LEAF","skipLean":true}
+       {"shape":"pot","pos":[0,0.22,0],"color":"#c0663f","mat":"PAINT"},
+       {"shape":"cyl8","pos":[0,0.44,0],"scale":[0.54,0.06,0.54],"color":"#a9542f","mat":"PAINT"},
+       {"shape":"box","pos":[0,0.6,0],"scale":[0.05,0.3,0.05],"color":"#5a3f24","mat":"WOOD","skipLean":true},
+       {"shape":"ico","pos":[0,0.95,0],"scale":[0.82,0.72,0.82],"color":"#5aae68","mat":"LEAF"},
+       {
+        "for": {"a":[0,2.1,4.2]},
+        "shape": "ico",
+        "pos": ["0.26*cos(a)",0.78,"0.26*sin(a)"],
+        "scale": [0.44,0.38,0.44],
+        "color": "#4c9a5a",
+        "mat": "LEAF",
+        "skipLean": true
+       },
+       {"shape":"ico","pos":[0.05,1.3,-0.03],"scale":[0.52,0.5,0.52],"color":"#6cc07a","mat":"LEAF"}
+      ]
+     },
+     "board": {
+      "params": ["w","h","y","c","f","wd","tr"],
+      "defaults": {"f":"#8a6236","wd":1,"tr":1},
+      "parts": [
+       {"shape":"box","pos":[0,"y+h/2",0.02],"scale":["w","h",0.03],"color":"c","mat":"PAINT"},
+       {
+        "if": "wd",
+        "parts": [
+         {
+          "for": {"s":[-1,1]},
+          "shape": "box",
+          "pos": [0,"y+h/2+s*(h/2+0.025)",0.03],
+          "scale": ["w+0.1",0.05,0.05],
+          "color": "f",
+          "mat": "WOOD"
+         },
+         {"for":{"s":[-1,1]},"shape":"box","pos":["s*(w/2+0.025)","y+h/2",0.03],"scale":[0.05,"h",0.05],"color":"f","mat":"WOOD"}
+        ]
+       },
+       {
+        "if": "!wd",
+        "parts": [
+         {
+          "for": {"s":[-1,1]},
+          "shape": "box",
+          "pos": [0,"y+h/2+s*(h/2+0.02)",0.03],
+          "scale": ["w+0.08",0.04,0.05],
+          "color": "f",
+          "mat": "METAL"
+         },
+         {"for":{"s":[-1,1]},"shape":"box","pos":["s*(w/2+0.02)","y+h/2",0.03],"scale":[0.04,"h",0.05],"color":"f","mat":"METAL"}
+        ]
+       },
+       {
+        "if": "tr",
+        "parts": [
+         {"shape":"box","pos":[0,"y-0.07",0.07],"scale":["w*0.8",0.025,0.11],"color":"#7c828c","mat":"METAL"},
+         {"shape":"box","pos":[0,"y-0.05",0.12],"scale":["w*0.8",0.03,0.012],"color":"#7c828c","mat":"METAL","skipLean":true},
+         {
+          "for": {"k":[-0.3,-0.22,0.12]},
+          "shape": "box",
+          "pos": ["k*w","y-0.048",0.07],
+          "scale": [0.08,0.016,0.016],
+          "color": "#ffffff",
+          "mat": "PAINT",
+          "skipLean": true
+         },
+         {"shape":"box","pos":["0.3*w","y-0.04",0.07],"scale":[0.12,0.04,0.05],"color":"#f6c445","mat":"FABRIC","skipLean":true}
+        ]
+       }
+      ]
+     },
+     "lowtable": {
+      "params": ["w","d","h"],
+      "defaults": {"h":0.45},
+      "parts": [
+       {"shape":"rbox","pos":[0,"h-0.03",0],"scale":["w",0.06,"d"],"color":"#d6b07a","mat":"WOOD"},
+       {
+        "for": {"sx":[-1,1],"sz":[-1,1]},
+        "shape": "box",
+        "pos": ["sx*(w/2-0.08)","(h-0.06)/2","sz*(d/2-0.08)"],
+        "scale": [0.06,"h-0.06",0.06],
+        "color": "#8a6236",
+        "mat": "WOOD"
+       },
+       {"shape":"box","pos":[0,0.12,0],"scale":["w-0.2",0.025,"d-0.2"],"color":"#a8744a","mat":"WOOD"},
+       {
+        "shape": "box",
+        "pos": ["-w*0.18","h+0.012",0.02],
+        "rot": [0,0.3,0],
+        "scale": [0.21,0.025,0.29],
+        "color": "#3288EF",
+        "mat": "PAINT",
+        "skipLean": true
+       },
+       {
+        "shape": "cyl8",
+        "pos": ["w*0.22","h+0.05","-d*0.1"],
+        "scale": [0.08,0.1,0.08],
+        "color": "#f4efe6",
+        "mat": "PAINT",
+        "skipLean": true
+       }
       ]
      }
     },
     "parts": [
      {"shape":"box","pos":[-14.5,1.6,-3],"scale":[5,3.2,0.3],"color":"#f3ede2"},
-     {"collider":[-17,-3],"r":0.2},
-     {"collider":[-16.62,-3],"r":0.2},
-     {"collider":[-16.23,-3],"r":0.2},
-     {"collider":[-15.85,-3],"r":0.2},
-     {"collider":[-15.46,-3],"r":0.2},
-     {"collider":[-15.08,-3],"r":0.2},
-     {"collider":[-14.69,-3],"r":0.2},
-     {"collider":[-14.31,-3],"r":0.2},
-     {"collider":[-13.92,-3],"r":0.2},
-     {"collider":[-13.54,-3],"r":0.2},
-     {"collider":[-13.15,-3],"r":0.2},
-     {"collider":[-12.77,-3],"r":0.2},
-     {"collider":[-12.38,-3],"r":0.2},
-     {"collider":[-12,-3],"r":0.2},
+     {"repeat":{"i":14},"collider":["-17+i*0.3846",-3],"r":0.2},
      {"shape":"box","pos":[-3,1.6,-3],"scale":[12,3.2,0.3],"color":"#f3ede2"},
-     {"collider":[-9,-3],"r":0.2},
-     {"collider":[-8.6,-3],"r":0.2},
-     {"collider":[-8.2,-3],"r":0.2},
-     {"collider":[-7.8,-3],"r":0.2},
-     {"collider":[-7.4,-3],"r":0.2},
-     {"collider":[-7,-3],"r":0.2},
-     {"collider":[-6.6,-3],"r":0.2},
-     {"collider":[-6.2,-3],"r":0.2},
-     {"collider":[-5.8,-3],"r":0.2},
-     {"collider":[-5.4,-3],"r":0.2},
-     {"collider":[-5,-3],"r":0.2},
-     {"collider":[-4.6,-3],"r":0.2},
-     {"collider":[-4.2,-3],"r":0.2},
-     {"collider":[-3.8,-3],"r":0.2},
-     {"collider":[-3.4,-3],"r":0.2},
-     {"collider":[-3,-3],"r":0.2},
-     {"collider":[-2.6,-3],"r":0.2},
-     {"collider":[-2.2,-3],"r":0.2},
-     {"collider":[-1.8,-3],"r":0.2},
-     {"collider":[-1.4,-3],"r":0.2},
-     {"collider":[-1,-3],"r":0.2},
-     {"collider":[-0.6,-3],"r":0.2},
-     {"collider":[-0.2,-3],"r":0.2},
-     {"collider":[0.2,-3],"r":0.2},
-     {"collider":[0.6,-3],"r":0.2},
-     {"collider":[1,-3],"r":0.2},
-     {"collider":[1.4,-3],"r":0.2},
-     {"collider":[1.8,-3],"r":0.2},
-     {"collider":[2.2,-3],"r":0.2},
-     {"collider":[2.6,-3],"r":0.2},
-     {"collider":[3,-3],"r":0.2},
+     {"repeat":{"i":31},"collider":["-9+i*0.4",-3],"r":0.2},
      {"shape":"box","pos":[-10.5,2.75,-3],"scale":[3,0.9,0.38],"color":"#f3ede2"},
      {"shape":"box","pos":[-11.92,1.15,-3],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-9.08,1.15,-3],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-7,1.6,7],"scale":[20,3.2,0.3],"color":"#f3ede2"},
-     {"collider":[-17,7],"r":0.2},
-     {"collider":[-16.6,7],"r":0.2},
-     {"collider":[-16.2,7],"r":0.2},
-     {"collider":[-15.8,7],"r":0.2},
-     {"collider":[-15.4,7],"r":0.2},
-     {"collider":[-15,7],"r":0.2},
-     {"collider":[-14.6,7],"r":0.2},
-     {"collider":[-14.2,7],"r":0.2},
-     {"collider":[-13.8,7],"r":0.2},
-     {"collider":[-13.4,7],"r":0.2},
-     {"collider":[-13,7],"r":0.2},
-     {"collider":[-12.6,7],"r":0.2},
-     {"collider":[-12.2,7],"r":0.2},
-     {"collider":[-11.8,7],"r":0.2},
-     {"collider":[-11.4,7],"r":0.2},
-     {"collider":[-11,7],"r":0.2},
-     {"collider":[-10.6,7],"r":0.2},
-     {"collider":[-10.2,7],"r":0.2},
-     {"collider":[-9.8,7],"r":0.2},
-     {"collider":[-9.4,7],"r":0.2},
-     {"collider":[-9,7],"r":0.2},
-     {"collider":[-8.6,7],"r":0.2},
-     {"collider":[-8.2,7],"r":0.2},
-     {"collider":[-7.8,7],"r":0.2},
-     {"collider":[-7.4,7],"r":0.2},
-     {"collider":[-7,7],"r":0.2},
-     {"collider":[-6.6,7],"r":0.2},
-     {"collider":[-6.2,7],"r":0.2},
-     {"collider":[-5.8,7],"r":0.2},
-     {"collider":[-5.4,7],"r":0.2},
-     {"collider":[-5,7],"r":0.2},
-     {"collider":[-4.6,7],"r":0.2},
-     {"collider":[-4.2,7],"r":0.2},
-     {"collider":[-3.8,7],"r":0.2},
-     {"collider":[-3.4,7],"r":0.2},
-     {"collider":[-3,7],"r":0.2},
-     {"collider":[-2.6,7],"r":0.2},
-     {"collider":[-2.2,7],"r":0.2},
-     {"collider":[-1.8,7],"r":0.2},
-     {"collider":[-1.4,7],"r":0.2},
-     {"collider":[-1,7],"r":0.2},
-     {"collider":[-0.6,7],"r":0.2},
-     {"collider":[-0.2,7],"r":0.2},
-     {"collider":[0.2,7],"r":0.2},
-     {"collider":[0.6,7],"r":0.2},
-     {"collider":[1,7],"r":0.2},
-     {"collider":[1.4,7],"r":0.2},
-     {"collider":[1.8,7],"r":0.2},
-     {"collider":[2.2,7],"r":0.2},
-     {"collider":[2.6,7],"r":0.2},
-     {"collider":[3,7],"r":0.2},
+     {"repeat":{"i":51},"collider":["-17+i*0.4",7],"r":0.2},
      {"shape":"box","pos":[-17,1.6,-1.5],"scale":[0.3,3.2,3],"color":"#f3ede2"},
-     {"collider":[-17,-3],"r":0.2},
-     {"collider":[-17,-2.62],"r":0.2},
-     {"collider":[-17,-2.25],"r":0.2},
-     {"collider":[-17,-1.87],"r":0.2},
-     {"collider":[-17,-1.5],"r":0.2},
-     {"collider":[-17,-1.12],"r":0.2},
-     {"collider":[-17,-0.75],"r":0.2},
-     {"collider":[-17,-0.37],"r":0.2},
-     {"collider":[-17,0],"r":0.2},
+     {"repeat":{"i":9},"collider":[-17,"-3+i*0.375"],"r":0.2},
      {"shape":"box","pos":[-17,1.6,5],"scale":[0.3,3.2,4],"color":"#f3ede2"},
-     {"collider":[-17,3],"r":0.2},
-     {"collider":[-17,3.4],"r":0.2},
-     {"collider":[-17,3.8],"r":0.2},
-     {"collider":[-17,4.2],"r":0.2},
-     {"collider":[-17,4.6],"r":0.2},
-     {"collider":[-17,5],"r":0.2},
-     {"collider":[-17,5.4],"r":0.2},
-     {"collider":[-17,5.8],"r":0.2},
-     {"collider":[-17,6.2],"r":0.2},
-     {"collider":[-17,6.6],"r":0.2},
-     {"collider":[-17,7],"r":0.2},
+     {"repeat":{"i":11},"collider":[-17,"3+i*0.4"],"r":0.2},
      {"shape":"box","pos":[-17,2.75,1.5],"scale":[0.38,0.9,3],"color":"#f3ede2"},
      {"shape":"box","pos":[-17,1.15,0.08],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-17,1.15,2.92],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
@@ -1298,11 +1149,27 @@
      {"collider":[-8.2,2],"r":0.5},
      {"frame":[-3.8,0,2,-1.5708],"parts":[{"use":"sofa","with":{"w":1.05,"d":0.95,"c":"#5b7fb8","k":"#9db8e3","n":1}}]},
      {"collider":[-3.8,2],"r":0.5},
-     {"frame":[-6,0,2],"parts":[{"use":"table","with":{"w":1.3,"d":0.9,"h":0.45,"l":"#8a6236"}}]},
+     {"frame":[-6,0,2],"parts":[{"use":"lowtable","with":{"w":1.3,"d":0.9,"h":0.45}}]},
      {"collider":[-5.7,2],"r":0.5},
      {"frame":[1.9,0,5.9],"parts":[{"use":"plant"}]},
      {"collider":[2,5.9],"r":0.5},
-     {"shape":"box","pos":[2.78,1.7,2],"scale":[0.1,1.2,6],"color":"#fafafa","mat":"PAINT"},
+     {
+      "frame": [2.85,0,2,-1.5708],
+      "parts": [
+       {"use":"board","with":{"w":5.8,"h":1.2,"y":1.05,"c":"#fafafa","f":"#c3c8cf","wd":0}},
+       {"shape":"box","pos":[-2.1,2,0.04],"scale":[1.1,0.03,0.01],"color":"#1e3a8a","mat":"PAINT","skipLean":true},
+       {"shape":"box","pos":[-2.25,1.82,0.04],"scale":[0.8,0.03,0.01],"color":"#1e3a8a","mat":"PAINT","skipLean":true},
+       {"shape":"box","pos":[-2,1.64,0.04],"scale":[1.3,0.03,0.01],"color":"#1e3a8a","mat":"PAINT","skipLean":true},
+       {"shape":"box","pos":[-2.2,1.46,0.04],"scale":[0.9,0.03,0.01],"color":"#15803d","mat":"PAINT","skipLean":true},
+       {"shape":"box","pos":[-0.4,2,0.04],"scale":[0.9,0.03,0.01],"color":"#b91c1c","mat":"PAINT","skipLean":true},
+       {"shape":"box","pos":[-0.3,1.82,0.04],"scale":[1.1,0.03,0.01],"color":"#1e3a8a","mat":"PAINT","skipLean":true},
+       {"shape":"box","pos":[-0.45,1.64,0.04],"scale":[0.8,0.03,0.01],"color":"#1e3a8a","mat":"PAINT","skipLean":true},
+       {"shape":"box","pos":[1.3,1.85,0.05],"scale":[0.3,0.3,0.01],"color":"#fde68a","mat":"PAINT"},
+       {"shape":"box","pos":[1.75,1.85,0.05],"scale":[0.3,0.3,0.01],"color":"#a7f3d0","mat":"PAINT"},
+       {"shape":"box","pos":[1.3,1.45,0.05],"scale":[0.3,0.3,0.01],"color":"#bfdbfe","mat":"PAINT"},
+       {"shape":"box","pos":[2.2,1.6,0.05],"scale":[0.3,0.3,0.01],"color":"#fca5a5","mat":"PAINT"}
+      ]
+     },
      {"frame":[-10.5,0,-3.22,3.1416],"parts":[{"sign":{"at":[0,2.62,0]}}]}
     ]
    },
@@ -1310,22 +1177,8 @@
     "$schema": "hazu.world/landmark@1",
     "id": "schulhaus_pause",
     "frame": {"kind":"footprint","name":"F"},
+    "geometries": {"pot":{"type":"cylinder","args":[0.24,0.17,0.44,10]}},
     "define": {
-     "table": {
-      "params": ["w","d","h","c","l"],
-      "defaults": {"h":0.75,"c":"#e2c497","l":"#7c828c"},
-      "parts": [
-       {"shape":"box","pos":[0,"h-0.02",0],"scale":["w",0.04,"d"],"color":"c","mat":"WOOD"},
-       {
-        "for": {"sx":[-1,1],"sz":[-1,1]},
-        "shape": "box",
-        "pos": ["sx*(w/2-0.07)","h/2-0.02","sz*(d/2-0.07)"],
-        "scale": [0.045,"h-0.04",0.045],
-        "color": "l",
-        "mat": "METAL"
-       }
-      ]
-     },
      "sofa": {
       "params": ["w","d","c","k","n"],
       "defaults": {"n":1},
@@ -1361,9 +1214,53 @@
      },
      "plant": {
       "parts": [
-       {"shape":"cyl8","pos":[0,0.22,0],"scale":[0.46,0.44,0.46],"color":"#c0663f","mat":"PAINT"},
-       {"shape":"ico","pos":[0,0.95,0],"scale":[0.85,1.05,0.85],"color":"#4c9a5a","mat":"LEAF"},
-       {"shape":"ico","pos":[0.12,1.35,-0.06],"scale":[0.5,0.6,0.5],"color":"#5aae68","mat":"LEAF","skipLean":true}
+       {"shape":"pot","pos":[0,0.22,0],"color":"#c0663f","mat":"PAINT"},
+       {"shape":"cyl8","pos":[0,0.44,0],"scale":[0.54,0.06,0.54],"color":"#a9542f","mat":"PAINT"},
+       {"shape":"box","pos":[0,0.6,0],"scale":[0.05,0.3,0.05],"color":"#5a3f24","mat":"WOOD","skipLean":true},
+       {"shape":"ico","pos":[0,0.95,0],"scale":[0.82,0.72,0.82],"color":"#5aae68","mat":"LEAF"},
+       {
+        "for": {"a":[0,2.1,4.2]},
+        "shape": "ico",
+        "pos": ["0.26*cos(a)",0.78,"0.26*sin(a)"],
+        "scale": [0.44,0.38,0.44],
+        "color": "#4c9a5a",
+        "mat": "LEAF",
+        "skipLean": true
+       },
+       {"shape":"ico","pos":[0.05,1.3,-0.03],"scale":[0.52,0.5,0.52],"color":"#6cc07a","mat":"LEAF"}
+      ]
+     },
+     "lowtable": {
+      "params": ["w","d","h"],
+      "defaults": {"h":0.45},
+      "parts": [
+       {"shape":"rbox","pos":[0,"h-0.03",0],"scale":["w",0.06,"d"],"color":"#d6b07a","mat":"WOOD"},
+       {
+        "for": {"sx":[-1,1],"sz":[-1,1]},
+        "shape": "box",
+        "pos": ["sx*(w/2-0.08)","(h-0.06)/2","sz*(d/2-0.08)"],
+        "scale": [0.06,"h-0.06",0.06],
+        "color": "#8a6236",
+        "mat": "WOOD"
+       },
+       {"shape":"box","pos":[0,0.12,0],"scale":["w-0.2",0.025,"d-0.2"],"color":"#a8744a","mat":"WOOD"},
+       {
+        "shape": "box",
+        "pos": ["-w*0.18","h+0.012",0.02],
+        "rot": [0,0.3,0],
+        "scale": [0.21,0.025,0.29],
+        "color": "#3288EF",
+        "mat": "PAINT",
+        "skipLean": true
+       },
+       {
+        "shape": "cyl8",
+        "pos": ["w*0.22","h+0.05","-d*0.1"],
+        "scale": [0.08,0.1,0.08],
+        "color": "#f4efe6",
+        "mat": "PAINT",
+        "skipLean": true
+       }
       ]
      }
     },
@@ -1373,7 +1270,7 @@
      {"collider":[0.8,-4.1],"r":0.5},
      {"collider":[2.8,-4.1],"r":0.5},
      {"collider":[4.8,-4.1],"r":0.5},
-     {"frame":[3,0,-1],"parts":[{"use":"table","with":{"w":1.9,"d":1.5,"h":0.42,"l":"#8a6236"}}]},
+     {"frame":[3,0,-1],"parts":[{"use":"lowtable","with":{"w":1.9,"d":1.5,"h":0.42}}]},
      {"collider":[3,-1],"r":0.5},
      {"frame":[-1.7,0,1.9],"parts":[{"use":"plant"}]},
      {"collider":[-1.6,1.9],"r":0.5},
@@ -1415,44 +1312,166 @@
         "color": "#5f6b78",
         "mat": "METAL"
        },
-       {"shape":"box","pos":[0,0.2,0],"scale":["w-0.1",0.03,"d-0.12"],"color":"#a8744a","mat":"WOOD"}
+       {"shape":"box","pos":[0,0.2,0],"scale":["w-0.1",0.03,"d-0.12"],"color":"#a8744a","mat":"WOOD"},
+       {
+        "for": {"f":[-0.25,0.25]},
+        "shape": "box",
+        "pos": ["f*w",0.74,"d/2-0.03"],
+        "scale": [0.6,0.16,0.04],
+        "color": "#a8744a",
+        "mat": "WOOD"
+       },
+       {
+        "for": {"f":[-0.25,0.25]},
+        "shape": "box",
+        "pos": ["f*w",0.74,"d/2-0.005"],
+        "scale": [0.14,0.03,0.03],
+        "color": "#2b2f36",
+        "mat": "METAL",
+        "skipLean": true
+       },
+       {
+        "for": {"s":[-1,1]},
+        "parts": [
+         {"shape":"box","pos":["w/2-0.3",0.98,"s*(d/2-0.12)"],"scale":[0.2,0.14,0.06],"color":"#4a6fa5","mat":"METAL"},
+         {
+          "shape": "box",
+          "pos": ["w/2-0.3",0.91,"s*(d/2-0.12)+s*0.08"],
+          "scale": [0.04,0.04,0.14],
+          "color": "#d4d8de",
+          "mat": "METAL",
+          "skipLean": true
+         }
+        ]
+       }
+      ]
+     },
+     "board": {
+      "params": ["w","h","y","c","f","wd","tr"],
+      "defaults": {"f":"#8a6236","wd":1,"tr":1},
+      "parts": [
+       {"shape":"box","pos":[0,"y+h/2",0.02],"scale":["w","h",0.03],"color":"c","mat":"PAINT"},
+       {
+        "if": "wd",
+        "parts": [
+         {
+          "for": {"s":[-1,1]},
+          "shape": "box",
+          "pos": [0,"y+h/2+s*(h/2+0.025)",0.03],
+          "scale": ["w+0.1",0.05,0.05],
+          "color": "f",
+          "mat": "WOOD"
+         },
+         {"for":{"s":[-1,1]},"shape":"box","pos":["s*(w/2+0.025)","y+h/2",0.03],"scale":[0.05,"h",0.05],"color":"f","mat":"WOOD"}
+        ]
+       },
+       {
+        "if": "!wd",
+        "parts": [
+         {
+          "for": {"s":[-1,1]},
+          "shape": "box",
+          "pos": [0,"y+h/2+s*(h/2+0.02)",0.03],
+          "scale": ["w+0.08",0.04,0.05],
+          "color": "f",
+          "mat": "METAL"
+         },
+         {"for":{"s":[-1,1]},"shape":"box","pos":["s*(w/2+0.02)","y+h/2",0.03],"scale":[0.04,"h",0.05],"color":"f","mat":"METAL"}
+        ]
+       },
+       {
+        "if": "tr",
+        "parts": [
+         {"shape":"box","pos":[0,"y-0.07",0.07],"scale":["w*0.8",0.025,0.11],"color":"#7c828c","mat":"METAL"},
+         {"shape":"box","pos":[0,"y-0.05",0.12],"scale":["w*0.8",0.03,0.012],"color":"#7c828c","mat":"METAL","skipLean":true},
+         {
+          "for": {"k":[-0.3,-0.22,0.12]},
+          "shape": "box",
+          "pos": ["k*w","y-0.048",0.07],
+          "scale": [0.08,0.016,0.016],
+          "color": "#ffffff",
+          "mat": "PAINT",
+          "skipLean": true
+         },
+         {"shape":"box","pos":["0.3*w","y-0.04",0.07],"scale":[0.12,0.04,0.05],"color":"#f6c445","mat":"FABRIC","skipLean":true}
+        ]
+       }
+      ]
+     },
+     "toolbox": {
+      "parts": [
+       {"shape":"box","pos":[0,0.1,0],"scale":[0.46,0.2,0.22],"color":"#c0392b","mat":"PAINT"},
+       {"shape":"box","pos":[0,0.225,0],"scale":[0.48,0.05,0.24],"color":"#962d22","mat":"PAINT"},
+       {
+        "for": {"s":[-1,1]},
+        "shape": "box",
+        "pos": ["s*0.12",0.28,0],
+        "scale": [0.025,0.07,0.025],
+        "color": "#2b2f36",
+        "mat": "METAL",
+        "skipLean": true
+       },
+       {"shape":"box","pos":[0,0.32,0],"scale":[0.27,0.025,0.03],"color":"#2b2f36","mat":"METAL","skipLean":true},
+       {
+        "for": {"s":[-1,1]},
+        "shape": "box",
+        "pos": ["s*0.16",0.18,0.115],
+        "scale": [0.04,0.05,0.012],
+        "color": "#7c828c",
+        "mat": "METAL",
+        "skipLean": true
+       }
+      ]
+     },
+     "crate": {
+      "parts": [
+       {"shape":"box","pos":[0,0.01,0],"scale":[0.44,0.02,0.32],"color":"#1f5fae","mat":"PAINT"},
+       {"for":{"s":[-1,1]},"shape":"box","pos":[0,0.1,"s*0.15"],"scale":[0.44,0.2,0.02],"color":"#2c7be5","mat":"PAINT"},
+       {"for":{"s":[-1,1]},"shape":"box","pos":["s*0.21",0.1,0],"scale":[0.02,0.2,0.28],"color":"#2c7be5","mat":"PAINT"},
+       {"shape":"box","pos":[-0.06,0.19,0.02],"rot":[0,0.2,0.5],"scale":[0.36,0.05,0.08],"color":"#e2c497","mat":"WOOD"},
+       {
+        "shape": "box",
+        "pos": [0.08,0.16,-0.04],
+        "rot": [0.3,-0.3,0],
+        "scale": [0.07,0.07,0.3],
+        "color": "#c8955a",
+        "mat": "WOOD",
+        "skipLean": true
+       }
       ]
      }
     },
     "parts": [
      {"shape":"box","pos":[-17,1.6,-5.5],"scale":[0.3,3.2,3],"color":"#f3ede2"},
-     {"collider":[-17,-7],"r":0.2},
-     {"collider":[-17,-6.62],"r":0.2},
-     {"collider":[-17,-6.25],"r":0.2},
-     {"collider":[-17,-5.87],"r":0.2},
-     {"collider":[-17,-5.5],"r":0.2},
-     {"collider":[-17,-5.12],"r":0.2},
-     {"collider":[-17,-4.75],"r":0.2},
-     {"collider":[-17,-4.37],"r":0.2},
-     {"collider":[-17,-4],"r":0.2},
+     {"repeat":{"i":9},"collider":[-17,"-7+i*0.375"],"r":0.2},
      {"shape":"box","pos":[-17,1.6,1],"scale":[0.3,3.2,4],"color":"#f3ede2"},
-     {"collider":[-17,-1],"r":0.2},
-     {"collider":[-17,-0.6],"r":0.2},
-     {"collider":[-17,-0.2],"r":0.2},
-     {"collider":[-17,0.2],"r":0.2},
-     {"collider":[-17,0.6],"r":0.2},
-     {"collider":[-17,1],"r":0.2},
-     {"collider":[-17,1.4],"r":0.2},
-     {"collider":[-17,1.8],"r":0.2},
-     {"collider":[-17,2.2],"r":0.2},
-     {"collider":[-17,2.6],"r":0.2},
-     {"collider":[-17,3],"r":0.2},
+     {"repeat":{"i":11},"collider":[-17,"-1+i*0.4"],"r":0.2},
      {"shape":"box","pos":[-17,2.75,-2.5],"scale":[0.38,0.9,3],"color":"#f3ede2"},
      {"shape":"box","pos":[-17,1.15,-3.92],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-17,1.15,-1.08],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-7.05,0.03,-2],"scale":[19.7,0.06,9.8],"color":"#a9c4a0","mat":"PAINT"},
-     {"shape":"box","pos":[2.78,2,-2],"scale":[0.1,1.8,6],"color":"#2f4a3a","mat":"PAINT"},
+     {
+      "frame": [2.85,0,-2,-1.5708],
+      "parts": [{"use":"board","with":{"w":5.6,"h":1.7,"y":1.1,"c":"#1d2733","f":"#2b2f36","wd":0,"tr":0}}]
+     },
+     {"frame":[-12.4,0,-6.85],"parts":[{"use":"board","with":{"w":2.6,"h":1,"y":1.15,"c":"#d8b98a","tr":0}}]},
+     {
+      "frame": [-12.4,0,-6.85],
+      "parts": [
+       {"shape":"box","pos":[-0.9,1.6,0.06],"scale":[0.04,0.34,0.025],"color":"#c8955a","mat":"WOOD"},
+       {"shape":"box","pos":[-0.9,1.79,0.06],"scale":[0.16,0.05,0.025],"color":"#3d4450","mat":"METAL"},
+       {"shape":"box","pos":[-0.35,1.7,0.06],"scale":[0.5,0.13,0.025],"color":"#b8bec7","mat":"METAL"},
+       {"shape":"box","pos":[-0.66,1.7,0.06],"scale":[0.12,0.13,0.025],"color":"#c0392b","mat":"PAINT"},
+       {"shape":"box","pos":[0.25,1.62,0.06],"rot":[0,0,0.25],"scale":[0.04,0.4,0.025],"color":"#9aa1ab","mat":"METAL"},
+       {"shape":"box","pos":[0.6,1.62,0.06],"scale":[0.035,0.22,0.025],"color":"#d4d8de","mat":"METAL"},
+       {"shape":"box","pos":[0.6,1.83,0.06],"scale":[0.06,0.16,0.025],"color":"#F97316","mat":"PAINT"},
+       {"shape":"box","pos":[0.95,1.6,0.06],"scale":[0.05,0.3,0.025],"color":"#8a6236","mat":"WOOD"},
+       {"shape":"box","pos":[0.95,1.79,0.06],"scale":[0.12,0.1,0.025],"color":"#5f6b78","mat":"METAL"}
+      ]
+     },
      {
       "frame": [-8.5,0,-3.8],
-      "parts": [
-       {"use":"workbench","with":{"w":8.9,"d":1.5}},
-       {"shape":"box","pos":[-2.6,1,0],"scale":[0.45,0.2,0.22],"color":"#c0392b","mat":"PAINT","skipLean":true}
-      ]
+      "parts": [{"use":"workbench","with":{"w":8.9,"d":1.5}},{"frame":[-2.6,0.9,0],"parts":[{"use":"toolbox"}]}]
      },
      {"collider":[-12,-3.8],"r":0.5},
      {"collider":[-10,-3.8],"r":0.5},
@@ -1465,10 +1484,7 @@
      {"frame":[-5.2,0,-4.68],"parts":[{"use":"stool","with":{"c":"#EAB308"}}]},
      {
       "frame": [-8.5,0,0.2],
-      "parts": [
-       {"use":"workbench","with":{"w":8.9,"d":1.5}},
-       {"shape":"box","pos":[1.8,0.98,0.1],"scale":[0.4,0.16,0.3],"color":"#2c7be5","mat":"PAINT","skipLean":true}
-      ]
+      "parts": [{"use":"workbench","with":{"w":8.9,"d":1.5}},{"frame":[1.8,0.9,0.1,0.3],"parts":[{"use":"crate"}]}]
      },
      {"collider":[-12,0.2],"r":0.5},
      {"collider":[-10,0.2],"r":0.5},
@@ -1486,41 +1502,154 @@
     "$schema": "hazu.world/landmark@1",
     "id": "schulhaus_halle",
     "frame": {"kind":"footprint","name":"F"},
+    "define": {
+     "locker": {
+      "params": ["c","o"],
+      "defaults": {"o":0},
+      "let": {"W":0.4,"D":0.5,"hc":0.885},
+      "parts": [
+       {
+        "for": {"s":[-1,1]},
+        "shape": "box",
+        "pos": ["s*(W/2-0.008)",0.985,0],
+        "scale": [0.016,1.77,"D"],
+        "color": "#9aa1ab",
+        "mat": "METAL"
+       },
+       {"shape":"box","pos":[0,1.885,0.005],"scale":["W+0.004",0.03,"D+0.01"],"color":"#8a919b","mat":"METAL"},
+       {"shape":"box","pos":[0,0.05,-0.03],"scale":["W-0.01",0.1,"D-0.06"],"color":"#3d4450","mat":"PAINT"},
+       {
+        "for": {"t":[0,1]},
+        "if": "o != t+1",
+        "parts": [
+         {"shape":"box","pos":[0,"0.1+hc*t+hc/2",0],"scale":["W-0.02","hc","D-0.01"],"color":"#23272e","mat":"PAINT"},
+         {"shape":"box","pos":[0,"0.1+hc*t+hc/2","D/2+0.01"],"scale":["W-0.03","hc-0.03",0.02],"color":"c","mat":"PAINT"},
+         {
+          "for": {"v":[0,1,2]},
+          "shape": "box",
+          "pos": [-0.02,"0.1+hc*(t+1)-0.1-v*0.035","D/2+0.022"],
+          "scale": [0.22,0.012,0.006],
+          "color": "#1f2329",
+          "mat": "PAINT",
+          "skipLean": true
+         },
+         {
+          "shape": "box",
+          "pos": ["W/2-0.055","0.1+hc*t+hc/2","D/2+0.032"],
+          "scale": [0.022,0.15,0.022],
+          "color": "#d4d8de",
+          "mat": "METAL",
+          "skipLean": true
+         },
+         {
+          "shape": "box",
+          "pos": [-0.02,"0.1+hc*(t+1)-0.24","D/2+0.022"],
+          "scale": [0.07,0.035,0.006],
+          "color": "#eee8d8",
+          "mat": "PAINT",
+          "skipLean": true
+         }
+        ]
+       },
+       {
+        "if": "o",
+        "let": {"y0":"0.1+hc*(o-1)"},
+        "parts": [
+         {"shape":"box","pos":[0,"y0+hc/2","-D/2+0.015"],"scale":["W-0.02","hc",0.03],"color":"#b8bec7","mat":"METAL"},
+         {
+          "for": {"s":[0,1]},
+          "shape": "box",
+          "pos": [0,"y0+0.01+s*(hc-0.02)",0],
+          "scale": ["W-0.02",0.02,"D-0.01"],
+          "color": "#8a919b",
+          "mat": "METAL"
+         },
+         {
+          "frame": ["-W/2+0.015",0,"D/2",-1.75],
+          "parts": [
+           {"shape":"box","pos":["(W-0.03)/2","y0+hc/2",0.01],"scale":["W-0.03","hc-0.03",0.02],"color":"c","mat":"PAINT"},
+           {
+            "for": {"v":[0,1,2]},
+            "shape": "box",
+            "pos": ["(W-0.03)/2-0.02","y0+hc-0.1-v*0.035",0.022],
+            "scale": [0.22,0.012,0.006],
+            "color": "#1f2329",
+            "mat": "PAINT",
+            "skipLean": true
+           },
+           {
+            "shape": "box",
+            "pos": ["W-0.085","y0+hc/2",0.032],
+            "scale": [0.022,0.15,0.022],
+            "color": "#d4d8de",
+            "mat": "METAL",
+            "skipLean": true
+           }
+          ]
+         },
+         {
+          "if": "o == 2",
+          "parts": [
+           {"shape":"rbox","pos":[0,"y0+hc-0.38",-0.04],"scale":[0.32,0.58,0.16],"color":"#c0392b","mat":"FABRIC"},
+           {
+            "shape": "rboxSoft",
+            "pos": [0,"y0+hc-0.12",-0.08],
+            "scale": [0.2,0.14,0.1],
+            "color": "#962d22",
+            "mat": "FABRIC",
+            "skipLean": true
+           },
+           {
+            "shape": "box",
+            "pos": [0,"y0+0.17",0],
+            "rot": [0,0.4,0],
+            "scale": [0.22,0.12,0.08],
+            "color": "#f1c40f",
+            "mat": "PAINT",
+            "skipLean": true
+           }
+          ]
+         },
+         {
+          "if": "o == 1",
+          "parts": [
+           {"shape":"rboxSoft","pos":[0,"y0+0.2",-0.02],"scale":[0.32,0.36,0.24],"color":"#16a085","mat":"FABRIC"},
+           {"shape":"rboxSoft","pos":[0,"y0+0.13",0.11],"scale":[0.24,0.16,0.07],"color":"#0f7a65","mat":"FABRIC","skipLean":true},
+           {"shape":"box","pos":[0,"y0+0.4",-0.02],"scale":[0.14,0.03,0.03],"color":"#2b2f36","mat":"PAINT","skipLean":true}
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
     "parts": [
      {"shape":"box","pos":[-3,0.03,-5],"scale":[47.6,0.06,3.8],"color":"#9fb3c2","mat":"PAINT"},
      {"shape":"box","pos":[-3,0.03,7],"scale":[7.8,0.06,19.8],"color":"#9fb3c2","mat":"PAINT"},
-     {"shape":"box","pos":[-13.7,0.95,-6.15],"scale":[1,1.9,0.9],"color":"#3288EF","mat":"PAINT"},
-     {"collider":[-13.6,-6.15],"r":0.5},
-     {"shape":"box","pos":[-13.7,1.68,-5.68],"scale":[0.52,0.05,0.03],"color":"#3d4450","mat":"PAINT","skipLean":true},
-     {"shape":"box","pos":[-13.4,1.03,-5.68],"scale":[0.08,0.16,0.05],"color":"#7c828c","mat":"METAL","skipLean":true},
-     {"shape":"box","pos":[-12.5,0.95,-6.15],"scale":[1,1.9,0.9],"color":"#F97316","mat":"PAINT"},
-     {"collider":[-12.4,-6.15],"r":0.5},
-     {"shape":"box","pos":[-12.5,1.68,-5.68],"scale":[0.52,0.05,0.03],"color":"#3d4450","mat":"PAINT","skipLean":true},
-     {"shape":"box","pos":[-12.2,1.03,-5.68],"scale":[0.08,0.16,0.05],"color":"#7c828c","mat":"METAL","skipLean":true},
-     {"shape":"box","pos":[-11.3,0.95,-6.15],"scale":[1,1.9,0.9],"color":"#22C55E","mat":"PAINT"},
-     {"collider":[-11.2,-6.15],"r":0.5},
-     {"shape":"box","pos":[-11.3,1.68,-5.68],"scale":[0.52,0.05,0.03],"color":"#3d4450","mat":"PAINT","skipLean":true},
-     {"shape":"box","pos":[-11,1.03,-5.68],"scale":[0.08,0.16,0.05],"color":"#7c828c","mat":"METAL","skipLean":true},
-     {"shape":"box","pos":[-10.1,0.95,-6.15],"scale":[1,1.9,0.9],"color":"#EAB308","mat":"PAINT"},
-     {"collider":[-10,-6.15],"r":0.5},
-     {"shape":"box","pos":[-10.1,1.68,-5.68],"scale":[0.52,0.05,0.03],"color":"#3d4450","mat":"PAINT","skipLean":true},
-     {"shape":"box","pos":[-9.8,1.03,-5.68],"scale":[0.08,0.16,0.05],"color":"#7c828c","mat":"METAL","skipLean":true},
-     {"shape":"box","pos":[2.7,0.95,-6.15],"scale":[1,1.9,0.9],"color":"#22C55E","mat":"PAINT"},
-     {"collider":[2.8,-6.15],"r":0.5},
-     {"shape":"box","pos":[2.7,1.68,-5.68],"scale":[0.52,0.05,0.03],"color":"#3d4450","mat":"PAINT","skipLean":true},
-     {"shape":"box","pos":[3,1.03,-5.68],"scale":[0.08,0.16,0.05],"color":"#7c828c","mat":"METAL","skipLean":true},
-     {"shape":"box","pos":[3.9,0.95,-6.15],"scale":[1,1.9,0.9],"color":"#EAB308","mat":"PAINT"},
-     {"collider":[4,-6.15],"r":0.5},
-     {"shape":"box","pos":[3.9,1.68,-5.68],"scale":[0.52,0.05,0.03],"color":"#3d4450","mat":"PAINT","skipLean":true},
-     {"shape":"box","pos":[4.2,1.03,-5.68],"scale":[0.08,0.16,0.05],"color":"#7c828c","mat":"METAL","skipLean":true},
-     {"shape":"box","pos":[5.1,0.95,-6.15],"scale":[1,1.9,0.9],"color":"#8B5CF6","mat":"PAINT"},
-     {"collider":[5.2,-6.15],"r":0.5},
-     {"shape":"box","pos":[5.1,1.68,-5.68],"scale":[0.52,0.05,0.03],"color":"#3d4450","mat":"PAINT","skipLean":true},
-     {"shape":"box","pos":[5.4,1.03,-5.68],"scale":[0.08,0.16,0.05],"color":"#7c828c","mat":"METAL","skipLean":true},
-     {"shape":"box","pos":[6.3,0.95,-6.15],"scale":[1,1.9,0.9],"color":"#3288EF","mat":"PAINT"},
-     {"collider":[6.4,-6.15],"r":0.5},
-     {"shape":"box","pos":[6.3,1.68,-5.68],"scale":[0.52,0.05,0.03],"color":"#3d4450","mat":"PAINT","skipLean":true},
-     {"shape":"box","pos":[6.6,1.03,-5.68],"scale":[0.08,0.16,0.05],"color":"#7c828c","mat":"METAL","skipLean":true},
+     {"frame":[-14,0,-6.6],"parts":[{"use":"locker","with":{"c":"#3288EF"}}]},
+     {"frame":[-13.6,0,-6.6],"parts":[{"use":"locker","with":{"c":"#F97316"}}]},
+     {"frame":[-13.2,0,-6.6],"parts":[{"use":"locker","with":{"c":"#22C55E"}}]},
+     {"frame":[-12.8,0,-6.6],"parts":[{"use":"locker","with":{"c":"#EAB308","o":2}}]},
+     {"collider":[-12.96,-6.1],"r":0.25},
+     {"frame":[-12.4,0,-6.6],"parts":[{"use":"locker","with":{"c":"#8B5CF6"}}]},
+     {"frame":[-12,0,-6.6],"parts":[{"use":"locker","with":{"c":"#3288EF"}}]},
+     {"frame":[-11.6,0,-6.6],"parts":[{"use":"locker","with":{"c":"#F97316"}}]},
+     {"frame":[-11.2,0,-6.6],"parts":[{"use":"locker","with":{"c":"#22C55E"}}]},
+     {"frame":[-10.8,0,-6.6],"parts":[{"use":"locker","with":{"c":"#EAB308"}}]},
+     {"frame":[-10.4,0,-6.6],"parts":[{"use":"locker","with":{"c":"#8B5CF6"}}]},
+     {"repeat":{"i":10},"collider":["-14+i*0.4",-6.6],"r":0.3},
+     {"frame":[2.4,0,-6.6],"parts":[{"use":"locker","with":{"c":"#22C55E"}}]},
+     {"frame":[2.8,0,-6.6],"parts":[{"use":"locker","with":{"c":"#EAB308"}}]},
+     {"frame":[3.2,0,-6.6],"parts":[{"use":"locker","with":{"c":"#8B5CF6"}}]},
+     {"frame":[3.6,0,-6.6],"parts":[{"use":"locker","with":{"c":"#3288EF"}}]},
+     {"frame":[4,0,-6.6],"parts":[{"use":"locker","with":{"c":"#F97316"}}]},
+     {"frame":[4.4,0,-6.6],"parts":[{"use":"locker","with":{"c":"#22C55E"}}]},
+     {"frame":[4.8,0,-6.6],"parts":[{"use":"locker","with":{"c":"#EAB308","o":1}}]},
+     {"collider":[4.64,-6.1],"r":0.25},
+     {"frame":[5.2,0,-6.6],"parts":[{"use":"locker","with":{"c":"#8B5CF6"}}]},
+     {"frame":[5.6,0,-6.6],"parts":[{"use":"locker","with":{"c":"#3288EF"}}]},
+     {"frame":[6,0,-6.6],"parts":[{"use":"locker","with":{"c":"#F97316"}}]},
+     {"repeat":{"i":10},"collider":["2.4+i*0.4",-6.6],"r":0.3},
      {"shape":"box","pos":[-3,0.05,15],"scale":[4,0.06,1.6],"color":"#7a5a3a","mat":"PAINT"},
      {"frame":[-6.78,0,4.9,1.5708],"parts":[{"sign":{"at":[0,2.62,0]}}]}
     ]
@@ -1661,19 +1790,25 @@
      "type": "choice",
      "question": "Die dunklen Blöcke sind Fixpunkte für alle: Morgenrunde, Mathe-Fixpunkt und Abendrunde. Die hellen füllst du selbst. Jeder Block führt dich in einen Raum hier im Haus.",
      "options": [
-      {"text":"Was kann ich in die hellen legen?","correct":true},
-      {"text":"Darf ich wirklich alles frei wählen?","correct":true}
+      {"text":"Was kann ich in die hellen legen?","correct":true,"feedback":"…"},
+      {"text":"Darf ich wirklich alles frei wählen?","correct":true,"feedback":"…"}
      ]
     },
     {
      "type": "choice",
      "question": "Lernzeit, eigenes Projekt, Workshop oder Pause. Eine Regel gilt hier im Beispiel: mindestens ein Block Lernzeit für die verbindlichen Ziele.",
-     "options": [{"text":"Und wenn ich Hilfe brauche?","correct":true},{"text":"Schaut das jemand an?","correct":true}]
+     "options": [
+      {"text":"Und wenn ich Hilfe brauche?","correct":true,"feedback":"…"},
+      {"text":"Schaut das jemand an?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
      "question": "Die Coaches sehen alle Pläne und merken so früh, wer Hilfe braucht. Und wenn du selbst Hilfe willst, buchst du dir einen freien Block für ein 1:1 bei Herrn Meinhard.",
-     "options": [{"text":"Praktisch.","correct":true},{"text":"Hast du das schon gemacht?","correct":true}]
+     "options": [
+      {"text":"Praktisch.","correct":true,"feedback":"…"},
+      {"text":"Hast du das schon gemacht?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
@@ -1698,12 +1833,18 @@
     {
      "type": "choice",
      "question": "Am Morgen gibt es ein kurzes Briefing: Was steht heute an, wer ist in welchem Raum? Dann sagt jede und jeder in einem Satz, was er oder sie heute vorhat.",
-     "options": [{"text":"Muss ich auch etwas sagen?","correct":true},{"text":"Wozu laut sagen?","correct":true}]
+     "options": [
+      {"text":"Muss ich auch etwas sagen?","correct":true,"feedback":"…"},
+      {"text":"Wozu laut sagen?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
      "question": "Ein Plan, den man laut sagt, gilt mehr, und die anderen wissen, wen sie fragen können. Dazwischen plant ihr selbst. Am Abend kommen wir wieder hier zusammen.",
-     "options": [{"text":"Und was passiert dann?","correct":true},{"text":"Und wenn nichts geklappt hat?","correct":true}]
+     "options": [
+      {"text":"Und was passiert dann?","correct":true,"feedback":"…"},
+      {"text":"Und wenn nichts geklappt hat?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
@@ -1728,17 +1869,23 @@
     {
      "type": "choice",
      "question": "Danach rechne ich aus, wie viel ich für zwölf Portionen brauche und was es kostet. Das ist heute meine Mathe. Kochst du gern?",
-     "options": [{"text":"Ja, sehr!","correct":true},{"text":"Eher nicht.","correct":true}]
+     "options": [{"text":"Ja, sehr!","correct":true,"feedback":"…"},{"text":"Eher nicht.","correct":true,"feedback":"…"}]
     },
     {
      "type": "choice",
      "question": "Ob ja oder nein: Nicht alles muss alle interessieren. Ich zeichne zum Beispiel keine Plakate fürs Essen. Zeichnen ist gerade nur für mich.",
-     "options": [{"text":"Allein planen klingt einsam.","correct":true},{"text":"Und deine Klasse?","correct":true}]
+     "options": [
+      {"text":"Allein planen klingt einsam.","correct":true,"feedback":"…"},
+      {"text":"Und deine Klasse?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
      "question": "Allein bin ich trotzdem nicht. Hier in der Morgenrunde sitze ich mit meiner Klasse, am Abend auch. In der Lernzeit sitze ich oft neben Jüngeren, das hilft beiden.",
-     "options": [{"text":"Klingt gut.","correct":true},{"text":"Neben Jüngeren? Wieso das?","correct":true}]
+     "options": [
+      {"text":"Klingt gut.","correct":true,"feedback":"…"},
+      {"text":"Neben Jüngeren? Wieso das?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
@@ -1763,12 +1910,18 @@
     {
      "type": "choice",
      "question": "Joel sagt immer: Video geschaut heisst noch nicht verstanden. Darum fragen wir uns zuerst gegenseitig. Erst wenn wir beide festsitzen, gehen wir zu Frau Sutter.",
-     "options": [{"text":"Warum nicht gleich zu ihr?","correct":true},{"text":"Und das klappt?","correct":true}]
+     "options": [
+      {"text":"Warum nicht gleich zu ihr?","correct":true,"feedback":"…"},
+      {"text":"Und das klappt?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
      "question": "Frau Sutter hat viele Leute, und oft weiss Joel es schon. Mein Problem: 100 Franken plus 20 % gibt 120, minus 20 % gibt 96. Joel sagt, es liegt am Grundwert.",
-     "options": [{"text":"Ich hätte auch 100 erwartet.","correct":true},{"text":"Was ist der Grundwert?","correct":true}]
+     "options": [
+      {"text":"Ich hätte auch 100 erwartet.","correct":true,"feedback":"…"},
+      {"text":"Was ist der Grundwert?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
@@ -1793,12 +1946,18 @@
     {
      "type": "choice",
      "question": "T-Shirts drucken kostet 30 Franken Grundgebühr und 8 Franken pro Stück. Meine Tabelle stimmt: 1 Stück 38, 2 Stück 46. Mein Term K(x) = 30x + 8 aber nicht.",
-     "options": [{"text":"Woher weisst du das?","correct":true},{"text":"Hast du es Lea gezeigt?","correct":true}]
+     "options": [
+      {"text":"Woher weisst du das?","correct":true,"feedback":"…"},
+      {"text":"Hast du es Lea gezeigt?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
      "question": "Lea sagt, ich soll eine Probe machen: x einsetzen und mit der Tabelle vergleichen. Das Video habe ich geschaut, aber geschaut heisst noch nicht verstanden.",
-     "options": [{"text":"Und, hast du die Probe gemacht?","correct":true},{"text":"Gute Idee von Lea.","correct":true}]
+     "options": [
+      {"text":"Und, hast du die Probe gemacht?","correct":true,"feedback":"…"},
+      {"text":"Gute Idee von Lea.","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
@@ -1823,12 +1982,18 @@
     {
      "type": "choice",
      "question": "Die verbindlichen Lernziele leiten wir Lehrpersonen aus dem Lehrplan ab, dabei haben wir etwas Spielraum. Wie, wann und mit welchem Projekt ihr sie erreicht, plant ihr selbst.",
-     "options": [{"text":"Und wenn jemand sie nicht erreicht?","correct":true},{"text":"Also doch nicht ganz frei?","correct":true}]
+     "options": [
+      {"text":"Und wenn jemand sie nicht erreicht?","correct":true,"feedback":"…"},
+      {"text":"Also doch nicht ganz frei?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
      "question": "Frei von Anfang an, aber verbindlich: Wer die Ziele nicht erreicht, kann das Fach nicht bestehen. Darum frage ich hier nach Erklärungen und gebe früh eine Rückmeldung, ohne Note.",
-     "options": [{"text":"Und nach dem Fixpunkt?","correct":true},{"text":"Wie oft gibt es das?","correct":true}]
+     "options": [
+      {"text":"Und nach dem Fixpunkt?","correct":true,"feedback":"…"},
+      {"text":"Wie oft gibt es das?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
@@ -1853,17 +2018,23 @@
     {
      "type": "choice",
      "question": "In Mathe habe ich die Mindestanforderungen noch nicht geschafft. Trotzdem darf ich an meinem Projekt arbeiten, schon seit dem ersten Tag. Hättest du das gedacht?",
-     "options": [{"text":"Nein, ich dachte, zuerst kommt Mathe.","correct":true},{"text":"Ja, warum nicht?","correct":true}]
+     "options": [
+      {"text":"Nein, ich dachte, zuerst kommt Mathe.","correct":true,"feedback":"…"},
+      {"text":"Ja, warum nicht?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
      "question": "Freiheit gibt es hier nicht erst als Belohnung. Die Mindestanforderungen bleiben aber, Mathe lasse ich nicht einfach weg. Manchmal frage ich mich, ob Schule überhaupt was für mich ist.",
-     "options": [{"text":"Das kenne ich.","correct":true},{"text":"Wie passt das zusammen?","correct":true}]
+     "options": [
+      {"text":"Das kenne ich.","correct":true,"feedback":"…"},
+      {"text":"Wie passt das zusammen?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
      "question": "Mein Projekt hilft. Wieso lerne ich Zeitspannen rechnen? Jetzt weiss ich es: Fahrpläne lesen und Wartezeiten ausrechnen ist Mathe, für meinen eigenen Bus.",
-     "options": [{"text":"Das ist ja echte Mathe.","correct":true},{"text":"Macht Sinn.","correct":true}]
+     "options": [{"text":"Das ist ja echte Mathe.","correct":true,"feedback":"…"},{"text":"Macht Sinn.","correct":true,"feedback":"…"}]
     },
     {
      "type": "choice",
@@ -1888,17 +2059,23 @@
     {
      "type": "choice",
      "question": "Mathe und Deutsch bleiben trotzdem im Plan. Die Wegweiser muss ich genau formulieren, das zählt sogar für mein Deutsch-Ziel. Dabei sind Sprachen sonst nicht so meins.",
-     "options": [{"text":"Praktisch!","correct":true},{"text":"Wer testet den Pfad?","correct":true}]
+     "options": [{"text":"Praktisch!","correct":true,"feedback":"…"},{"text":"Wer testet den Pfad?","correct":true,"feedback":"…"}]
     },
     {
      "type": "choice",
      "question": "Andere testen ihn. Und alle verpassen die gleiche Abzweigung, die ich total klar finde. Hier testen wir gegenseitig unsere Sachen. Rückmeldung ist normal, auch für mich.",
-     "options": [{"text":"Ärgert dich das nicht?","correct":true},{"text":"Testest du auch für andere?","correct":true}]
+     "options": [
+      {"text":"Ärgert dich das nicht?","correct":true,"feedback":"…"},
+      {"text":"Testest du auch für andere?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
      "question": "Zuerst schon ein bisschen. Aber ich teste ja selbst auch: Bei Leas Abstimmungsspiel stand es gerade 2 zu 2 zu 1. Ihre Regel heisst «Die meisten Stimmen gewinnen».",
-     "options": [{"text":"Und wer hat gewonnen?","correct":true},{"text":"Oh, das gibt Streit.","correct":true}]
+     "options": [
+      {"text":"Und wer hat gewonnen?","correct":true,"feedback":"…"},
+      {"text":"Oh, das gibt Streit.","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
@@ -1928,12 +2105,18 @@
     {
      "type": "choice",
      "question": "Ich bringe Fachwissen, das ihr in euren eigenen Projekten brauchen könnt: Strom, Energie, Messen. Was im Fachunterricht kurz kommt, schauen wir hier genauer an.",
-     "options": [{"text":"Und was baust du selbst?","correct":true},{"text":"Muss ich vorher etwas können?","correct":true}]
+     "options": [
+      {"text":"Und was baust du selbst?","correct":true,"feedback":"…"},
+      {"text":"Muss ich vorher etwas können?","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
      "question": "Mitbringen musst du nur Neugier. Ich selbst baue gerade eine kleine Solar-Ladestation: Sie läuft, aber die Testenden verstehen ihre Anzeigen nicht. Also frage ich sie, was unklar ist.",
-     "options": [{"text":"Du fragst Lernende um Rat?","correct":true},{"text":"Das ist ehrlich.","correct":true}]
+     "options": [
+      {"text":"Du fragst Lernende um Rat?","correct":true,"feedback":"…"},
+      {"text":"Das ist ehrlich.","correct":true,"feedback":"…"}
+     ]
     },
     {
      "type": "choice",
