@@ -39,8 +39,10 @@ To reproduce a live sha256:
 
 1. `node level/build-bergdorf.mjs` or `node level/build-schulhaus.mjs`. The
    output is byte-identical to the committed `level/*.json`.
-2. Pass the file through `levelRoundTrip(source, { id })` and hash
-   `JSON.stringify(result.doc)` with sha256.
+2. `node scripts/doc-level.mjs <engine dir> level/<name>.json out.b64`
+   converts it (the engine dir is `apps/hazu-world` in the engine
+   repository), then `base64 -d -i out.b64 | shasum -a 256`.
+   `scripts/check-level.mjs` validates a level with the engine first.
 
 We checked both rows this way: `level/bergdorf.json` at `fad4e73` gives the
 Bergdorf hash, `level/schulhaus.json` at `4ed5e6b` gives the Schulhaus hash.

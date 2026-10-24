@@ -74,7 +74,7 @@ Either way, the returned sha256 must equal the local file's before you move
 the world's pin (`layout.world.levels[]`, only that entry).
 
 Always upload the converted document, never the raw `level/*.json`: run
-`doc-level.mjs` (the engine's `levelRoundTrip`), which adds
+`scripts/doc-level.mjs` (the engine's `levelRoundTrip`), which adds
 `"$schema": "hazu.world/level@1"` and `version`. A raw file uploads fine but
 the engine rejects it («pinned document … is no level@1») and shows a generic
 fallback village instead of our level. After every upload, open the world and
