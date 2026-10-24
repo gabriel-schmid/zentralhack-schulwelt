@@ -50,3 +50,10 @@ village square.
 Technical: progress and highlights are saved as Hazu items through the bridge
 (`createItem` / `updateItem`), so they survive a reload. The briefing and the
 closing round can use Genius (e.g. a short summary of the day's highlights).
+
+## Lernatelier: mathematics morning
+
+Local observer demo implemented in `widgets/mathematikvormittag/index.html`.
+Five scenes, two learner perspectives, preparation, formative feedback and
+changing personal plans. See [setup and scope](mathematics-demo.md).
+Status: browser-tested locally; upload and live Hazu wiring pending.

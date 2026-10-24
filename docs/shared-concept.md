@@ -111,3 +111,13 @@ automatically synchronise their conversation histories.
 - 24 October 2026: Consolidated the concept discussion. Confirmed freedom on
   the route to minimum requirements, formative indications of risk and retention
   of the existing grading regulations. Listed unresolved implementation rules.
+
+## Mathematics demo decisions (24 October 2026)
+
+The visitor observes a school day and forms their own opinion. The first slice
+follows Lea (year 2) and Joel (year 3) in mathematics with different class goals.
+Teacher videos and comprehension questions precede application. Preparation is
+provided within BSZ; home preparation is optional. Both have completed it when
+the scene starts. Shared checkpoints alternate with accompanied self-study.
+Different support needs are task-specific scenario assumptions. See
+[the demo documentation](mathematics-demo.md) for implementation and scope.

@@ -48,3 +48,5 @@ jury.
 - [x] Shared concept baseline documented; freedom during the learning path and unchanged grading regulations clarified (00:42, Europe/Zurich).
 
 - [x] Documented six learner and two coach personas, age-appropriate independent projects, and separation of given traits from draft scenarios (02:25, Europe/Zurich).
+
+- [x] Built and browser-tested the mathematics observer station: five scenes, Lea/Joel views, preparation, formative feedback and plan changes; live Hazu wiring pending (03:45, Europe/Zurich).
