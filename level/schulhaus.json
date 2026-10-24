@@ -6060,7 +6060,7 @@
       "shape": "box",
       "pos": [
        -6,
-       0.03,
+       0.05,
        2
       ],
       "scale": [
@@ -6979,7 +6979,7 @@
       "shape": "box",
       "pos": [
        -3,
-       0.03,
+       0.05,
        15
       ],
       "scale": [
@@ -7115,7 +7115,10 @@
     "name": "Tobi",
     "color": "#22C55E",
     "subject": "Lernender · Interessen-Atelier",
-    "hat": "cap"
+    "hat": "cap",
+    "look": {
+     "hairStyle": "short"
+    }
    },
    {
     "id": "quirin",
@@ -7123,7 +7126,10 @@
     "gy": 10,
     "name": "Quirin",
     "color": "#0EA5E9",
-    "subject": "Lernender · Lernatelier"
+    "subject": "Lernender · Lernatelier",
+    "look": {
+     "hairStyle": "spiky"
+    }
    },
    {
     "id": "yara",
@@ -7152,7 +7158,11 @@
     "color": "#8B5CF6",
     "subject": "Coach · 1:1",
     "isGenius": true,
-    "hat": "glasses"
+    "hat": "glasses",
+    "look": {
+     "hairStyle": "short",
+     "hair": "#b8b4ad"
+    }
    },
    {
     "id": "workshop",
@@ -7160,7 +7170,10 @@
     "gy": 15,
     "name": "Herr Tesla",
     "color": "#F97316",
-    "subject": "Workshop-Coach · Technik"
+    "subject": "Workshop-Coach · Technik",
+    "look": {
+     "hairStyle": "short"
+    }
    }
   ],
   "collectibles": [],

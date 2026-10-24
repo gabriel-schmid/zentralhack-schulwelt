@@ -118,7 +118,9 @@ function roomDoc(id, anchor, build) {
       for (let z = z0 + Math.min(0.5, (z1 - z0) / 2); z < z1 + 0.01; z += 1)
         collide(Math.min(x, x1 - 0.2), Math.min(z, z1 - 0.2), 0.5);
   };
-  const floor = (x0, z0, x1, z1, color) => box(x0, z0, x1, z1, 0, 0.06, color, "PAINT");
+  // `layer` 1 for a rug or mat on another floor: the same height flickers
+  const floor = (x0, z0, x1, z1, color, layer = 0) =>
+    box(x0, z0, x1, z1, layer * 0.015, 0.06, color, "PAINT");
   // Flat things on the back wall (z = 0) or an outer side wall.
   const onBack = (x0, x1, y0, h, color, mat = "PAINT", glow) => box(x0, t + 0.01, x1, t + 0.06, y0, h, color, mat, glow);
   const onSide = (x, z0, z1, y0, h, color, mat = "PAINT", glow) => {
@@ -222,7 +224,7 @@ const landmarks = [
     wallWithDoorZ(14, 8, 13, 9.5, 11);
     floor(14.05, 8.05, 23.9, 12.95, C.floorCarpet);
     // two armchairs facing each other, a low table, a rug, a plant, goals board
-    floor(17.8, 9.6, 21.2, 11.4, "#e9d5b7");
+    floor(17.8, 9.6, 21.2, 11.4, "#e9d5b7", 1);
     thing(17.9, 10, 18.9, 11, 0.8, C.fabricWarm, "FABRIC");
     thing(20.1, 10, 21.1, 11, 0.8, C.fabric, "FABRIC");
     thing(19.15, 10.25, 19.85, 10.75, 0.5, C.wood);
@@ -254,7 +256,7 @@ const landmarks = [
     for (let i = 0; i < 4; i++) thing(14.6 + i * 0.6, 6.2, 15.1 + i * 0.6, 6.65, 1.9, C.locker[(i + 2) % 5], "PAINT");
     box(10.3, 12.3, 10.4, 14.3, 1.1, 1.1, C.wood, "WOOD");
     for (let i = 0; i < 4; i++) box(10.42, 12.5 + i * 0.45, 10.46, 12.85 + i * 0.45, 1.3, 0.3, C.note[i % 4], "PAINT");
-    floor(11, 16.6, 13, 17.4, "#7a5a3a");
+    floor(11, 16.6, 13, 17.4, "#7a5a3a", 1);
   }),
   roomDoc("schulhaus_ausgang", anchors.ausgang, ({ box }) => {
     // glass entrance door with a green exit sign
@@ -312,12 +314,12 @@ const npc = (id, gx, gy, name, color, subject, extra = {}) => ({ id, gx, gy, nam
 const npcs = [
   npc("lehrerin", 12, 2, "Frau Arnold", "#3288EF", "Lehrerin · Aula", { female: true, hat: "glasses" }),
   npc("lea", 10, 2, "Lea", "#F97316", "Lernende · 2. Jahr", { female: true }),
-  npc("tobi", 19, 4, "Tobi", "#22C55E", "Lernender · Interessen-Atelier", { hat: "cap" }),
-  npc("quirin", 8, 10, "Quirin", "#0EA5E9", "Lernender · Lernatelier"),
+  npc("tobi", 19, 4, "Tobi", "#22C55E", "Lernender · Interessen-Atelier", { hat: "cap", look: { hairStyle: "short" } }),
+  npc("quirin", 8, 10, "Quirin", "#0EA5E9", "Lernender · Lernatelier", { look: { hairStyle: "spiky" } }),
   npc("yara", 5, 16, "Yara", "#EAB308", "Lernende · Pausenzone", { female: true }),
   npc("matilda", 7, 14, "Matilda", "#EC4899", "Lernende · Pausenzone", { female: true, hat: "beret" }),
-  npc("coach", 19, 11, "Herr Meinhard", "#8B5CF6", "Coach · 1:1", { isGenius: true, hat: "glasses" }),
-  npc("workshop", 21, 15, "Herr Tesla", "#F97316", "Workshop-Coach · Technik"),
+  npc("coach", 19, 11, "Herr Meinhard", "#8B5CF6", "Coach · 1:1", { isGenius: true, hat: "glasses", look: { hairStyle: "short", hair: "#b8b4ad" } }),
+  npc("workshop", 21, 15, "Herr Tesla", "#F97316", "Workshop-Coach · Technik", { look: { hairStyle: "short" } }),
 ];
 
 const COACH_PROMPT = [
