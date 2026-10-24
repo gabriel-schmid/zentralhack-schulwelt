@@ -135,6 +135,14 @@ much of the implementation as possible. We gave the goals and the content,
 and played and reviewed each step. Details per tool:
 [docs/tools.md](docs/tools.md).
 
+Our paper notes from Friday evening (photos; one phone number blacked out):
+
+| Strengths and weaknesses of today's school, our core idea | Rough plan: day structure, dashboard, assessment |
+| --- | --- |
+| ![Strengths, weaknesses and the idea «Raum für intrinsische Motivation»](docs/paper/1-problem-and-idea.jpg) | ![Rough plan with day structure, coaching, formative and summative assessment](docs/paper/2-rough-plan.jpg) |
+| **Personas with their attributes** | **Personas: Herr Tesla and Matilda** |
+| ![Persona attributes and the first personas](docs/paper/3-personas.jpg) | ![Personas Herr Tesla and Matilda](docs/paper/4-personas-tesla-matilda.jpg) |
+
 ## Progress timeline
 
 Full log with times: [docs/progress.md](docs/progress.md). Commits in this
