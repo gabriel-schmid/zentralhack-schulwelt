@@ -11,8 +11,8 @@ Differences to the paper:
 
 - Quirin was called Max on paper; we renamed him.
 - Frau Arnold (Morgenrunde), Frau Sutter (Mathe-Fixpunkt) and the background
-  characters are not on the paper. We added them on Saturday when we laid out
-  the route through the morning.
+  characters are not on the paper. We added them later during the hackathon,
+  as the route through the morning took shape.
 - Own projects, difficulties and coaching notes (**Draft**) are AI proposals
   built from our traits; we chose and adjusted them.
 
