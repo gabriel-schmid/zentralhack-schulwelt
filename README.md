@@ -157,8 +157,9 @@ The route's Lernatelier scenes reuse the content of Luca's mathematics morning.
   you can click; saving quiz answers given in the world.
 - The indoor mode needs review, merge and an app release before visitors see
   rooms without sky.
-- The lab cites general lab rules; an official Suva source is still to be
-  added ([docs/safety.md](docs/safety.md)).
+- The lab's safety rules cite the chemsuisse school guide (2019) and Suva on
+  eye protection; no Swiss source covers wafting, so the lab only says to smell
+  when the teacher asks ([docs/safety.md](docs/safety.md)).
 - Later: other schools describe their own model as a world.
 
 ## Repository map
