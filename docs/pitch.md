@@ -65,9 +65,10 @@ G = Gabriel, L = Luca. Inside the scene Luca plays a sceptical teacher.
 
 ### 3 Lösung (10 s, Gabriel)
 
-> «Unsere Lösung: eine begehbare 3D-Schule. Raum für intrinsische Motivation
-> in einer klaren Struktur. Fixpunkte für alle, verbindliche Mindestziele, den
-> Rest plant man selbst. Komm mit.»
+> «Unsere Lösung: Schule erleben statt erklären. Eine begehbare 3D-Schule, in
+> der man mit Lernenden redet, den eigenen Tag plant und selbst ausprobiert.
+> Unser Beispiel: Raum für intrinsische Motivation in einer klaren Struktur.
+> Komm mit.»
 
 ### 4 Video (45 s, Gabriel speaks over it)
 
@@ -129,8 +130,7 @@ Update the numbers just before the pitch.
 
 > L: «Okay, ich bin überzeugt. Wann fangen wir an?»
 >
-> G: «Jede Schule kann ihr Modell so zeigen, und auch Prävention lässt sich so
-> erlebbar machen. Schule muss man erleben.»
+> G: «Jede Schule kann ihr Modell so zeigen. Schule muss man erleben.»
 
 ## Jury focus
 
