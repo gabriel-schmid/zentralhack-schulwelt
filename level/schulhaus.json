@@ -2196,18 +2196,18 @@
     "gy": 2,
     "name": "Matilda",
     "color": "#EC4899",
-    "subject": "① Lernende · 3. Jahr",
+    "subject": "① Lernende · kreativ, frech",
     "female": true,
     "hat": "beret"
    },
-   {"id":"lea","gx":2.9,"gy":8.5,"name":"Lea","color":"#F97316","subject":"② Lernende · 2. Jahr","female":true},
+   {"id":"lea","gx":2.9,"gy":8.5,"name":"Lea","color":"#F97316","subject":"② Lernende · liest gern, genau","female":true},
    {
     "id": "joel",
     "gx": 3.55,
     "gy": 8.5,
     "name": "Joel",
     "color": "#22C55E",
-    "subject": "② Lernender · 3. Jahr",
+    "subject": "② Lernender · sportlich, neugierig",
     "look": {"hairStyle":"short","hair":"#3b2a1e"}
    },
    {
@@ -2216,7 +2216,7 @@
     "gy": 10,
     "name": "Quirin",
     "color": "#0EA5E9",
-    "subject": "② Lernender · Lernatelier",
+    "subject": "② Lernender · Tüftler, zweifelt oft",
     "look": {"hairStyle":"spiky"}
    },
    {
@@ -2236,7 +2236,7 @@
     "gy": 4,
     "name": "Tobi",
     "color": "#22C55E",
-    "subject": "④ Lernender · Interessen-Atelier",
+    "subject": "④ Lernender · schnell, oft gelangweilt",
     "hat": "cap",
     "look": {"hairStyle":"short"}
    },
@@ -2646,43 +2646,35 @@
    ]
   },
   "tobi": {
-   "intro": "Hoi, ich bin Tobi, 2. Jahr. In der freien Lernzeit baue ich einen Audio-Pfad ums Schulhaus, mit Geräuschen und gesprochenen Wegweisern. Das Thema habe ich selbst gewählt.",
-   "hint": "Zwei Vorschläge haben gleich viele Stimmen. Was sagt die Regel dazu?",
+   "intro": "Hoi, ich bin Tobi, 2. Jahr. Ich verstehe Sachen schnell und langweile mich dann auch schnell. Darum baue ich in der freien Lernzeit einen Audio-Pfad ums Schulhaus, mit Geräuschen und gesprochenen Wegweisern. Das Thema habe ich selbst gewählt.",
+   "hint": "Wenn ich daneben stehe und erkläre, sehe ich nicht, wo die anderen wirklich hängen bleiben.",
    "phases": [
     {"type":"intro"},
     {
      "type": "choice",
-     "question": "Mathe und Deutsch bleiben trotzdem im Plan. Die Wegweiser muss ich genau formulieren, das zählt sogar für mein Deutsch-Ziel. Dabei sind Sprachen sonst nicht so meins.",
+     "question": "Mathe und Deutsch bleiben trotzdem im Plan. Sprachen sind eigentlich nicht so meins, aber die Wegweiser muss ich genau formulieren. Das zählt für mein Deutsch-Ziel.",
      "options": [{"text":"Praktisch!","correct":true,"feedback":"…"},{"text":"Wer testet den Pfad?","correct":true,"feedback":"…"}]
     },
     {
      "type": "choice",
-     "question": "Andere testen ihn. Und alle verpassen die gleiche Abzweigung, die ich total klar finde. Hier testen wir gegenseitig unsere Sachen. Rückmeldung ist normal, auch für mich.",
+     "question": "Andere testen den Pfad, und alle verpassen dieselbe Abzweigung. Dabei finde ich sie total klar. Hier testen wir gegenseitig unsere Sachen, Rückmeldung gehört dazu, auch für mich.",
      "options": [
       {"text":"Ärgert dich das nicht?","correct":true,"feedback":"…"},
-      {"text":"Testest du auch für andere?","correct":true,"feedback":"…"}
+      {"text":"Und was machst du jetzt?","correct":true,"feedback":"…"}
      ]
     },
     {
      "type": "choice",
-     "question": "Zuerst schon ein bisschen. Aber ich teste ja selbst auch: Bei Leas Abstimmungsspiel stand es gerade 2 zu 2 zu 1. Ihre Regel heisst «Die meisten Stimmen gewinnen».",
+     "question": "Zuerst hat mich das geärgert. Was hilft mir am meisten, um herauszufinden, woran es liegt?",
      "options": [
-      {"text":"Und wer hat gewonnen?","correct":true,"feedback":"…"},
-      {"text":"Oh, das gibt Streit.","correct":true,"feedback":"…"}
-     ]
-    },
-    {
-     "type": "choice",
-     "question": "Genau da hakt es. Was fehlt in Leas Regel «Die meisten Stimmen gewinnen»?",
-     "options": [
-      {"text":"Nichts, bei 2 zu 2 zu 1 gewinnt der Vorschlag mit 1 Stimme","correct":false},
-      {"text":"Nichts, bei Gleichstand gewinnt immer der erste Vorschlag","correct":false},
-      {"text":"Was bei einem Gleichstand passiert","correct":true}
+      {"text":"Den Testenden den Weg vorher genau erklären","correct":false},
+      {"text":"Die Abzweigung einfach weglassen","correct":false},
+      {"text":"Beim nächsten Test mitlaufen und beobachten, ohne zu helfen","correct":true}
      ]
     },
     {
      "type": "complete",
-     "message": "Genau. Lea ergänzt jetzt eine Stichwahl zwischen den beiden Ersten. Und ich? Herr Meinhard meint, ich soll morgen beim Test nur mitlaufen und nichts sagen. Er ist im Coaching-Raum, Tür ⑤."
+     "message": "Genau das meint Herr Meinhard auch: Morgen laufe ich beim Test nur mit und sage nichts. Danach frage ich, was unklar war. Er ist im Coaching-Raum, Tür ⑤."
     }
    ]
   },

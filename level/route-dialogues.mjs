@@ -33,17 +33,17 @@ export const routeNpcs = [
   // ① Aula, Morgenrunde
   { id: "lehrerin", name: "Frau Arnold", color: "#3288EF", subject: "① Lehrerin · Morgenrunde", room: "Aula", extra: { female: true, hat: "glasses" } },
   // ① Aula
-  { id: "matilda", name: "Matilda", color: "#EC4899", subject: "① Lernende · 3. Jahr", room: "Aula", extra: { female: true, hat: "beret" } },
+  { id: "matilda", name: "Matilda", color: "#EC4899", subject: "① Lernende · kreativ, frech", room: "Aula", extra: { female: true, hat: "beret" } },
   // ② Lernatelier, at one table with Joel
-  { id: "lea", name: "Lea", color: "#F97316", subject: "② Lernende · 2. Jahr", room: "Lernatelier", extra: { female: true } },
+  { id: "lea", name: "Lea", color: "#F97316", subject: "② Lernende · liest gern, genau", room: "Lernatelier", extra: { female: true } },
   // ② Lernatelier, at one table with Lea (a second Joel greets in the village)
-  { id: "joel", name: "Joel", color: "#22C55E", subject: "② Lernender · 3. Jahr", room: "Lernatelier", extra: {} },
+  { id: "joel", name: "Joel", color: "#22C55E", subject: "② Lernender · sportlich, neugierig", room: "Lernatelier", extra: {} },
   // ③ Lernatelier, the mathematics teacher at the Mathe-Fixpunkt
   { id: "mathe", name: "Frau Sutter", color: "#14B8A6", subject: "③ Mathematik · Fixpunkt", room: "Lernatelier", extra: { female: true, look: { hairStyle: "short" } } },
   // ② Lernatelier, by the hall door
-  { id: "quirin", name: "Quirin", color: "#0EA5E9", subject: "② Lernender · Lernatelier", room: "Lernatelier", extra: { look: { hairStyle: "spiky" } } },
+  { id: "quirin", name: "Quirin", color: "#0EA5E9", subject: "② Lernender · Tüftler, zweifelt oft", room: "Lernatelier", extra: { look: { hairStyle: "spiky" } } },
   // ④ Interessen-Atelier
-  { id: "tobi", name: "Tobi", color: "#22C55E", subject: "④ Lernender · Interessen-Atelier", room: "Interessen-Atelier", extra: { hat: "cap", look: { hairStyle: "short" } } },
+  { id: "tobi", name: "Tobi", color: "#22C55E", subject: "④ Lernender · schnell, oft gelangweilt", room: "Interessen-Atelier", extra: { hat: "cap", look: { hairStyle: "short" } } },
   // ⑤ Coaching-Raum (Genius; build-schulhaus.mjs adds COACH_PROMPT)
   { id: "coach", name: "Herr Meinhard", color: "#8B5CF6", subject: "⑤ Coach · 1:1", room: "Coaching-Raum", extra: { isGenius: true, hat: "glasses", look: { hairStyle: "short", hair: "#b8b4ad" } } },
   // ⑥ Workshop-Raum
@@ -287,39 +287,35 @@ export const routeDialogue = {
       },
     ],
   },
-  // ④ Interessen-Atelier: own project in free learning time that also serves
-  // a language goal; testing and feedback are normal; Lea's voting tie.
+  // ④ Interessen-Atelier: a quick learner who gets bored builds his own
+  // project in free learning time, which also serves a language goal; testing
+  // and feedback are normal; he learns to watch testers instead of explaining.
   tobi: {
     intro:
-      "Hoi, ich bin Tobi, 2. Jahr. In der freien Lernzeit baue ich einen Audio-Pfad ums Schulhaus, mit Geräuschen und gesprochenen Wegweisern. Das Thema habe ich selbst gewählt.",
-    hint: "Zwei Vorschläge haben gleich viele Stimmen. Was sagt die Regel dazu?",
+      "Hoi, ich bin Tobi, 2. Jahr. Ich verstehe Sachen schnell und langweile mich dann auch schnell. Darum baue ich in der freien Lernzeit einen Audio-Pfad ums Schulhaus, mit Geräuschen und gesprochenen Wegweisern. Das Thema habe ich selbst gewählt.",
+    hint: "Wenn ich daneben stehe und erkläre, sehe ich nicht, wo die anderen wirklich hängen bleiben.",
     phases: [
       { type: "intro" },
       talk(
-        "Mathe und Deutsch bleiben trotzdem im Plan. Die Wegweiser muss ich genau formulieren, das zählt sogar für mein Deutsch-Ziel. Dabei sind Sprachen sonst nicht so meins.",
+        "Mathe und Deutsch bleiben trotzdem im Plan. Sprachen sind eigentlich nicht so meins, aber die Wegweiser muss ich genau formulieren. Das zählt für mein Deutsch-Ziel.",
         "Praktisch!",
         "Wer testet den Pfad?",
       ),
       talk(
-        "Andere testen ihn. Und alle verpassen die gleiche Abzweigung, die ich total klar finde. Hier testen wir gegenseitig unsere Sachen. Rückmeldung ist normal, auch für mich.",
+        "Andere testen den Pfad, und alle verpassen dieselbe Abzweigung. Dabei finde ich sie total klar. Hier testen wir gegenseitig unsere Sachen, Rückmeldung gehört dazu, auch für mich.",
         "Ärgert dich das nicht?",
-        "Testest du auch für andere?",
-      ),
-      talk(
-        "Zuerst schon ein bisschen. Aber ich teste ja selbst auch: Bei Leas Abstimmungsspiel stand es gerade 2 zu 2 zu 1. Ihre Regel heisst «Die meisten Stimmen gewinnen».",
-        "Und wer hat gewonnen?",
-        "Oh, das gibt Streit.",
+        "Und was machst du jetzt?",
       ),
       quiz(
-        "Genau da hakt es. Was fehlt in Leas Regel «Die meisten Stimmen gewinnen»?",
-        "Was bei einem Gleichstand passiert",
-        "Nichts, bei 2 zu 2 zu 1 gewinnt der Vorschlag mit 1 Stimme",
-        "Nichts, bei Gleichstand gewinnt immer der erste Vorschlag",
+        "Zuerst hat mich das geärgert. Was hilft mir am meisten, um herauszufinden, woran es liegt?",
+        "Beim nächsten Test mitlaufen und beobachten, ohne zu helfen",
+        "Den Testenden den Weg vorher genau erklären",
+        "Die Abzweigung einfach weglassen",
       ),
       {
         type: "complete",
         message:
-          "Genau. Lea ergänzt jetzt eine Stichwahl zwischen den beiden Ersten. Und ich? Herr Meinhard meint, ich soll morgen beim Test nur mitlaufen und nichts sagen. Er ist im Coaching-Raum, Tür ⑤.",
+          "Genau das meint Herr Meinhard auch: Morgen laufe ich beim Test nur mit und sage nichts. Danach frage ich, was unklar war. Er ist im Coaching-Raum, Tür ⑤.",
       },
     ],
   },
