@@ -42,9 +42,8 @@ teachers and schools that want to explain or discuss a different school model.
   personal question and serves shared goals (for example a bus timetable
   project as mathematics).
 - **Workshops with expert knowledge.** Optional, run by someone whose
-  knowledge learners can use in their projects.
-- **Safety as a side element.** It appears where the work needs it (safety
-  gear in the lab), not as a theme of its own.
+  knowledge learners can use in their projects. Working safely is part of it:
+  in the lab, learners choose their safety gear before they mix anything.
 
 Details: [docs/idea.md](docs/idea.md),
 [docs/shared-concept.md](docs/shared-concept.md),
@@ -119,7 +118,7 @@ repository (PR above).
 
 | Part | From |
 | ---- | ---- |
-| Idea of a walkable school simulation | us |
+| Idea of a walkable 3D world that makes a school model visible and lets people experience it | Gabriel |
 | School model: freedom inside a clear structure, fixed points, binding minimum requirements, coaching, own projects, optional workshops, formative before summative | us |
 | Personas and their attributes | us |
 | Each persona's own project and current difficulty | AI proposals from our attributes, chosen and adjusted by us ([personas](docs/personas.md)) |
@@ -166,8 +165,8 @@ repo show the same steps.
 
 | Person | Contribution |
 | ------ | ------------ |
-| Gabriel | World and levels, characters and dialogues, stations (Tagesplan, Säure-Base-Labor, Konflikt, Sägestation), wiring into hazu.app, engine indoor-mode PR |
-| Luca | School concept and shared concept baseline, personas, the mathematics morning (Mathematikvormittag station, branch `codex/mathe`), text-to-speech trial |
+| Gabriel | Initial idea of the Schulwelt; school model and personas together with Luca; world and levels, characters and dialogues, stations (Tagesplan, Säure-Base-Labor, Konflikt, Sägestation), wiring into hazu.app, engine indoor-mode PR |
+| Luca | Pedagogical perspective on the school model and the personas, shared concept baseline, the mathematics morning (Mathematikvormittag station, branch `codex/mathe`), text-to-speech trial |
 
 The route's Lernatelier scenes reuse the content of Luca's mathematics morning.
 
