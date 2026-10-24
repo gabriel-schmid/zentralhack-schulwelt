@@ -35,6 +35,8 @@ jury.
 - [x] Stations are linked to characters with the tag `hw-npc-<id>` (also the Sägestation); unused place Hazus moved to «Reserve», so the world shows no stray signboards (03:27)
 - [x] Indoor PR HazuInc/HazuApp#7183: second review fixed (XR sky state, weather indoors, AR table) and a ceiling in first person (03:27)
 
+- [x] Schulhaus walls: colliders every 0.4 m (radius 0.2), so the body no longer walks halfway into walls; all doorways still passable (checked locally) (03:36)
+
 ## Tonight's plan
 
 | # | Task | Who |

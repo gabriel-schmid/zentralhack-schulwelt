@@ -82,15 +82,16 @@ function roomDoc(id, anchor, build) {
   };
   const collide = (x, z, r) => parts.push({ collider: P(x, z), r: r2(r) });
   const t = WALL_T / TILE_M / 2;
-  // Axis-aligned wall; inner walls get colliders, the map edge stops walkers.
+  // Axis-aligned wall with colliders every 0.4 m: close enough that the
+  // walker's body (radius 0.3) stays out of the wall, small enough that
+  // doorways stay wide. The map edge walls need them too, the walk mask
+  // alone lets the body reach halfway into them.
   const wall = (x0, z0, x1, z1) => {
     if (z0 === z1) box(x0, z0 - t, x1, z0 + t, 0, WALL_H, C.wall);
     else box(x0 - t, z0, x0 + t, z1, 0, WALL_H, C.wall);
-    const onEdge = (x0 === x1 && (x0 === 0 || x0 === COLS)) || (z0 === z1 && z0 === 0);
-    if (onEdge) return;
     const len = Math.hypot(x1 - x0, z1 - z0);
-    const n = Math.max(1, Math.ceil((len * TILE_M) / 1.2));
-    for (let i = 0; i <= n; i++) collide(x0 + ((x1 - x0) * i) / n, z0 + ((z1 - z0) * i) / n, 0.35);
+    const n = Math.max(1, Math.ceil((len * TILE_M) / 0.4));
+    for (let i = 0; i <= n; i++) collide(x0 + ((x1 - x0) * i) / n, z0 + ((z1 - z0) * i) / n, 0.2);
   };
   // A wall along x (z fixed) with a framed doorway between a and b.
   const wallWithDoor = (x0, x1, z, a, b) => {
