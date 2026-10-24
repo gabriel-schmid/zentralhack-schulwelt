@@ -604,15 +604,21 @@ const landmarks = [
   }),
   roomDoc("schulhaus_coaching", anchors.coaching, ({ wallWithDoor, wallWithDoorZ, wall, floor, sofa, plant, sign, board, lowtable, local }) => {
     wallWithDoor(14, COLS, 8, 16.5, 18);
-    wall(14, 13, COLS, 13);
+    // A wide passage into the Workshop-Raum (⑤ → ⑥), east of the
+    // workbenches. «Hingehen» walks a straight grid path that does not know
+    // the walls (engine world/grid.js findPath), so Herr Tesla stands in
+    // line with this opening: walking over from the Coaching-Raum goes
+    // through it instead of stopping at the wall.
+    wallWithDoor(14, COLS, 13, 21, 23.9);
     wallWithDoorZ(14, 8, 13, 9.5, 11);
     floor(14.05, 8.05, 23.9, 12.95, C.floorCarpet);
-    // two armchairs facing each other, a low table, a rug, a plant, goals board
-    floor(17.8, 9.6, 21.2, 11.4, "#e9d5b7", 1);
-    sofa(17.9, 10, 18.9, 11, "east", 1.05, 0.95, C.fabricWarm, "#f3b08c");
-    sofa(20.1, 10, 21.1, 11, "west", 1.05, 0.95, C.fabric, "#9db8e3");
-    lowtable(19.15, 10.25, 19.85, 10.75);
-    plant(23.2, 12.2, 23.7, 12.7);
+    // two armchairs facing each other (east, in line with the passage to
+    // the Workshop-Raum), a low table, a rug, a plant, goals board
+    floor(19.8, 9.6, 23.2, 11.4, "#e9d5b7", 1);
+    sofa(19.9, 10, 20.9, 11, "east", 1.05, 0.95, C.fabricWarm, "#f3b08c");
+    sofa(22.1, 10, 23.1, 11, "west", 1.05, 0.95, C.fabric, "#9db8e3");
+    lowtable(21.15, 10.25, 21.85, 10.75);
+    plant(14.3, 12.2, 14.8, 12.7); // the east corner is the passage
     // whiteboard with a few lines of goals in marker and sticky notes
     const ink = (x, y, w, color) => local("box", x, y, 0.04, w, 0.025, 0.01, color, "PAINT", true);
     board(COLS, 10.5, "west", 5.8, 1.2, 1.05, C.white, { f: "#c3c8cf", wd: 0 }, [
@@ -782,17 +788,20 @@ const bgTiles = {
 };
 const extras = backgroundNpcs.map(({ id, name, color, subject, extra }) => npc(id, ...bgTiles[id], name, color, subject, extra));
 
+// In route order: the world panel's list and the «Übersicht» follow it.
 const npcs = [
+  cast("yara", 12.7, 12.8),
   cast("lehrerin", 12, 2),
   cast("matilda", 10, 2),
   cast("lea", 2.9, 8.5),
   cast("joel", 3.55, 8.5, { look: { hairStyle: "short", hair: "#3b2a1e" } }),
-  cast("mathe", 1.9, 9.6, { female: true, hat: "glasses", look: { hairStyle: "bun", hair: "#6b4a2b" } }),
   cast("quirin", 8, 10),
+  cast("mathe", 1.9, 9.6, { female: true, hat: "glasses", look: { hairStyle: "bun", hair: "#6b4a2b" } }),
   cast("tobi", 19, 4),
-  cast("yara", 12.7, 12.8),
-  cast("coach", 19, 11),
-  cast("workshop", 21, 15),
+  cast("coach", 21, 11), // between the armchairs, in line with the passage
+  // by the screen, east of the workbenches, in line with the passage from
+  // the Coaching-Raum (see the connecting door there)
+  cast("workshop", 22.8, 14.3),
   ...extras,
 ];
 

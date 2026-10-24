@@ -20,19 +20,29 @@
   24 x 18 tiles): Bibliothek, Aula and Interessen-Atelier in the north; a
   corridor with lockers; Lernatelier, Coaching-Raum, Pausenzone and
   Workshop-Raum in the south; the entrance hall runs from the corridor to the
-  exit. Tile ranges per room: `skills/npc/SKILL.md`.
+  exit. A wide passage in the east joins the Coaching-Raum and the
+  Workshop-Raum (⑤ → ⑥). Tile ranges per room: `skills/npc/SKILL.md`.
+
+Route characters show their route number in the subtitle (e.g. «⑤ Coach ·
+1:1»; Yara «▶ Start · Tagesplan»), and the level lists them in route order,
+so the world panel and the «Übersicht» follow the route. Background
+characters (`backgroundNpcs` in `level/route-dialogues.mjs`) fill the house:
+muted colours, subtitle «Lernende/Lernender · im Haus», a short intro and a
+closing line, no quiz. They are not tasks.
 
 Who stands where:
 
 | Room | Characters | Station |
 | ---- | ---------- | ------- |
 | Eingangshalle (entrance hall) | Yara, next to the board | Tagesplan |
-| Aula | Frau Arnold, Matilda | – |
-| Lernatelier | Lea and Joel at one table, Frau Sutter (Mathematik, «Mathe-Fixpunkt»), Quirin | – |
+| Aula | Frau Arnold, Matilda; background: Elin and Dario by the stage | – |
+| Lernatelier | Lea and Joel at one table, Frau Sutter (Mathematik, «Mathe-Fixpunkt»), Quirin; background: Ronja and Andri at the back table | – |
 | Interessen-Atelier | Tobi | – |
-| Coaching-Raum | Herr Meinhard (Genius coach) | Konflikt in der Projektgruppe |
-| Workshop-Raum | Herr Tesla | Säure-Base-Labor |
-| Bibliothek, Pausenzone | nobody | – |
+| Coaching-Raum | Herr Meinhard (Genius coach), between the armchairs on the east side | Konflikt in der Projektgruppe |
+| Workshop-Raum | Herr Tesla, by the screen east of the workbenches | Säure-Base-Labor |
+| Corridor | background: Nils and Anouk at the west lockers | – |
+| Bibliothek | background: Seraina and Gian at the bookcase | – |
+| Pausenzone | background: Ladina, Flurin and Noemi by the low table | – |
 
 ## Route
 
@@ -59,7 +69,7 @@ Who stands where:
 | Schulhaus · Interessen-Atelier | time and space for what a learner cares about | – | – | live | live |
 | Schulhaus · Coaching-Raum | 1:1 conversation, goals, follow-up (formative) | talk to Herr Meinhard (Genius): the visitor speaks as themselves; Konflikt in der Projektgruppe (`widgets/konflikt/`): decide for Joel in a group conflict | – | live | live |
 | Schulhaus · Workshop-Raum | optional workshops with Herr Tesla | Säure-Base-Labor (`widgets/saeuren-basen/`): safety gear, hypothesis, red-cabbage indicator, pH scale | safety glasses, gloves, never taste | live | live |
-| Schulhaus · Bibliothek, Pausenzone | quiet reading, lunch and breaks | – | – | live, no characters | live |
+| Schulhaus · Bibliothek, Pausenzone | quiet reading, lunch and breaks | – | – | live, background characters only | live |
 | Werkstatt (workshop) | plan and build a coop or a raised bed | Sägestation (`widgets/saegestation/`): protective gear, hazards, safe sawing order | ear protection, safety glasses, cables, saw guard | `level/werkstatt.json` | Reserve |
 | Küche (kitchen) | cook together | – | hygiene, knives, hot pans | – | Reserve |
 | Garten und Hof (garden and yard) | look after animals, tend beds | – | safe lifting, tools | – | Reserve |

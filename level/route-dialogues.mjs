@@ -49,7 +49,7 @@ export const routeNpcs = [
   // ⑥ Workshop-Raum
   { id: "workshop", name: "Herr Tesla", color: "#F97316", subject: "⑥ Workshop-Coach · Technik", room: "Workshop-Raum", extra: { look: { hairStyle: "short" } } },
   // Entrance hall, next to the Tagesplan (before ①)
-  { id: "yara", name: "Yara", color: "#EAB308", subject: "◎ Tagesplan · Eingangshalle", room: "Eingangshalle", extra: { female: true } },
+  { id: "yara", name: "Yara", color: "#EAB308", subject: "▶ Start · Tagesplan", room: "Eingangshalle", extra: { female: true } },
 ];
 
 export const routeDialogue = {

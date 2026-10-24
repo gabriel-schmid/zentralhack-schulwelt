@@ -1134,8 +1134,13 @@
      {"shape":"box","pos":[-10.5,2.75,-3],"scale":[3,0.9,0.38],"color":"#f3ede2"},
      {"shape":"box","pos":[-11.92,1.15,-3],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-9.08,1.15,-3],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
-     {"shape":"box","pos":[-7,1.6,7],"scale":[20,3.2,0.3],"color":"#f3ede2"},
-     {"repeat":{"i":51},"collider":["-17+i*0.4",7],"r":0.2},
+     {"shape":"box","pos":[-10,1.6,7],"scale":[14,3.2,0.3],"color":"#f3ede2"},
+     {"repeat":{"i":36},"collider":["-17+i*0.4",7],"r":0.2},
+     {"shape":"box","pos":[2.9,1.6,7],"scale":[0.2,3.2,0.3],"color":"#f3ede2"},
+     {"repeat":{"i":2},"collider":["2.8+i*0.2",7],"r":0.2},
+     {"shape":"box","pos":[-0.1,2.75,7],"scale":[5.8,0.9,0.38],"color":"#f3ede2"},
+     {"shape":"box","pos":[-2.92,1.15,7],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
+     {"shape":"box","pos":[2.72,1.15,7],"scale":[0.16,2.3,0.38],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-17,1.6,-1.5],"scale":[0.3,3.2,3],"color":"#f3ede2"},
      {"repeat":{"i":9},"collider":[-17,"-3+i*0.375"],"r":0.2},
      {"shape":"box","pos":[-17,1.6,5],"scale":[0.3,3.2,4],"color":"#f3ede2"},
@@ -1144,15 +1149,15 @@
      {"shape":"box","pos":[-17,1.15,0.08],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-17,1.15,2.92],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-7.05,0.03,2],"scale":[19.7,0.06,9.8],"color":"#c98b7a","mat":"PAINT"},
-     {"shape":"box","pos":[-6,0.05,2],"scale":[6.8,0.06,3.6],"color":"#e9d5b7","mat":"PAINT"},
-     {"frame":[-8.2,0,2,1.5708],"parts":[{"use":"sofa","with":{"w":1.05,"d":0.95,"c":"#d9774b","k":"#f3b08c","n":1}}]},
-     {"collider":[-8.2,2],"r":0.5},
-     {"frame":[-3.8,0,2,-1.5708],"parts":[{"use":"sofa","with":{"w":1.05,"d":0.95,"c":"#5b7fb8","k":"#9db8e3","n":1}}]},
-     {"collider":[-3.8,2],"r":0.5},
-     {"frame":[-6,0,2],"parts":[{"use":"lowtable","with":{"w":1.3,"d":0.9,"h":0.45}}]},
-     {"collider":[-5.7,2],"r":0.5},
-     {"frame":[1.9,0,5.9],"parts":[{"use":"plant"}]},
-     {"collider":[2,5.9],"r":0.5},
+     {"shape":"box","pos":[-2,0.05,2],"scale":[6.8,0.06,3.6],"color":"#e9d5b7","mat":"PAINT"},
+     {"frame":[-4.2,0,2,1.5708],"parts":[{"use":"sofa","with":{"w":1.05,"d":0.95,"c":"#d9774b","k":"#f3b08c","n":1}}]},
+     {"collider":[-4.2,2],"r":0.5},
+     {"frame":[0.2,0,2,-1.5708],"parts":[{"use":"sofa","with":{"w":1.05,"d":0.95,"c":"#5b7fb8","k":"#9db8e3","n":1}}]},
+     {"collider":[0.2,2],"r":0.5},
+     {"frame":[-2,0,2],"parts":[{"use":"lowtable","with":{"w":1.3,"d":0.9,"h":0.45}}]},
+     {"collider":[-1.7,2],"r":0.5},
+     {"frame":[-15.9,0,5.9],"parts":[{"use":"plant"}]},
+     {"collider":[-15.8,5.9],"r":0.5},
      {
       "frame": [2.85,0,2,-1.5708],
       "parts": [
@@ -1694,6 +1699,7 @@
   ],
   "props": [],
   "npcs": [
+   {"id":"yara","gx":12.7,"gy":12.8,"name":"Yara","color":"#EAB308","subject":"▶ Start · Tagesplan","female":true},
    {
     "id": "lehrerin",
     "gx": 12,
@@ -1725,6 +1731,15 @@
     "look": {"hairStyle":"short","hair":"#3b2a1e"}
    },
    {
+    "id": "quirin",
+    "gx": 8,
+    "gy": 10,
+    "name": "Quirin",
+    "color": "#0EA5E9",
+    "subject": "② Lernender · Lernatelier",
+    "look": {"hairStyle":"spiky"}
+   },
+   {
     "id": "mathe",
     "gx": 1.9,
     "gy": 9.6,
@@ -1736,15 +1751,6 @@
     "hat": "glasses"
    },
    {
-    "id": "quirin",
-    "gx": 8,
-    "gy": 10,
-    "name": "Quirin",
-    "color": "#0EA5E9",
-    "subject": "② Lernender · Lernatelier",
-    "look": {"hairStyle":"spiky"}
-   },
-   {
     "id": "tobi",
     "gx": 19,
     "gy": 4,
@@ -1754,10 +1760,9 @@
     "hat": "cap",
     "look": {"hairStyle":"short"}
    },
-   {"id":"yara","gx":12.7,"gy":12.8,"name":"Yara","color":"#EAB308","subject":"◎ Tagesplan · Eingangshalle","female":true},
    {
     "id": "coach",
-    "gx": 19,
+    "gx": 21,
     "gy": 11,
     "name": "Herr Meinhard",
     "color": "#8B5CF6",
@@ -1768,8 +1773,8 @@
    },
    {
     "id": "workshop",
-    "gx": 21,
-    "gy": 15,
+    "gx": 22.8,
+    "gy": 14.3,
     "name": "Herr Tesla",
     "color": "#F97316",
     "subject": "⑥ Workshop-Coach · Technik",

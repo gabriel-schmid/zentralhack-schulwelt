@@ -30,7 +30,26 @@ npc("mia", 2, 6, "Mia", "#EAB308", "Lernende · Lernatelier", { female: true, ha
 - `hat`: one of `glasses`, `cap`, `beret`, `sunhat`, `baker`, `scarf`,
   `stethoscope`, `shawl`, `chef`, or leave it out.
 - `female: true` for the female body; leave it out otherwise.
-- At most about 8 characters per level; more makes the scene crowded and slow.
+- Keep the count small: every character costs frame time. The Schulhaus has
+  21 (10 route characters and 11 background characters); treat that as the
+  ceiling and add a character only to a room that has none.
+
+### Background characters
+
+Background characters (`backgroundNpcs` and `backgroundDialogue` in
+`level/route-dialogues.mjs`) make the house feel used without adding tasks:
+
+- dialogue: an `intro` and a `complete` line only, no quiz;
+- muted, greyish colours, so the route characters stand out;
+- subtitle «Lernende · im Haus» / «Lernender · im Haus» («unterwegs» in the
+  village), never a route number;
+- they do not count as tasks: the progress and the «Übersicht» are the
+  route characters' quizzes only.
+
+Route characters carry their route number at the start of the subtitle
+(«① Lehrerin · Morgenrunde»), and the generator lists them in route order
+(Yara «▶ Start» first, background characters last): the world panel and the
+«Übersicht» show them in that order.
 
 ## A scripted dialogue
 
