@@ -108,7 +108,7 @@ export const routeDialogue = {
         "Und wenn nichts geklappt hat?",
       ),
       quiz(
-        "Jede und jeder erzählt ein Highlight. Auch was noch offen ist, gehört dazu. Was zeigt ihr also in der Abendrunde?",
+        "Jede und jeder erzählt ein Highlight. Auch was noch offen ist oder beinahe schiefging, gehört dazu: Daraus lernen alle. Was zeigt ihr also in der Abendrunde?",
         "Ein Highlight und was noch offen ist",
         "Eine Prüfung über den ganzen Tag",
         "Nur, was perfekt geklappt hat",
@@ -356,7 +356,7 @@ export const routeDialogue = {
       {
         type: "complete",
         message:
-          "Genau. Heute ist hier das Säure-Base-Labor offen: Mit Rotkohlsaft testest du, was sauer und was basisch ist. Zuerst die Sicherheitsschritte der Station. Danach zurück in die Aula, zur Abendrunde ⑦.",
+          "Genau. Heute ist hier das Säure-Base-Labor offen: Mit Rotkohlsaft testest du, was sauer und was basisch ist. Die Schutzausrüstung wählst du dort selbst, bevor du mischst: Was man selbst entschieden hat, merkt man sich besser als eine Regel auf Papier. Danach zurück in die Aula, zur Abendrunde ⑦.",
       },
     ],
   },
