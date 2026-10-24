@@ -22,7 +22,7 @@ world only loads exactly those bytes.
 | Level | Repo source | Live document | Revision | Asset | sha256 of the live file |
 | ----- | ----------- | ------------- | -------- | ----- | ----------------------- |
 | Bergdorf (village, on the world Hazu `TRAIMeIVPNXq5wfkfTG2`) | `level/build-bergdorf.mjs` → `level/bergdorf.json` | `doc_eea84d56d6c0485c8b6fd000cda306ac` | 3 | `asset_3c0811d9f4e2460ebef9615a250ba272` | `1ad8c838ce49c01a7065d422156d2c531433c11c40f69253712e65cc1ad168b4` |
-| Schulhaus (on the place Hazu `_m0-qRVAAUwmuxfswuPp`) | `level/build-schulhaus.mjs` + `level/route-dialogues.mjs` → `level/schulhaus.json` | `doc_0efde5e6ab4d4b90bff0952529122f55` | 7 | `asset_d17f43443baf45a1a43498097c01b737` | `99c26f30c2459cf45b9b5c6cb7ca1f92be7fdaf4ab3a3a6736ac4e1e37f59a7f` |
+| Schulhaus (on the place Hazu `_m0-qRVAAUwmuxfswuPp`) | `level/build-schulhaus.mjs` + `level/route-dialogues.mjs` → `level/schulhaus.json` | `doc_0efde5e6ab4d4b90bff0952529122f55` | 8 | `asset_61cb7e9a7076460984231c7f1a6a6a66` | `2f11a2cb90877ce07720957fefee2bb96dda0db9032b64cb7fe5ab2da4f4d81e` |
 
 The uploaded file is not the raw repo JSON. It is the converted `level@1`
 document: the engine's `levelRoundTrip` (Hazu World SDK,
@@ -40,7 +40,7 @@ To reproduce a live sha256:
    `scripts/check-level.mjs` validates a level with the engine first.
 
 We checked both rows this way: `level/bergdorf.json` at `fad4e73` gives the
-Bergdorf hash, `level/schulhaus.json` at the commit «inside landing at Herr Tesla, station posts on open floor» gives the Schulhaus hash.
+Bergdorf hash, `level/schulhaus.json` at the commit «Matilda's line follows the paper persona» gives the Schulhaus hash.
 
 ## Stations
 
