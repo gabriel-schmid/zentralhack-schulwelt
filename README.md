@@ -107,7 +107,7 @@ hazu.app.
 | Stations: Tagesplan, Säure-Base-Labor, Konflikt; Sägestation and Mathematikvormittag (built, now in reserve) | **new** |
 | Coach prompt for Herr Meinhard (`coach/`) | **new** |
 | School concept, personas, route and concept coverage (`docs/`) | **new** |
-| Engine indoor mode: rooms instead of floating islands, cut-away walls, sliding along walls ([HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183)) | **new**; merged by the Hazu team and live on hazu.app since Saturday 12:29. The Schulhaus runs in this mode, so it is a production change of Hazu World |
+| Engine indoor mode: rooms instead of floating islands, cut-away walls, sliding along walls ([HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183)) | **new**; reviewed and merged by Hazu's CTO, live on hazu.app since Saturday 12:29. The Schulhaus runs in this mode, so it is a production change of Hazu World |
 | Widget bridge fixes in our stations (bridge detection, results saved as private items) | **new** |
 
 This repository holds only what we built during the hackathon, plus docs. No
