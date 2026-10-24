@@ -48,6 +48,7 @@ not deployed). That code lives in the engine repository, not here.
 | IWSDK (`@iwsdk/core`) | 1.0.0 | MIT | VR/AR layer of the Hazu World engine | part of the existing engine |
 | Vite | 7 | MIT | engine dev server for local testing of the indoor mode | part of the existing engine setup |
 | Lato (Google Fonts) | – | OFL 1.1 | all stations | used during the hackathon |
+| Font Awesome Free (from cdnjs) | 6.5.2 | icons CC BY 4.0, font SIL OFL 1.1, code MIT | icons in the Säure-Base-Labor | used during the hackathon |
 | Playwriter (Chrome extension + CLI, Playwright API) | – | MIT | browser checks of the world and stations | used during the hackathon |
 | Piper TTS (`piper-tts`) | 1.8.0 | GPL-3.0 | Luca's local German narration trial, run outside the repo; not part of the world | used during the hackathon |
 | Piper voice `de_DE-thorsten-medium` | – | model card lists the Thorsten dataset as CC0 | same trial | used during the hackathon |
@@ -55,4 +56,5 @@ not deployed). That code lives in the engine repository, not here.
 Details of the narration trial: `docs/local-tts.md` on branch `codex/mathe`.
 
 Our stations load nothing else from outside: no other libraries, no
-analytics, no external APIs.
+analytics, no external APIs. The pitch deck is a Hazu presentation on
+hazu.app (existing platform feature).

@@ -172,14 +172,14 @@ liegt in Reserve.
 **Datenschutz?**
 Es gibt keine echten Personen in der Welt, alle Personas sind fiktiv. Was
 Besuchende speichern (Tagesplan, Labor, Konflikt), landet als privates Item in
-ihrem eigenen Konto. Die Stationen laden keine externen Bibliotheken, keine
-Analytics, keine fremden APIs.
+ihrem eigenen Konto. Die Stationen laden keine Analytics und rufen keine
+fremden APIs auf; das Labor lädt nur die Icon-Schrift Font Awesome von cdnjs.
 
 **Was kostet die KI?**
 Nur der Coach braucht laufend KI, über Hazu Genius, das Schulen schon nutzen
 können. Alle anderen Figuren sind geführte Gespräche ohne KI-Aufruf, kosten
-also nichts pro Besuch. (Check the current Genius pricing before the pitch
-if you want to name a figure.)
+also nichts pro Besuch. Der Coach läuft auf dem günstigsten Genius-Modell
+(GPT-6 Luna in Frankfurt); ein ganzes Gespräch kostet weit unter einen Rappen.
 
 **Warum 3D und nicht ein Video oder eine Website?**
 Weil man das Modell erlebt statt liest: man plant selbst, entscheidet selbst
