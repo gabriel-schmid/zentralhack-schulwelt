@@ -116,6 +116,9 @@
         font-size: 11.5px;
         color: var(--muted);
       }
+      .source a {
+        color: inherit;
+      }
 
       /* safety */
       .grid {
@@ -551,7 +554,7 @@
         { id: "sonnenbrille", ico: "🕶️", label: "Sonnenbrille statt Schutzbrille", why: "Sie schützt nicht vor Spritzern von der Seite." },
         { id: "probieren", ico: "👅", label: "Probieren, wie es schmeckt", why: "Im Labor probierst du nie etwas, auch nichts aus der Küche." },
         { id: "znueni", ico: "🥨", label: "Znüni neben den Bechern", why: "Essen und Trinken gehören nicht an den Versuchstisch." },
-        { id: "riechen", ico: "👃", label: "Direkt am Becher riechen", why: "Nie direkt riechen. Höchstens Luft zufächeln." },
+        { id: "riechen", ico: "👃", label: "Direkt am Becher riechen", why: "Riechen nur, wenn die Lehrperson dazu auffordert." },
       ];
 
       const HYPO = [
@@ -742,7 +745,7 @@
         stage.innerHTML = `<div class="grid">${GEAR.map(
           (g) => `<button class="card" data-id="${g.id}" aria-pressed="false"><span class="ico" aria-hidden="true">${g.ico}</span><span>${g.label}</span></button>`,
         ).join("")}</div>
-          <p class="source">Allgemeine Laborregeln für den Chemieunterricht. Auch Haushaltsstoffe können in die Augen spritzen.</p>`;
+          <p class="source">Auch Haushaltsstoffe können in die Augen spritzen. Quellen: chemsuisse, <a href="https://lebensmittelkontrolle.lu.ch/-/media/Lebensmittelkontrolle/Dokumente/weitere_Dokumente/Chemikaliensicherheit/Schulen/Schulleitfaden_sicherer_umgang_mit_chemikalien.pdf" target="_blank" rel="noopener">Sicherer Umgang mit Chemikalien an Schulen</a> (2019), Anhang A; Suva, <a href="https://www.suva.ch/de-ch/praevention/lebenswichtige-regeln-und-bestimmungen/gut-geschuetzt-mit-persoenlicher-schutzausruestung/augenschutz-und-gesichtsschutz-bei-der-arbeit/wichtige-kriterien-bei-der-wahl-des-augenschutzes-und-gesichtsschutzes" target="_blank" rel="noopener">Auswahl des Augenschutzes</a>.</p>`;
         const sf = state.safety;
         stage.querySelectorAll(".card").forEach((b) =>
           b.addEventListener("click", () => {
