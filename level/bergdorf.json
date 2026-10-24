@@ -1977,7 +1977,11 @@
         "gy": 10,
         "name": "Joel",
         "color": "#22C55E",
-        "subject": "Lernender · 3. Jahr"
+        "subject": "Lernender · 3. Jahr",
+        "look": {
+          "hairStyle": "short",
+          "hair": "#3b2a1e"
+        }
       }
     ],
     "collectibles": [],
@@ -1993,7 +1997,7 @@
   },
   "dialogue": {
     "joel": {
-      "intro": "Hoi, ich bin Joel! Hier lernt man in eigenen Projekten. Ich mache eine Audiokarte über Treffpunkte im Dorf. Am Morgen treffen wir uns alle in der Aula, dann plant jede und jeder den eigenen Tag.",
+      "intro": "Hoi, ich bin Joel! Hier lernt man auch in eigenen Projekten, ich mache eine Audiokarte über Treffpunkte im Dorf. Jeder Tag beginnt mit der Morgenrunde in der Aula, Tür Nummer eins. Die Nummern an den Türen führen dich durch den Vormittag.",
       "hint": "Die Tür ist vorne am Schulhaus, unter dem blauen Vordach.",
       "phases": [
         {
@@ -2001,7 +2005,7 @@
         },
         {
           "type": "complete",
-          "message": "Komm mit ins Schulhaus. Drinnen findest du die Aula, das Lernatelier, den Coaching-Raum und die Workshops."
+          "message": "Ich muss los, die Morgenrunde fängt gleich an. Wir sehen uns im Lernatelier, da rechne ich mit Lea."
         }
       ]
     }

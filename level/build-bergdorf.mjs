@@ -9,6 +9,7 @@
 
 import { writeFileSync } from "node:fs";
 import { mixAnswers } from "./lib.mjs";
+import { routeVillage } from "./route-dialogues.mjs";
 
 const COLS = 30;
 const ROWS = 28;
@@ -124,25 +125,13 @@ const buildings = [
 const npc = (id, gx, gy, name, color, subject, extra = {}) => ({ id, gx, gy, name, color, subject, ...extra });
 
 const npcs = [
-  npc("joel", 13, 10, "Joel", "#22C55E", "Lernender · 3. Jahr"),
+  npc("joel", 13, 10, "Joel", "#22C55E", "Lernender · 3. Jahr", { look: { hairStyle: "short", hair: "#3b2a1e" } }),
 ];
 
-// Joel from docs/personas.md: he greets visitors and points to the Schulhaus.
-// He is also the lead of the conflict station inside.
-const dialogue = {
-  joel: {
-    intro:
-      "Hoi, ich bin Joel! Hier lernt man in eigenen Projekten. Ich mache eine Audiokarte über Treffpunkte im Dorf. Am Morgen treffen wir uns alle in der Aula, dann plant jede und jeder den eigenen Tag.",
-    hint: "Die Tür ist vorne am Schulhaus, unter dem blauen Vordach.",
-    phases: [
-      { type: "intro" },
-      {
-        type: "complete",
-        message: "Komm mit ins Schulhaus. Drinnen findest du die Aula, das Lernatelier, den Coaching-Raum und die Workshops.",
-      },
-    ],
-  },
-};
+// Joel from docs/personas.md greets visitors and points to door ① of the
+// «Vormittag» route (routeVillage in route-dialogues.mjs). He appears again
+// in the Schulhaus, in the Lernatelier with Lea.
+const dialogue = { ...routeVillage };
 
 const props = [
   { type: "lamppost", gx: 11, gy: 9 },

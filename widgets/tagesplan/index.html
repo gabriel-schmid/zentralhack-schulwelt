@@ -1,0 +1,1148 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tagesplan</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://storage.googleapis.com/hazu-ch.appspot.com/files/artifacts/AYbnyrL6JhG3xUjfimN8/hazu-api.js"></script>
+    <style>
+      :root {
+        --ink: #1f2a3a;
+        --muted: #5b6878;
+        --bg: #f4f6fa;
+        --card: #ffffff;
+        --line: #dfe4ec;
+        --accent: #3288ef;
+        --accent-2: #4073d6;
+        --accent-soft: #e7f1fe;
+        --fix: #eef1f6;
+        --ok: #1f8a4c;
+        --ok-soft: #e3f4ea;
+        --unsure: #9a6200;
+        --unsure-soft: #fdf2dc;
+        --risk: #c53030;
+        --risk-soft: #fbe5e5;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        font-family: Lato, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+      }
+      button {
+        font: inherit;
+        color: inherit;
+      }
+      main {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: clamp(8px, 2.2vw, 16px);
+        gap: 8px;
+      }
+      header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px 12px;
+      }
+      .brand {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(18px, 3.6vw, 22px);
+        font-weight: 900;
+        line-height: 1.1;
+      }
+      .where {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      [role="tablist"] {
+        margin-left: auto;
+        display: flex;
+        gap: 4px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 3px;
+      }
+      [role="tab"] {
+        min-height: 44px;
+        padding: 0 12px;
+        border: 0;
+        border-radius: 9px;
+        background: transparent;
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      [role="tab"][aria-selected="true"] {
+        background: var(--accent);
+        color: #fff;
+      }
+      :focus-visible {
+        outline: 3px solid var(--accent-2);
+        outline-offset: 2px;
+      }
+      .panel {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .panel[hidden] {
+        display: none;
+      }
+      .scroll {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 2px 2px 8px;
+      }
+      .lead {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.4;
+        color: var(--muted);
+      }
+      .rule {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        background: var(--accent-soft);
+        border: 1px solid #c4dcfb;
+        border-radius: 10px;
+        padding: 8px 10px;
+        font-size: 14px;
+        line-height: 1.35;
+      }
+      .rule b {
+        white-space: nowrap;
+      }
+      .rule .count {
+        margin-left: auto;
+        flex: none;
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--accent-2);
+        white-space: nowrap;
+      }
+
+      /* ---- timeline (Mein Tag) */
+      .slot {
+        display: grid;
+        grid-template-columns: 4.6em 1fr;
+        gap: 8px;
+        align-items: stretch;
+      }
+      .time {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--muted);
+        padding-top: 10px;
+        line-height: 1.2;
+        font-variant-numeric: tabular-nums;
+      }
+      .time small {
+        display: block;
+        font-weight: 400;
+      }
+      .box {
+        min-width: 0;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        padding: 8px 10px;
+      }
+      .slot.fixed .box {
+        background: var(--fix);
+        border-style: dashed;
+      }
+      .slot.free .box {
+        border-left: 4px solid var(--accent);
+      }
+      .slot.free.empty .box {
+        border-left-color: var(--line);
+      }
+      .box-head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .box-title {
+        font-weight: 700;
+        font-size: 15px;
+      }
+      .tag {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 999px;
+        padding: 2px 8px;
+        background: var(--fix);
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .tag.room {
+        background: var(--accent-soft);
+        color: var(--accent-2);
+      }
+      .tag.lock {
+        background: #fff;
+        border: 1px solid var(--line);
+      }
+      .box p {
+        margin: 4px 0 0;
+        font-size: 13px;
+        line-height: 1.35;
+        color: var(--muted);
+      }
+      .pick {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        min-height: 44px;
+        border: 0;
+        background: transparent;
+        padding: 0;
+        text-align: left;
+        cursor: pointer;
+      }
+      .pick .box-head {
+        flex: 1;
+        min-width: 0;
+      }
+      .pick .action {
+        flex: none;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--accent-2);
+        border: 1px solid #c4dcfb;
+        border-radius: 8px;
+        padding: 6px 10px;
+        background: #fff;
+      }
+      .options {
+        display: grid;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .options[hidden] {
+        display: none;
+      }
+      .opt {
+        display: block;
+        width: 100%;
+        min-height: 44px;
+        text-align: left;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: #fff;
+        padding: 7px 10px;
+        cursor: pointer;
+      }
+      .opt:hover {
+        border-color: var(--accent);
+      }
+      .opt[aria-pressed="true"] {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+      }
+      .opt .opt-title {
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .opt .hint {
+        display: block;
+        margin-top: 2px;
+        font-size: 12.5px;
+        color: var(--muted);
+        line-height: 1.3;
+      }
+      .opt .hint b {
+        color: var(--accent-2);
+      }
+      .clear {
+        min-height: 44px;
+        border: 1px dashed var(--line);
+        border-radius: 9px;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+      }
+      .msg {
+        margin-top: 6px;
+        font-size: 13px;
+        line-height: 1.35;
+        border-left: 3px solid var(--risk);
+        background: var(--risk-soft);
+        padding: 6px 8px;
+        border-radius: 0 6px 6px 0;
+      }
+      .msg:empty {
+        display: none;
+      }
+      .bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        border-top: 1px solid var(--line);
+        padding-top: 8px;
+      }
+      .btn {
+        min-height: 44px;
+        padding: 0 18px;
+        border: 0;
+        border-radius: 9px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: var(--accent-2);
+      }
+      .btn:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+      .btn.ghost {
+        background: #fff;
+        color: var(--accent-2);
+        border: 1px solid #c4dcfb;
+        min-width: 44px;
+        padding: 0 12px;
+      }
+      .status-line {
+        flex: 1;
+        min-width: 10em;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.3;
+      }
+
+      /* ---- coach view */
+      .clock {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 4px 6px;
+      }
+      .clock .readout {
+        flex: none;
+        width: 7.4em;
+        font-size: 13px;
+        line-height: 1.2;
+      }
+      .clock .readout b {
+        display: block;
+        font-size: 15px;
+        font-variant-numeric: tabular-nums;
+      }
+      .clock input[type="range"] {
+        flex: 1;
+        min-width: 0;
+        height: 44px;
+        margin: 0;
+        accent-color: var(--accent);
+        cursor: pointer;
+      }
+      .summary {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.35;
+        margin: 0;
+      }
+      .summary b {
+        color: var(--ink);
+      }
+      .board {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      @media (min-width: 560px) {
+        .board {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .card {
+        min-width: 0;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+      }
+      .card.me {
+        border-color: #c4dcfb;
+        background: #f7fbff;
+      }
+      .card.open {
+        grid-column: 1 / -1;
+      }
+      .card-btn {
+        display: block;
+        width: 100%;
+        min-height: 44px;
+        border: 0;
+        background: transparent;
+        text-align: left;
+        padding: 8px 10px;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+      .card-top {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .name {
+        font-weight: 900;
+        font-size: 15px;
+      }
+      .year {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .state {
+        margin-left: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 999px;
+        padding: 2px 8px;
+        white-space: nowrap;
+      }
+      .state::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+      .state.ok {
+        color: var(--ok);
+        background: var(--ok-soft);
+      }
+      .state.unsure {
+        color: var(--unsure);
+        background: var(--unsure-soft);
+      }
+      .state.risk {
+        color: var(--risk);
+        background: var(--risk-soft);
+      }
+      .state.none {
+        color: var(--muted);
+        background: var(--fix);
+      }
+      .now {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        margin-top: 4px;
+        font-size: 13px;
+        line-height: 1.35;
+      }
+      .now .tag {
+        flex: none;
+      }
+      .reason {
+        display: block;
+        margin-top: 3px;
+        font-size: 12.5px;
+        color: var(--muted);
+        line-height: 1.3;
+      }
+      .help {
+        display: block;
+        margin-top: 5px;
+        font-size: 12.5px;
+        line-height: 1.3;
+        border-left: 3px solid var(--accent);
+        padding-left: 6px;
+      }
+      .help b {
+        color: var(--accent-2);
+      }
+      .card.moved .now .tag.room {
+        animation: flash 0.9s ease;
+      }
+      @keyframes flash {
+        0% {
+          background: var(--accent);
+          color: #fff;
+        }
+        100% {
+          background: var(--accent-soft);
+          color: var(--accent-2);
+        }
+      }
+      .detail {
+        border-top: 1px solid var(--line);
+        padding: 8px 10px 10px;
+        font-size: 13px;
+        line-height: 1.4;
+      }
+      .detail h3 {
+        margin: 0 0 4px;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+      .detail ol {
+        margin: 0 0 8px;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 2px;
+      }
+      .detail li {
+        display: grid;
+        grid-template-columns: 3.4em 1fr;
+        gap: 6px;
+      }
+      .detail li.cur {
+        font-weight: 700;
+      }
+      .detail li span:first-child {
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+      .detail p {
+        margin: 0 0 6px;
+      }
+      .footnote {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.35;
+        border-left: 3px solid var(--line);
+        padding: 2px 8px;
+        margin: 4px 0 0;
+      }
+
+      /* ---- house overview */
+      .rooms {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      @media (min-width: 560px) {
+        .rooms {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .room-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 8px 10px;
+        font-size: 13px;
+        line-height: 1.35;
+      }
+      .room-card h3 {
+        margin: 0 0 2px;
+        font-size: 15px;
+      }
+      .room-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+      @media (max-width: 430px) {
+        header {
+          flex-wrap: nowrap;
+        }
+        .where {
+          display: none;
+        }
+        [role="tab"] {
+          padding: 0 7px;
+          font-size: 13px;
+        }
+        .slot {
+          grid-template-columns: 3.9em 1fr;
+          gap: 6px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="brand">
+          <h1>Tagesplan</h1>
+          <span class="where">Schulhaus · Eingangshalle</span>
+        </div>
+        <div role="tablist" aria-label="Ansicht">
+          <button role="tab" id="tab-plan" aria-controls="panel-plan" aria-selected="true">Mein Tag</button>
+          <button role="tab" id="tab-coach" aria-controls="panel-coach" aria-selected="false" tabindex="-1">Sicht Coach</button>
+          <button role="tab" id="tab-house" aria-controls="panel-house" aria-selected="false" tabindex="-1">Im Haus</button>
+        </div>
+      </header>
+
+      <section class="panel" id="panel-plan" role="tabpanel" aria-labelledby="tab-plan">
+        <div class="scroll" id="planScroll">
+          <p class="lead">
+            Plane deinen Schultag. Die Fixpunkte gelten für alle. Die freien Blöcke wählst du selbst, und jede Wahl
+            führt zu einem Ort hier im Schulhaus.
+          </p>
+          <div class="rule" id="rule">
+            <span><b>Regel in diesem Beispiel:</b> Mindestens ein Block Lernzeit für die verbindlichen Ziele. Den
+              Rest wählst du frei.</span>
+            <span class="count" id="ruleCount"></span>
+          </div>
+          <div id="timeline"></div>
+        </div>
+        <div class="bar">
+          <button class="btn" id="save">Plan speichern</button>
+          <span class="status-line" id="saveStatus" role="status" aria-live="polite"></span>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-coach" role="tabpanel" aria-labelledby="tab-coach" hidden>
+        <div class="clock">
+          <button class="btn ghost" id="earlier" aria-label="Früher">‹</button>
+          <div class="readout" aria-live="polite" id="readout"></div>
+          <label class="sr-only" for="time">Uhrzeit</label>
+          <input type="range" id="time" min="0" max="6" step="1" value="0" />
+          <button class="btn ghost" id="later" aria-label="Später">›</button>
+        </div>
+        <div class="scroll" id="coachScroll">
+          <p class="summary" id="summary"></p>
+          <div class="board" id="board"></div>
+          <p class="footnote">
+            Beispiel mit fiktiven Lernenden. Weil alle ihren Tag hier planen, sieht der Coach, wer wo ist und wer Hilfe
+            braucht. Der Status ist eine formative Rückmeldung zum Weg zu den Mindestzielen, keine Note. Die summative
+            Beurteilung folgt später nach dem bestehenden Notenreglement.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-house" role="tabpanel" aria-labelledby="tab-house" hidden>
+        <div class="scroll">
+          <p class="lead">Was du hier im Schulhaus erleben kannst. Geh hin und sprich die Figuren an.</p>
+          <div class="rooms" id="rooms"></div>
+          <p class="footnote">Alle Figuren und ihre Projekte sind erfunden.</p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // ------------------------------------------------------------------ data
+      const ROOMS = {
+        aula: "Aula",
+        lernatelier: "Lernatelier",
+        atelier: "Interessen-Atelier",
+        coaching: "Coaching-Raum",
+        workshop: "Workshop-Raum",
+        pause: "Pausenzone",
+      };
+
+      // What a visitor finds in each room (third tab).
+      const HOUSE = [
+        ["aula", "Morgen- und Abendrunde mit Frau Arnold. Hier triffst du Lea."],
+        ["lernatelier", "Lernzeit für die verbindlichen Ziele. Quirin arbeitet hier; Lea und Joel zeigen ihren Mathe-Vormittag."],
+        ["atelier", "Zeit für eigene Interessen. Tobi baut einen Audio-Rundgang."],
+        ["coaching", "1:1 mit Herrn Meinhard: Sprich selbst mit ihm. Dazu die Konfliktszene «Projektgruppe»."],
+        ["workshop", "Workshops bei Herrn Tesla, zum Beispiel das Säure-Base-Labor mit Rotkohlsaft."],
+        ["pause", "Durchatmen und andere treffen. Hier sind Yara und Matilda."],
+      ];
+
+      // The school day. Fixed points are the same for everyone; free blocks are chosen.
+      const SLOTS = [
+        { id: "morgen", from: "08:00", to: "08:30", fixed: true, title: "Morgenrunde", room: "aula",
+          text: "Briefing: Was steht heute an? Alle nennen kurz ihr Vorhaben." },
+        { id: "mathe", from: "08:30", to: "09:30", fixed: true, title: "Mathe-Fixpunkt", room: "lernatelier",
+          text: "Verbindlicher Fachtermin für alle Jahrgänge. Jede Person arbeitet an ihrem Klassenziel. Video und Verständnisfragen sind vorher erledigt." },
+        { id: "b1", from: "09:30", to: "10:45", label: "Block 1" },
+        { id: "b2", from: "10:45", to: "12:00", label: "Block 2" },
+        { id: "mittag", from: "12:00", to: "13:15", fixed: true, lunch: true, title: "Mittag", room: "pause",
+          text: "Gemeinsam essen und Pause." },
+        { id: "b3", from: "13:15", to: "14:30", label: "Block 3" },
+        { id: "b4", from: "14:30", to: "15:30", label: "Block 4" },
+        { id: "abend", from: "15:30", to: "16:00", fixed: true, title: "Abendrunde", room: "aula",
+          text: "Zwischenstand zeigen, Highlights erzählen, den nächsten Schritt nennen." },
+      ];
+      const FREE = SLOTS.filter((s) => !s.fixed).map((s) => s.id);
+      // Moments the coach view steps through (lunch left out).
+      const STEPS = SLOTS.filter((s) => !s.lunch);
+
+      const OPTIONS = {
+        lernzeit: { title: "Lernzeit", room: "lernatelier",
+          hint: "Lea und Joel beim Mathe-Vormittag zusehen und üben." },
+        projekt: { title: "Eigenes Projekt", room: "atelier",
+          hint: "Tobi testet seinen Audio-Rundgang; Zeit für das, was dich interessiert." },
+        workshop: { title: "Workshop «Säure-Base-Labor»", room: "workshop",
+          hint: "Bei Herrn Tesla mit Rotkohlsaft testen, was sauer ist. Schutzbrille an." },
+        coaching: { title: "1:1 bei Herrn Meinhard", room: "coaching",
+          hint: "Sprich selbst mit Herrn Meinhard über dein Ziel und den nächsten Schritt." },
+        pause: { title: "Pause", room: "pause",
+          hint: "Durchatmen und Yara und Matilda treffen." },
+        konflikt: { title: "Konfliktszene «Projektgruppe»", room: "coaching",
+          hint: "Entscheide für Joel, wie es in seiner Projektgruppe weitergeht." },
+      };
+      const REQUIRED = "lernzeit";
+
+      const STATUS = { ok: "auf Kurs", unsure: "unsicher", risk: "gefährdet", none: "noch offen" };
+
+      // Fictional learners (docs/personas.md). plan: step id -> [room, what]. status: [fromStepIndex, level, reason].
+      const LEARNERS = [
+        { id: "lea", name: "Lea", year: "2. Klasse", project: "Abstimmungsspiel für eine Schulreise",
+          plan: {
+            morgen: ["aula", "Plan: zuerst die offene Mathe-Frage, dann das Spiel"],
+            mathe: ["lernatelier", "Prozent: 100 → 120 → 96, rechnet mit Beispielzahlen"],
+            b1: ["lernatelier", "Lernzeit: zeichnet, worauf sich die zweiten 20 % beziehen"],
+            b2: ["atelier", "Spiel: prüft einen Gleichstand mit erfundenen Stimmen"],
+            b3: ["atelier", "Spiel: sucht Mitspielende für einen Test"],
+            b4: ["coaching", "1:1: Kriterien für eine vorläufige Spielregel"],
+            abend: ["aula", "zeigt Zeichnung und Spielkarte"],
+          },
+          status: [[0, "ok", "Die Rechnung stimmt, die Grundwerte erklärt sie am Beispiel. Die Übertragung auf andere Zahlen ist offen."]],
+          help: { b3: "Wer testet mein Spiel? Alle sind gerade beschäftigt." },
+          next: "Eine neue Ausgangszahl wählen und prüfen, ob die Erklärung trägt. Einen Spieltest vereinbaren.",
+          question: "Weshalb hebt die Senkung um 20 % die Erhöhung um 20 % nicht auf?" },
+        { id: "joel", name: "Joel", year: "3. Klasse", project: "Audiokarte: Treffpunkte früher und heute",
+          plan: {
+            morgen: ["aula", "Plan: Kostenmodell, danach Interviews"],
+            mathe: ["lernatelier", "Kosten: Tabelle stimmt, der Term 30x + 8 passt nicht"],
+            b1: ["lernatelier", "Lernzeit: korrigiert zu K(x) = 30 + 8x, stellt K(x) = 12 + 5x selbst auf"],
+            b2: ["atelier", "Audiokarte: vergleicht zwei Interviewauszüge"],
+            b3: ["coaching", "1:1: hört mit Herrn Meinhard eine Aufnahme an"],
+            b4: ["workshop", "Workshop «Säure-Base-Labor» bei Herrn Tesla"],
+            abend: ["aula", "zeigt die neue Einleitung und seinen zweiten Term"],
+          },
+          status: [
+            [0, "unsure", "Vorbereitung erledigt. Eine eigene Formel stellt er noch nicht sicher auf."],
+            [3, "ok", "Den zweiten Term hat er selbst aufgestellt. Der Vergleich zweier Angebote steht noch aus."],
+          ],
+          help: {
+            mathe: "Meine Tabelle und die Formel geben nicht dasselbe. Wo habe ich die Zahlen vertauscht?",
+            b2: "Zwei Aussagen widersprechen sich. Welche nehme ich?",
+          },
+          next: "Zwei Angebote in dasselbe Koordinatensystem zeichnen. Im nächsten Interview nach dem Zeitraum fragen.",
+          question: "Sprechen die beiden Personen überhaupt über dieselbe Zeit?" },
+        { id: "tobi", name: "Tobi", year: "2. Klasse", project: "Audio-Rundgang mit Geräuschen und Wegbeschreibungen",
+          plan: {
+            morgen: ["aula", "Plan: Abschnitt 3 testen lassen"],
+            mathe: ["lernatelier", "löst die Aufgaben schnell, nimmt eine Knobelaufgabe dazu"],
+            b1: ["atelier", "Rundgang: nimmt eine Ansage neu auf, bis der Klang stimmt"],
+            b2: ["lernatelier", "Lernzeit: schreibt eine Wegbeschreibung genauer (Sprachziel)"],
+            b3: ["pause", "Testpersonen gehen Abschnitt 3 ab, er beobachtet nur"],
+            b4: ["atelier", "überarbeitet die Ansage an der Abzweigung"],
+            abend: ["aula", "spielt die alte und die neue Ansage vor"],
+          },
+          status: [[0, "unsure", "In Mathe sicher. Beim Sprachziel «genaue Anleitung» fehlen Nachweise: Testpersonen verpassen eine Abzweigung."]],
+          help: {},
+          next: "Die Testpersonen fragen, was sie an der Abzweigung verstanden haben.",
+          question: "Was ist an der Abzweigung für andere nicht klar?" },
+        { id: "quirin", name: "Quirin", year: "1. Klasse", project: "Heimweg nach dem Training verbessern",
+          plan: {
+            morgen: ["aula", "Frage: Warum verpasse ich den Bus so knapp?"],
+            mathe: ["lernatelier", "berechnet Zeitspannen aus dem Fahrplan"],
+            b1: ["lernatelier", "Lernzeit: vergleicht seine Beobachtungsliste mit dem Fahrplan"],
+            b2: ["atelier", "Projekt: sammelt die Heimwege von anderen"],
+            b3: ["coaching", "1:1: prüft mit Herrn Meinhard konkrete Beispiele"],
+            b4: ["pause", "Pause"],
+            abend: ["aula", "zeigt seine Liste, zweifelt, ob sie reicht"],
+          },
+          status: [[0, "unsure", "Er liest den Fahrplan am Beispiel richtig. Ob sein Vorschlag für alle passt, ist noch nicht geprüft."]],
+          help: { b1: "Welchen nächsten Schritt nehme ich zuerst?" },
+          next: "Zwei Beispiele prüfen, bei denen eine frühere Abfahrt anderen schadet.",
+          question: "Hilft eine frühere Abfahrt mir, aber anderen nicht?" },
+        { id: "yara", name: "Yara", year: "1. Klasse", project: "Tausch- und Flicknachmittag",
+          plan: {
+            morgen: ["aula", "Plan: Helfende für die Stationen finden"],
+            mathe: ["lernatelier", "Budget: beginnt die verschobene Aufgabe"],
+            b1: ["coaching", "1:1: Wer räumt auf? Aufgaben klären, ohne alles selbst zu tun"],
+            b2: ["lernatelier", "Lernzeit: schätzt und berechnet die Materialkosten"],
+            b3: ["pause", "Projekt: fragt Helfende für die Stationen an"],
+            b4: ["pause", "Projekt: Ämtliplan mit den Helfenden"],
+            abend: ["aula", "erzählt, wer jetzt beim Aufräumen hilft"],
+          },
+          status: [[0, "risk", "Der Budget-Nachweis zum Mathe-Mindestziel ist zweimal verschoben. Heute begonnen, ein Checkpoint ist vereinbart."]],
+          help: { b2: "Wie rechne ich aus, was das Material kostet?" },
+          next: "Das Budget fertig rechnen und am vereinbarten Checkpoint zeigen.",
+          question: "Reicht das Geld für Faden, Knöpfe und Werkzeug?" },
+        { id: "matilda", name: "Matilda", year: "3. Klasse", project: "Drei günstige Mittagessen für Gäste",
+          plan: {
+            morgen: ["aula", "Plan: Menü nach einer Absage überarbeiten"],
+            mathe: ["lernatelier", "lineare Kosten: Preis pro Portion"],
+            b1: ["atelier", "Projekt: neues Menü ohne die Zutaten, die ein Gast nicht verträgt"],
+            b2: ["lernatelier", "Lernzeit: rechnet Mengen für zwölf Personen um"],
+            b3: ["pause", "fragt die Gäste nach Unverträglichkeiten"],
+            b4: ["atelier", "schreibt die Einladung für das nächste Essen"],
+            abend: ["aula", "zeigt das neue Menü und die Kosten pro Person"],
+          },
+          status: [[0, "ok", "Mengen rechnet sie sicher um. Die Kosten pro Person sind begonnen."]],
+          help: {},
+          next: "Vor der nächsten Einladung alle Gäste nach Zutaten fragen.",
+          question: "Wie viel darf ein Essen pro Person kosten?" },
+      ];
+
+      const UI = {
+        choose: "Wählen",
+        change: "Ändern",
+        open: "noch offen",
+        clear: "Block leeren",
+        experience: "Im Schulhaus erleben:",
+        ruleBlocked:
+          "Das geht in diesem Beispiel nicht: Ein Block Lernzeit bleibt für die verbindlichen Ziele. Lege zuerst einen anderen Block auf Lernzeit.",
+        saving: "Speichere …",
+        savedHazu: "Gespeichert. Dein Plan liegt jetzt als Punkt in diesem Hazu.",
+        savedLocal: "Lokal gespeichert. Ohne Verbindung zu Hazu wird nichts übertragen.",
+        saveFailed: "Speichern hat nicht geklappt. Versuche es nochmals.",
+        unsaved: "Noch nicht gespeichert.",
+        changed: "Geändert, noch nicht gespeichert.",
+      };
+
+      // ------------------------------------------------------------------ state
+      const MOCK = {
+        context: { displayName: "Testperson", hazuId: null },
+        createItem: async (item) => ({ id: "lokal-" + Date.now(), ...item }),
+      };
+      const $ = (id) => document.getElementById(id);
+      const esc = (s) =>
+        String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+      const state = {
+        hazu: MOCK,
+        plan: { b1: "lernzeit", b2: null, b3: null, b4: null },
+        openSlot: null,
+        messageSlot: null,
+        savedAt: null,
+        dirty: false,
+        step: 0,
+        openCard: null,
+      };
+
+      const countRequired = () => FREE.filter((id) => state.plan[id] === REQUIRED).length;
+      const visitorName = () => state.hazu?.context?.displayName || "Besuch";
+
+      // ------------------------------------------------------------------ Mein Tag
+      function renderTimeline() {
+        const html = SLOTS.map((s) => {
+          const time = `<div class="time">${esc(s.from)}<small>${esc(s.to)}</small></div>`;
+          if (s.fixed) {
+            const lock = s.lunch ? "" : `<span class="tag lock">Fixpunkt</span>`;
+            return `<div class="slot fixed">${time}<div class="box">
+              <div class="box-head"><span class="box-title">${esc(s.title)}</span>
+              <span class="tag room">${esc(ROOMS[s.room])}</span>${lock}</div>
+              <p>${esc(s.text)}</p></div></div>`;
+          }
+          const choice = state.plan[s.id];
+          const opt = choice && OPTIONS[choice];
+          const expanded = state.openSlot === s.id;
+          const head = opt
+            ? `<span class="box-title">${esc(opt.title)}</span><span class="tag room">${esc(ROOMS[opt.room])}</span>`
+            : `<span class="box-title">${esc(s.label)}: ${esc(UI.open)}</span><span class="tag">frei</span>`;
+          const options = Object.entries(OPTIONS)
+            .map(([key, o]) => `<button class="opt" data-slot="${s.id}" data-opt="${key}" aria-pressed="${choice === key}">
+                <span class="opt-title">${esc(o.title)}</span> <span class="tag room">${esc(ROOMS[o.room])}</span>
+                <span class="hint"><b>${esc(UI.experience)}</b> ${esc(o.hint)}</span></button>`)
+            .join("");
+          const clear = choice ? `<button class="clear" data-slot="${s.id}" data-opt="">${esc(UI.clear)}</button>` : "";
+          const msg = state.messageSlot === s.id ? UI.ruleBlocked : "";
+          return `<div class="slot free${opt ? "" : " empty"}" data-id="${s.id}">${time}<div class="box">
+            <button class="pick" data-toggle="${s.id}" aria-expanded="${expanded}" aria-controls="opts-${s.id}">
+              <span class="box-head">${head}</span>
+              <span class="action">${opt ? UI.change : UI.choose}</span></button>
+            ${opt && !expanded ? `<p>${esc(opt.hint)}</p>` : ""}
+            <div class="msg" role="alert" id="msg-${s.id}">${esc(msg)}</div>
+            <div class="options" id="opts-${s.id}" ${expanded ? "" : "hidden"}>${options}${clear}</div>
+          </div></div>`;
+        }).join("");
+        $("timeline").innerHTML = html;
+        const n = countRequired();
+        $("ruleCount").textContent = `Lernzeit: ${n} ${n === 1 ? "Block" : "Blöcke"}`;
+      }
+
+      function choose(slot, opt) {
+        const current = state.plan[slot];
+        // The example rule: the last Lernzeit block cannot be removed.
+        if (current === REQUIRED && opt !== REQUIRED && countRequired() <= 1) {
+          state.messageSlot = slot;
+          renderTimeline();
+          document.querySelector(`[data-toggle="${slot}"]`)?.focus();
+          return;
+        }
+        state.plan[slot] = opt || null;
+        state.messageSlot = null;
+        state.openSlot = null;
+        state.dirty = true;
+        renderTimeline();
+        updateSaveStatus();
+        document.querySelector(`[data-toggle="${slot}"]`)?.focus();
+        renderBoard();
+      }
+
+      $("timeline").addEventListener("click", (ev) => {
+        const toggle = ev.target.closest("[data-toggle]");
+        if (toggle) {
+          const id = toggle.dataset.toggle;
+          state.openSlot = state.openSlot === id ? null : id;
+          state.messageSlot = null;
+          renderTimeline();
+          const first = document.querySelector(`#opts-${id} .opt[aria-pressed="true"]`) || document.querySelector(`#opts-${id} .opt`);
+          if (state.openSlot && first) first.focus();
+          else document.querySelector(`[data-toggle="${id}"]`)?.focus();
+          return;
+        }
+        const opt = ev.target.closest("[data-opt]");
+        if (opt) choose(opt.dataset.slot, opt.dataset.opt);
+      });
+
+      $("timeline").addEventListener("keydown", (ev) => {
+        if (ev.key === "Escape" && state.openSlot) {
+          const id = state.openSlot;
+          state.openSlot = null;
+          state.messageSlot = null;
+          renderTimeline();
+          document.querySelector(`[data-toggle="${id}"]`)?.focus();
+        }
+      });
+
+      function planLines() {
+        return SLOTS.map((s) => {
+          if (s.fixed) return { from: s.from, to: s.to, title: s.title, room: ROOMS[s.room], kind: s.lunch ? "Pause" : "Fixpunkt" };
+          const o = OPTIONS[state.plan[s.id]];
+          return o
+            ? { from: s.from, to: s.to, title: o.title, room: ROOMS[o.room], kind: "frei gewählt" }
+            : { from: s.from, to: s.to, title: UI.open, room: "", kind: "frei" };
+        });
+      }
+
+      function updateSaveStatus(text) {
+        if (text) $("saveStatus").textContent = text;
+        else if (state.savedAt) $("saveStatus").textContent = state.dirty ? UI.changed : $("saveStatus").textContent;
+        else $("saveStatus").textContent = UI.unsaved;
+      }
+
+      // Saves the plan as an item in the station's Hazu (or locally without the bridge).
+      async function savePlan() {
+        const h = state.hazu;
+        const btn = $("save");
+        const lines = planLines();
+        const title = `Tagesplan: ${visitorName()}`;
+        const items = lines
+          .map((l) => `<li><strong>${esc(l.from)}–${esc(l.to)}</strong> ${esc(l.title)}${l.room ? ` (${esc(l.room)})` : ""} <em>· ${esc(l.kind)}</em></li>`)
+          .join("");
+        const description =
+          `<p><strong>Tagesplan von ${esc(visitorName())}</strong></p>` +
+          `<ol>${items}</ol>` +
+          `<p>Regel in diesem Beispiel: mindestens ein Block Lernzeit für die verbindlichen Ziele (geplant: ${countRequired()}).</p>` +
+          `<p>${esc(new Date().toLocaleString("de-CH"))}</p>`;
+        const local = h === MOCK || !h?.context?.hazuId;
+        btn.disabled = true;
+        $("saveStatus").textContent = UI.saving;
+        try {
+          const created = await (local ? MOCK : h).createItem({
+            parentId: local ? null : h.context.hazuId,
+            type: "item",
+            title,
+            description,
+          });
+          window.lastResult = { mode: local ? "lokal" : "hazu", id: created?.id ?? null, title, description, plan: { ...state.plan } };
+          state.savedAt = new Date().toLocaleTimeString("de-CH", { hour: "2-digit", minute: "2-digit" });
+          state.dirty = false;
+          $("saveStatus").textContent = local ? UI.savedLocal : UI.savedHazu;
+          renderBoard();
+        } catch (e) {
+          console.warn("Plan not saved", e);
+          $("saveStatus").textContent = UI.saveFailed;
+        } finally {
+          btn.disabled = false;
+        }
+      }
+      $("save").addEventListener("click", savePlan);
+
+      // ------------------------------------------------------------------ Sicht Coach
+      function visitorEntry() {
+        const plan = {};
+        for (const s of STEPS) {
+          if (s.fixed) plan[s.id] = [s.room, s.title];
+          else {
+            const o = OPTIONS[state.plan[s.id]];
+            plan[s.id] = o ? [o.room, o.title] : [null, "noch nicht geplant"];
+          }
+        }
+        return {
+          id: "du", name: "Du", year: state.savedAt ? `Plan gespeichert ${state.savedAt}` : "Plan nicht gespeichert",
+          project: "dein Besuch im Schulhaus", plan,
+          status: [[0, "none", "Heute noch keine Rückmeldung. Die kommt im 1:1 oder in der Abendrunde."]],
+          help: {},
+          next: "Den Plan speichern und in der Abendrunde ein Highlight nennen.",
+          question: "Was möchtest du heute herausfinden?",
+          me: true,
+        };
+      }
+
+      const statusAt = (l, i) => l.status.filter(([from]) => from <= i).pop();
+
+      let lastRooms = {};
+      function renderBoard(animate = false) {
+        const i = state.step;
+        const step = STEPS[i];
+        const people = [...LEARNERS, visitorEntry()];
+        $("readout").innerHTML = `<b>${esc(step.from)}–${esc(step.to)}</b>${esc(step.fixed ? step.title : step.label + " · frei")}`;
+        $("time").value = String(i);
+        $("time").setAttribute("aria-valuetext", `${step.from} Uhr, ${step.fixed ? step.title : step.label}`);
+        $("earlier").disabled = i === 0;
+        $("later").disabled = i === STEPS.length - 1;
+
+        const helpers = LEARNERS.filter((l) => l.help[step.id]).map((l) => l.name);
+        const counts = {};
+        people.forEach((p) => {
+          const r = p.plan[step.id][0];
+          if (r) counts[r] = (counts[r] || 0) + 1;
+        });
+        const where = Object.entries(counts)
+          .map(([r, n]) => `<span style="white-space:nowrap">${esc(ROOMS[r])} ${n}</span>`)
+          .join(" · ");
+        $("summary").innerHTML =
+          `<b>Wer ist wo:</b> ${where}<br><b>Hilfe gewünscht:</b> ${helpers.length ? esc(helpers.join(", ")) : "niemand"}`;
+
+        $("board").innerHTML = people
+          .map((p) => {
+            const [room, what] = p.plan[step.id];
+            const [, level, reason] = statusAt(p, i);
+            const help = p.help[step.id];
+            const open = state.openCard === p.id;
+            const moved = animate && lastRooms[p.id] && lastRooms[p.id] !== room;
+            const detail = open
+              ? `<div class="detail" id="detail-${p.id}">
+                  <h3>Plan heute</h3>
+                  <ol>${STEPS.map((s, k) => {
+                    const [r, w] = p.plan[s.id];
+                    return `<li class="${k === i ? "cur" : ""}"><span>${esc(s.from)}</span><span>${r ? esc(ROOMS[r]) + ": " : ""}${esc(w)}</span></li>`;
+                  }).join("")}</ol>
+                  <h3>Nächster Schritt</h3><p>${esc(p.next)}</p>
+                  <h3>Offene Frage</h3><p>«${esc(p.question)}»</p>
+                  <p class="year">Projekt: ${esc(p.project)}</p>
+                </div>`
+              : "";
+            return `<article class="card${p.me ? " me" : ""}${open ? " open" : ""}${moved ? " moved" : ""}">
+              <button class="card-btn" data-card="${p.id}" aria-expanded="${open}" aria-controls="detail-${p.id}">
+                <span class="card-top"><span class="name">${esc(p.name)}</span><span class="year">${esc(p.year)}</span>
+                  <span class="state ${level}">${esc(STATUS[level])}</span></span>
+                <span class="now"><span class="tag room">${room ? esc(ROOMS[room]) : "offen"}</span><span>${esc(what)}</span></span>
+                <span class="reason">${p.me ? "" : "Beispiel: "}${esc(reason)}</span>
+                ${help ? `<span class="help"><b>Hilfe gewünscht:</b> «${esc(help)}»</span>` : ""}
+              </button>${detail}</article>`;
+          })
+          .join("");
+        lastRooms = Object.fromEntries(people.map((p) => [p.id, p.plan[step.id][0]]));
+      }
+
+      function setStep(i) {
+        state.step = Math.max(0, Math.min(STEPS.length - 1, i));
+        renderBoard(true);
+      }
+      $("time").addEventListener("input", (ev) => setStep(Number(ev.target.value)));
+      $("earlier").addEventListener("click", () => setStep(state.step - 1));
+      $("later").addEventListener("click", () => setStep(state.step + 1));
+      $("board").addEventListener("click", (ev) => {
+        const b = ev.target.closest("[data-card]");
+        if (!b) return;
+        state.openCard = state.openCard === b.dataset.card ? null : b.dataset.card;
+        renderBoard();
+        document.querySelector(`[data-card="${b.dataset.card}"]`)?.focus();
+      });
+
+      // ------------------------------------------------------------------ Im Haus
+      $("rooms").innerHTML = HOUSE.map(
+        ([r, text]) => `<div class="room-card"><h3>${esc(ROOMS[r])}</h3><p>${esc(text)}</p></div>`,
+      ).join("");
+
+      // ------------------------------------------------------------------ tabs
+      const tabs = [...document.querySelectorAll('[role="tab"]')];
+      function selectTab(tab) {
+        tabs.forEach((t) => {
+          const on = t === tab;
+          t.setAttribute("aria-selected", String(on));
+          t.tabIndex = on ? 0 : -1;
+          $(t.getAttribute("aria-controls")).hidden = !on;
+        });
+        if (tab.id === "tab-coach") renderBoard();
+      }
+      tabs.forEach((t, k) => {
+        t.addEventListener("click", () => selectTab(t));
+        t.addEventListener("keydown", (ev) => {
+          const d = ev.key === "ArrowRight" ? 1 : ev.key === "ArrowLeft" ? -1 : 0;
+          if (!d) return;
+          ev.preventDefault();
+          const next = tabs[(k + d + tabs.length) % tabs.length];
+          next.focus();
+          selectTab(next);
+        });
+      });
+
+      // ------------------------------------------------------------------ start
+      async function connect() {
+        const inHazu = window.parent !== window && typeof HazuAPI !== "undefined"; // the SDK declares a global const, not window.HazuAPI
+        if (!inHazu) return MOCK;
+        try {
+          return await HazuAPI.init();
+        } catch (e) {
+          console.warn("Bridge unreachable, using mock data", e);
+          return MOCK;
+        }
+      }
+
+      renderTimeline();
+      updateSaveStatus();
+      renderBoard();
+      (async () => {
+        state.hazu = await connect();
+        renderBoard();
+      })();
+    </script>
+  </body>
+</html>
