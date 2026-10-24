@@ -6,17 +6,19 @@ script below runs 2:50, leaving 10 s of buffer.
 
 ## Running order
 
-| Block | Time | Length | Speaker (suggestion) | Main criterion |
-| ----- | ---- | ------ | -------------------- | -------------- |
-| 1 Hook | 0:00–0:12 | 12 s | Luca | Problemlösung & Relevanz |
-| 2 Idee | 0:12–0:30 | 18 s | Luca | Innovation & Kreativität |
-| 3 Demo (video) | 0:30–1:45 | 75 s | Gabriel speaks, Luca drives the video | Technische Umsetzung |
-| 4 Live-Moment | 1:45–2:15 | 30 s | Luca asks, Gabriel at the keyboard | Technische Umsetzung |
-| 5 Fortschritt | 2:15–2:35 | 20 s | Gabriel | Business-Potenzial (25 %) |
-| 6 Nutzen & nächste Schritte | 2:35–2:50 | 15 s | Luca | Problemlösung & Relevanz |
+The pitch is framed by a scene: Gabriel describes his imaginary school, Luca
+plays a sceptical teacher. They step out of the scene twice to talk to the
+jury and close inside it. Scene parts have no slide of their own.
 
-The speaker split is a suggestion: Gabriel takes tech and demo, Luca takes
-concept and pedagogy. Swap freely.
+| Block | Time | Length | Speaker | Slide | Main criterion |
+| ----- | ---- | ------ | ------- | ----- | -------------- |
+| 1 Szene | 0:00–0:15 | 15 s | Gabriel, Luca as teacher | 1 Titel | Präsentation & Pitch |
+| 2 Problem + Zielgruppe | 0:15–0:40 | 25 s | Luca, to the jury | 2 Problem & Zielgruppe | Problemlösung & Relevanz |
+| 3 Lösung | 0:40–0:50 | 10 s | Gabriel | 3 Die Idee | Innovation & Kreativität |
+| 4 Video | 0:50–1:35 | 45 s | Gabriel speaks over it | 4 Ein Morgen in der Schulwelt | Technische Umsetzung |
+| 5 Live (Szene) | 1:35–2:05 | 30 s | Luca asks, Gabriel at the keyboard | 5 Frag den KI-Coach | Technische Umsetzung |
+| 6 Warum es wirkt + Gebaut | 2:05–2:35 | 30 s | Luca, then Gabriel, to the jury | 6 Warum es wirkt / In 22 Stunden gebaut | Business-Potenzial (25 %) |
+| 7 Abschluss (Szene) | 2:35–2:50 | 15 s | Luca, then Gabriel | 7 Abschluss | Problemlösung & Relevanz |
 
 ## Deck
 
@@ -26,13 +28,16 @@ through builds and slides).
 
 | Slide | Script block | Builds |
 | ----- | ------------ | ------ |
-| 1 Titel: Schulwelt, Gabriel & Luca, Zentral Hack 2026 | before 1 | names and challenge label |
-| 2 «Wieso lerne ich das?» | 1 Hook (Luca) | 2 lines |
-| 3 Raum für intrinsische Motivation in einer klaren Struktur | 2 Idee (Luca) | 3 pairs: Fixpunkte and Mindestanforderungen, Coaching and Projekte, formativ and Sicherheit |
-| 4 Ein Morgen in der Schulwelt | 3 Demo (video, Gabriel) | none; the demo video goes here |
-| 5 Frag den KI-Coach | 4 Live-Moment (Gabriel) | question, then the world link |
-| 6 Was in 24 Stunden neu entstand | 5 Fortschritt (Gabriel) | existing parts, new parts, «Konzept von uns, Umsetzung mit KI» |
-| 7 Erleben statt erklären | 6 Nutzen & nächste Schritte (Luca) | audiences, Suva prevention, next step, closing line |
+| 1 Titel: Schulwelt, Gabriel & Luca, Zentral Hack 2026 | 1 Szene | names and challenge label |
+| 2 Problem & Zielgruppe: «Wieso lerne ich das?» | 2 Problem + Zielgruppe (Luca) | 2 lines, then the 4 target groups |
+| 3 Die Idee: Raum für intrinsische Motivation in einer klaren Struktur | 3 Lösung (Gabriel) | 2 pairs: Fixpunkte and Mindestziele, Coaching and Projekte/Workshops |
+| 4 Ein Morgen in der Schulwelt | 4 Video (Gabriel) | none; the 45 s demo video goes here |
+| 5 Frag den KI-Coach | 5 Live (Szene) | question, then the world link |
+| 6 Warum es wirkt / In 22 Stunden gebaut | 6 Warum es wirkt + Gebaut (Luca, Gabriel) | Autonomie, Kompetenz, Zugehörigkeit, psychische Gesundheit, then the build list |
+| 7 Abschluss: Schule muss man erleben. | 7 Abschluss (Szene) | 3 lines, then «Schule muss man erleben. Danke!» |
+
+The previous version of the deck is kept in the private Hazu «Pitch Schulwelt
+– Archiv» next to it.
 
 The «Schulwelt» wordmark moves from slide 1 to slides 2 and 3 (magic move).
 To embed the video on slide 4, upload the mp4 to the deck Hazu and replace
@@ -41,87 +46,102 @@ the slide's `<img>` with
 
 ## Script
 
-### 1 Hook (12 s, Luca)
+G = Gabriel, L = Luca. Inside the scene Luca plays a sceptical teacher.
 
-> «Wieso lerne ich das?» Diese Frage habe ich in der Schule oft gestellt, und
-> oft gab es keine gute Antwort. Viele kennen Schule nur als Unterricht im
-> Klassenzimmer. Ein anderes Schulmodell muss man erleben, nicht nur lesen.
+### 1 Szene (15 s)
 
-### 2 Idee (18 s, Luca)
+> G: «Stell dir vor, an meiner Schule plant jede und jeder den Tag selbst.»
+>
+> L (als Lehrer): «Und wer kontrolliert, ob die überhaupt lernen? Klingt nach
+> Chaos.»
 
-> Unsere Idee: Raum für intrinsische Motivation in einer klaren Struktur.
-> Zeit, Räume und Coaches geben den Rahmen. Die Mindestanforderungen aus dem
-> Lehrplan bleiben verbindlich. Den Weg dorthin und ein eigenes Projekt wählen
-> die Lernenden selbst, von Anfang an. Damit man das erlebt, haben wir daraus
-> eine begehbare 3D-Schule gebaut: die Schulwelt.
+### 2 Problem + Zielgruppe (25 s, Luca, zur Jury)
 
-### 3 Demo (75 s, video, Gabriel speaks)
+> «Diese Antwort hören wir oft. ‹Wieso lerne ich das?› fragen viele Lernende,
+> und die Schule hat wenig Platz für ihre Interessen. Neue Schulmodelle gibt
+> es, aber man versteht sie erst, wenn man sie erlebt. Darum ist unsere
+> Zielgruppe: Lernende, Eltern, Lehrpersonen und Schulen, die ein anderes
+> Modell zeigen oder diskutieren wollen.»
 
-What to say over each clip. Clip lengths: see the shot list below.
+### 3 Lösung (10 s, Gabriel)
 
-| Clip | On screen | Spoken |
-| ---- | --------- | ------ |
-| A (8 s) | Bergdorf with chalets, Joel at the square, walk to the Schulhaus | «Man kommt in einem kleinen Bergdorf an. Joel begrüsst einen und schickt einen ins Schulhaus.» |
-| B (12 s) | Eingangshalle: Yara at the board, Tagesplan opens, two free blocks filled, switch to «Sicht Coach» | «Bei Yara plant man den eigenen Tag: Fixpunkte für alle, die freien Blöcke wählt man selbst. In der Sicht Coach sieht man, wo jemand steht, als Rückmeldung, nicht als Note.» |
-| C (8 s) | Aula: Morgenrunde with Frau Arnold, Matilda | «In der Morgenrunde sagt jede und jeder, was heute geplant ist.» |
-| D (10 s) | Lernatelier: Lea and Joel at one table | «Lea und Joel haben sich mit Videos vorbereitet und fragen zuerst einander, bevor sie die Lehrperson fragen.» |
-| E (10 s) | Frau Sutter at the Mathe-Fixpunkt, quiz question answered | «Am Mathe-Fixpunkt zeigt Frau Sutter die Mindestanforderungen. Die gelten für alle, der Weg dorthin ist frei.» |
-| F (15 s) | Workshop-Raum: Säure-Base-Labor, pick safety glasses and gloves, mix, red cabbage turns colour, pH | «Im freiwilligen Workshop bei Herrn Tesla experimentiert man mit Säuren und Basen. Die Sicherheit kommt nebenbei: Schutzbrille, Handschuhe, nie probieren, nach den Regeln von chemsuisse und Suva.» |
-| G (12 s) | Coaching-Raum: Konflikt station, one decision for Joel, an ending | «Und es läuft nicht immer rund: In der Konfliktszene entscheidet man für Joel, wie er mit seiner Projektgruppe umgeht.» |
+> «Unsere Lösung: eine begehbare 3D-Schule. Raum für intrinsische Motivation
+> in einer klaren Struktur. Fixpunkte für alle, verbindliche Mindestziele, den
+> Rest plant man selbst. Komm mit.»
 
-### 4 Live-Moment (30 s, Luca asks, Gabriel types)
+### 4 Video (45 s, Gabriel speaks over it)
+
+Three short lines, one per scene in the video:
+
+| On screen | Spoken |
+| --------- | ------ |
+| Yara, Tagesplan | «Hier plant man den eigenen Tag: Fixpunkte für alle, die freien Blöcke wählt man selbst.» |
+| Lea and Joel in the Lernatelier | «Lea und Joel bereiten sich mit Videos vor und fragen zuerst einander.» |
+| Säure-Base-Labor | «Die Schutzbrille wählt man hier selbst.» |
+
+### 5 Live (30 s, Szene)
 
 Switch to the browser tab with the world, already standing in front of Herr
 Meinhard in the Coaching-Raum.
 
-Prepared question (Luca reads it aloud, Gabriel types it):
+> L: «Und wenn einer keine Lust hat?»
+
+Gabriel asks Herr Meinhard (types it):
 
 > «Ich mag Fussball, aber Mathe fällt mir schwer. Was soll ich tun?»
 
-While Herr Meinhard answers (Gabriel):
+After the answer:
 
-> Herr Meinhard ist unser KI-Coach. Er kennt die Grundsätze dieser Schule:
-> Er nimmt das Interesse auf, verbindet es mit den Mindestanforderungen und
-> fragt nach dem nächsten Schritt, statt einfach die Lösung zu geben. Man
-> spricht mit ihm als man selbst.
-
-Then read one sentence of the answer aloud if it fits, and move on.
+> L: «Er zwingt niemanden, er hilft, den eigenen Grund zu finden. Jetzt
+> verstehe ich es.»
 
 **Fallback:** if the answer takes longer than about 10 s or the network
 fails, say «Hier die gleiche Frage von heute Morgen» and play clip H (the same
 exchange, recorded) from the backup video.
 
-### 5 Fortschritt (20 s, Gabriel)
+### 6 Warum es wirkt + Gebaut (30 s, zur Jury)
 
-> Was gab es schon vorher? Hazu als Plattform und die 3D-Engine Hazu World,
-> so wie andere Teams Unity verwenden. Neu in diesen 24 Stunden: das Bergdorf
-> und das Schulhaus mit neun Räumen, zehn Figuren mit geführten Gesprächen,
-> vier Stationen inklusive KI-Coach, eine Konzeptabdeckung, die jedes
-> Element unseres Schulmodells einer Stelle in der Welt zuordnet, und für die
-> Engine einen Innenraum-Modus, der als Pull Request offen ist. Alles in 33
-> Commits nachvollziehbar.
+> L: «Das Modell passt zur Selbstbestimmungstheorie: Autonomie, Kompetenz,
+> Zugehörigkeit. Rückmeldung statt Note senkt Druck, Klasse und Runden geben
+> Halt. Das ist gut für die psychische Gesundheit.»
+>
+> G: «Auch Sicherheit lernt man so: Im Labor wählt man die Schutzbrille selbst.
+> In 22 Stunden sind zwei Levels, zehn Figuren, drei Stationen und ein
+> KI-Coach entstanden. Für die Schule haben wir sogar die 3D-Engine erweitert,
+> Hazus CTO hat es reviewed, seit heute ist es live. Das Konzept haben wir
+> zuerst auf Papier entwickelt, die KI half beim Bauen.»
 
-Facts behind it (from `git log`, 24.10 10:17):
+Facts behind it:
 
-- Repository commits 23.10 23:20 to 24.10 10:12: 33 on `main` (31 Gabriel,
-  2 Luca), plus 2 on Luca's branch `codex/mathe`.
-- Characters on the route: Joel, Yara, Frau Arnold, Matilda, Lea, Frau Sutter,
-  Quirin, Tobi, Herr Meinhard, Herr Tesla (10).
-- Stations: Tagesplan, Säure-Base-Labor, Konflikt in der Projektgruppe, Herr
-  Meinhard (Genius). Built and now in Reserve: Sägestation, Luca's
-  Mathematikvormittag.
+- Levels: Bergdorf and Schulhaus (2).
+- Characters with guided conversations: Joel, Yara, Frau Arnold, Matilda, Lea,
+  Frau Sutter, Quirin, Tobi, Herr Meinhard, Herr Tesla (10); 11 more in the
+  background.
+- Stations: Tagesplan, Säure-Base-Labor, Konflikt in der Projektgruppe, plus
+  Herr Meinhard as the KI-Coach (Genius). Built and now in Reserve:
+  Sägestation, Luca's Mathematikvormittag.
 - Engine: [HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183),
   merged and live on hazu.app since 12:29; the Schulhaus runs in indoor mode.
 
 Update the numbers just before the pitch.
 
-### 6 Nutzen & nächste Schritte (15 s, Luca)
+### 7 Abschluss (15 s, Szene)
 
-> Schulen können ihr eigenes Modell so sichtbar machen und mit Eltern,
-> Lernenden und Lehrpersonen darüber diskutieren, bevor sie es einführen.
-> Als Nächstes: ein Pilot mit einer echten Schule, eine Wochenansicht mit
-> Meilensteinen, Coach-Vorschläge zum Anklicken und der Innenraum-Modus im
-> nächsten Release. Danke!
+> L: «Okay, ich bin überzeugt. Wann fangen wir an?»
+>
+> G: «Jede Schule kann ihr Modell so zeigen, und auch Prävention lässt sich so
+> erlebbar machen. Schule muss man erleben.»
+
+## Jury focus
+
+What each jury perspective should hear, and where it comes up.
+
+| Perspective | Point | Where |
+| ----------- | ----- | ----- |
+| Suva | Safety gear is chosen by the learner, not imposed; near misses come up in the Abendrunde | Video (Labor), block 6 |
+| CSS | Psychische Gesundheit: less pressure, more Halt through Zugehörigkeit; the Konflikt station | Block 6, video |
+| HSLU | Fits self-determination theory (say «passt zu», never «beweist»); formative before summative | Block 6 |
+| Technik | Engine PR reviewed by the CTO and live; coach hosted in the EU; results stay private; every step traceable in the repo | Block 6, jury questions |
 
 ## Shot list (backup and demo video)
 
