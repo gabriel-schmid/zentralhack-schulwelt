@@ -111,7 +111,7 @@ Facts behind it (from `git log`, 24.10 10:17):
   Meinhard (Genius). Built and now in Reserve: Sägestation, Luca's
   Mathematikvormittag.
 - Engine: [HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183),
-  open, not deployed.
+  merged and live on hazu.app since 12:29; the Schulhaus runs in indoor mode.
 
 Update the numbers just before the pitch.
 

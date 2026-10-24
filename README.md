@@ -87,9 +87,9 @@ hazu.app.
 
 ### How to open it
 
-- World: https://hazu.app/TRAIMeIVPNXq5wfkfTG2. The Hazu is private: you need
-  a hazu.app account that has been invited to it. Ask the team for access, or
-  watch the demo video.
+- World: https://hazu.app/TRAIMeIVPNXq5wfkfTG2, open without an account.
+  Without signing in, results are not saved and Herr Meinhard answers only with
+  short offline texts; the AI coach needs a hazu.app account.
 - Desktop browser. Use the **fullscreen** button (top right); without it,
   dialogue text and buttons can end up below the visible area.
 - WASD or arrow keys walk, **X or Enter** talks and opens doors, **Q/E** turn
@@ -107,7 +107,7 @@ hazu.app.
 | Stations: Tagesplan, Säure-Base-Labor, Konflikt; Sägestation and Mathematikvormittag (built, now in reserve) | **new** |
 | Coach prompt for Herr Meinhard (`coach/`) | **new** |
 | School concept, personas, route and concept coverage (`docs/`) | **new** |
-| Engine indoor mode: rooms instead of floating islands, cut-away walls, sliding along walls ([HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183)) | **new**; PR open, not deployed; goes live only with an app release |
+| Engine indoor mode: rooms instead of floating islands, cut-away walls, sliding along walls ([HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183)) | **new**; merged by the Hazu team and live on hazu.app since Saturday 12:29. The Schulhaus runs in this mode, so it is a production change of Hazu World |
 | Widget bridge fixes in our stations (bridge detection, results saved as private items) | **new** |
 
 This repository holds only what we built during the hackathon, plus docs. No
@@ -183,8 +183,8 @@ The route's Lernatelier scenes reuse the content of Luca's mathematics morning.
   the rules for disciplinary measures.
 - Not built yet: a week view or timeline with milestones; coach suggestions
   you can click; saving quiz answers given in the world.
-- The indoor mode needs review, merge and an app release before visitors see
-  rooms without sky.
+- The indoor mode is live, but the Schulhaus still uses its own open-front
+  walls; the engine's cut-away walls are not switched on yet.
 - The lab's safety rules cite the chemsuisse school guide (2019) and Suva on
   eye protection; no Swiss source covers wafting, so the lab only says to smell
   when the teacher asks ([docs/safety.md](docs/safety.md)).

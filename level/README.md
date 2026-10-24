@@ -11,7 +11,7 @@ Which file in `level/` the live world uses. Live revisions and hashes:
 | `route-dialogues.mjs` | live | characters, guided conversations and quizzes of the morning route, used by `build-schulhaus.mjs` |
 | `lib.mjs` | live | shared helpers for the generators |
 | `schulhaus.json` | live | the Schulhaus interior, pinned on the world Hazu |
-| `schulhaus-indoor.json` | local demo only | the same Schulhaus for the engine's indoor mode ([HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183), not deployed); never uploaded or pinned |
+| `schulhaus-indoor.json` | local demo only | the same Schulhaus under the level name «Schulhaus (Indoor)». Not uploaded: the live `schulhaus.json` already switches on the indoor mode (`v4.indoor`, [HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183), live since Saturday 12:29) |
 | `build-werkstatt.mjs` | old intermediate | generator of the first Werkstatt interior from Friday night |
 | `werkstatt.json` | old intermediate | the Werkstatt interior; not pinned, its place is in «Reserve» |
 

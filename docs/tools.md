@@ -37,8 +37,8 @@ How AI output was checked:
 | Hazu Genius | the AI coach |
 
 We extended Hazu World during the hackathon with an indoor mode
-([HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183), open,
-not deployed). That code lives in the engine repository, not here.
+([HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183), merged
+and live on hazu.app since Saturday 12:29). That code lives in the engine repository, not here.
 
 ## Open source and third-party components
 

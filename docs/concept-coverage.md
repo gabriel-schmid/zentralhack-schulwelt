@@ -121,7 +121,7 @@ Lernatelier, ④ Interessen-Atelier, ⑤ Coaching-Raum, ⑥ Workshop-Raum, ⑦ A
 | 3 | Respekt gegenüber LP, Vorbild | – (persona material only: Meinhard «role-model type», Tesla asks for feedback on his own design) | No line | covered as Vorbild (Herr Tesla: «auch ich lerne noch und brauche Rückmeldung») |
 | 4/13 | Abwechslung | ① Frau Arnold; Tagesplan free blocks | Arnold: «Dazwischen plant ihr selbst: Fach, eigenes Projekt, Coaching oder Workshop.» Tagesplan options Lernzeit / Eigenes Projekt / Workshop / 1:1 / Pause | covered |
 | 5 | Klare Struktur | ① Frau Arnold; hall Yara + Tagesplan | Arnold: «Fix sind heute drei Dinge…» Yara: «Die dunklen Blöcke sind fix, die hellen füllst du selbst.» Choice «Welche Blöcke sind heute für alle fix?» | covered |
-| 6 | Feedbackkultur | ③ Frau Sutter; ④ Tobi (testers); Tagesplan Abendrunde; Konflikt «Probedurchlauf» | Sutter: «Rückmeldung, keine Note». Tobi: «Alle Testenden verpassen die gleiche Abzweigung.» Feedback as a normal, two-way habit is never named | covered (Tobi: «Rückmeldung ist normal, auch für mich»; Herr Tesla asks his testers) |
+| 6 | Feedbackkultur | ③ Frau Sutter; ④ Tobi (testers); Tagesplan Abendrunde; Konflikt «Probedurchlauf» | Sutter: «Rückmeldung, keine Note». Tobi: «Alle verpassen dieselbe Abzweigung.» Feedback as a normal, two-way habit is never named | covered (Tobi: «Rückmeldung gehört dazu, auch für mich»; Herr Tesla asks his testers) |
 | 7/36 | Innere Differenzierung | ③ Frau Sutter; Tagesplan «Sicht Coach» | Sutter: «Lea Prozente, Joel lineare Funktionen» is a difference by year (external). Coach view shows different status and next step per learner, but only if the visitor opens that tab | covered (Lea: «gleicher Tisch, ganz verschiedene Hilfe»; Joel: «Gleicher Tisch, andere Ziele») |
 | 8/35 | Praxisbezug «Wieso lerne ich das?» | ② Quirin; ① Matilda; ② Joel | Quirin: «Fahrpläne lesen und Wartezeiten ausrechnen ist Mathe.» Matilda: quantities and cost for twelve portions. Joel: T-shirt cost term. The question itself is only in the Genius prompt | covered (Quirin now says «Wieso lerne ich Zeitspannen rechnen?» aloud) |
 | 9/22 | Interesse / Wahlmöglichkeiten, besonderes Interesse | ④ Tobi, Interessen-Atelier; Tagesplan «Eigenes Projekt» | Tobi: «In der freien Lernzeit baue ich einen Audio-Pfad…» Tagesplan: «Zeit für das, was dich interessiert.» | covered |
@@ -145,7 +145,7 @@ Lernatelier, ④ Interessen-Atelier, ⑤ Coaching-Raum, ⑥ Workshop-Raum, ⑦ A
 | 31 | Formative shows risk early | ③ Sutter complete; Tagesplan status «gefährdet»; Konflikt meter | Sutter: «Die Rückmeldung zeigt früh, ob es für die Lernziele reicht, damit die Prüfung keine Überraschung wird.» | covered |
 | 32 | Disciplinary measures last resort (triggers open) | Konflikt, branch «Was passiert, wenn ich einfach nichts mache?» | «…als letztes Mittel auch Disziplinarmassnahmen möglich. So weit soll es nicht kommen.» Only one branch | weak (acceptable as a side detail) |
 | 33 | Not every activity must interest everyone | ① Matilda | «Und nein, ich zeichne keine Plakate dafür. Zeichnen ist gerade nur für mich.» | covered |
-| 34 | Transfer of shared competencies to interests | Tagesplan Tobi («schreibt eine Wegbeschreibung genauer (Sprachziel)»); ② Quirin | Visible in the coach view; Tobi's dialogue says «Mathe und Deutsch bleiben im Plan» but not that his project serves a Sprachziel | covered (Tobi: «das zählt sogar für mein Deutsch-Ziel») |
+| 34 | Transfer of shared competencies to interests | Tagesplan Tobi («schreibt eine Wegbeschreibung genauer (Sprachziel)»); ② Quirin | Visible in the coach view; Tobi's dialogue says «Mathe und Deutsch bleiben im Plan» but not that his project serves a Sprachziel | covered (Tobi: «Das zählt für mein Deutsch-Ziel.») |
 | 37 | Specialisation alongside minimum objectives | ④ Tobi; ② Quirin | Implicit in both | covered (Tobi, Quirin: own project, the binding subjects stay in the plan) |
 | 39 | Videos + comprehension questions before checkpoints | ② Lea, Joel; Tagesplan Mathe-Fixpunkt | Lea: «Joel und ich haben unsere Mathe-Videos geschaut und die Verständnisfragen selbst beantwortet.» Joel: «Video geschaut heisst aber noch nicht verstanden.» | covered |
 | 40 | Checkpoints alternate with accompanied self-study | ② Lea; ③ Sutter; Tagesplan Fixpunkt → Lernzeit | Lea: «Zuerst fragen wir uns gegenseitig, erst dann Frau Sutter.» Sutter: «Wer auf mich wartet, notiert die Frage…» The rhythm (checkpoint, then accompanied Lernzeit, then the next checkpoint) is not said | covered (Frau Sutter: «Nach dem Fixpunkt kommt begleitete Lernzeit, dann der nächste Fixpunkt») |
@@ -285,11 +285,12 @@ minimum requirements come from, and the checkpoint/self-study rhythm (Luca).
 
 Interest is covered. Feedback culture and transfer are implicit.
 
-- **Step 1:** add the transfer: «Die Wegweiser muss ich genau formulieren, das
+- **Step 1:** add the transfer: «Die Wegweiser muss ich genau formulieren. Das
   zählt für mein Deutsch-Ziel.» (matches the Tagesplan «Sprachziel»).
-- **Step 3 (complete):** make feedback a normal habit, not a verdict: «Hier
-  testen wir gegenseitig unsere Sachen. Rückmeldung ist normal, auch für
-  mich.»
+- **Step 2:** make feedback a normal habit, not a verdict: «Hier testen wir
+  gegenseitig unsere Sachen, Rückmeldung gehört dazu, auch für mich.»
+- **Quiz:** he finds the cause by watching his testers without helping, as
+  Herr Meinhard advises.
 - **Visitor understands:** own interests can serve shared goals, and feedback
   between learners is part of every project.
 
