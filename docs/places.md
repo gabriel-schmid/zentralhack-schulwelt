@@ -15,9 +15,12 @@
 
 - **Village (Bergdorf):** Schulhaus on the square, Werkstatt, Küche, Garten und
   Hof; Hauswart Toni and Jana outside.
-- **Schulhaus interior** (`level/schulhaus.json`, dollhouse rooms as data):
-  Aula (morning and evening circle, Frau Arnold, Lea, Noah), Lernatelier (Mia),
-  Coaching-Raum (Coach Sandro, Genius), Workshop-Raum (Frau Keller), Pausenzone.
+- **Schulhaus interior** (`level/schulhaus.json`, dollhouse rooms as data,
+  24 x 18 tiles, revised 02:26): Bibliothek, Aula (morning and evening circle,
+  Frau Arnold, Lea, Noah) and Interessen-Atelier in the north; a corridor with
+  lockers; Lernatelier (Mia), Coaching-Raum (Coach Sandro, Genius), Pausenzone
+  and Workshop-Raum (Frau Keller) in the south; the entrance hall runs from
+  the corridor to the exit. Tile ranges per room: `skills/npc/SKILL.md`.
 - **Werkstatt interior** (`level/werkstatt.json`) with the Sägestation.
 
 ## Places

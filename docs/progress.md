@@ -24,6 +24,11 @@ jury.
 - [x] Quiz answers mixed (correct option no longer always first) (02:15)
 - [x] Welcoming Schulhaus facade (wings, timber entrance hall with glass front, canopy, flower boxes, Swiss flag) and school-like interior (floors, windows, door frames, lockers, boards, curtains, exit door); checked locally and in the app via Playwriter (02:40)
 
+- [x] Schulhaus with a real corridor and rooms (Bibliothek, Aula, Interessen-Atelier, corridor, Lernatelier, Coaching-Raum, Pausenzone, Workshop-Raum, entrance hall); live as revision 3 and checked in the app via Playwriter. Room tile ranges for NPCs in `skills/npc/SKILL.md` (02:26)
+- [x] Indoor mode checked locally via Playwriter (no sky or island, walls hide toward the camera, sky returns outdoors); the same Schulhaus file switches to the indoor look once the engine PR is released (02:26)
+- [ ] Indoor mode PR for AndyBot (not live without an app release and Andy's approval)
+- [ ] Optional: Obergeschoss as its own level, reached by stairs (travel point), no engine change needed
+
 ## Tonight's plan
 
 | # | Task | Who |

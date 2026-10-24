@@ -1,22 +1,33 @@
 // Generates level/schulhaus.json, the interior of the Schulhaus.
 //
-//   node level/build-schulhaus.mjs
+//   node level/build-schulhaus.mjs            the live dollhouse level
+//   node level/build-schulhaus.mjs --indoor   a local copy for the engine's
+//                                             indoor-mode demo
 //
-// A dollhouse school: back and side walls, the front (south) open toward the
-// camera. Rooms: Aula (morning and evening circle) in the middle, Lernatelier
-// in the west, Coaching-Raum in the east, Workshop-Raum and Pausenzone in the
-// south. Each room is a tiny anchor building (its name sign) whose landmark
-// document draws the room's walls and furniture outside its own footprint,
-// so the floor stays walkable. Furniture gets colliders.
+// Floor plan (tiles, x = column, z = row; 24 x 18):
 //
-// Flagged `v4.indoor: {walls: "none"}` for the engine's indoor mode (no sky,
-// no island) once it exists; the walls here stay ours.
+//   z 0 ┌──────┬────────────────────┬──────┐
+//       │Biblio│        Aula        │Inter-│   morning and evening circle
+//       │ thek │  (stage, benches)  │essen │
+//   z 6 ├─ ──┬─┴────────    ────────┴─┬ ───┤   doorways onto the corridor
+//       │    corridor (east – west)        │
+//   z 8 ├── ─┴─────┬────┬────────┴── ┬─────┤
+//       │Lernatel. │    │ Coaching-Raum  │
+//   z13 ├──────────┤hall├────────────────┤
+//       │Pausenzone    │ Workshop-Raum  │
+//   z18 └──────────┴ exit ┴──────────────┘
+//
+// A dollhouse: back and side walls, the front (south) open toward the
+// camera. Each room is a tiny anchor building (its name sign) whose landmark
+// document draws walls and furniture outside its own footprint, so the floor
+// stays walkable. Furniture and inner walls get colliders.
 
 import { writeFileSync } from "node:fs";
 import { mixAnswers } from "./lib.mjs";
 
-const COLS = 22;
-const ROWS = 16;
+const INDOOR = process.argv.includes("--indoor");
+const COLS = 24;
+const ROWS = 18;
 const TILE_M = 2; // metres per tile
 const WALL_H = 3.2;
 const WALL_T = 0.3;
@@ -26,7 +37,6 @@ const map = Array.from({ length: ROWS }, () => Array(COLS).fill(T.PLAZA));
 
 const C = {
   wall: "#f3ede2",
-  wallAccent: "#e4d6bf",
   wood: "#c8955a",
   woodDark: "#8a6236",
   stage: "#a8744a",
@@ -35,216 +45,226 @@ const C = {
   green: "#4c9a5a",
   board: "#2f4a3a",
   white: "#fafafa",
-  metal: "#9aa3ad",
   floorWood: "#d9b88a",
   floorLino: "#9fb3c2",
   floorCarpet: "#c98b7a",
   floorGreen: "#a9c4a0",
+  floorWarm: "#e3c9a0",
   glass: "#a9d8f2",
+  curtain: "#b23a48",
+  books: ["#c0392b", "#2c7be5", "#27ae60", "#f1c40f"],
   locker: ["#3288EF", "#F97316", "#22C55E", "#EAB308", "#8B5CF6"],
   note: ["#fde68a", "#fca5a5", "#a7f3d0", "#bfdbfe"],
-  curtain: "#b23a48",
 };
 
-// A room's parts are written in level tile coordinates (x = column, z = row,
-// continuous) and converted to the anchor's frame: its footprint centre,
-// facing south (+z), in metres.
-function roomDoc(id, title, anchor, build) {
+const r2 = (v) => Math.round(v * 100) / 100;
+
+// A room's parts are written in level tile coordinates (continuous) and
+// converted to the anchor's frame: its footprint centre, facing south (+z),
+// in metres. PLASTER is the engine default, so it is left out.
+function roomDoc(id, anchor, build) {
   const ox = anchor.gx + 0.5;
   const oz = anchor.gy + 0.5;
-  const P = (x, z) => [(x - ox) * TILE_M, (z - oz) * TILE_M];
+  const P = (x, z) => [r2((x - ox) * TILE_M), r2((z - oz) * TILE_M)];
   const parts = [];
-  const box = (x0, z0, x1, z1, y0, h, color, mat = "PLASTER") => {
+  const box = (x0, z0, x1, z1, y0, h, color, mat, glow) => {
     const [ax, az] = P(x0, z0);
     const [bx, bz] = P(x1, z1);
-    parts.push({
+    const part = {
       shape: "box",
-      pos: [(ax + bx) / 2, y0 + h / 2, (az + bz) / 2],
-      scale: [Math.abs(bx - ax), h, Math.abs(bz - az)],
+      pos: [r2((ax + bx) / 2), r2(y0 + h / 2), r2((az + bz) / 2)],
+      scale: [r2(Math.abs(bx - ax)), r2(h), r2(Math.abs(bz - az))],
       color,
-      mat,
-    });
+    };
+    if (mat && mat !== "PLASTER") part.mat = mat;
+    if (glow) part.glow = glow;
+    parts.push(part);
   };
-  const collide = (x, z, r) => {
-    const [cx, cz] = P(x, z);
-    parts.push({ collider: [cx, cz], r });
-  };
-  // A wall from (x0, z0) to (x1, z1), axis-aligned, with colliders along it.
-  const wall = (x0, z0, x1, z1, color = C.wall) => {
-    const t = WALL_T / TILE_M / 2;
-    if (z0 === z1) box(x0, z0 - t, x1, z0 + t, 0, WALL_H, color);
-    else box(x0 - t, z0, x0 + t, z1, 0, WALL_H, color);
-    // The map edge already stops walkers; only inner walls need colliders.
+  const collide = (x, z, r) => parts.push({ collider: P(x, z), r: r2(r) });
+  const t = WALL_T / TILE_M / 2;
+  // Axis-aligned wall; inner walls get colliders, the map edge stops walkers.
+  const wall = (x0, z0, x1, z1) => {
+    if (z0 === z1) box(x0, z0 - t, x1, z0 + t, 0, WALL_H, C.wall);
+    else box(x0 - t, z0, x0 + t, z1, 0, WALL_H, C.wall);
     const onEdge = (x0 === x1 && (x0 === 0 || x0 === COLS)) || (z0 === z1 && z0 === 0);
     if (onEdge) return;
     const len = Math.hypot(x1 - x0, z1 - z0);
     const n = Math.max(1, Math.ceil((len * TILE_M) / 1.2));
     for (let i = 0; i <= n; i++) collide(x0 + ((x1 - x0) * i) / n, z0 + ((z1 - z0) * i) / n, 0.35);
   };
+  // A wall along x (z fixed) with a framed doorway between a and b.
+  const wallWithDoor = (x0, x1, z, a, b) => {
+    if (a > x0) wall(x0, z, a, z);
+    if (b < x1) wall(b, z, x1, z);
+    const d = t + 0.02;
+    box(a, z - d, b, z + d, 2.3, WALL_H - 2.3, C.wall);
+    box(a, z - d, a + 0.08, z + d, 0, 2.3, C.woodDark, "WOOD");
+    box(b - 0.08, z - d, b, z + d, 0, 2.3, C.woodDark, "WOOD");
+  };
+  // The same along z (x fixed).
+  const wallWithDoorZ = (x, z0, z1, a, b) => {
+    if (a > z0) wall(x, z0, x, a);
+    if (b < z1) wall(x, b, x, z1);
+    const d = t + 0.02;
+    box(x - d, a, x + d, b, 2.3, WALL_H - 2.3, C.wall);
+    box(x - d, a, x + d, a + 0.08, 0, 2.3, C.woodDark, "WOOD");
+    box(x - d, b - 0.08, x + d, b, 0, 2.3, C.woodDark, "WOOD");
+  };
   // Furniture block with one collider per tile it covers.
-  const thing = (x0, z0, x1, z1, h, color, mat = "WOOD", r = 0.75) => {
+  const thing = (x0, z0, x1, z1, h, color, mat = "WOOD") => {
     box(x0, z0, x1, z1, 0, h, color, mat);
-    // one collider per tile covered, sized to the block
     for (let x = x0 + 0.5; x < x1 + 0.01; x += 1)
       for (let z = z0 + Math.min(0.5, (z1 - z0) / 2); z < z1 + 0.01; z += 1)
-        collide(Math.min(x, x1 - 0.2), Math.min(z, z1 - 0.2), r * 0.7);
+        collide(Math.min(x, x1 - 0.2), Math.min(z, z1 - 0.2), 0.5);
   };
-  // Flat floor overlay for a room.
   const floor = (x0, z0, x1, z1, color) => box(x0, z0, x1, z1, 0, 0.06, color, "PAINT");
-  // Something flat hung on the back wall (z = 0) or a side wall (x = 0 / COLS).
-  const t = WALL_T / TILE_M / 2 + 0.01;
-  const onBack = (x0, x1, y0, h, color, mat = "PAINT", extra = {}) => {
-    box(x0, t, x1, t + 0.05, y0, h, color, mat);
-    if (extra.glow) parts[parts.length - 1].glow = extra.glow;
+  // Flat things on the back wall (z = 0) or an outer side wall.
+  const onBack = (x0, x1, y0, h, color, mat = "PAINT", glow) => box(x0, t + 0.01, x1, t + 0.06, y0, h, color, mat, glow);
+  const onSide = (x, z0, z1, y0, h, color, mat = "PAINT", glow) => {
+    const a = x === 0 ? t + 0.01 : x - t - 0.06;
+    box(a, z0, a + 0.05, z1, y0, h, color, mat, glow);
   };
-  const onSide = (x, z0, z1, y0, h, color, mat = "PAINT", extra = {}) => {
-    const inward = x === 0 ? 1 : -1;
-    const a = x + inward * t;
-    box(Math.min(a, a + inward * 0.05), z0, Math.max(a, a + inward * 0.05), z1, y0, h, color, mat);
-    if (extra.glow) parts[parts.length - 1].glow = extra.glow;
-  };
-  // Lintel and posts over a doorway in a wall along x (z fixed) or along z.
-  const doorFrame = (x0, z0, x1, z1) => {
-    const d = WALL_T / TILE_M / 2 + 0.02;
-    if (z0 === z1) {
-      box(x0, z0 - d, x1, z0 + d, 2.3, WALL_H - 2.3, C.wall, "PLASTER");
-      box(x0, z0 - d, x0 + 0.08, z0 + d, 0, 2.3, C.woodDark, "WOOD");
-      box(x1 - 0.08, z0 - d, x1, z0 + d, 0, 2.3, C.woodDark, "WOOD");
-    } else {
-      box(x0 - d, z0, x0 + d, z1, 2.3, WALL_H - 2.3, C.wall, "PLASTER");
-      box(x0 - d, z0, x0 + d, z0 + 0.08, 0, 2.3, C.woodDark, "WOOD");
-      box(x0 - d, z1 - 0.08, x0 + d, z1, 0, 2.3, C.woodDark, "WOOD");
+  const windowsBack = (spans) => {
+    for (const [x0, x1] of spans) {
+      onBack(x0, x1, 1.4, 1.4, C.glass, "GLAZING", 0.4);
+      onBack(x0 - 0.05, x1 + 0.05, 1.3, 0.1, C.white);
     }
   };
-  const windows = (xs, y0 = 1.3, h = 1.4) => {
-    for (const [x0, x1] of xs) {
-      onBack(x0, x1, y0, h, C.glass, "GLAZING", { glow: 0.4 });
-      onBack(x0 - 0.05, x1 + 0.05, y0 - 0.1, 0.1, C.white);
+  const windowsSide = (x, spans) => {
+    for (const [z0, z1] of spans) {
+      onSide(x, z0, z1, 1.4, 1.4, C.glass, "GLAZING", 0.4);
+      onSide(x, z0 - 0.05, z1 + 0.05, 1.3, 0.1, C.white);
     }
   };
-  build({ box, wall, thing, collide, floor, onBack, onSide, doorFrame, windows });
-  return { $schema: "hazu.world/landmark@1", id, version: "1.0.0", title, frame: { kind: "footprint", name: "F" }, parts };
+  const notes = (x0, z, y0, n) => {
+    for (let i = 0; i < n; i++)
+      box(x0 + (i % 3) * 0.5, z, x0 + 0.35 + (i % 3) * 0.5, z + 0.05, y0 + Math.floor(i / 3) * 0.4, 0.3, C.note[i % 4], "PAINT");
+  };
+  build({ box, wall, wallWithDoor, wallWithDoorZ, thing, floor, onBack, onSide, windowsBack, windowsSide, notes });
+  return { $schema: "hazu.world/landmark@1", id, frame: { kind: "footprint", name: "F" }, parts };
 }
 
-// Two decimals are plenty (centimetres) and keep the level document small.
-const r2 = (v) => Math.round(v * 100) / 100;
-function roundParts(doc) {
-  for (const p of doc.parts) {
-    for (const k of ["pos", "scale", "collider"]) if (p[k]) p[k] = p[k].map(r2);
-    if (p.r) p.r = r2(p.r);
-  }
-  return doc;
-}
-
+// Anchors sit one tile in from the map edge (the island rim slopes, and a
+// landmark's floor is its footprint's lowest corner) and out of the way.
 const anchors = {
-  // one tile in from the map edge: the island's rim slopes, and a landmark's
-  // floor is its footprint's lowest corner
-  aula: { gx: 6, gy: 1 },
-  lernatelier: { gx: 1, gy: 1 },
-  coaching: { gx: 20, gy: 1 },
-  workshop: { gx: 20, gy: 9 },
-  pause: { gx: 1, gy: 9 },
-  ausgang: { gx: 10, gy: 15 },
+  aula: { gx: 7, gy: 1 },
+  bibliothek: { gx: 1, gy: 1 },
+  interessen: { gx: 22, gy: 1 },
+  lernatelier: { gx: 1, gy: 9 },
+  coaching: { gx: 22, gy: 9 },
+  pause: { gx: 1, gy: 16 },
+  workshop: { gx: 22, gy: 16 },
+  halle: { gx: 13, gy: 9 },
+  ausgang: { gx: 11, gy: 17 },
 };
 
 const landmarks = [
-  roomDoc("schulhaus_aula", "Aula", anchors.aula, ({ box, wall, thing, floor, onBack, onSide, doorFrame, windows }) => {
-    // back wall of the whole house and the Aula's side walls with doorways
-    wall(0, 0, 22, 0);
-    wall(6, 0, 6, 4.5);
-    wall(16, 0, 16, 4.5);
-    doorFrame(6, 4.5, 6, 6.2);
-    doorFrame(16, 4.5, 16, 6.2);
-    // stage with a lectern and a screen on the back wall
-    thing(8.5, 0.2, 13.5, 2, 0.45, C.stage, "WOOD", 1);
-    box(9.5, 0.08, 12.5, 0.18, 1.2, 1.6, C.board, "PAINT");
-    box(10.7, 1.3, 11.3, 1.8, 0.45, 1.1, C.woodDark, "WOOD");
-    floor(6.1, 0.1, 15.9, 7, C.floorWood);
-    // curtains beside the board, a school clock, windows high on the wall
-    onBack(8.6, 9.3, 0.5, 2.6, C.curtain, "FABRIC");
-    onBack(12.7, 13.4, 0.5, 2.6, C.curtain, "FABRIC");
-    onBack(10.75, 11.25, 2.6, 0.5, C.white);
-    onBack(10.98, 11.02, 2.85, 0.2, C.board);
-    onBack(11, 11.15, 2.84, 0.03, C.board);
-    windows([[6.6, 8.2], [13.8, 15.4]], 1.4, 1.5);
+  roomDoc("schulhaus_aula", anchors.aula, ({ box, wall, wallWithDoor, thing, floor, onBack, windowsBack }) => {
+    wall(0, 0, COLS, 0); // back wall of the whole house
+    wall(6, 0, 6, 6);
+    wall(18, 0, 18, 6);
+    wallWithDoor(6, 18, 6, 10.5, 13.5); // wide double door onto the corridor
+    floor(6.1, 0.1, 17.9, 5.95, C.floorWood);
+    // stage, lectern, board, curtains, clock, high windows
+    thing(9, 0.2, 15, 1.8, 0.45, C.stage);
+    onBack(10, 14, 1.2, 1.6, C.board);
+    box(11.7, 1.3, 12.3, 1.7, 0.45, 1.1, C.woodDark, "WOOD");
+    onBack(9.2, 9.9, 0.5, 2.6, C.curtain, "FABRIC");
+    onBack(14.1, 14.8, 0.5, 2.6, C.curtain, "FABRIC");
+    onBack(11.75, 12.25, 2.95, 0.45, C.white);
+    windowsBack([[6.6, 8.4], [15.6, 17.4]]);
     // benches in three rows with a middle aisle
-    for (const z of [3.6, 4.8, 6]) {
-      thing(7.4, z, 10.6, z + 0.45, 0.45, C.wood);
-      thing(11.4, z, 14.6, z + 0.45, 0.45, C.wood);
+    for (const z of [3, 4, 5]) {
+      thing(7, z, 11.3, z + 0.45, 0.45, C.wood);
+      thing(12.7, z, 17, z + 0.45, 0.45, C.wood);
     }
   }),
-  roomDoc("schulhaus_lernatelier", "Lernatelier", anchors.lernatelier, ({ box, wall, thing, floor, onBack, onSide, doorFrame, windows }) => {
-    wall(0, 0, 0, 16);
-    wall(0, 7, 2.5, 7);
-    wall(4, 7, 6, 7);
-    // desks with chairs
-    for (const [x, z] of [[1.5, 2], [3.6, 2], [1.5, 4.4], [3.6, 4.4]]) {
-      thing(x, z, x + 1.4, z + 0.8, 0.75, C.wood);
-      thing(x + 0.45, z + 1, x + 0.95, z + 1.45, 0.45, C.fabric, "FABRIC");
-    }
-    // shelf on the west wall with coloured books
-    thing(0.2, 1, 0.6, 6, 1.9, C.woodDark);
-    for (let i = 0; i < 8; i++)
-      box(0.62, 1.2 + i * 0.6, 0.7, 1.6 + i * 0.6, 1.2, 0.35, ["#c0392b", "#2c7be5", "#27ae60", "#f1c40f"][i % 4], "PAINT");
-    floor(0.1, 0.1, 6, 7, C.floorWood);
-    doorFrame(2.5, 7, 4, 7);
-    // green board, weekly-plan pin board with notes, windows
-    onBack(2.2, 4.8, 1.1, 1.2, C.board);
-    windows([[0.8, 1.9]], 1.3, 1.4);
-    for (let i = 0; i < 6; i++) onBack(4.95 + (i % 3) * 0.25, 5.15 + (i % 3) * 0.25, 1.3 + Math.floor(i / 3) * 0.4, 0.3, C.note[i % 4]);
+  roomDoc("schulhaus_bibliothek", anchors.bibliothek, ({ box, wallWithDoor, thing, floor, onBack }) => {
+    wallWithDoor(0, 6, 6, 2.2, 3.8);
+    floor(0.1, 0.1, 5.9, 5.95, C.floorWarm);
+    // shelves along the back wall with books, a reading table, an armchair
+    thing(2.2, 0.2, 5.8, 0.65, 2.1, C.woodDark);
+    for (let i = 0; i < 12; i++)
+      box(2.3 + (i % 6) * 0.58, 0.66, 2.75 + (i % 6) * 0.58, 0.72, 0.4 + Math.floor(i / 6) * 0.8, 0.5, C.books[i % 4], "PAINT");
+    thing(2, 2.6, 4, 3.6, 0.75, C.wood);
+    thing(4.6, 3.8, 5.5, 4.7, 0.8, C.fabricWarm, "FABRIC");
+    onBack(0.6, 1.8, 1.4, 1.4, C.glass, "GLAZING", 0.4);
   }),
-  roomDoc("schulhaus_coaching", "Coaching-Raum", anchors.coaching, ({ box, wall, thing, floor, onBack, onSide, doorFrame, windows }) => {
-    wall(22, 0, 22, 16);
-    wall(16, 7, 18, 7);
-    wall(19.5, 7, 22, 7);
-    // two armchairs facing each other, a small table, a plant
-    thing(17.6, 2.6, 18.6, 3.6, 0.8, C.fabricWarm, "FABRIC");
-    thing(20.2, 2.6, 21.2, 3.6, 0.8, C.fabric, "FABRIC");
-    thing(18.9, 2.85, 19.9, 3.35, 0.5, C.wood);
-    thing(21.2, 0.4, 21.7, 0.9, 1.4, C.green, "LEAF");
-    floor(16.1, 0.1, 21.9, 7, C.floorCarpet);
-    doorFrame(18, 7, 19.5, 7);
-    // goals whiteboard with sticky notes, window, a rug
-    onBack(17.3, 20.3, 1.1, 1.2, C.white);
-    for (let i = 0; i < 5; i++) onBack(17.6 + i * 0.5, 17.9 + i * 0.5, 1.6 + (i % 2) * 0.3, 0.25, C.note[i % 4]);
-    windows([[20.6, 21.6]], 1.3, 1.4);
-    floor(17.8, 2.2, 21, 4, "#e9d5b7");
+  roomDoc("schulhaus_interessen", anchors.interessen, ({ wallWithDoor, thing, floor, onBack, notes, windowsBack }) => {
+    wallWithDoor(18, COLS, 6, 20.2, 21.8);
+    floor(18.1, 0.1, 23.9, 5.95, C.floorGreen);
+    // project tables, a plant, a pin board with project notes
+    thing(18.8, 2.4, 21, 3.4, 0.8, C.wood);
+    thing(21.6, 3.8, 23.4, 4.8, 0.8, C.wood);
+    thing(23.2, 0.4, 23.7, 0.9, 1.4, C.green, "LEAF");
+    onBack(18.6, 21.4, 1.1, 1.3, C.wood, "WOOD");
+    notes(18.8, 0.13, 1.25, 6);
+    windowsBack([[21.9, 22.9]]);
   }),
-  roomDoc("schulhaus_workshop", "Workshop-Raum", anchors.workshop, ({ box, wall, thing, floor, onBack, onSide, doorFrame, windows }) => {
-    floor(14, 7.1, 21.9, 15.9, C.floorGreen);
-    // lockers along the east wall of the hall
-    for (let i = 0; i < 5; i++) thing(21.2, 7.4 + i * 0.5, 21.75, 7.85 + i * 0.5, 1.9, C.locker[i % 5], "PAINT", 0.5);
-    // screen on the east wall and two long tables
-    box(21.84, 10, 21.92, 13.5, 1.1, 1.8, C.board, "PAINT");
-    thing(16.5, 10, 20, 10.8, 0.75, C.wood);
-    thing(16.5, 12.4, 20, 13.2, 0.75, C.wood);
+  roomDoc("schulhaus_lernatelier", anchors.lernatelier, ({ wallWithDoor, wallWithDoorZ, wall, thing, floor, onSide }) => {
+    wallWithDoor(0, 10, 8, 6, 7.5); // north wall onto the corridor
+    wall(0, 13, 10, 13);
+    wallWithDoorZ(10, 8, 13, 9.5, 11); // east wall onto the hall
+    floor(0.1, 8.05, 9.95, 12.95, C.floorWood);
+    // desks in two rows facing the green board on the west wall
+    onSide(0, 9.2, 12, 1.1, 1.2, C.board);
+    for (const x of [3, 5.6])
+      for (const z of [9.3, 11.3]) {
+        thing(x, z, x + 1.4, z + 0.8, 0.75, C.wood);
+        thing(x + 1.5, z + 0.15, x + 1.95, z + 0.6, 0.45, C.fabric, "FABRIC");
+      }
+    thing(8.4, 12.2, 9.8, 12.8, 1.6, C.woodDark); // weekly-plan shelf
   }),
-  roomDoc("schulhaus_pause", "Pausenzone", anchors.pause, ({ box, wall, thing, floor, onBack, onSide, doorFrame, windows }) => {
-    floor(0.1, 7.1, 14, 15.9, C.floorLino);
-    // lockers along the south side of the Lernatelier wall
-    for (let i = 0; i < 4; i++) thing(0.2 + i * 0.55, 7.2, 0.7 + i * 0.55, 7.65, 1.9, C.locker[i % 5], "PAINT", 0.5);
-    // notice board by the entrance with notes
-    box(7.6, 14.9, 9.6, 15, 1.1, 1.1, C.wood, "WOOD");
-    for (let i = 0; i < 6; i++) box(7.75 + (i % 3) * 0.6, 14.85, 8.15 + (i % 3) * 0.6, 14.9, 1.25 + Math.floor(i / 3) * 0.45, 0.32, C.note[i % 4], "PAINT");
-    // doormat at the exit
-    floor(9.8, 14.2, 12.2, 15, "#7a5a3a");
-    thing(1.4, 10.5, 4.4, 11.4, 0.7, C.fabric, "FABRIC");
-    thing(2.4, 12.2, 3.4, 13, 0.45, C.wood);
-    thing(0.4, 14.6, 0.9, 15.1, 1.4, C.green, "LEAF");
-    thing(5, 9.2, 5.5, 9.7, 1.4, C.green, "LEAF");
+  roomDoc("schulhaus_coaching", anchors.coaching, ({ wallWithDoor, wallWithDoorZ, wall, thing, floor, onSide }) => {
+    wallWithDoor(14, COLS, 8, 16.5, 18);
+    wall(14, 13, COLS, 13);
+    wallWithDoorZ(14, 8, 13, 9.5, 11);
+    floor(14.05, 8.05, 23.9, 12.95, C.floorCarpet);
+    // two armchairs facing each other, a low table, a rug, a plant, goals board
+    floor(17.8, 9.6, 21.2, 11.4, "#e9d5b7");
+    thing(17.9, 10, 18.9, 11, 0.8, C.fabricWarm, "FABRIC");
+    thing(20.1, 10, 21.1, 11, 0.8, C.fabric, "FABRIC");
+    thing(19.15, 10.25, 19.85, 10.75, 0.5, C.wood);
+    thing(23.2, 12.2, 23.7, 12.7, 1.4, C.green, "LEAF");
+    onSide(COLS, 9, 12, 1.1, 1.2, C.white);
   }),
-  roomDoc("schulhaus_ausgang", "Ausgang", anchors.ausgang, ({ box }) => {
-    // a school door frame with a green exit sign over it
-    box(10, 15.2, 10.15, 15.45, 0, 2.6, C.woodDark, "WOOD");
-    box(11.85, 15.2, 12, 15.45, 0, 2.6, C.woodDark, "WOOD");
-    box(10, 15.2, 12, 15.45, 2.6, 0.25, C.woodDark, "WOOD");
-    box(10.15, 15.3, 11.85, 15.4, 0, 2.6, "#9fd3f0", "GLAZING");
-    box(10.6, 15.15, 11.4, 15.2, 2.95, 0.35, "#1f9d55", "PAINT");
+  roomDoc("schulhaus_pause", anchors.pause, ({ thing, floor, windowsSide }) => {
+    floor(0.1, 13.05, 9.95, 17.95, C.floorLino);
+    // sofa, table, plants, a water dispenser
+    thing(1.4, 14, 4.6, 14.9, 0.7, C.fabric, "FABRIC");
+    thing(2.5, 15.6, 3.5, 16.4, 0.45, C.wood);
+    thing(0.4, 17.2, 0.9, 17.7, 1.4, C.green, "LEAF");
+    thing(8.8, 13.6, 9.4, 14.2, 1.3, C.white, "PAINT");
+    windowsSide(0, [[14.2, 16.2]]);
+  }),
+  roomDoc("schulhaus_workshop", anchors.workshop, ({ wallWithDoorZ, thing, floor, onSide }) => {
+    wallWithDoorZ(14, 13, 18, 14.5, 16);
+    floor(14.05, 13.05, 23.9, 17.95, C.floorGreen);
+    // two long tables facing a screen on the east wall
+    onSide(COLS, 14, 17, 1.1, 1.8, C.board);
+    thing(16, 14.2, 20.5, 15, 0.75, C.wood);
+    thing(16, 16.2, 20.5, 17, 0.75, C.wood);
+  }),
+  roomDoc("schulhaus_halle", anchors.halle, ({ box, thing, floor }) => {
+    floor(0.1, 6.05, 23.9, 7.95, C.floorLino); // corridor
+    floor(10.05, 8.05, 13.95, 17.95, C.floorLino); // entrance hall
+    // lockers along the corridor's north side, a notice board, a doormat
+    for (let i = 0; i < 4; i++) thing(6.4 + i * 0.6, 6.2, 6.9 + i * 0.6, 6.65, 1.9, C.locker[i % 5], "PAINT");
+    for (let i = 0; i < 4; i++) thing(14.6 + i * 0.6, 6.2, 15.1 + i * 0.6, 6.65, 1.9, C.locker[(i + 2) % 5], "PAINT");
+    box(10.3, 12.3, 10.4, 14.3, 1.1, 1.1, C.wood, "WOOD");
+    for (let i = 0; i < 4; i++) box(10.42, 12.5 + i * 0.45, 10.46, 12.85 + i * 0.45, 1.3, 0.3, C.note[i % 4], "PAINT");
+    floor(11, 16.6, 13, 17.4, "#7a5a3a");
+  }),
+  roomDoc("schulhaus_ausgang", anchors.ausgang, ({ box }) => {
+    // glass entrance door with a green exit sign
+    box(11, 17.2, 11.15, 17.45, 0, 2.6, C.woodDark, "WOOD");
+    box(12.85, 17.2, 13, 17.45, 0, 2.6, C.woodDark, "WOOD");
+    box(11, 17.2, 13, 17.45, 2.6, 0.25, C.woodDark, "WOOD");
+    box(11.15, 17.3, 12.85, 17.4, 0, 2.6, "#9fd3f0", "GLAZING");
+    box(11.6, 17.15, 12.4, 17.2, 2.95, 0.35, "#1f9d55", "PAINT");
   }),
 ];
-
-landmarks.forEach(roundParts);
-// The exit's interaction point sits inside the room, in front of the door.
+// The exit's interaction point sits inside the hall, in front of the door.
 landmarks.find((d) => d.id === "schulhaus_ausgang").result = { door: { at: [1, 0, -2] } };
 
 const anchor = (key, label, accent) => ({
@@ -261,14 +281,17 @@ const anchor = (key, label, accent) => ({
 
 const buildings = [
   anchor("aula", "Aula", "#3288EF"),
+  anchor("bibliothek", "Bibliothek", "#b0613f"),
+  anchor("interessen", "Interessen-Atelier", "#22C55E"),
   anchor("lernatelier", "Lernatelier", "#0EA5E9"),
   anchor("coaching", "Coaching-Raum", "#8B5CF6"),
+  anchor("pause", "Pausenzone", "#EAB308"),
   anchor("workshop", "Workshop-Raum", "#F97316"),
-  anchor("pause", "Pausenzone", "#22C55E"),
+  anchor("halle", "Eingangshalle", "#64748B"),
   {
     id: "ausgang",
-    gx: 10,
-    gy: 15,
+    gx: anchors.ausgang.gx,
+    gy: anchors.ausgang.gy,
     gw: 2,
     gd: 1,
     hUnits: 1,
@@ -283,12 +306,12 @@ const buildings = [
 const npc = (id, gx, gy, name, color, subject, extra = {}) => ({ id, gx, gy, name, color, subject, ...extra });
 
 const npcs = [
-  npc("lehrerin", 11, 2, "Frau Arnold", "#3288EF", "Lehrerin · Aula", { female: true, hat: "glasses" }),
-  npc("lea", 8, 3, "Lea", "#F97316", "Lernende", { female: true }),
-  npc("noah", 13, 3, "Noah", "#22C55E", "Lernender", { hat: "cap" }),
-  npc("mia", 2, 6, "Mia", "#EAB308", "Lernende · Lernatelier", { female: true, hat: "scarf" }),
-  npc("coach", 19, 4, "Coach Sandro", "#8B5CF6", "Coach · 1:1", { isGenius: true }),
-  npc("workshop", 18, 11, "Frau Keller", "#3288EF", "Workshop-Leiterin", { female: true }),
+  npc("lehrerin", 12, 2, "Frau Arnold", "#3288EF", "Lehrerin · Aula", { female: true, hat: "glasses" }),
+  npc("lea", 11, 4, "Lea", "#F97316", "Lernende", { female: true }),
+  npc("noah", 12, 5, "Noah", "#22C55E", "Lernender", { hat: "cap" }),
+  npc("mia", 7, 10, "Mia", "#EAB308", "Lernende · Lernatelier", { female: true, hat: "scarf" }),
+  npc("coach", 19, 12, "Coach Sandro", "#8B5CF6", "Coach · 1:1", { isGenius: true }),
+  npc("workshop", 18, 13, "Frau Keller", "#3288EF", "Workshop-Leiterin", { female: true }),
 ];
 
 const dialogue = {
@@ -318,7 +341,7 @@ const dialogue = {
   noah: {
     intro: "Ich gehe nach der Morgenrunde in den Workshop von Frau Keller. Sie zeigt, wie man ein Projekt plant.",
     hint: "Die Workshops sind freiwillig. Du wählst selbst, was dich interessiert.",
-    phases: [{ type: "intro" }, { type: "complete", message: "Der Workshop-Raum ist hinten rechts." }],
+    phases: [{ type: "intro" }, { type: "complete", message: "Der Workshop-Raum ist hinten rechts in der Halle." }],
   },
   mia: {
     intro: "Im Lernatelier mache ich meinen Wochenplan. Mathe habe ich schon fertig, jetzt arbeite ich an meinem Interessensprojekt über Bienen.",
@@ -353,7 +376,7 @@ const dialogue = {
 
 const level = {
   data: {
-    name: "Schulhaus",
+    name: INDOOR ? "Schulhaus (Indoor)" : "Schulhaus",
     gridCols: COLS,
     gridRows: ROWS,
     tileTypes: T,
@@ -364,13 +387,13 @@ const level = {
     props: [],
     npcs,
     collectibles: [],
-    playerStart: { x: 11, y: 14 },
+    playerStart: { x: 12, y: 16 },
     v4: { season: "summer", weather: "clear", timeOfDay: null, indoor: { walls: "none" } },
   },
   dialogue: mixAnswers(dialogue),
   i18n: {},
 };
 
-const out = new URL("./schulhaus.json", import.meta.url);
+const out = new URL(INDOOR ? "./schulhaus-indoor.json" : "./schulhaus.json", import.meta.url);
 writeFileSync(out, JSON.stringify(level, null, 1) + "\n");
 console.log(`wrote ${out.pathname}`);

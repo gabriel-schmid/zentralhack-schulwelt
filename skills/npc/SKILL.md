@@ -85,13 +85,26 @@ Also set `isGenius: true` in the character's `npc(...)` options.
 
 ## Rooms in the Schulhaus (tile ranges)
 
+The Schulhaus is 24 x 18 tiles: three rooms in the north, a corridor across
+the building, four rooms south of it, and the entrance hall in the middle
+running down to the exit. The floor plan is drawn at the top of
+`level/build-schulhaus.mjs`.
+
 | Room | Columns (gx) | Rows (gy) | Who belongs there |
 | ---- | ------------ | --------- | ----------------- |
-| Aula (morning and evening circle) | 7–15 | 2–6, avoid the bench rows | teacher, class |
-| Lernatelier | 1–5 | 1–6 | learners working on their plan |
-| Coaching-Raum | 17–21 | 1–6 | coach |
-| Workshop-Raum | 15–20 | 8–14 | workshop leader, participants |
-| Pausenzone / hall | 1–13 | 8–14 | anyone |
+| Bibliothek | 0–5 | 0–5 | readers, a librarian |
+| Aula (morning and evening circle) | 6–17 | 0–5, avoid the stage (row 0–1) and bench rows | teacher, class |
+| Interessen-Atelier | 18–23 | 0–5 | learners on their own project |
+| Corridor | 0–23 | 6–7 | anyone passing by; keep doorways free |
+| Lernatelier | 0–9 | 8–12 | learners working on their plan |
+| Entrance hall | 10–13 | 8–17 | visitors, Hauswart; keep row 16–17 free (exit) |
+| Coaching-Raum | 14–23 | 8–12 | coach |
+| Pausenzone | 0–9 | 13–17 | anyone |
+| Workshop-Raum | 14–23 | 13–17 | workshop leader, participants |
+
+Don't put a character on a room's name sign (the anchor tile: 1/1, 7/1,
+22/1, 1/9, 13/9, 22/9, 1/16, 22/16) or on furniture; `node level/build-schulhaus.mjs`
+does not check that, so look at it in the world after uploading.
 
 ## Workflow
 
