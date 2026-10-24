@@ -22,7 +22,7 @@ world only loads exactly those bytes.
 | Level | Repo source | Live document | Revision | Asset | sha256 of the live file |
 | ----- | ----------- | ------------- | -------- | ----- | ----------------------- |
 | Bergdorf (village, on the world Hazu `TRAIMeIVPNXq5wfkfTG2`) | `level/build-bergdorf.mjs` → `level/bergdorf.json` | `doc_eea84d56d6c0485c8b6fd000cda306ac` | 3 | `asset_3c0811d9f4e2460ebef9615a250ba272` | `1ad8c838ce49c01a7065d422156d2c531433c11c40f69253712e65cc1ad168b4` |
-| Schulhaus (on the place Hazu `_m0-qRVAAUwmuxfswuPp`) | `level/build-schulhaus.mjs` + `level/route-dialogues.mjs` → `level/schulhaus.json` | `doc_0efde5e6ab4d4b90bff0952529122f55` | 8 | `asset_61cb7e9a7076460984231c7f1a6a6a66` | `2f11a2cb90877ce07720957fefee2bb96dda0db9032b64cb7fe5ab2da4f4d81e` |
+| Schulhaus (on the place Hazu `_m0-qRVAAUwmuxfswuPp`) | `level/build-schulhaus.mjs` + `level/route-dialogues.mjs` → `level/schulhaus.json` | `doc_0efde5e6ab4d4b90bff0952529122f55` | 9 | `asset_0df6ae8163c84fe4aebea90bf14a012e` | `cd4fae555322a194f852e8793a5e27e435ecaa0ae3da49007e76c982e0cea99d` |
 
 The uploaded file is not the raw repo JSON. It is the converted `level@1`
 document: the engine's `levelRoundTrip` (Hazu World SDK,
@@ -40,7 +40,7 @@ To reproduce a live sha256:
    `scripts/check-level.mjs` validates a level with the engine first.
 
 We checked both rows this way: `level/bergdorf.json` at `fad4e73` gives the
-Bergdorf hash, `level/schulhaus.json` at the commit «Matilda's line follows the paper persona» gives the Schulhaus hash.
+Bergdorf hash, `level/schulhaus.json` at the commit «Tobi watches his testers, learner traits as subtitles» gives the Schulhaus hash (converted with the engine at `origin/main` after #7183).
 
 ## Stations
 
@@ -105,9 +105,13 @@ from the world, which does not report the model it uses.
 ## Engine
 
 The Hazu World engine is not in this repository. Our indoor mode (rooms
-instead of floating islands, cut-away walls, sliding along walls) is
-[HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183): open, not
-merged, not deployed. The live world runs the engine without it.
+instead of floating islands, no sky or cloud sea, sliding along walls) is
+[HazuInc/HazuApp#7183](https://github.com/HazuInc/HazuApp/pull/7183), merged
+on Saturday at 10:12. hazu.app loads the engine from `/_world/manifest.json`
+(build `5063ee0dbc14`, built 12:29), which includes it. The Schulhaus level
+switches it on with `v4.indoor: { walls: "none" }`: the level draws its own
+dollhouse walls, so the engine adds none. Indoor mode is on for the live
+Schulhaus (revision 9).
 
 ## Submission version
 

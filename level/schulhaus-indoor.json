@@ -1148,6 +1148,7 @@
      {"shape":"box","pos":[-17,2.75,1.5],"scale":[0.38,0.9,3],"color":"#f3ede2"},
      {"shape":"box","pos":[-17,1.15,0.08],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-17,1.15,2.92],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
+     {"repeat":{"i":26},"collider":[3,"-3+i*0.4"],"r":0.2},
      {"shape":"box","pos":[-7.05,0.03,2],"scale":[19.7,0.06,9.8],"color":"#c98b7a","mat":"PAINT"},
      {"shape":"box","pos":[-2,0.05,2],"scale":[6.8,0.06,3.6],"color":"#e9d5b7","mat":"PAINT"},
      {"frame":[-4.2,0,2,1.5708],"parts":[{"use":"sofa","with":{"w":1.05,"d":0.95,"c":"#d9774b","k":"#f3b08c","n":1}}]},
@@ -1288,6 +1289,10 @@
     "$schema": "hazu.world/landmark@1",
     "id": "schulhaus_workshop",
     "frame": {"kind":"footprint","name":"F"},
+    "geometries": {
+     "flaskLow": {"type":"cylinder","args":[0.045,0.075,0.09,12]},
+     "flaskTop": {"type":"cylinder","args":[0.017,0.045,0.08,12]}
+    },
     "define": {
      "stool": {
       "params": ["c"],
@@ -1444,6 +1449,446 @@
         "skipLean": true
        }
       ]
+     },
+     "flask": {
+      "params": ["c","k"],
+      "defaults": {"k":1},
+      "parts": [
+       {"shape":"flaskLow","pos":[0,"0.045*k",0],"scale":["k","k","k"],"color":"c","mat":"PAINT"},
+       {"shape":"flaskTop","pos":[0,"0.13*k",0],"scale":["k","k","k"],"color":"#d6eef7","mat":"GLASS"},
+       {"shape":"cyl8","pos":[0,"0.2*k",0],"scale":["0.034*k","0.06*k","0.034*k"],"color":"#d6eef7","mat":"GLASS"}
+      ]
+     },
+     "beaker": {
+      "params": ["c"],
+      "parts": [
+       {"shape":"cyl8","pos":[0,0.04,0],"scale":[0.1,0.08,0.1],"color":"c","mat":"PAINT"},
+       {"shape":"cyl8","pos":[0,0.105,0],"scale":[0.098,0.05,0.098],"color":"#d6eef7","mat":"GLASS"},
+       {"shape":"box","pos":[0,0.128,0.05],"scale":[0.025,0.006,0.02],"color":"#d6eef7","mat":"GLASS","skipLean":true}
+      ]
+     },
+     "tuberack": {
+      "parts": [
+       {"shape":"box","pos":[0,0.01,0],"scale":[0.36,0.02,0.1],"color":"#c8955a","mat":"WOOD"},
+       {"shape":"box","pos":[0,0.085,0],"scale":[0.36,0.02,0.1],"color":"#c8955a","mat":"WOOD"},
+       {"for":{"s":[-1,1]},"shape":"box","pos":["s*0.17",0.05,0],"scale":[0.02,0.08,0.1],"color":"#8a6236","mat":"WOOD"},
+       {"shape":"cyl6","pos":[-0.12,0.065,0],"scale":[0.024,0.09,0.024],"color":"#dc2626","mat":"PAINT"},
+       {"shape":"cyl6","pos":[-0.12,0.14,0],"scale":[0.024,0.06,0.024],"color":"#d6eef7","mat":"GLASS"},
+       {"shape":"cyl6","pos":[-0.07,0.065,0],"scale":[0.024,0.09,0.024],"color":"#ec4899","mat":"PAINT"},
+       {"shape":"cyl6","pos":[-0.07,0.14,0],"scale":[0.024,0.06,0.024],"color":"#d6eef7","mat":"GLASS"},
+       {"shape":"cyl6","pos":[-0.02,0.065,0],"scale":[0.024,0.09,0.024],"color":"#7e22ce","mat":"PAINT"},
+       {"shape":"cyl6","pos":[-0.02,0.14,0],"scale":[0.024,0.06,0.024],"color":"#d6eef7","mat":"GLASS"},
+       {"shape":"cyl6","pos":[0.03,0.065,0],"scale":[0.024,0.09,0.024],"color":"#2563eb","mat":"PAINT"},
+       {"shape":"cyl6","pos":[0.03,0.14,0],"scale":[0.024,0.06,0.024],"color":"#d6eef7","mat":"GLASS"},
+       {"shape":"cyl6","pos":[0.08,0.065,0],"scale":[0.024,0.09,0.024],"color":"#16a34a","mat":"PAINT"},
+       {"shape":"cyl6","pos":[0.08,0.14,0],"scale":[0.024,0.06,0.024],"color":"#d6eef7","mat":"GLASS"},
+       {"shape":"cyl6","pos":[0.13,0.065,0],"scale":[0.024,0.09,0.024],"color":"#eab308","mat":"PAINT"},
+       {"shape":"cyl6","pos":[0.13,0.14,0],"scale":[0.024,0.06,0.024],"color":"#d6eef7","mat":"GLASS"}
+      ]
+     },
+     "labbench": {
+      "params": ["w"],
+      "parts": [
+       {"shape":"box","pos":[0,0.05,-0.03],"scale":["w-0.04",0.1,0.6],"color":"#3d4450","mat":"PAINT"},
+       {"shape":"box","pos":[0,0.48,0],"scale":["w",0.76,0.66],"color":"#e4e7eb","mat":"PAINT"},
+       {
+        "for": {"f":[-0.25,0,0.25]},
+        "shape": "box",
+        "pos": ["f*w",0.48,0.333],
+        "scale": [0.012,0.7,0.01],
+        "color": "#9aa1ab",
+        "mat": "PAINT",
+        "skipLean": true
+       },
+       {
+        "for": {"f":[-0.375,-0.125,0.125,0.375]},
+        "shape": "box",
+        "pos": ["f*w+0.08",0.74,0.345],
+        "scale": [0.12,0.02,0.02],
+        "color": "#5f6b78",
+        "mat": "METAL",
+        "skipLean": true
+       },
+       {"shape":"box","pos":[0,0.88,0.02],"scale":["w+0.04",0.04,0.74],"color":"#262a30","mat":"PAINT"},
+       {
+        "for": {"s":[-1,1]},
+        "shape": "box",
+        "pos": ["s*(w/2-0.04)",1.25,-0.25],
+        "scale": [0.04,0.7,0.2],
+        "color": "#c8955a",
+        "mat": "WOOD"
+       },
+       {"for":{"y":[1.28,1.58]},"shape":"box","pos":[0,"y",-0.25],"scale":["w-0.04",0.03,0.2],"color":"#c8955a","mat":"WOOD"},
+       {
+        "for": {"k":[-0.4,-0.3,-0.12,0.05,0.15,0.32]},
+        "shape": "cyl8",
+        "pos": ["k*w",1.38,-0.25],
+        "scale": [0.08,0.17,0.08],
+        "color": "k < 0 ? '#7a4a1e' : '#cfe3ea'",
+        "mat": "GLASS"
+       },
+       {
+        "for": {"k":[-0.4,-0.3,-0.12,0.05,0.15,0.32]},
+        "shape": "cyl8",
+        "pos": ["k*w",1.49,-0.25],
+        "scale": [0.04,0.05,0.04],
+        "color": "#2b2f36",
+        "mat": "PAINT",
+        "skipLean": true
+       }
+      ]
+     },
+     "fumehood": {
+      "parts": [
+       {"shape":"box","pos":[0,0.43,0],"scale":[1.3,0.86,0.7],"color":"#e4e7eb","mat":"PAINT"},
+       {"shape":"box","pos":[0,0.88,0.01],"scale":[1.32,0.04,0.74],"color":"#262a30","mat":"PAINT"},
+       {"for":{"s":[-1,1]},"shape":"box","pos":["s*0.62",1.5,0],"scale":[0.06,1.2,0.7],"color":"#eef0f2","mat":"PAINT"},
+       {"shape":"box","pos":[0,1.5,-0.33],"scale":[1.18,1.2,0.04],"color":"#cfd5dc","mat":"PAINT"},
+       {"shape":"box","pos":[0,2.35,0],"scale":[1.3,0.5,0.7],"color":"#eef0f2","mat":"PAINT"},
+       {"shape":"box","pos":[0,1.88,0.33],"scale":[1.18,0.44,0.03],"color":"#bfe3f2","mat":"GLASS"},
+       {"shape":"box","pos":[0,1.67,0.345],"scale":[1.18,0.04,0.03],"color":"#5f6b78","mat":"METAL"},
+       {"shape":"box","pos":[0,2.35,0.355],"scale":[0.5,0.12,0.01],"color":"#F97316","mat":"PAINT","skipLean":true},
+       {"shape":"cyl8","pos":[0,2.9,-0.1],"scale":[0.26,0.6,0.26],"color":"#b8bec7","mat":"METAL"},
+       {"for":{"x":[-0.4,0,0.4]},"collider":["x",0],"r":0.4}
+      ]
+     },
+     "safety": {
+      "parts": [
+       {"shape":"box","pos":[-0.55,1.4,0.02],"scale":[0.55,0.5,0.03],"color":"#eef0f2","mat":"PAINT"},
+       {"for":{"y":[1.3,1.52]},"shape":"box","pos":[-0.55,"y",0.05],"scale":[0.55,0.02,0.05],"color":"#9aa1ab","mat":"METAL"},
+       {
+        "for": {"x":[-0.72,-0.55,-0.38],"y":[1.24,1.46]},
+        "parts": [
+         {"shape":"rboxSoft","pos":["x","y",0.07],"scale":[0.14,0.06,0.05],"color":"#bfe3f2","mat":"GLASS"},
+         {
+          "shape": "box",
+          "pos": ["x","y+0.04",0.06],
+          "scale": [0.15,0.015,0.02],
+          "color": "y > 1.3 ? '#facc15' : '#3288EF'",
+          "mat": "FABRIC",
+          "skipLean": true
+         }
+        ]
+       },
+       {"shape":"cyl20","pos":[-0.55,1.88,0.025],"rot":[1.5708,0,0],"scale":[0.3,0.02,0.3],"color":"#1d4ed8","mat":"PAINT"},
+       {
+        "for": {"s":[-1,1]},
+        "shape": "box",
+        "pos": ["-0.55+s*0.05",1.88,0.04],
+        "scale": [0.07,0.05,0.01],
+        "color": "#ffffff",
+        "mat": "PAINT",
+        "skipLean": true
+       },
+       {"shape":"box","pos":[0,1.85,0.02],"scale":[0.4,0.4,0.02],"color":"#15803d","mat":"PAINT"},
+       {"shape":"box","pos":[0,1.85,0.035],"scale":[0.26,0.08,0.01],"color":"#ffffff","mat":"PAINT"},
+       {"shape":"box","pos":[0,1.85,0.035],"scale":[0.08,0.26,0.01],"color":"#ffffff","mat":"PAINT"},
+       {"shape":"box","pos":[0.5,1.85,0.02],"scale":[0.4,0.4,0.02],"color":"#15803d","mat":"PAINT"},
+       {"shape":"cyl20","pos":[0.5,1.85,0.035],"rot":[1.5708,0,0],"scale":[0.26,0.01,0.13],"color":"#ffffff","mat":"PAINT"},
+       {
+        "shape": "cyl20",
+        "pos": [0.5,1.85,0.042],
+        "rot": [1.5708,0,0],
+        "scale": [0.09,0.01,0.09],
+        "color": "#15803d",
+        "mat": "PAINT",
+        "skipLean": true
+       },
+       {"shape":"box","pos":[0.5,1.33,0.08],"scale":[0.32,0.34,0.12],"color":"#16a34a","mat":"PAINT"},
+       {
+        "for": {"s":[-1,1]},
+        "shape": "cyl8",
+        "pos": ["0.5+s*0.07",1.36,0.15],
+        "scale": [0.09,0.22,0.09],
+        "color": "#f8fafc",
+        "mat": "PAINT",
+        "skipLean": true
+       }
+      ]
+     },
+     "solar": {
+      "parts": [
+       {"shape":"box","pos":[0,0.025,0],"scale":[0.6,0.05,0.5],"color":"#3d4450","mat":"METAL"},
+       {"shape":"cyl8","pos":[0,0.55,-0.05],"scale":[0.07,1,0.07],"color":"#9aa1ab","mat":"METAL"},
+       {"shape":"box","pos":[0,1.09,0],"rot":[0.6,0,0],"scale":[1.06,0.03,0.72],"color":"#c3c8cf","mat":"METAL"},
+       {"shape":"box","pos":[0,1.1,0],"rot":[0.6,0,0],"scale":[1,0.04,0.66],"color":"#1e3a5f","mat":"SOLAR"},
+       {"shape":"box","pos":[0.48,0.12,0.3],"scale":[0.32,0.24,0.2],"color":"#F97316","mat":"PAINT"},
+       {"shape":"box","pos":[0.48,0.245,0.3],"scale":[0.09,0.012,0.16],"color":"#1f2329","mat":"PAINT","skipLean":true},
+       {"shape":"box","pos":[0.4,0.18,0.402],"scale":[0.03,0.03,0.01],"color":"#4ade80","mat":"PAINT","glow":1,"skipLean":true},
+       {
+        "shape": "cyl6",
+        "pos": [0.25,0.3,0.1],
+        "rot": [0,0,1],
+        "scale": [0.02,0.62,0.02],
+        "color": "#1f2329",
+        "mat": "PAINT",
+        "skipLean": true
+       },
+       {"collider":[0,0],"r":0.5},
+       {"collider":[0.48,0.3],"r":0.25}
+      ]
+     },
+     "scope": {
+      "parts": [
+       {"shape":"box","pos":[0,0.13,0],"scale":[0.42,0.26,0.32],"color":"#d4d8de","mat":"METAL"},
+       {"shape":"box","pos":[-0.07,0.14,0.161],"scale":[0.22,0.15,0.01],"color":"#0b2b1a","mat":"PAINT"},
+       {
+        "for": {"k":[0,1,2,3]},
+        "shape": "box",
+        "pos": ["-0.145+k*0.05",0.14,0.167],
+        "rot": [0,0,"k%2 ? -0.9 : 0.9"],
+        "scale": [0.065,0.008,0.004],
+        "color": "#4ade80",
+        "mat": "PAINT",
+        "glow": 1,
+        "skipLean": true
+       },
+       {
+        "for": {"x":[0.1,0.16],"y":[0.08,0.18]},
+        "shape": "cyl6",
+        "pos": ["x","y",0.17],
+        "rot": [1.5708,0,0],
+        "scale": [0.035,0.02,0.035],
+        "color": "#2b2f36",
+        "mat": "PAINT",
+        "skipLean": true
+       },
+       {"shape":"rbox","pos":[0.42,0.09,0.05],"rot":[-0.3,-0.3,0],"scale":[0.11,0.18,0.04],"color":"#facc15","mat":"PAINT"},
+       {
+        "shape": "box",
+        "pos": [0.42,0.13,0.072],
+        "rot": [-0.3,-0.3,0],
+        "scale": [0.08,0.04,0.006],
+        "color": "#9fb59a",
+        "mat": "PAINT",
+        "skipLean": true
+       },
+       {
+        "for": {"s":[-1,1]},
+        "shape": "cyl6",
+        "pos": ["0.42+s*0.025",0.012,0.16],
+        "rot": [1.5708,0,0],
+        "scale": [0.012,0.2,0.012],
+        "color": "s > 0 ? '#dc2626' : '#1f2329'",
+        "mat": "PAINT",
+        "skipLean": true
+       }
+      ]
+     },
+     "periodic": {
+      "let": {"cw":0.075},
+      "parts": [
+       {"shape":"box","pos":[0,0.5,0.01],"scale":[1.5,1,0.012],"color":"#fbfaf6","mat":"PAINT"},
+       {"shape":"box","pos":[0,0.93,0.018],"scale":[1.3,0.06,0.004],"color":"#1e3a8a","mat":"PAINT"},
+       {
+        "repeat": {"i":1},
+        "shape": "box",
+        "pos": ["(0+i-8.5)*cw",0.82,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#f87171",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":1},
+        "shape": "box",
+        "pos": ["(17+i-8.5)*cw",0.82,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#a78bfa",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":2},
+        "shape": "box",
+        "pos": ["(0+i-8.5)*cw",0.75,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#f87171",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":5},
+        "shape": "box",
+        "pos": ["(12+i-8.5)*cw",0.75,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#fcd34d",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":1},
+        "shape": "box",
+        "pos": ["(17+i-8.5)*cw",0.75,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#a78bfa",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":2},
+        "shape": "box",
+        "pos": ["(0+i-8.5)*cw",0.67,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#f87171",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":5},
+        "shape": "box",
+        "pos": ["(12+i-8.5)*cw",0.67,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#fcd34d",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":1},
+        "shape": "box",
+        "pos": ["(17+i-8.5)*cw",0.67,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#a78bfa",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":2},
+        "shape": "box",
+        "pos": ["(0+i-8.5)*cw",0.6,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#f87171",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":10},
+        "shape": "box",
+        "pos": ["(2+i-8.5)*cw",0.6,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#60a5fa",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":5},
+        "shape": "box",
+        "pos": ["(12+i-8.5)*cw",0.6,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#fcd34d",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":1},
+        "shape": "box",
+        "pos": ["(17+i-8.5)*cw",0.6,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#a78bfa",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":2},
+        "shape": "box",
+        "pos": ["(0+i-8.5)*cw",0.52,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#f87171",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":10},
+        "shape": "box",
+        "pos": ["(2+i-8.5)*cw",0.52,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#60a5fa",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":5},
+        "shape": "box",
+        "pos": ["(12+i-8.5)*cw",0.52,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#fcd34d",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":1},
+        "shape": "box",
+        "pos": ["(17+i-8.5)*cw",0.52,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#a78bfa",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":2},
+        "shape": "box",
+        "pos": ["(0+i-8.5)*cw",0.44,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#f87171",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":10},
+        "shape": "box",
+        "pos": ["(2+i-8.5)*cw",0.44,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#60a5fa",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":5},
+        "shape": "box",
+        "pos": ["(12+i-8.5)*cw",0.44,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#fcd34d",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":1},
+        "shape": "box",
+        "pos": ["(17+i-8.5)*cw",0.44,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#a78bfa",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":2},
+        "shape": "box",
+        "pos": ["(0+i-8.5)*cw",0.37,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#f87171",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":10},
+        "shape": "box",
+        "pos": ["(2+i-8.5)*cw",0.37,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#60a5fa",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":5},
+        "shape": "box",
+        "pos": ["(12+i-8.5)*cw",0.37,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#fcd34d",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":1},
+        "shape": "box",
+        "pos": ["(17+i-8.5)*cw",0.37,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#a78bfa",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":14},
+        "shape": "box",
+        "pos": ["(3+i-8.5)*cw",0.26,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#86efac",
+        "mat": "PAINT"
+       },
+       {
+        "repeat": {"i":14},
+        "shape": "box",
+        "pos": ["(3+i-8.5)*cw",0.19,0.02],
+        "scale": ["cw-0.01",0.065,0.004],
+        "color": "#86efac",
+        "mat": "PAINT"
+       }
+      ]
      }
     },
     "parts": [
@@ -1454,6 +1899,7 @@
      {"shape":"box","pos":[-17,2.75,-2.5],"scale":[0.38,0.9,3],"color":"#f3ede2"},
      {"shape":"box","pos":[-17,1.15,-3.92],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
      {"shape":"box","pos":[-17,1.15,-1.08],"scale":[0.38,2.3,0.16],"color":"#8a6236","mat":"WOOD"},
+     {"repeat":{"i":26},"collider":[3,"-7+i*0.4"],"r":0.2},
      {"shape":"box","pos":[-7.05,0.03,-2],"scale":[19.7,0.06,9.8],"color":"#a9c4a0","mat":"PAINT"},
      {
       "frame": [2.85,0,-2,-1.5708],
@@ -1476,7 +1922,11 @@
      },
      {
       "frame": [-8.5,0,-3.8],
-      "parts": [{"use":"workbench","with":{"w":8.9,"d":1.5}},{"frame":[-2.6,0.9,0],"parts":[{"use":"toolbox"}]}]
+      "parts": [
+       {"use":"workbench","with":{"w":8.9,"d":1.5}},
+       {"frame":[-2.6,0.9,0],"parts":[{"use":"toolbox"}]},
+       {"frame":[2.4,0.9,-0.15,-0.15],"parts":[{"use":"scope"}]}
+      ]
      },
      {"collider":[-12,-3.8],"r":0.5},
      {"collider":[-10,-3.8],"r":0.5},
@@ -1489,7 +1939,14 @@
      {"frame":[-5.2,0,-4.68],"parts":[{"use":"stool","with":{"c":"#EAB308"}}]},
      {
       "frame": [-8.5,0,0.2],
-      "parts": [{"use":"workbench","with":{"w":8.9,"d":1.5}},{"frame":[1.8,0.9,0.1,0.3],"parts":[{"use":"crate"}]}]
+      "parts": [
+       {"use":"workbench","with":{"w":8.9,"d":1.5}},
+       {"frame":[1.8,0.9,0.1,0.3],"parts":[{"use":"crate"}]},
+       {"frame":[-0.3,0.9,0],"parts":[{"use":"flask","with":{"c":"#7e22ce","k":1.8}}]},
+       {"frame":[-1.3,0.9,0.1],"parts":[{"use":"beaker","with":{"c":"#dc2626"}}]},
+       {"frame":[-1.05,0.9,0.1],"parts":[{"use":"beaker","with":{"c":"#7e22ce"}}]},
+       {"frame":[-0.8,0.9,0.1],"parts":[{"use":"beaker","with":{"c":"#16a34a"}}]}
+      ]
      },
      {"collider":[-12,0.2],"r":0.5},
      {"collider":[-10,0.2],"r":0.5},
@@ -1500,6 +1957,29 @@
      {"frame":[-9.6,0,1.08],"parts":[{"use":"stool","with":{"c":"#EAB308"}}]},
      {"frame":[-7.4,0,1.08],"parts":[{"use":"stool","with":{"c":"#8B5CF6"}}]},
      {"frame":[-5.2,0,1.08],"parts":[{"use":"stool","with":{"c":"#0EA5E9"}}]},
+     {
+      "frame": [-16.5,0,1.3,1.5708],
+      "parts": [
+       {"use":"labbench","with":{"w":2.5}},
+       {"frame":[0.8,0.9,0.05],"parts":[{"use":"tuberack"}]},
+       {"frame":[0.35,0.9,0.1],"parts":[{"use":"flask","with":{"c":"#16a34a"}}]},
+       {"frame":[0.05,0.9,0.12],"parts":[{"use":"beaker","with":{"c":"#dc2626"}}]},
+       {"frame":[-0.3,0.9,0.05],"parts":[{"use":"flask","with":{"c":"#2563eb","k":1.2}}]},
+       {"frame":[-0.8,0.9,0.12],"parts":[{"use":"beaker","with":{"c":"#eab308"}}]}
+      ]
+     },
+     {"repeat":{"i":6},"collider":[-16.5,"0.2+i*0.44"],"r":0.4},
+     {"frame":[-16.85,0,-5.5,1.5708],"parts":[{"use":"safety"}]},
+     {
+      "frame": [-4.6,0,-6.5],
+      "parts": [
+       {"use":"fumehood"},
+       {"frame":[-0.3,0.9,-0.05],"parts":[{"use":"flask","with":{"c":"#16a34a","k":1.3}}]},
+       {"frame":[0.25,0.9,0],"parts":[{"use":"beaker","with":{"c":"#eab308"}}]}
+      ]
+     },
+     {"frame":[-7.9,1.25,-6.85],"parts":[{"use":"periodic"}]},
+     {"frame":[-0.4,0,1.4],"parts":[{"use":"solar"}]},
      {"frame":[-17.22,0,-2.5,-1.5708],"parts":[{"sign":{"at":[0,2.62,0]}}]}
     ]
    },
@@ -1699,7 +2179,7 @@
   ],
   "props": [],
   "npcs": [
-   {"id":"yara","gx":12.7,"gy":12.8,"name":"Yara","color":"#EAB308","subject":"▶ Start · Tagesplan","female":true},
+   {"id":"yara","gx":12.1,"gy":12.45,"name":"Yara","color":"#EAB308","subject":"▶ Start · Tagesplan","female":true},
    {
     "id": "lehrerin",
     "gx": 12,
@@ -1716,18 +2196,18 @@
     "gy": 2,
     "name": "Matilda",
     "color": "#EC4899",
-    "subject": "① Lernende · 3. Jahr",
+    "subject": "① Lernende · kreativ, frech",
     "female": true,
     "hat": "beret"
    },
-   {"id":"lea","gx":2.9,"gy":8.5,"name":"Lea","color":"#F97316","subject":"② Lernende · 2. Jahr","female":true},
+   {"id":"lea","gx":2.9,"gy":8.5,"name":"Lea","color":"#F97316","subject":"② Lernende · liest gern, genau","female":true},
    {
     "id": "joel",
     "gx": 3.55,
     "gy": 8.5,
     "name": "Joel",
     "color": "#22C55E",
-    "subject": "② Lernender · 3. Jahr",
+    "subject": "② Lernender · sportlich, neugierig",
     "look": {"hairStyle":"short","hair":"#3b2a1e"}
    },
    {
@@ -1736,7 +2216,7 @@
     "gy": 10,
     "name": "Quirin",
     "color": "#0EA5E9",
-    "subject": "② Lernender · Lernatelier",
+    "subject": "② Lernender · Tüftler, zweifelt oft",
     "look": {"hairStyle":"spiky"}
    },
    {
@@ -1756,14 +2236,14 @@
     "gy": 4,
     "name": "Tobi",
     "color": "#22C55E",
-    "subject": "④ Lernender · Interessen-Atelier",
+    "subject": "④ Lernender · schnell, oft gelangweilt",
     "hat": "cap",
     "look": {"hairStyle":"short"}
    },
    {
     "id": "coach",
-    "gx": 21,
-    "gy": 11,
+    "gx": 22.1,
+    "gy": 11.1,
     "name": "Herr Meinhard",
     "color": "#8B5CF6",
     "subject": "⑤ Coach · 1:1",
@@ -1773,8 +2253,8 @@
    },
    {
     "id": "workshop",
-    "gx": 22.8,
-    "gy": 14.3,
+    "gx": 21.7,
+    "gy": 13.9,
     "name": "Herr Tesla",
     "color": "#F97316",
     "subject": "⑥ Workshop-Coach · Technik",
@@ -1962,11 +2442,11 @@
     },
     {
      "type": "choice",
-     "question": "Jede und jeder erzählt ein Highlight. Auch was noch offen ist, gehört dazu. Was zeigt ihr also in der Abendrunde?",
+     "question": "Jede und jeder erzählt ein Highlight. Auch was noch offen ist oder beinahe schiefging, gehört dazu: Daraus lernen alle. Was zeigt ihr also in der Abendrunde?",
      "options": [
-      {"text":"Ein Highlight und was noch offen ist","correct":true},
       {"text":"Eine Prüfung über den ganzen Tag","correct":false},
-      {"text":"Nur, was perfekt geklappt hat","correct":false}
+      {"text":"Nur, was perfekt geklappt hat","correct":false},
+      {"text":"Ein Highlight und was noch offen ist","correct":true}
      ]
     },
     {
@@ -1987,7 +2467,7 @@
     },
     {
      "type": "choice",
-     "question": "Ob ja oder nein: Nicht alles muss alle interessieren. Ich zeichne zum Beispiel keine Plakate fürs Essen. Zeichnen ist gerade nur für mich.",
+     "question": "Ob ja oder nein: Nicht alles muss alle interessieren. Ich zeichne zum Beispiel sehr gern, aber Plakate fürs Essen mache ich keine. Das Zeichnen gehört gerade nur mir.",
      "options": [
       {"text":"Allein planen klingt einsam.","correct":true,"feedback":"…"},
       {"text":"Und deine Klasse?","correct":true,"feedback":"…"}
@@ -2166,43 +2646,35 @@
    ]
   },
   "tobi": {
-   "intro": "Hoi, ich bin Tobi, 2. Jahr. In der freien Lernzeit baue ich einen Audio-Pfad ums Schulhaus, mit Geräuschen und gesprochenen Wegweisern. Das Thema habe ich selbst gewählt.",
-   "hint": "Zwei Vorschläge haben gleich viele Stimmen. Was sagt die Regel dazu?",
+   "intro": "Hoi, ich bin Tobi, 2. Jahr. Ich verstehe Sachen schnell und langweile mich dann auch schnell. Darum baue ich in der freien Lernzeit einen Audio-Pfad ums Schulhaus, mit Geräuschen und gesprochenen Wegweisern. Das Thema habe ich selbst gewählt.",
+   "hint": "Wenn ich daneben stehe und erkläre, sehe ich nicht, wo die anderen wirklich hängen bleiben.",
    "phases": [
     {"type":"intro"},
     {
      "type": "choice",
-     "question": "Mathe und Deutsch bleiben trotzdem im Plan. Die Wegweiser muss ich genau formulieren, das zählt sogar für mein Deutsch-Ziel. Dabei sind Sprachen sonst nicht so meins.",
+     "question": "Mathe und Deutsch bleiben trotzdem im Plan. Sprachen sind eigentlich nicht so meins, aber die Wegweiser muss ich genau formulieren. Das zählt für mein Deutsch-Ziel.",
      "options": [{"text":"Praktisch!","correct":true,"feedback":"…"},{"text":"Wer testet den Pfad?","correct":true,"feedback":"…"}]
     },
     {
      "type": "choice",
-     "question": "Andere testen ihn. Und alle verpassen die gleiche Abzweigung, die ich total klar finde. Hier testen wir gegenseitig unsere Sachen. Rückmeldung ist normal, auch für mich.",
+     "question": "Andere testen den Pfad, und alle verpassen dieselbe Abzweigung. Dabei finde ich sie total klar. Hier testen wir gegenseitig unsere Sachen, Rückmeldung gehört dazu, auch für mich.",
      "options": [
       {"text":"Ärgert dich das nicht?","correct":true,"feedback":"…"},
-      {"text":"Testest du auch für andere?","correct":true,"feedback":"…"}
+      {"text":"Und was machst du jetzt?","correct":true,"feedback":"…"}
      ]
     },
     {
      "type": "choice",
-     "question": "Zuerst schon ein bisschen. Aber ich teste ja selbst auch: Bei Leas Abstimmungsspiel stand es gerade 2 zu 2 zu 1. Ihre Regel heisst «Die meisten Stimmen gewinnen».",
+     "question": "Zuerst hat mich das geärgert. Was hilft mir am meisten, um herauszufinden, woran es liegt?",
      "options": [
-      {"text":"Und wer hat gewonnen?","correct":true,"feedback":"…"},
-      {"text":"Oh, das gibt Streit.","correct":true,"feedback":"…"}
-     ]
-    },
-    {
-     "type": "choice",
-     "question": "Genau da hakt es. Was fehlt in Leas Regel «Die meisten Stimmen gewinnen»?",
-     "options": [
-      {"text":"Nichts, bei 2 zu 2 zu 1 gewinnt der Vorschlag mit 1 Stimme","correct":false},
-      {"text":"Nichts, bei Gleichstand gewinnt immer der erste Vorschlag","correct":false},
-      {"text":"Was bei einem Gleichstand passiert","correct":true}
+      {"text":"Den Testenden den Weg vorher genau erklären","correct":false},
+      {"text":"Die Abzweigung einfach weglassen","correct":false},
+      {"text":"Beim nächsten Test mitlaufen und beobachten, ohne zu helfen","correct":true}
      ]
     },
     {
      "type": "complete",
-     "message": "Genau. Lea ergänzt jetzt eine Stichwahl zwischen den beiden Ersten. Und ich? Herr Meinhard meint, ich soll morgen beim Test nur mitlaufen und nichts sagen. Er ist im Coaching-Raum, Tür ⑤."
+     "message": "Genau das meint Herr Meinhard auch: Morgen laufe ich beim Test nur mit und sage nichts. Danach frage ich, was unklar war. Er ist im Coaching-Raum, Tür ⑤."
     }
    ]
   },
@@ -2243,7 +2715,7 @@
     },
     {
      "type": "complete",
-     "message": "Genau. Heute ist hier das Säure-Base-Labor offen: Mit Rotkohlsaft testest du, was sauer und was basisch ist. Zuerst die Sicherheitsschritte der Station. Danach zurück in die Aula, zur Abendrunde ⑦."
+     "message": "Genau. Heute ist hier das Säure-Base-Labor offen: Mit Rotkohlsaft testest du, was sauer und was basisch ist. Die Schutzausrüstung wählst du dort selbst, bevor du mischst: Was man selbst entschieden hat, merkt man sich besser als eine Regel auf Papier. Danach zurück in die Aula, zur Abendrunde ⑦."
     }
    ]
   },
