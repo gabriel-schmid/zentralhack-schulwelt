@@ -281,9 +281,157 @@ const DEFS = {
   },
 };
 
+// Lab things for Herr Tesla's Workshop-Raum (the Säure-Base-Labor), same
+// convention: metres, centred, front toward +z. Glass is opaque in the
+// engine, so a vessel is a coloured liquid part under a pale glass part.
+const GLASS = "#d6eef7";
+// red-cabbage indicator from acid to base: red, pink, purple, blue, green, yellow
+const INDICATOR = ["#dc2626", "#ec4899", "#7e22ce", "#2563eb", "#16a34a", "#eab308"];
+Object.assign(DEFS, {
+  // Erlenmeyer flask, k times 23 cm tall: liquid c in the wide lower half
+  flask: {
+    params: ["c", "k"],
+    defaults: { k: 1 },
+    parts: [
+      { shape: "flaskLow", pos: [0, "0.045*k", 0], scale: ["k", "k", "k"], color: "c", mat: "PAINT" },
+      { shape: "flaskTop", pos: [0, "0.13*k", 0], scale: ["k", "k", "k"], color: GLASS, mat: "GLASS" },
+      { shape: "cyl8", pos: [0, "0.2*k", 0], scale: ["0.034*k", "0.06*k", "0.034*k"], color: GLASS, mat: "GLASS" },
+    ],
+  },
+  // beaker, liquid c two thirds up
+  beaker: {
+    params: ["c"],
+    parts: [
+      { shape: "cyl8", pos: [0, 0.04, 0], scale: [0.1, 0.08, 0.1], color: "c", mat: "PAINT" },
+      { shape: "cyl8", pos: [0, 0.105, 0], scale: [0.098, 0.05, 0.098], color: GLASS, mat: "GLASS" },
+      { shape: "box", pos: [0, 0.128, 0.05], scale: [0.025, 0.006, 0.02], color: GLASS, mat: "GLASS", skipLean: true },
+    ],
+  },
+  // wooden test-tube rack with six tubes in the indicator colours
+  tuberack: {
+    parts: [
+      { shape: "box", pos: [0, 0.01, 0], scale: [0.36, 0.02, 0.1], color: "#c8955a", mat: "WOOD" },
+      { shape: "box", pos: [0, 0.085, 0], scale: [0.36, 0.02, 0.1], color: "#c8955a", mat: "WOOD" },
+      { for: { s: [-1, 1] }, shape: "box", pos: ["s*0.17", 0.05, 0], scale: [0.02, 0.08, 0.1], color: "#8a6236", mat: "WOOD" },
+      ...INDICATOR.flatMap((c, i) => [
+        { shape: "cyl6", pos: [r2(-0.125 + i * 0.05), 0.065, 0], scale: [0.024, 0.09, 0.024], color: c, mat: "PAINT" },
+        { shape: "cyl6", pos: [r2(-0.125 + i * 0.05), 0.14, 0], scale: [0.024, 0.06, 0.024], color: GLASS, mat: "GLASS" },
+      ]),
+    ],
+  },
+  // lab bench against a wall: grey cabinets, black top, a reagent shelf
+  // with brown and clear bottles at the back
+  labbench: {
+    params: ["w"],
+    parts: [
+      { shape: "box", pos: [0, 0.05, -0.03], scale: ["w-0.04", 0.1, 0.6], color: "#3d4450", mat: "PAINT" },
+      { shape: "box", pos: [0, 0.48, 0], scale: ["w", 0.76, 0.66], color: "#e4e7eb", mat: "PAINT" },
+      { for: { f: [-0.25, 0, 0.25] }, shape: "box", pos: ["f*w", 0.48, 0.333], scale: [0.012, 0.7, 0.01], color: "#9aa1ab", mat: "PAINT", skipLean: true },
+      { for: { f: [-0.375, -0.125, 0.125, 0.375] }, shape: "box", pos: ["f*w+0.08", 0.74, 0.345], scale: [0.12, 0.02, 0.02], color: "#5f6b78", mat: "METAL", skipLean: true },
+      { shape: "box", pos: [0, 0.88, 0.02], scale: ["w+0.04", 0.04, 0.74], color: "#262a30", mat: "PAINT" },
+      { for: { s: [-1, 1] }, shape: "box", pos: ["s*(w/2-0.04)", 1.25, -0.25], scale: [0.04, 0.7, 0.2], color: "#c8955a", mat: "WOOD" },
+      { for: { y: [1.28, 1.58] }, shape: "box", pos: [0, "y", -0.25], scale: ["w-0.04", 0.03, 0.2], color: "#c8955a", mat: "WOOD" },
+      { for: { k: [-0.4, -0.3, -0.12, 0.05, 0.15, 0.32] }, shape: "cyl8", pos: ["k*w", 1.38, -0.25], scale: [0.08, 0.17, 0.08], color: "k < 0 ? '#7a4a1e' : '#cfe3ea'", mat: "GLASS" },
+      { for: { k: [-0.4, -0.3, -0.12, 0.05, 0.15, 0.32] }, shape: "cyl8", pos: ["k*w", 1.49, -0.25], scale: [0.04, 0.05, 0.04], color: "#2b2f36", mat: "PAINT", skipLean: true },
+    ],
+  },
+  // fume hood: base cabinet, a hood with the sash pushed up, a duct to the
+  // ceiling; the room puts glassware inside (worktop at 0.9 m)
+  fumehood: {
+    parts: [
+      { shape: "box", pos: [0, 0.43, 0], scale: [1.3, 0.86, 0.7], color: "#e4e7eb", mat: "PAINT" },
+      { shape: "box", pos: [0, 0.88, 0.01], scale: [1.32, 0.04, 0.74], color: "#262a30", mat: "PAINT" },
+      { for: { s: [-1, 1] }, shape: "box", pos: ["s*0.62", 1.5, 0], scale: [0.06, 1.2, 0.7], color: "#eef0f2", mat: "PAINT" },
+      { shape: "box", pos: [0, 1.5, -0.33], scale: [1.18, 1.2, 0.04], color: "#cfd5dc", mat: "PAINT" },
+      { shape: "box", pos: [0, 2.35, 0], scale: [1.3, 0.5, 0.7], color: "#eef0f2", mat: "PAINT" },
+      { shape: "box", pos: [0, 1.88, 0.33], scale: [1.18, 0.44, 0.03], color: "#bfe3f2", mat: "GLASS" },
+      { shape: "box", pos: [0, 1.67, 0.345], scale: [1.18, 0.04, 0.03], color: "#5f6b78", mat: "METAL" },
+      { shape: "box", pos: [0, 2.35, 0.355], scale: [0.5, 0.12, 0.01], color: "#F97316", mat: "PAINT", skipLean: true },
+      { shape: "cyl8", pos: [0, 2.9, -0.1], scale: [0.26, 0.6, 0.26], color: "#b8bec7", mat: "METAL" },
+      { for: { x: [-0.4, 0, 0.4] }, collider: ["x", 0], r: 0.4 },
+    ],
+  },
+  // on a wall, front +z: goggles rack under a blue «wear goggles» sign, the
+  // green first-aid sign, the green eyewash sign over an eyewash bottle box
+  safety: {
+    parts: [
+      { shape: "box", pos: [-0.55, 1.4, 0.02], scale: [0.55, 0.5, 0.03], color: "#eef0f2", mat: "PAINT" },
+      { for: { y: [1.3, 1.52] }, shape: "box", pos: [-0.55, "y", 0.05], scale: [0.55, 0.02, 0.05], color: "#9aa1ab", mat: "METAL" },
+      { for: { x: [-0.72, -0.55, -0.38], y: [1.24, 1.46] }, parts: [
+        { shape: "rboxSoft", pos: ["x", "y", 0.07], scale: [0.14, 0.06, 0.05], color: "#bfe3f2", mat: "GLASS" },
+        { shape: "box", pos: ["x", "y+0.04", 0.06], scale: [0.15, 0.015, 0.02], color: "y > 1.3 ? '#facc15' : '#3288EF'", mat: "FABRIC", skipLean: true },
+      ] },
+      { shape: "cyl20", pos: [-0.55, 1.88, 0.025], rot: [1.5708, 0, 0], scale: [0.3, 0.02, 0.3], color: "#1d4ed8", mat: "PAINT" },
+      { for: { s: [-1, 1] }, shape: "box", pos: ["-0.55+s*0.05", 1.88, 0.04], scale: [0.07, 0.05, 0.01], color: "#ffffff", mat: "PAINT", skipLean: true },
+      { shape: "box", pos: [0, 1.85, 0.02], scale: [0.4, 0.4, 0.02], color: "#15803d", mat: "PAINT" },
+      { shape: "box", pos: [0, 1.85, 0.035], scale: [0.26, 0.08, 0.01], color: "#ffffff", mat: "PAINT" },
+      { shape: "box", pos: [0, 1.85, 0.035], scale: [0.08, 0.26, 0.01], color: "#ffffff", mat: "PAINT" },
+      { shape: "box", pos: [0.5, 1.85, 0.02], scale: [0.4, 0.4, 0.02], color: "#15803d", mat: "PAINT" },
+      { shape: "cyl20", pos: [0.5, 1.85, 0.035], rot: [1.5708, 0, 0], scale: [0.26, 0.01, 0.13], color: "#ffffff", mat: "PAINT" },
+      { shape: "cyl20", pos: [0.5, 1.85, 0.042], rot: [1.5708, 0, 0], scale: [0.09, 0.01, 0.09], color: "#15803d", mat: "PAINT", skipLean: true },
+      { shape: "box", pos: [0.5, 1.33, 0.08], scale: [0.32, 0.34, 0.12], color: "#16a34a", mat: "PAINT" },
+      { for: { s: [-1, 1] }, shape: "cyl8", pos: ["0.5+s*0.07", 1.36, 0.15], scale: [0.09, 0.22, 0.09], color: "#f8fafc", mat: "PAINT", skipLean: true },
+    ],
+  },
+  // solar panel on a stand, tilted toward +z, with an orange charging box
+  // and its cable (Herr Tesla's Solar-Ladestation)
+  solar: {
+    parts: [
+      { shape: "box", pos: [0, 0.025, 0], scale: [0.6, 0.05, 0.5], color: "#3d4450", mat: "METAL" },
+      { shape: "cyl8", pos: [0, 0.55, -0.05], scale: [0.07, 1.0, 0.07], color: "#9aa1ab", mat: "METAL" },
+      { shape: "box", pos: [0, 1.09, 0], rot: [0.6, 0, 0], scale: [1.06, 0.03, 0.72], color: "#c3c8cf", mat: "METAL" },
+      { shape: "box", pos: [0, 1.1, 0], rot: [0.6, 0, 0], scale: [1.0, 0.04, 0.66], color: "#1e3a5f", mat: "SOLAR" },
+      { shape: "box", pos: [0.48, 0.12, 0.3], scale: [0.32, 0.24, 0.2], color: "#F97316", mat: "PAINT" },
+      { shape: "box", pos: [0.48, 0.245, 0.3], scale: [0.09, 0.012, 0.16], color: "#1f2329", mat: "PAINT", skipLean: true },
+      { shape: "box", pos: [0.4, 0.18, 0.402], scale: [0.03, 0.03, 0.01], color: "#4ade80", mat: "PAINT", glow: 1, skipLean: true },
+      { shape: "cyl6", pos: [0.25, 0.3, 0.1], rot: [0, 0, 1.0], scale: [0.02, 0.62, 0.02], color: "#1f2329", mat: "PAINT", skipLean: true },
+      { collider: [0, 0], r: 0.5 },
+      { collider: [0.48, 0.3], r: 0.25 },
+    ],
+  },
+  // oscilloscope with a green trace, a yellow multimeter beside it
+  scope: {
+    parts: [
+      { shape: "box", pos: [0, 0.13, 0], scale: [0.42, 0.26, 0.32], color: "#d4d8de", mat: "METAL" },
+      { shape: "box", pos: [-0.07, 0.14, 0.161], scale: [0.22, 0.15, 0.01], color: "#0b2b1a", mat: "PAINT" },
+      { for: { k: [0, 1, 2, 3] }, shape: "box", pos: ["-0.145+k*0.05", 0.14, 0.167], rot: [0, 0, "k%2 ? -0.9 : 0.9"], scale: [0.065, 0.008, 0.004], color: "#4ade80", mat: "PAINT", glow: 1, skipLean: true },
+      { for: { x: [0.1, 0.16], y: [0.08, 0.18] }, shape: "cyl6", pos: ["x", "y", 0.17], rot: [1.5708, 0, 0], scale: [0.035, 0.02, 0.035], color: "#2b2f36", mat: "PAINT", skipLean: true },
+      { shape: "rbox", pos: [0.42, 0.09, 0.05], rot: [-0.3, -0.3, 0], scale: [0.11, 0.18, 0.04], color: "#facc15", mat: "PAINT" },
+      { shape: "box", pos: [0.42, 0.13, 0.072], rot: [-0.3, -0.3, 0], scale: [0.08, 0.04, 0.006], color: "#9fb59a", mat: "PAINT", skipLean: true },
+      { for: { s: [-1, 1] }, shape: "cyl6", pos: ["0.42+s*0.025", 0.012, 0.16], rot: [1.5708, 0, 0], scale: [0.012, 0.2, 0.012], color: "s > 0 ? '#dc2626' : '#1f2329'", mat: "PAINT", skipLean: true },
+    ],
+  },
+  // periodic-table poster: white sheet, title strip, the element cells in
+  // their block colours (s red, d blue, p yellow, noble gases violet, f green)
+  periodic: {
+    let: { cw: 0.075 },
+    parts: [
+      { shape: "box", pos: [0, 0.5, 0.01], scale: [1.5, 1.0, 0.012], color: "#fbfaf6", mat: "PAINT" },
+      { shape: "box", pos: [0, 0.93, 0.018], scale: [1.3, 0.06, 0.004], color: "#1e3a8a", mat: "PAINT" },
+      // [first column, cells, row, colour]; rows 7.4 and 8.4 are the f-block
+      ...[
+        [0, 1, 0, "#f87171"], [17, 1, 0, "#a78bfa"],
+        [0, 2, 1, "#f87171"], [12, 5, 1, "#fcd34d"], [17, 1, 1, "#a78bfa"],
+        [0, 2, 2, "#f87171"], [12, 5, 2, "#fcd34d"], [17, 1, 2, "#a78bfa"],
+        ...[3, 4, 5, 6].flatMap((r) => [[0, 2, r, "#f87171"], [2, 10, r, "#60a5fa"], [12, 5, r, "#fcd34d"], [17, 1, r, "#a78bfa"]]),
+        [3, 14, 7.4, "#86efac"], [3, 14, 8.4, "#86efac"],
+      ].map(([c0, n, row, color]) => ({
+        repeat: { i: n },
+        shape: "box",
+        pos: [`(${c0}+i-8.5)*cw`, r2(0.82 - row * 0.075), 0.02],
+        scale: ["cw-0.01", 0.065, 0.004],
+        color,
+        mat: "PAINT",
+      })),
+    ],
+  },
+});
+
 // Own geometries (three.js arguments), carried by the rooms that use them.
 const GEOMS = {
   pot: { type: "cylinder", args: [0.24, 0.17, 0.44, 10] }, // tapered flower pot
+  flaskLow: { type: "cylinder", args: [0.045, 0.075, 0.09, 12] }, // Erlenmeyer, lower half
+  flaskTop: { type: "cylinder", args: [0.017, 0.045, 0.08, 12] }, // Erlenmeyer, shoulder
 };
 
 // Deterministic pseudo-random numbers (book heights and colours).
@@ -637,7 +785,7 @@ const landmarks = [
     windowsSide(0, [[14.2, 16.2]]);
     sign(5.5, 13.11, "south"); // centred on its north wall, seen from the hall
   }),
-  roomDoc("schulhaus_workshop", anchors.workshop, ({ wallWithDoorZ, floor, place, use, footprint, sign, board }) => {
+  roomDoc("schulhaus_workshop", anchors.workshop, ({ wallWithDoorZ, floor, place, use, footprint, sign, board, collideLine }) => {
     wallWithDoorZ(14, 13, 18, 14.5, 16);
     floor(14.05, 13.05, 23.9, 17.95, C.floorGreen);
     // two workbenches facing a screen on the east wall, stools, a toolbox
@@ -652,14 +800,37 @@ const landmarks = [
       tool(0.6, 1.62, 0, 0.035, 0.22, "#d4d8de"), tool(0.6, 1.83, 0, 0.06, 0.16, "#F97316", "PAINT"), // screwdriver
       tool(0.95, 1.6, 0, 0.05, 0.3, C.woodDark, "WOOD"), tool(0.95, 1.79, 0, 0.12, 0.1, "#5f6b78"), // mallet
     ]);
+    // things standing on a top at height y, in the frame of what carries them
+    const on = (x, z, y, node, yaw) => ({ frame: yaw ? [x, y, z, yaw] : [x, y, z], parts: [node] });
     for (const [z0, z1, stoolZ, extra] of [
-      [14.2, 15, 14.16, { frame: [-2.6, 0.9, 0], parts: [use("toolbox")] }],
-      [16.2, 17, 17.04, { frame: [1.8, 0.9, 0.1, 0.3], parts: [use("crate")] }],
+      // toolbox, oscilloscope and multimeter on the back bench
+      [14.2, 15, 14.16, [on(-2.6, 0, 0.9, use("toolbox")), on(2.4, -0.15, 0.9, use("scope"), -0.15)]],
+      // the red-cabbage flask and three beakers on the front bench
+      [16.2, 17, 17.04, [on(1.8, 0.1, 0.9, use("crate"), 0.3), on(-0.3, 0, 0.9, use("flask", { c: INDICATOR[2], k: 1.8 })),
+        ...[-1.3, -1.05, -0.8].map((x, i) => on(x, 0.1, 0.9, use("beaker", { c: INDICATOR[i * 2] })))]],
     ]) {
-      place(18.25, (z0 + z1) / 2, "south", [use("workbench", { w: 8.9, d: 1.5 }), extra]);
+      place(18.25, (z0 + z1) / 2, "south", [use("workbench", { w: 8.9, d: 1.5 }), ...extra]);
       footprint(16, z0, 20.5, z1);
       [16.6, 17.7, 18.8, 19.9].forEach((x, i) => place(x, stoolZ, "south", [use("stool", { c: C.chairs[(i + (z0 > 15 ? 2 : 0)) % C.chairs.length] })]));
     }
+    // Säure-Base-Labor corner: a lab bench with glassware against the west
+    // wall south of the door, the safety corner north of it, a fume hood and
+    // a periodic table on the north wall (west of the passage), Herr Tesla's
+    // solar charging station in the open south-east corner
+    const t = WALL_T / TILE_M / 2;
+    place(14 + t + 0.175, 17.15, "east", [
+      use("labbench", { w: 2.5 }),
+      on(0.8, 0.05, 0.9, use("tuberack")),
+      on(0.35, 0.1, 0.9, use("flask", { c: "#16a34a" })),
+      on(0.05, 0.12, 0.9, use("beaker", { c: "#dc2626" })),
+      on(-0.3, 0.05, 0.9, use("flask", { c: "#2563eb", k: 1.2 })),
+      on(-0.8, 0.12, 0.9, use("beaker", { c: "#eab308" })),
+    ]);
+    collideLine(14.25, 16.6, 14.25, 17.7, 0.4, 0.5);
+    place(14 + t, 13.75, "east", [use("safety")]);
+    place(20.2, 13 + t + 0.175, "south", [use("fumehood"), on(-0.3, -0.05, 0.9, use("flask", { c: "#16a34a", k: 1.3 })), on(0.25, 0, 0.9, use("beaker", { c: "#eab308" }))]);
+    place(18.55, 13 + t, "south", [use("periodic")], 1.25);
+    place(22.3, 17.2, "south", [use("solar")]);
     sign(13.89, 15.25, "west");
   }),
   roomDoc("schulhaus_halle", anchors.halle, ({ floor, place, use, collide, collideLine, sign }) => {

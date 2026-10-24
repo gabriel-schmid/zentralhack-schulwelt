@@ -22,12 +22,7 @@ world only loads exactly those bytes.
 | Level | Repo source | Live document | Revision | Asset | sha256 of the live file |
 | ----- | ----------- | ------------- | -------- | ----- | ----------------------- |
 | Bergdorf (village, on the world Hazu `TRAIMeIVPNXq5wfkfTG2`) | `level/build-bergdorf.mjs` → `level/bergdorf.json` | `doc_eea84d56d6c0485c8b6fd000cda306ac` | 3 | `asset_3c0811d9f4e2460ebef9615a250ba272` | `1ad8c838ce49c01a7065d422156d2c531433c11c40f69253712e65cc1ad168b4` |
-| Schulhaus (on the place Hazu `_m0-qRVAAUwmuxfswuPp`) | `level/build-schulhaus.mjs` + `level/route-dialogues.mjs` → `level/schulhaus.json` | `doc_0efde5e6ab4d4b90bff0952529122f55` | 5 | `asset_76b52024aa8645abb0234c80d9b1160d` | `e8c05533e5c05c72c64de191f47ca3c32df788a63d93ad7dac15687ba2b4336d` |
-
-**Pending:** Schulhaus revision 5 matches commit `4ed5e6b`. Commit `fad4e73`
-changes two dialogue lines and is not uploaded yet; its converted file has the
-sha256 `bafac271716f41309324edd638bee3085cadbd655dfc1befb1e64ea1d7bb411b`. This
-row gets the new revision once it is uploaded and pinned.
+| Schulhaus (on the place Hazu `_m0-qRVAAUwmuxfswuPp`) | `level/build-schulhaus.mjs` + `level/route-dialogues.mjs` → `level/schulhaus.json` | `doc_0efde5e6ab4d4b90bff0952529122f55` | 6 | `asset_f009f15acfa045a7982cae255252105d` | `9d713ff7fe80f7ee0bc84db1d3bdb18dead0ca1b20fb53ac132c6f0ed2464107` |
 
 The uploaded file is not the raw repo JSON. It is the converted `level@1`
 document: the engine's `levelRoundTrip` (Hazu World SDK,
@@ -45,7 +40,7 @@ To reproduce a live sha256:
    `scripts/check-level.mjs` validates a level with the engine first.
 
 We checked both rows this way: `level/bergdorf.json` at `fad4e73` gives the
-Bergdorf hash, `level/schulhaus.json` at `4ed5e6b` gives the Schulhaus hash.
+Bergdorf hash, `level/schulhaus.json` at the commit «workshop lab accessories, Matilda line» gives the Schulhaus hash.
 
 ## Stations
 
