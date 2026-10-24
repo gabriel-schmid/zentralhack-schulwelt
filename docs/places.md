@@ -57,3 +57,7 @@ Local observer demo implemented in `widgets/mathematikvormittag/index.html`.
 Five scenes, two learner perspectives, preparation, formative feedback and
 changing personal plans. See [setup and scope](mathematics-demo.md).
 Status: browser-tested locally; upload and live Hazu wiring pending.
+
+Update, 24 October 2026: mathematics widget uploaded, private station configured
+and tested in Hazu; see mathematics-demo.md for the link and verified UI upload
+procedure. A specific 3D entry point remains unverified.

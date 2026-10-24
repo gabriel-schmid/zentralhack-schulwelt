@@ -121,3 +121,13 @@ provided within BSZ; home preparation is optional. Both have completed it when
 the scene starts. Shared checkpoints alternate with accompanied self-study.
 Different support needs are task-specific scenario assumptions. See
 [the demo documentation](mathematics-demo.md) for implementation and scope.
+
+## Observer experience extension (24 October 2026)
+
+The owner approved a deeper view of one morning: personal plans, mathematics,
+project obstacles, coaching and visible work at closing. The local widget now
+includes Lea's voting game and Joel's fictional interview excerpts, with
+teacher perspectives. These are authored examples with fixed character choices,
+not evidence of the school model's effectiveness. Moodle, OCR and automated
+correction remain possible future work. See mathematics-demo.md for local
+verification and deployment status.

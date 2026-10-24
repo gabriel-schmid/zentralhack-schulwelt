@@ -26,3 +26,5 @@ here.
 | Lato (Google Fonts) | – | OFL | all widgets |
 
 - Codex (OpenAI): repository review and shared simulation concept documentation.
+
+- Piper TTS 1.8.0 (GPL-3.0): local German narration trial; voice de_DE-thorsten-medium (model card lists CC0 dataset). See local-tts.md.

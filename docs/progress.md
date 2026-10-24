@@ -50,3 +50,11 @@ jury.
 - [x] Documented six learner and two coach personas, age-appropriate independent projects, and separation of given traits from draft scenarios (02:25, Europe/Zurich).
 
 - [x] Built and browser-tested the mathematics observer station: five scenes, Lea/Joel views, preparation, formative feedback and plan changes; live Hazu wiring pending (03:45, Europe/Zurich).
+
+- [x] Uploaded mathematics widget via the Hazu editor, configured private station and Widget default, tested perspective/scene navigation; documented upload procedure (04:15, Europe/Zurich).
+
+- [x] Installed isolated local Piper and generated a German percentage explanation WAV; voice quality awaits listening review (04:33, Europe/Zurich).
+
+- [x] Expanded the local observer station to six scenes with personal projects, obstacles, coaching, teacher perspectives and an interactive voting trial; checked all 18 scene/view combinations and mobile layout in Chrome. Updated local HTML still needs upload to Hazu (05:16, Europe/Zurich).
+
+- [x] Uploaded six-scene widget as revision 2 of the existing Hazu managed document using terminal file input and the Hazu connector; verified remote source and SHA-256 against local HTML. Existing station URL preserved; in-Hazu interaction retest pending (05:19, Europe/Zurich).

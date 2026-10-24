@@ -66,3 +66,81 @@ save visitor progress. No learner or visitor data is collected.
 
 For user testing, ask visitors to explain binding goals, freedoms, differences
 in support, and remaining uncertainty before asking for their opinion.
+
+## Verified UI deployment (24 October 2026)
+
+The mathematics demo is uploaded and running as a Hazu widget:
+https://hazu.app/HIx4jrkOAhhawUaTpPN4/TRAIMeIVPNXq5wfkfTG2/_m0-qRVAAUwmuxfswuPp/LTjw1DYvatdQehCf0OGG
+
+Station ID: `LTjw1DYvatdQehCf0OGG`; attachment point: `vDd_JyfAf6oNiQIV0lSm`.
+The station is private, tagged `hz-world-sim`, and defaults to Widget view.
+Display: entire content area. Hazu bridge is off because this demo needs no
+platform data access. Perspective switching and scene navigation were verified
+inside Hazu. A particular 3D character/board entry point is not yet verified.
+
+Verified upload procedure for an administrator/editor:
+1. Create a separate child Hazu in the Schulhaus list, save and open it.
+2. Create and save a point to hold the HTML attachment.
+3. Edit that saved point, focus its description and choose the toolbar's File
+   control. The attachment controls were disabled in an unsaved new point.
+4. Select `widgets/mathematikvormittag/index.html`, wait for upload and save.
+5. Copy the resulting managed-file link from the attachment.
+6. Open view menu > Additional views > Widget > view settings. Paste the file
+   URL, set an accessible display name and choose the desired content area.
+7. For this standalone station, switch off Hazu bridge. Set Widget as default
+   using the star in the view menu and open Widget view.
+8. Apply `hz-world-sim` in the child Hazu's Tags. Check visibility explicitly:
+   newly created content initially showed Public; this station was set Private
+   to match the existing school stations.
+9. Test the loaded widget. Do not copy generated `cap` query parameters into
+   documentation or source; Hazu provides file access within its own view.
+
+This supersedes the earlier note that upload/live wiring was pending for the
+standalone widget. World-level NPC/board integration is a separate step.
+
+## Expanded observer experience (24 October 2026)
+
+The local widget now follows a six-scene morning: personal plans, mathematics
+checkpoint, accompanied learning, obstacles in personal projects, coaching,
+and closing reflection. This implements the owner-approved extension discussed
+on 24 October; the particular dialogue and outcomes are authored scenario choices.
+
+Lea develops a voting game. Visitors can add fictional votes and expose a tie
+in the initial rules, then inspect her revised run-off rule. Joel compares two
+fictional interview excerpts and replaces an unsupported generalisation with
+an introduction that preserves uncertainty. Text excerpts are shown; no audio
+recordings are included. Teacher-perspective dialogs explain the evidence,
+limited support capacity and remaining uncertainty in each scene.
+
+The visitor still observes the figures' decisions. The vote experiment is
+temporary and does not branch or alter their story. No real learner data,
+assessment backend, Moodle, OCR or autonomous simulation has been added.
+Existing age assumptions and mathematics curriculum references still apply.
+Personal-project assessment criteria are illustrative, not a new curriculum.
+
+Local browser QA with installed Chrome/Playwright covered all 18 scene/view
+combinations, work/preparation/reason/teacher dialogs, initial and revised tie
+handling, vote clearing, replay/reset, daily overview, and a 390px viewport
+without document overflow or JavaScript errors. Desktop and mobile screenshots
+are in output/demo-review/. Wording and scene continuity were reviewed.
+
+Deployment status: these changes are local. The earlier verified Hazu upload
+contains the previous widget until an updated HTML attachment is uploaded.
+The six-scene version has not been verified inside Hazu.
+
+Suggested jury route: show the village briefly, open Lea's initial plan, show
+the mathematics evidence, try a tied vote, then show coaching and the closing
+reflection. Switch to Joel or the teacher perspective for follow-up questions.
+Keep Moodle/local OCR as future work, and distinguish the existing Hazu engine
+from the world, authored scenes and widgets built during the hackathon.
+
+## Connector deployment update (24 October 2026)
+
+The six-scene local HTML was uploaded to the existing managed document through
+the authenticated Hazu connector after reading it from disk via the terminal.
+Revision 2 is committed on doc_e8a88c0ac8c84787844eae172288ef05.
+The station's existing stable URL remains unchanged. Read-back confirms the
+project-scene source and SHA-256 identical to the local file:
+b28c7b394e4cdd27ffae707eafddc550e2d359dbf9be3b8707e697391c0fc209.
+This supersedes the local-only deployment note above. The uploaded revision
+has not received a new in-Hazu browser interaction test.

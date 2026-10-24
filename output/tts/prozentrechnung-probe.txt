@@ -1,0 +1,3 @@
+Ein Preis beträgt achtzig Franken. Er steigt um fünfundzwanzig Prozent. Fünfundzwanzig Prozent von achtzig Franken sind zwanzig Franken. Der neue Preis beträgt also hundert Franken.
+Nun sinkt dieser Preis um fünfundzwanzig Prozent. Diesmal beziehen sich die fünfundzwanzig Prozent auf hundert Franken. Das sind fünfundzwanzig Franken. Übrig bleiben fünfundsiebzig Franken.
+Der entscheidende Punkt ist der Grundwert. Er hat sich verändert. Deshalb heben sich die beiden prozentualen Veränderungen nicht auf.
